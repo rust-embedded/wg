@@ -9,3 +9,6 @@ discussing the scope and contents of this repository.
 
 [Join us!](https://github.com/japaric/embedded-rust/issues/#1)
 
+
+
+[![Join the chat at https://gitter.im/embedded-rust/Lobby](https://badges.gitter.im/embedded-rust/Lobby.svg)](https://gitter.im/embedded-rust/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
