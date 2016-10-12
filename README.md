@@ -10,3 +10,5 @@ This repository is an attempt at mobilizing efforts towards that goal and we are
 discussing the scope and contents of this repository.
 
 [Join us!](https://github.com/japaric/embedded-rust/pull/1)
+
+P.S. We are also on Mozilla's IRC: #rust-embedded
