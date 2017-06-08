@@ -13,6 +13,9 @@ and want for the rust embedded ecosystem. These design documents should detail:
   exist/are under development
 - testing: tools to help support in the testing of embedded programs.
 
+The design documents should be written in a tool that allows for categorization
+and linking of the design decisions.
+
 # Motivation
 [motivation]: #motivation
 
@@ -27,10 +30,15 @@ what libraries rust-embedded is hoping to support.
 [design]: #detailed-design
 
 We should use the tool [artifact](https://github.com/vitiral/artifact)
-to write design documents and host them.
+to write design documents and host them, as it uses a text based format
+and provides a static html page that can be hosted on github or elsewhere.
 
 I have already gotten a MVP of the design docs here:
 https://vitiral.github.io/rust-embedded-design/#artifacts/REQ-PURPOSE
+
+The idea is that we would write the design with a few contributors and then
+use the RFCs and Pull Requests to integrate community feedback and change
+them.
 
 # Drawbacks
 [drawbacks]: #drawbacks
