@@ -1,11 +1,68 @@
-This is the rust-embedded RFC (Request For Comment) repository. The purpose
-of this repository is to help Rust become a great language and ecosystem for
-embedded projects.
+# Embedded devices Working Group
 
-This repository exists to help facilitate that goal by providing an RFC process
-to design the ecosystem we wish to see. The RFC processs has worked well for
-rust and we expect it will work well for us as well. Learn more about the Rust's
-RFC process (which is the same as our own) [here][1].
+> Coordination repository of the embedded devices Working Group (WG)
+
+This repository [issue tracker] is used by the embedded WG to coordinate efforts towards making Rust
+a great choice for embedded development.
+
+[issue tracker]: https://github.com/rust-lang-nursery/embedded-wg/issues
+
+## Roster
+
+- [@dvc94ch][] (representative of the RISCV ecosystem)
+- [@dylanmckay][] (representative of the AVR ecosystem)
+- [@hannobraun]
+- [@jamesmunns]
+- [@japaric][] (lead)
+- [@jcsoo]
+- [@pftbest][] (representative of the MSP430 ecosystem)
+- [@thejpster]
+
+[@dvc94ch]: https://github.com/dvc94ch
+[@dylanmckay]: https://github.com/dylanmckay
+[@hannobraun]: https://github.com/hannobraun
+[@jamesmunns]: https://github.com/jamesmunns
+[@japaric]: https://github.com/japaric
+[@jcsoo]: https://github.com/jcsoo
+[@pftbest]: https://github.com/pftbest
+[@thejpster]: https://github.com/thejpster
+
+## On going community efforts
+
+### [`embedded-hal`]
+
+[`embedded-hal`]: https://github.com/japaric/embedded-hal
+
+`embedded-hal` is a project that aims to build a standard set of traits (interfaces) for I/O
+functionality common in embedded devices: Serial, I2C, etc. with the goal of serving as a base for
+building reusable driver crates, crates to interface with external components like sensors.
+
+There are plenty of traits that still need to be designed, in particular ones that involve async
+I/O. Join the discussion and help us design the missing traits so that they'll fulfill your needs.
+
+### [The weekly driver initiative][wd]
+
+To put the `embedded-hal` to test and to expand the embedded crates.io ecosystem we are running the
+weekly driver initiative. The goal is to release a new `no_std`, generic, `embedded-hal` driver
+crate every one or two weeks.
+
+There's lots of cool devices that would be great to have drivers for. Join the initiative and help
+us grow the embedded crates.io ecosystem!
+
+[wd]: https://github.com/rust-lang-nursery/embedded-wg/issues/39
+
+## Call for action
+
+[These issues need your help!][cfa]
+
+[cfa]: https://github.com/rust-lang-nursery/embedded-wg/issues?q=is%3Aissue+is%3Aopen+label%3Acall-for-action
+
+## RFCs
+
+When the team deems it necessary the RFC process may be used to make decisions or to design
+processes, user interfaces, APIs, etc.
+
+Learn more about the Rust's RFC process (which is the same as our own) [here][1].
 
 To create an RFC, simply:
 - clone this repo to your own personal one
@@ -13,19 +70,3 @@ To create an RFC, simply:
   descriptive. Don't assign an RFC number yet)
 - fill in the details of your RFC in that file
 - Open an pull request with this repository
-
-We hope that by having community involvement and dicussion, we can mobilize
-and collaborate on efforts to make rust's embedded ecosystem more productive
-and fun.
-
-This repository is an attempt at mobilizing efforts towards that goal and we are currently
-discussing the scope and contents of this repository.
-
-[Join us!][2]
-
-[![Join the chat at https://gitter.im/embedded-rust/Lobby](https://badges.gitter.im/embedded-rust/Lobby.svg)](https://gitter.im/embedded-rust/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-Mozilla's IRC: #rust-embedded
-
-[1]: https://github.com/rust-lang/rfcs
-[2]: https://github.com/japaric/embedded-rust/pull/1
