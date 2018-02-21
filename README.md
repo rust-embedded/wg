@@ -9,13 +9,13 @@ a great choice for embedded development.
 
 ## Roster
 
-- [@dvc94ch][] (representative of the RISCV ecosystem)
-- [@dylanmckay][] (representative of the AVR ecosystem)
+- [@dvc94ch][] (representative of the RISCV community)
+- [@dylanmckay][] (representative of the AVR community)
 - [@hannobraun]
 - [@jamesmunns]
 - [@japaric][] (lead)
 - [@jcsoo]
-- [@pftbest][] (representative of the MSP430 ecosystem)
+- [@pftbest][] (representative of the MSP430 community)
 - [@thejpster]
 
 [@dvc94ch]: https://github.com/dvc94ch
@@ -26,6 +26,12 @@ a great choice for embedded development.
 [@jcsoo]: https://github.com/jcsoo
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
+
+### Contact
+
+You can usually find the members of the embedded WG on the #rust-embedded channel (server:
+irc.mozilla.org). Most of us use our GH usernames as our IRC nicknames, except for @jamesmunns who
+uses the nickname bitshiftmask on IRC.
 
 ## On going community efforts
 
