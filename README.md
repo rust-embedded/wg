@@ -57,11 +57,11 @@ us grow the embedded crates.io ecosystem!
 
 [wd]: https://github.com/rust-lang-nursery/embedded-wg/issues/39
 
-## Call for action
+## Help wanted!
 
-[These issues need your help!][cfa]
+[These issues need your help!][hw]
 
-[cfa]: https://github.com/rust-lang-nursery/embedded-wg/issues?q=is%3Aissue+is%3Aopen+label%3Acall-for-action
+[hw]: https://github.com/rust-lang-nursery/embedded-wg/issues?q=is%3Aissue+is%3Aopen+label%3Ahelp-wanted
 
 ## RFCs
 
