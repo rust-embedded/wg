@@ -9,13 +9,13 @@ a great choice for embedded development.
 
 ## Roster
 
-- [@dvc94ch][] (representative of the RISCV community)
-- [@dylanmckay][] (representative of the AVR community)
+- [@dvc94ch][] (all things RISCV)
+- [@dylanmckay][] (all things AVR)
 - [@hannobraun]
 - [@jamesmunns]
 - [@japaric][] (lead)
 - [@jcsoo]
-- [@pftbest][] (representative of the MSP430 community)
+- [@pftbest][] (all things MSP430)
 - [@thejpster]
 
 [@dvc94ch]: https://github.com/dvc94ch
