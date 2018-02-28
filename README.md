@@ -7,6 +7,18 @@ a great choice for embedded development.
 
 [issue tracker]: https://github.com/rust-lang-nursery/embedded-wg/issues
 
+## Vision
+
+What is it that we really want? At a broad level:
+
+- To improve the absolute quality (functionality, safety, performance) of embedded software in the
+  wild.
+- To improve the productivity of embedded software development teams, by reducing the tangible and
+  intangible costs of achieving a level of quality.
+- To improve the experience for programmers developing for embedded systems.
+- To make embedded systems programming more accessible for people that are not already embedded
+  systems developers.
+
 ## Roster
 
 - [@dvc94ch][] (all things RISCV)
