@@ -1,0 +1,269 @@
+2018-02-27 21:08:09	~japaric	ok, everyone who confirmed is here
+2018-02-27 21:08:15	~japaric	dvc: we are just starting
+2018-02-27 21:08:23	dvc	ok
+2018-02-27 21:08:24	hannobraun	dvc: Hi
+2018-02-27 21:08:48	~japaric	I put the tockOS comment on the agenda
+2018-02-27 21:08:52	~japaric	let's start with the first item
+2018-02-27 21:09:07	~japaric	issues nominated for the epoch 2018 milestone
+2018-02-27 21:09:17	~japaric	#1 Integration with C codebases
+2018-02-27 21:09:38	~japaric	this issue is about having docs and examples of integrating Rust with C codebases
+2018-02-27 21:09:49	~japaric	there are two approaches here: Rust calls C code, or Rust is called from C code
+2018-02-27 21:10:01	~japaric	jamesmunns: has done a bit of work using the first approach
+2018-02-27 21:10:16	~japaric	I've not seen anything done using the second approach though
+2018-02-27 21:10:19	thejpster	I have a second example of the latter - use your C RTOS/driverlib and write your tasks in Rust.
+2018-02-27 21:10:26	~japaric	thejpster: +1
+2018-02-27 21:10:37	jamesmunns	link to issue btw: https://github.com/rust-lang-nursery/embedded-wg/issues/48
+2018-02-27 21:10:44	~japaric	does it seem reasonable to put this in the epoch 2018 milestone?
+2018-02-27 21:11:02	~japaric	and what would be shipping as final product?
+2018-02-27 21:11:02	thejpster	What would that mean we have to do, and by when?
+2018-02-27 21:11:06	jamesmunns	Output being decent guide and examples for how to?
+2018-02-27 21:11:18	~japaric	jamesmunns: I think so, yeah
+2018-02-27 21:11:32	jamesmunns	If so, I would say definitely.
+2018-02-27 21:11:42	thejpster	I agree
+2018-02-27 21:11:57	jamesmunns	Have we discussed where we would collect all this info? Something like "the embedded rust book"?
+2018-02-27 21:12:00	jcsoo	It would be great if we could get something roughly equivalent to https://doc.rust-lang.org/book/first-edition/ffi.html
+2018-02-27 21:12:17	thejpster	The embedonomicon?
+2018-02-27 21:12:36	jcsoo	Can we get a subdirectory on doc.rust-lang.org?
+2018-02-27 21:12:37	~japaric	I need to ask the core team what exactly can we put on the website
+2018-02-27 21:12:43	hannobraun	Definitely seems like a very valuable thing to have (guide, examples).
+2018-02-27 21:12:44	~japaric	we could have an mdbook thingy
+2018-02-27 21:12:59	~japaric	which is what the rust book uses
+2018-02-27 21:13:05	thejpster	mdbooks are good to read, Wikis are good to edit
+2018-02-27 21:13:20	jamesmunns	:+1: for an mdbook, maybe hosted in the -wg repo to start with?
+2018-02-27 21:13:36	~japaric	jamesmunns: sounds good to me
+2018-02-27 21:14:05	~japaric	does hosting docs on the -wg repo for now sound good to everyone?
+2018-02-27 21:14:22	dvc	yes
+2018-02-27 21:14:23	jcsoo	Yes. is it as easy as cloning one of the existing rust books?
+2018-02-27 21:14:23	jamesmunns	I do like the idea of having it possible to be user updated, but as long as we make it public and PR-able, that might be enough for now
+2018-02-27 21:14:29	hannobraun	Sounds good
+2018-02-27 21:14:34	thejpster	I think the barrier to entry there is not as low as it could be, but it's probably low enough given the target demographic
+2018-02-27 21:14:52	jamesmunns	`cargo install mdbook && mdbook new embedonomicon`
+2018-02-27 21:14:53	thejpster	Rust is a github/PR/md world
+2018-02-27 21:15:11	jcsoo	In the log run, some of these items might get pulled into the main Rust book
+2018-02-27 21:15:14	jamesmunns	(to answer jcsoo's question)
+2018-02-27 21:15:39	jamesmunns	I'd imagine its just another book on the rust bookshelf https://doc.rust-lang.org/
+2018-02-27 21:15:45	jcsoo	So that people encounter stuff there and then find the embedonomicon to learn more
+2018-02-27 21:16:01	hannobraun	thejpster: If this is going to be hosted on the Rust site, we're probably limited in the technologies we can use. Anything dynamic may be out of the question. (just guessing)
+2018-02-27 21:16:17	thejpster	We'd need to make sure the book talks in Rust terms, not necessarily svd2rust or cortex-m-rt terms
+2018-02-27 21:16:33	dvc	if someone has something interesting to add, they're likely git-able
+2018-02-27 21:16:33	thejpster	Those are valid examples of solutions to problems, but not the only solutions.
+2018-02-27 21:16:40	~japaric	thejpster: +1
+2018-02-27 21:16:46	jcsoo	+1
+2018-02-27 21:16:57	thejpster	(excellent though they may be)
+2018-02-27 21:17:40	thejpster	It's easier with the normal book, because anyone can sit down at the playground, or a Mac/Windows/Linux terminal prompt and follow along.
+2018-02-27 21:17:40	jcsoo	Things like linking, I think we should describe and point to the raw stuff but it's also good to point to some common solutions
+2018-02-27 21:17:41	~japaric	an alt to hosting could be making a repo under the rust-embedded org
+2018-02-27 21:17:54	~japaric	if traffic (issues / PR) is a problem in a single repo
+2018-02-27 21:18:16	jamesmunns	didn't you say you weren't the owner of r-e, just a contributor?
+2018-02-27 21:18:19	thejpster	I have to say, I have had a lot of e-mail this week. I'm going to need to set up a filter.
+2018-02-27 21:18:39	~japaric	jamesmunns: I can still make repos under the org
+2018-02-27 21:18:51  *	japaric doesn't fully understand github orgs permissions
+2018-02-27 21:19:28	~japaric	ok, let's move to the next nominated issue
+2018-02-27 21:19:43	~japaric	we can decide on the place of the repo asynchronously
+2018-02-27 21:20:00	~japaric	the other issue is Consistent development experience - https://github.com/rust-lang-nursery/embedded-wg/issues/44
+2018-02-27 21:20:20	~japaric	this issue is about making embedded development similar across architectures
+2018-02-27 21:20:28	~japaric	in regards of tooling (RLS, Xargo, etc)
+2018-02-27 21:20:35	~japaric	shared crates like the embedded-hal crates
+2018-02-27 21:21:01	<--	jschievink (jonas@moz-o83ftc.pools.vodafone-ip.de) has quit (Quit: WeeChat 2.0.1)
+2018-02-27 21:21:01	~japaric	same starting point: #![no_std] fn main() {}
+2018-02-27 21:21:14	dvc	in the example you have log!('hello world')
+2018-02-27 21:21:18	dvc	where does that go?
+2018-02-27 21:21:21	dvc	uart?
+2018-02-27 21:21:42	~japaric	dvc: ideally platform independent so it could be semihosting
+2018-02-27 21:21:43	jcsoo	That's up to the embedded environment
+2018-02-27 21:22:04	thejpster	On the STM32F7 Discovery, the LCD would be a valid destination :)
+2018-02-27 21:22:11	dvc	do other archs have semihosting arm/riscv have
+2018-02-27 21:22:26	dvc	just got it working this afternoon
+2018-02-27 21:22:29	jcsoo	One thing is that there's a lot of configuration that may need to happen before you get to log!
+2018-02-27 21:22:30	~japaric	msp430 has semihosting, iirc pftbest_ ?
+2018-02-27 21:22:36	pftbest_	msp430 doesn't have semihosting or similar
+2018-02-27 21:22:47	jamesmunns	I think this is hard to discuss without a concrete scope
+2018-02-27 21:22:55	pftbest_	only uart
+2018-02-27 21:22:59	thejpster	I wonder if `arch_specific_crate` needs to be `board_specific_crate`.
+2018-02-27 21:23:00	jcsoo	Can't depend on semihosting, many targets such as Teensy won't have it
+2018-02-27 21:23:27	jamesmunns	jcsoo: :+1:
+2018-02-27 21:23:30	~japaric	jamesmunns: yeah, I think we are getting into the weeds here with log! stuff
+2018-02-27 21:23:49	jcsoo	This sort of gets into what happens before main()
+2018-02-27 21:23:49	dvc	off topic?
+2018-02-27 21:23:53	hannobraun	Seems like something the device-specific crate needs to decide.
+2018-02-27 21:23:54	~japaric	can we at least agree on sharing stuff between the different archs?
+2018-02-27 21:23:58	thejpster	Or should the first line of main() be { let b = board::init(); }
+2018-02-27 21:24:07	pftbest_	if somebody here is familliar with arduino, what do they do for logging?
+2018-02-27 21:24:09	jamesmunns	japaric: which stuff?
+2018-02-27 21:24:10	~japaric	where we define what "stuff" is, e.g. tooling
+2018-02-27 21:24:27	jamesmunns	pftbest_: `Serial.begin(); Serial.println();`
+2018-02-27 21:24:29	thejpster	pftbest_, you create a Serial(9600) in setup() and print to it
+2018-02-27 21:24:34	hannobraun	Maybe there could be guidelines on top of that, like "prefer semihosting where available".
+2018-02-27 21:24:45	hannobraun	pftbest_: UART via USB, as far as I know.
+2018-02-27 21:24:52	jamesmunns	I'd say defining standards for tooling is good
+2018-02-27 21:25:01	thejpster	It's layered right.
+2018-02-27 21:25:05	thejpster	Arch Chip Board App
+2018-02-27 21:25:19	jamesmunns	but anything we design has to be pluggable, since we've just defined that every system is special in its own way
+2018-02-27 21:25:25	thejpster	Arduino comes in at the board level (because the boards are largely compatible)
+2018-02-27 21:26:01	jamesmunns	embedded-hal is basically our parallel to Arduino's driver story, but not its tooling story
+2018-02-27 21:26:07	thejpster	If you want to bash the GPIO memory registers directly (like the most basic Raspberry Pi bare metal demos so), you just come in at the Arch level.
+2018-02-27 21:26:09	jcsoo	In C / C++ land, it's easy to have a simple main but use #define to configure things
+2018-02-27 21:26:15	~japaric	jamesmunns: what kind of common tooling could we have? cargo-flash has been mentioned
+2018-02-27 21:26:20	jcsoo	but I don't think that's a viable approach for Rust
+2018-02-27 21:27:07	~japaric	cargo subcommands based on llvm binutils
+2018-02-27 21:27:33	~japaric	can we agree on that being shared tooling across the different archs?
+2018-02-27 21:27:34	thejpster	japaric, yes that's a very good idea. I liked that a lot.
+2018-02-27 21:27:51	dvc	yes, semihosting could probably be renamed
+2018-02-27 21:28:03	jcsoo	I'm not totally sure what we're getting at here with shared tooling
+2018-02-27 21:28:04	dvc	since it only requires the assembly bits
+2018-02-27 21:28:04	jamesmunns	I mean Arduino's tooling is: an IDE, a flashing "button", a serial port for logging. But thats just the UX. behind the scenes, every vendor/board mfgr implements that UX "API"
+2018-02-27 21:28:18	dvc	fyi
+2018-02-27 21:28:20	jamesmunns	So I think we are getting closer to the "IDE" issue
+2018-02-27 21:29:13	jcsoo	So is this something that is appropriate to address at the Rust Language level? I'm not sure.
+2018-02-27 21:29:18	jamesmunns	japaric: I guess I am struggling to understand what could be shared between a cortex-m board and an avr based board
+2018-02-27 21:29:19	~japaric	jcsoo: "shared tooling" as in "Do I need a different tool if I want to develop for AVR or RISCV?" Cargo is common / shared tool
+2018-02-27 21:29:52	thejpster	jamesmunns, the compiler frontend, obdump and objcopy. And maybe some HAL traits.
+2018-02-27 21:30:04	jamesmunns	Is it then just official rust support for those platforms? Maybe the binutils stuff so you can reasonably create a bin/hex?
+2018-02-27 21:30:05	jcsoo	thejpster: +1
+2018-02-27 21:30:06	~japaric	jcsoo: llvm-binutils could be a shared tool and it's up to the Rust team whether to ship it with the toolchain or not; that's a Rust team issue
+2018-02-27 21:30:19	thejpster	If the Stellaris Launchpad and the Arduino Uno crates both had some sort of board::init() which returned some sort of impl Led
+2018-02-27 21:30:27	thejpster	your three line LED blink loop would work on either board
+2018-02-27 21:30:42	jamesmunns	Yeah, but I feel like thats more of an embedded-hal thing
+2018-02-27 21:30:55	thejpster	Agreed, it's well up the stack.
+2018-02-27 21:31:12	jamesmunns	yep. "this board works with rust" and "this board works with embedded-ha;"
+2018-02-27 21:31:17	jamesmunns	*hal
+2018-02-27 21:31:36	jcsoo	I think getting through generating the ELF file and having a useful set of utilities that work with the ELF file is a good boundary point.
+2018-02-27 21:31:37	jamesmunns	I'd say for the arduino experience, youd need rust+embedded-hal+IDE
+2018-02-27 21:31:49	jamesmunns	jcsoo: +1
+2018-02-27 21:32:07	pftbest_	is there some consensus on implementing hal crates? is it better to create one per chip, or one per family and use feature flags?
+2018-02-27 21:32:35	jcsoo	I don't think there's consensus yet except that huge amounts of feature flags would be bad
+2018-02-27 21:32:43	thejpster	My first guess would be the former, but they could defer to the latter inside.
+2018-02-27 21:32:49	pftbest_	what should a hal crate provide, only embedded-hal traits impls or something more?
+2018-02-27 21:32:49	jamesmunns	also, feature flags aren't mutually exclusive
+2018-02-27 21:33:15	thejpster	When I write a tm4c129x-hal I don't want to copy-pasta the tm4c123x, so I'll probably move stuff to a tm4cx-hal.
+2018-02-27 21:33:56	hannobraun	pftbest_: So far my guideline has been, if it shares a user manual (or whatever the manufacturer calls their document), it can share a crate.
+2018-02-27 21:34:16	pftbest_	hannobraun: good point
+2018-02-27 21:34:20	jamesmunns	not a bad guideline
+2018-02-27 21:34:28	jcsoo	that's roughly my approach too, with some exceptions
+2018-02-27 21:34:33	hannobraun	pftbest_: HAL crates need to do more than implemente embedded-hal traits. For example, configuration is mostly out of scope for embedded-hal.
+2018-02-27 21:34:42	jcsoo	I don't think there can be a hard rule because vendors do whatever they want
+2018-02-27 21:34:52	jamesmunns	hannobraun: what kind of configuration?
+2018-02-27 21:35:00	thejpster	It'll work (although it doesn't account for TI, whose PDFs contain large copied chunks)
+2018-02-27 21:35:17	jamesmunns	e.g. setting up the SPI/I2C/whatever port/pins?
+2018-02-27 21:35:26	pftbest_	some my concern is that embedded-hal only defines how you can use SPI device, but not how you create or setup it
+2018-02-27 21:35:44	jcsoo	pftbest_: I think that's inevitable
+2018-02-27 21:35:51	thejpster	pftbest_, but that's a function of a) what you want it to do and b) what your board layout is.
+2018-02-27 21:36:01	hannobraun	jamesmunns: embedded-hal has a trait for setting the output on a pin. But configuring that pin to be an output pin is out of scope.
+2018-02-27 21:36:05	jcsoo	Creating and setting up devices is fundamentally an operating system concern, even if it is a really stripped down one
+2018-02-27 21:36:07	hannobraun	For example.
+2018-02-27 21:36:08	thejpster	If there are sensible defaults, your board crate can do that for you.
+2018-02-27 21:36:38	thejpster	For example, on a Launchpad, F0 is an input pulled high. Because it has a button hard-wired to it.
+2018-02-27 21:36:44	jcsoo	For std:: Rust basically delegates all of these questions to the hosting operating system
+2018-02-27 21:37:58	jamesmunns	expanding thejpster's comment before: I'd say the layers are: Arch Chip Board E-HAL App
+2018-02-27 21:38:19	~japaric	ok, there seems to be some consensus on ELF tooling and embedded-hal traits? how to impl the embedded-hal traits seems to be a whole different topic
+2018-02-27 21:38:29	jamesmunns	japaric: +1
+2018-02-27 21:38:33	~japaric	how to (efficiently) impl**
+2018-02-27 21:38:38	thejpster	+1
+2018-02-27 21:38:40	jcsoo	+1 too
+2018-02-27 21:38:49	dvc	yep
+2018-02-27 21:39:00	hannobraun	yes
+2018-02-27 21:39:02	pftbest_	+1
+2018-02-27 21:39:03	jcsoo	I think it's reasonable to have lowest-common-denominator traits and work out how they can cover more use cases over time
+2018-02-27 21:39:06	jamesmunns	is embedded-hal going to be rust-official?
+2018-02-27 21:39:31	dvc	jamesmunns: does it matter?
+2018-02-27 21:39:39	dvc	:)
+2018-02-27 21:39:45	~japaric	jamesmunns: if you meant if it's going to live under rust-lang{,-nursery}, no
+2018-02-27 21:39:58	jamesmunns	Maybe? If we refer to it in official "how to rust embedded" docs, it should be
+2018-02-27 21:40:16	dvc	ah that kind of makes sense
+2018-02-27 21:40:18	~japaric	we can say on the website that's what currently the community is using
+2018-02-27 21:40:42	thejpster	it's a solution to a problem, but not the only solution
+2018-02-27 21:40:42	jamesmunns	sort of like Tokio?
+2018-02-27 21:40:50	~japaric	jamesmunns: yes, like that
+2018-02-27 21:41:01	~japaric	no guarantee it will be THE solution in X years
+2018-02-27 21:41:03	thejpster	implementing Wiring in Rust is an equally valid but different solution
+2018-02-27 21:41:10	hannobraun	I think it's way too early to bless one ecosystem as the official one.
+2018-02-27 21:41:13	jcsoo	I think Tokio is useful to look at as a model for its advantages and disadvantages
+2018-02-27 21:41:17	hannobraun	japaric: That sounds good.
+2018-02-27 21:41:40	~japaric	ok, we have other items in the agenda
+2018-02-27 21:41:47	~japaric	let's discuss those before we run out of time
+2018-02-27 21:41:49	jcsoo	I think it's important but I also think I stifled a lot of innovation over the last year or two from people that wanted to take other approaches.
+2018-02-27 21:41:56	~japaric	Topics to discuss during Rust All Hands?
+2018-02-27 21:42:04	~japaric	there are some on the etherpad
+2018-02-27 21:42:14	~japaric	do they sound OK?
+2018-02-27 21:42:29	jcsoo	looks like a good list to me
+2018-02-27 21:42:35	~japaric	All Hands is where we can more directly discuss these issues with the other Rust teams
+2018-02-27 21:42:38	thejpster	A big yes to all of those from me
+2018-02-27 21:42:49	jcsoo	Maybe also the linking issue?
+2018-02-27 21:42:54	thejpster	Especially (2)
+2018-02-27 21:42:57	jcsoo	Or is that too specific?
+2018-02-27 21:43:02	~japaric	if anyone wants to suggest something else feel free to add it there and then we can discuss if appropriate
+2018-02-27 21:43:11	~japaric	jcsoo: which linking issue? there's one reported in rust-lang/rust
+2018-02-27 21:43:18	jamesmunns	maybe see if we can wrangle someone with experience on how firefox integrats rust into a C++ build ecosystem?
+2018-02-27 21:43:18	~japaric	it has a proposed solution
+2018-02-27 21:43:24	~japaric	just need someone to implement it
+2018-02-27 21:43:32	jamesmunns	Because we might want that for the "combine with C" issue
+2018-02-27 21:43:47	~japaric	jamesmunns: sgtm
+2018-02-27 21:43:59	jcsoo	yes, that's the one i was thinking of. Is it something that would be helped by more attention, or is it ok as it is right now?
+2018-02-27 21:44:14	~japaric	jamesmunns: please add it to the etherpad
+2018-02-27 21:44:29	~japaric	jcsoo: I have a meeting with Aaron and the othe WG leads after this
+2018-02-27 21:44:35	jamesmunns	japaric: added
+2018-02-27 21:44:37	~japaric	I'll ask how we can prioritize issues like that
+2018-02-27 21:44:42	~japaric	compiler issues**
+2018-02-27 21:44:51	jcsoo	perfect
+2018-02-27 21:44:55	~japaric	or at least make the Rust team aware of them
+2018-02-27 21:45:04	jamesmunns	maybe panic handling in general? not just the bloat?
+2018-02-27 21:45:26	jamesmunns	there was an issue somewhere regarding pluggable panic handlers
+2018-02-27 21:45:38	~japaric	jamesmunns: the RFC for that has been accepted though
+2018-02-27 21:45:39	jcsoo	ok found it and added it
+2018-02-27 21:46:25	~japaric	ok, can we move to the next item?
+2018-02-27 21:46:30	~japaric	Call for Action URL+text for the 2018 roadmap blog post
+2018-02-27 21:46:59	~japaric	https://github.com/rust-lang/blog.rust-lang.org/issues/229
+2018-02-27 21:47:11	~japaric	need to submit some text and an URL for the upcoming roadmap blog post
+2018-02-27 21:47:27	~japaric	does it seem good to use the README of the -wg repo?
+2018-02-27 21:48:05	dvc	I guess. what do other wg's do?
+2018-02-27 21:48:21	~japaric	dvc: wasm and cli are doing the same :-)
+2018-02-27 21:48:26	dvc	ok
+2018-02-27 21:48:27	jamesmunns	dvc: basically that plus a 1-2 sentence "flavor text"
+2018-02-27 21:49:03	~japaric	anyone wants to suggest some "flavor text"?
+2018-02-27 21:50:10	thejpster	"From a blinking an LED to building a WiFi Router, if you want to any scale of embedded system, the embedded-wg is here to help."
+2018-02-27 21:50:28	thejpster	plus words so it, you know, is actual english proper like.
+2018-02-27 21:50:28	~japaric	thejpster: nice
+2018-02-27 21:50:32	jcsoo	Help make Rust the best language and ecosystem for embedded programming. See https://github.com/rust-lang-nursery/embedded-wg.
+2018-02-27 21:51:00	jamesmunns	"Embedded development dosn't have to be painful! Join us at $WG to make 2018 the year of Rust on Embedded!"
+2018-02-27 21:51:14	jamesmunns	though I like thejpster's better
+2018-02-27 21:51:21	thejpster	jamesmunns, please write that first line on a brick and send it to TI.
+2018-02-27 21:51:34	jcsoo	ha!
+2018-02-27 21:51:35	~japaric	thejpster: jcsoo jamesmunns can you add those to the etherpad?
+2018-02-27 21:51:50	~japaric	then we can vote with a +1 there
+2018-02-27 21:52:14	~japaric	if we are using the -wg repo do you think it's missing some important info?
+2018-02-27 21:52:19	jamesmunns	Merge successful: "Embedded doesn't have to be blinking an LED! the embedded-wg is here to make it painful!"
+2018-02-27 21:52:41	dvc	:D
+2018-02-27 21:53:13	thejpster	perfect. ship it.
+2018-02-27 21:53:20	hannobraun	:)
+2018-02-27 21:53:30	dvc	who's dark blue in etherpad?
+2018-02-27 21:53:49	jcsoo	That's me, maybe?
+2018-02-27 21:53:50	dvc	regarding docker containers?
+2018-02-27 21:53:52	jcsoo	yes
+2018-02-27 21:53:58	~japaric	we could something like the first paragraph of https://github.com/rust-lang-nursery/embedded-wg/blob/master/minutes/2018-02-20.md#jcsoo to the README
+2018-02-27 21:54:15	~japaric	kind of like a vision
+2018-02-27 21:54:51	jamesmunns	+1 for jcsoo's text
+2018-02-27 21:55:25	thejpster	I'm happy to delegate to japaric on this one. Editing by committee is hard.
+2018-02-27 21:55:34	~japaric	thejpster: :-)
+2018-02-27 21:56:03	jamesmunns	thejpster: make him work for that (lead) title!
+2018-02-27 21:56:28	thejpster	Don't worry, we'll let you know if you do a bad job!
+2018-02-27 21:56:38	dvc	jcsoo: yeah it's a pain to build.
+2018-02-27 21:56:48	~japaric	ok, a few minutes left
+2018-02-27 21:56:57	dvc	and every time I make a change it's hard to tell if I broke something
+2018-02-27 21:57:18	~japaric	maybe we can make a quick decision on Close https://github.com/rust-lang-nursery/embedded-wg/issues/25 ?
+2018-02-27 21:57:26	jcsoo	dvc: do you have any Docker stuff in place already? Otherwise I can try setting something up
+2018-02-27 21:57:32	~japaric	armv5 target is in tree
+2018-02-27 21:57:40	~japaric	armv4 is not
+2018-02-27 21:57:50	~japaric	are there any armv4 users out there?
+2018-02-27 21:57:51	dvc	jcsoo: would be great, no not yet
+2018-02-27 21:57:55	jamesmunns	(back to the consistent tooling issue, maybe we could talk about cargo actually understanding linker scripts instead of the `memory.x` + .cargo/config process)
+2018-02-27 21:58:12	jamesmunns	japaric: not sure, armv5 goes back a loooong way (ARM9 processors)
+2018-02-27 21:58:23	thejpster	ARMv4 is what, ARM7?
+2018-02-27 21:58:36	~japaric	maybe close it and if anyone needs armv4 they'll speak up?
+2018-02-27 21:58:42	thejpster	Yeah
+2018-02-27 21:58:53	thejpster	Or they can write an ARMv5 to ARMv4 transpiler.
+2018-02-27 21:58:53	jcsoo	i agree, unless if we know of a really popular current implementation let's let it go
+2018-02-27 21:58:55	hannobraun	jThat issue is completely irrelevant to me personally, but I have no idea if that's representative.
+2018-02-27 21:59:18	dvc	hannobraun: +1
+2018-02-27 21:59:23	thejpster	(the i386 to 6502 transpiler is hella cool)
+2018-02-27 21:59:36	~japaric	ok, I need to go to another meeting
+2018-02-27 21:59:47	~japaric	you can keep chatting about the other items in the agenda though

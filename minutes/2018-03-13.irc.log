@@ -1,0 +1,119 @@
+2018-03-13 21:06:08	~japaric	ok, let's begin the meeting
+2018-03-13 21:06:25	~japaric	check out the agenda in the etherpad
+2018-03-13 21:06:45	~japaric	a portability WG was created recently
+2018-03-13 21:07:07	~japaric	they'll be in charge of this new portability lint and the potential #![no_std] / std facade deprecation
+2018-03-13 21:07:33	~japaric	we should notify them about the problems / needs we have as no_std developers
+2018-03-13 21:07:56	~japaric	they have created an issue for us to do so: https://github.com/rust-lang-nursery/portability-wg/issues/9
+2018-03-13 21:08:33	~japaric	and we have an issue about no_std ergonomics in the -wg repo: https://github.com/rust-lang-nursery/embedded-wg/issues/26
+2018-03-13 21:09:01	~japaric	I think we should whether that's up to date and if there are other issues around using #![no_std] today
+2018-03-13 21:09:40	~japaric	could I get a volunteer for that?
+2018-03-13 21:09:55	~japaric	the job would be to do a survey of problems around using #![no_std]
+2018-03-13 21:11:38	jamesmunns	japaric: what kind of issues are you trying to collect?
+2018-03-13 21:12:14	~japaric	papercuts like this https://mobile.twitter.com/japaricious/status/968683708092960769
+2018-03-13 21:12:28	~japaric	you mark a crate like #![no_std] but it's not really no_std because of some dependency
+2018-03-13 21:13:17	pftbest_	it would be great if there where less differences between code for no_std and regular code
+2018-03-13 21:13:43	jamesmunns	does this feed into the "don't rexport everything in std" stuff too?
+2018-03-13 21:14:25	~japaric	another interesting issue could be identifying important crates that are not no_std (e.g. serde-json), find out why they are not no_std and check with the portability WG whether the portability lint would fix the problem or if anything else is required
+2018-03-13 21:14:46	<--	jrozner (joe@moz-59oroo.res.rr.com) has quit (Ping timeout: 121 seconds)
+2018-03-13 21:15:34	~japaric	another issue is that even if the std facade is undone and #![no_std] is dropped there would still be a need for a dont-alloc mode / Cargo feature in some bare metal scenarios
+2018-03-13 21:15:35	<--	Aaronepower (Aaronepower@moz-el4.dhm.97.79.IP) has quit (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2018-03-13 21:16:30	~japaric	jamesmunns: what's "don't rexport everything in std"?
+2018-03-13 21:16:56	jamesmunns	japaric: Isn't there talk about removing the std facade?
+2018-03-13 21:17:09	~japaric	yes
+2018-03-13 21:17:13	jamesmunns	thats what I meant
+2018-03-13 21:17:53	~japaric	my understanding is that std exports everything but then you use the portability lint to narrow down what you can use from std to make your program more portable
+2018-03-13 21:18:05	~japaric	e.g. #[deny(unixy_stuff)]
+2018-03-13 21:18:06	-->	jrozner (joe@moz-59oroo.res.rr.com) has joined #rust-embedded
+2018-03-13 21:18:17	-->	callym (quassel@moz-5hluie.pp2p.3t7g.0c7d.2a02.IP) has joined #rust-embedded
+2018-03-13 21:18:42	jcsoo	I wonder if it is possible to set up a little travis-ci-style button that shows the compilation status on some of the embedded targets
+2018-03-13 21:19:27	jcsoo	Right now there is a single one that says "build | passing" - what if it said "build | nostd | passing"
+2018-03-13 21:20:26	jcsoo	Is anyone familiar with how they work?
+2018-03-13 21:20:31	~japaric	jcsoo: well, apart from the badge you would have to set up your CI to actually compile for a no-std target
+2018-03-13 21:21:04	dvc	can't it just parse lib.rs for #![no_std]?
+2018-03-13 21:21:23	dvc	assuming that transitivity is guaranteed by the compiler
+2018-03-13 21:21:32	dvc	no_std can only depend on no_std
+2018-03-13 21:21:46	~japaric	dvc: right now lib.rs can contain #![no_std] and the library can still depend on std because of dependencies
+2018-03-13 21:21:59	~japaric	so actually have to build the crate for a no-std target to be sure
+2018-03-13 21:22:11	~japaric	so you actually**
+2018-03-13 21:22:14	jamesmunns	do we have anything we want fixed other than changing that behavior?
+2018-03-13 21:22:21	dvc	yeah that's what I mean by transitivity
+2018-03-13 21:22:28	jamesmunns	(or have they refused to impl that behavior?)
+2018-03-13 21:22:36	pftbest_	also you can still extern std in no_std
+2018-03-13 21:23:40	~japaric	pftbest_: that's sometimes required when running tests for reasons that I don't remember; but in those case you have #[cfg(test)] extern crate std;
+2018-03-13 21:24:29	pftbest_	japaric: i mean that you can make a typo and accidentally link std when you shouldn't
+2018-03-13 21:24:30	jcsoo	the advantage of a CI badge is that it's end to end - you can see the current build status
+2018-03-13 21:25:15	jcsoo	as opposed to anything using just the submission keywords, which can be wrong
+2018-03-13 21:25:23	~japaric	jamesmunns: you may want your no_std crate to link to test (which depends on std) for testing so I don't think you can't forbid something marked as #![no_std] from linking to dependencies that depend on std
+2018-03-13 21:26:44	-->	Aaronepower (Aaronepower@moz-jqc.96c.97.79.IP) has joined #rust-embedded
+2018-03-13 21:28:04	hannobraun	Is anyone up to date on aturon's portability plans? It would be interesting to know if any of those issues would not be fixed, if that were implemented.
+2018-03-13 21:30:02	pftbest_	i would really like to see such facades disappear: https://github.com/serde-rs/serde/blob/master/serde/src/lib.rs#L136
+2018-03-13 21:31:19	jamesmunns	japaric: it doesn't sound like anyone is informed enough to work on what you're asking (at least I am not)
+2018-03-13 21:31:59	~japaric	hannobraun: the portability WG is collecting no_std related issues so that whatever they end up implementing fixes the existing issues. cf. https://github.com/rust-lang-nursery/portability-wg/issues
+2018-03-13 21:33:52	hannobraun	japaric: Okay, that makes sense. I was only following from afar, and thought that there might be more concrete plans for this.
+2018-03-13 21:35:29	~japaric	jamesmunns: the goal right now is just reporting the issues; we don't have to be aware of how the portability lint works -- it's portability WG to identify if the problems are solved by the portability lint or if they require some other solution
+2018-03-13 21:35:57	~japaric	it's the portability WG job to identify**
+2018-03-13 21:38:36	~japaric	I'll create an issue with the no_std issues brought up here and with the stuff from https://github.com/rust-lang-nursery/embedded-wg/issues/26
+2018-03-13 21:38:46	hannobraun	I feel bad for not volunteering. I'd like to at least go through https://github.com/rust-lang-nursery/embedded-wg/issues/26 and make sure everything mentioned there is current and reported to the Portability WG, but I'm afraid that I can't guarantee I can do that in a timely manner.
+2018-03-13 21:38:48	~japaric	and cc the portability WG
+2018-03-13 21:39:43	dvc	yeah, I don't really want to do it either since there are more qualified people here
+2018-03-13 21:40:14	~japaric	ok, let's move to the next item on the agenda
+2018-03-13 21:40:36	~japaric	we'll be publishing an embedded WG newsletter this Thursday
+2018-03-13 21:40:52	~japaric	the issue collecting the info for it is at https://github.com/rust-lang-nursery/embedded-wg/issues/58
+2018-03-13 21:41:22	~japaric	the newsletter is a good chance to thank the people that working with us to further the embedded Rust ecosystem
+2018-03-13 21:41:40	~japaric	and to highlight issues that need to be fixed and that have a mentor / proposed solution
+2018-03-13 21:41:59	~japaric	if you feel that anything else needs to be added leave a comment on that issue
+2018-03-13 21:42:09	~japaric	specially if it's some help-wanted issue
+2018-03-13 21:44:07	~japaric	I'd love some help formatting the info in that issue into a proper newsletter looking thing. Any volunteer?
+2018-03-13 21:44:14	~japaric	the newsletter will be posted to u.r-l.o
+2018-03-13 21:44:33	~japaric	we can look at some of the impl period newsletters from last year for inspiration
+2018-03-13 21:44:40	<--	johalun (johalun@moz-qlv.auv.174.81.IP) has quit (Connection closed)
+2018-03-13 21:44:50	jamesmunns	japaric: I can provide some copy editing. Content contributors welcome :)
+2018-03-13 21:44:59	jamesmunns	Feel free to assign #58 to me
+2018-03-13 21:45:07	~japaric	jamesmunns: thanks!
+2018-03-13 21:45:15	dvc	what's u.r-l.o?
+2018-03-13 21:45:26	dvc	google doesn't help
+2018-03-13 21:45:32	hannobraun	dvc: users.rust-lang.org
+2018-03-13 21:45:44	dvc	oh
+2018-03-13 21:45:52	dvc	xD
+2018-03-13 21:47:01	~japaric	ok, let's move to the last item on the agenda
+2018-03-13 21:47:32	~japaric	last week we discussed requests that we'll be bringing to the other Rust teams (compiler / lang issues / feature requests)
+2018-03-13 21:48:06	~japaric	there's a link to a dropbox paper in the agenda
+2018-03-13 21:48:27	~japaric	there was consensus on (a) testing embedded targets as part of rust-lang/rust CI system
+2018-03-13 21:48:43	~japaric	(b) stabilizing unstable features required for embedded dev
+2018-03-13 21:49:05	~japaric	(c) shipping llvm-binutils with the Rust toolchain
+2018-03-13 21:49:34	~japaric	apart from bringing the requests to the Rust teams we also have to assign a priority to them
+2018-03-13 21:49:49	~japaric	priority can be one of low, medium or high
+2018-03-13 21:50:17	~japaric	high means must be done in time for the epoch release
+2018-03-13 21:50:26	~japaric	medium means important but can live without
+2018-03-13 21:50:30	~japaric	low means nice to have
+2018-03-13 21:50:50	~japaric	any thoughts on assigning priority to the 3 items I mentioned before?
+2018-03-13 21:51:16	jamesmunns	I think those are all pretty critical to our goals for this year
+2018-03-13 21:51:53	~japaric	I tend to agree but (b) is kind of too large to mark the whole thing P-high
+2018-03-13 21:51:57	<--	meh (meh@moz-i2v.sjc.226.195.IP) has quit (Ping timeout: 121 seconds)
+2018-03-13 21:52:17	jcsoo	I agree, can we break that out a bit?
+2018-03-13 21:52:46	jcsoo	Also there are some things in (b) that require more work than others.
+2018-03-13 21:53:28	~japaric	in the paper (b) is spread out as items 1, 2, 3 and 7
+2018-03-13 21:54:14	jcsoo	I think 2, 3 and 7 are high priority and relatively achievable
+2018-03-13 21:54:33	~japaric	and from that Xargo in Cargo will very likely happen this year but it's unknown if that'll be stabilized or how much of it will be stabilized
+2018-03-13 21:55:14	jamesmunns	8. landing is pretty important too IMO
+2018-03-13 21:55:48	jcsoo	does the stable workaround in #7 just require building the core libs for the selected targets?
+2018-03-13 21:56:30	~japaric	jcsoo: providing a rust-std component via rustup for the embeded targets, yes
+2018-03-13 21:57:08	jcsoo	so maybe that is closer to (a) in that it is more infrastructure work than coding work
+2018-03-13 21:58:05	~japaric	jcsoo: yes, it's also a question of commitment to fix any stuff that may break at any time due to unstable features
+2018-03-13 21:58:19	~japaric	but just compiling core should be low maintainance
+2018-03-13 21:58:34	~japaric	unlike e.g. guaranteeing linking continues to work
+2018-03-13 21:59:10	jcsoo	sounds like that commitment is something that we would like to have
+2018-03-13 22:00:34	jcsoo	Also, I was taking a look at #1 and we may be able to piggyback on the work being done for stdsimd, which appears to be getting very high priority
+2018-03-13 22:00:55	jcsoo	I added a link to the dropbox paper
+2018-03-13 22:01:05	~japaric	jcsoo: the assembly as Rust intrinsics idea that was discussed last week?
+2018-03-13 22:01:28	jcsoo	yes
+2018-03-13 22:01:35	jcsoo	https://rust-lang-nursery.github.io/stdsimd/arm/stdsimd/arch/arm/index.html
+2018-03-13 22:01:42	~japaric	I meant to create an issue about that but haven't got around to it yet; will do so this week
+2018-03-13 22:02:03	~japaric	I'll also make a PR to cortex-m moving asm! stuff to external assembly files
+2018-03-13 22:02:05	jcsoo	The target feature detection aspect also seems very relevant
+2018-03-13 22:02:35	~japaric	a PoC PR**
+2018-03-13 22:02:36	dvc	why?
+2018-03-13 22:02:50	dvc	does that help with moving to stable?
+2018-03-13 22:03:18	jcsoo	They are building a set of attributes so that they can target specific CPU instruction extensions for SIMD, like AVX2
+2018-03-13 22:03:45	pftbest_	maybe also try moving weak symbols to the linker script, to remove the need for global_asm! and naked functions
+2018-03-13 22:04:09	~japaric	we are officially out of time; thank you all for attending! (but feel free to continue chatting)
