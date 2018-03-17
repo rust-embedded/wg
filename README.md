@@ -39,6 +39,10 @@ What is it that we really want? At a broad level:
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
 
+### Subprojects
+
+* [AVR fork of Rust](https://github.com/avr-rust/)
+
 ### Contact
 
 You can usually find the members of the embedded WG on the #rust-embedded channel (server:
