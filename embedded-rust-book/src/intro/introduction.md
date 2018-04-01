@@ -28,9 +28,11 @@ If you are not yet comfortable with Embedded Systems, we highly suggest `LEARNIN
 
 This book generally assumes that you’re reading it front-to-back, that is, later chapters build on top of concepts in earlier chapters, and earlier chapters may not dig into details on a topic, revisiting the topic in a later chapter.
 
-This book will be using the `UNDEFINED` development board from `UNDEFINED` for the majority of the examples contained within. This board is based on the ARM Cortex-M architecture, and while basic functionality is common across most CPUs based on this architecture, peripherals and other implementation details of Microcontrollers are different between different vendors, and often even different between Microcontroller families from the same vendor.
+This book will be using the [STMF3DISCOVERY] development board from STMicroelectronics for the majority of the examples contained within. This board is based on the ARM Cortex-M architecture, and while basic functionality is common across most CPUs based on this architecture, peripherals and other implementation details of Microcontrollers are different between different vendors, and often even different between Microcontroller families from the same vendor.
 
-For this reason, we suggest purchasing the `UNDEFINED` development board for the purpose of following this book.
+For this reason, we suggest purchasing the [STMF3DISCOVERY] development board for the purpose of following this book.
+
+[STMF3DISCOVERY]: http://www.st.com/en/evaluation-tools/stm32f3discovery.html
 
 ## Contributing to This Book
 
