@@ -16,4 +16,11 @@ mdbook serve
 
 ## License
 
-Not yet determined. Likely Apache/MIT, maybe something CC.
+The Embedded Rust Book (this project) is distributed under the following licenses:
+
+* The code samples contained within this book are licensed under the terms of both the [MIT License] and the [Apache License v2.0].
+* The written prose contained within this book is licensed under the terms of the Creative Commons [CC-BY-SA v4.0] license.
+
+[MIT License]: ./LICENSE-MIT
+[Apache License v2.0]: ./LICENSE-APACHE
+[CC-BY-SA v4.0]: ./LICENSE-CC-BY-SA
