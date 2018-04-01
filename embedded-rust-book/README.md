@@ -11,7 +11,7 @@ cargo install mdbook
 cd embedded-rust-book
 mdbook serve
 
-# open a web browser, go to http://localhost:3001
+# open a web browser, go to http://localhost:3000
 ```
 
 ## License
