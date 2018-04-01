@@ -1,0 +1,5 @@
+[book]
+authors = ["James Munns"]
+multilingual = false
+src = "src"
+title = "The Embedded Rust Book"
