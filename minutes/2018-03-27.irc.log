@@ -1,0 +1,118 @@
+2018-03-27 20:57:18	dvc	hi
+2018-03-27 20:57:57	~japaric	dvc: o/
+2018-03-27 20:58:07	hannobraun	Hello
+2018-03-27 21:01:35	~japaric	(let's wait a few minutes for the other members)
+2018-03-27 21:03:56	dvc	japaric: thoughts on atomic operations with svd2rust?
+2018-03-27 21:04:23	dvc	cortex-m doesn't have any atomic instructions right?
+2018-03-27 21:05:07	~japaric	dvc: it does; I don't remember the instruction name though
+2018-03-27 21:05:17	~japaric	you can do CAS loops on Cortex-M3+
+2018-03-27 21:05:18	dvc	oh
+2018-03-27 21:05:30	~japaric	Cortex-M0 doesn't have the instruction to implement atomics
+2018-03-27 21:05:51	~japaric	so llvm produces a call to some compiler intrinsics for that target
+2018-03-27 21:06:30	hannobraun	(and neither does Cortex-M0+, just to clarify)
+2018-03-27 21:08:11	~japaric	dvc: haven't read your svd2rust issue, btw so no comments right now
+2018-03-27 21:09:29	dvc	on riscv we have amoor, amoand, amoxor instead of peripherals providing stateless registers for example for toggling a led in one instruction
+2018-03-27 21:11:00	dvc	so it would make sense to use those in whatever svd2rust generates at least for the riscv target
+2018-03-27 21:11:17	~japaric	dvc: could you elaborate on what these instructions do?
+2018-03-27 21:11:30	dvc	atomic or, and, xor
+2018-03-27 21:12:10	dvc	so toggling a led is amoor gpio_address 0b1000 or something like that
+2018-03-27 21:12:16	dvc	sorry xor
+2018-03-27 21:12:28	~japaric	this sounds like bitbanding on ARM
+2018-03-27 21:13:06	~japaric	that's not supported on all ARM devices; it's an optional component of the Cortex-M architecture
+2018-03-27 21:13:17	dvc	ah ok, just looked up what it means
+2018-03-27 21:13:38	dvc	it's not like mmap, but is supported on any memory address
+2018-03-27 21:14:12	~japaric	I see but it sounds like a single API could abstract what both amoor and bitbanding do
+2018-03-27 21:14:31	~japaric	like setting a single bit of a register
+2018-03-27 21:15:53	dvc	well amoor also needs ordering flags
+2018-03-27 21:16:18	dvc	not sure if it matters on single cores
+2018-03-27 21:17:36	dvc	so everyone here? :)
+2018-03-27 21:18:05	~japaric	hannobraun: jamesmunns are right next to me :-)
+2018-03-27 21:18:20	dvc	berlin?
+2018-03-27 21:18:34	~japaric	yep, we are in mozilla berlin office
+2018-03-27 21:18:36	jamesmunns	I guess the rest can read the logs :)
+2018-03-27 21:18:51	jamesmunns	Heres a summary of what we got up to today:
+2018-03-27 21:18:56	dvc	:)
+2018-03-27 21:19:25	Douman	some serious business you got here
+2018-03-27 21:19:46	jamesmunns	1. Getting Embedded Rust on Stable - there are three current blockers
+2018-03-27 21:20:19	jamesmunns	a) compiler-builtins requires unstable
+2018-03-27 21:21:22	dvc	is that a question? :)
+2018-03-27 21:21:25	jamesmunns	We have two possibly solutions, first would be to teach the compiler about compiler builtins - though this requires introducing some new attributes
+2018-03-27 21:22:05	jamesmunns	second would be to include compiler-builtins, and automatically insert it with the `#[no_std]` prelude
+2018-03-27 21:22:12	jamesmunns	Check out https://github.com/rust-lang/rust/issues/49380 for more info
+2018-03-27 21:22:30	jamesmunns	And we have support from the compiler team to get this merged for 2018
+2018-03-27 21:22:46	jamesmunns	2. Xargo requires nightly
+2018-03-27 21:23:23	jamesmunns	the current plan is to ship a `rust-std` component for the thumb and msp430 components, basically shipping just `core` for those targets, so you can `rustup target add thumb*` etc.
+2018-03-27 21:23:42	jamesmunns	Also Ok'd to get done for 2018, see https://github.com/rust-lang/rust/issues/49382 for more details
+2018-03-27 21:23:44	Douman	JFYI Rust's PR #49316 seems to get approve so incremental linking gotta get fixed?
+2018-03-27 21:24:21	est31	jamesmunns: still no merging of xargo into cargo?
+2018-03-27 21:24:21	jamesmunns	3. panic-fmt is required
+2018-03-27 21:24:52	jamesmunns	est31: that will come later (maybe after 2018 Era)
+2018-03-27 21:25:07	jamesmunns	but shipping core for the embedded targets will definitely make it into 2018 era
+2018-03-27 21:25:18	est31	"the embedded targets"
+2018-03-27 21:25:21	est31	there are tons of them
+2018-03-27 21:25:31	~japaric	(jamesmunns is making a summary of what we talked about with the other Rust teams today at the all hands event)
+2018-03-27 21:25:41	est31	ah right
+2018-03-27 21:25:43	~japaric	est31: there's like 5 of them supported by rustc
+2018-03-27 21:25:45  *	est31 stops arguing
+2018-03-27 21:25:57	~japaric	those are the ones that will get a rust-std component
+2018-03-27 21:25:58	est31	<jamesmunns> 3. panic-fmt is required
+2018-03-27 21:26:08	est31	ther was an RFC about it by japaric right?
+2018-03-27 21:26:30	jamesmunns	re: panic-fmt, upstream compiler team will fix for 2018 era, with "something that works", and they are aware about the code bloat issue, but that may or may not make it for the 2018 deadline
+2018-03-27 21:27:01	jamesmunns	Outside of those top-prio issues, there are some additional things we worked on today
+2018-03-27 21:27:19	dvc	code bloat when impl panic-fmt?
+2018-03-27 21:27:47	dvc	I thought that had something to do with #[derive(Debug)]
+2018-03-27 21:28:04	dvc	anyway continue - not that important
+2018-03-27 21:28:21	jamesmunns	`asm!()` is unlikely to stabilize for 2018. Our short term mitigation is to add a `core::asm::$arch` module, with common intrinsics like bkpt, wfi, etc.
+2018-03-27 21:28:36	est31	dvc: iirc panic-fmt means that in many cases, the entire fmt machinery is shipped
+2018-03-27 21:29:04	jamesmunns	No upstream issue for this yet, but we will make an RFC, and collect what kind of intrinsics should be included. These intrinsics will basically by a safe interface on unstable inline assembly
+2018-03-27 21:29:05	~japaric	est31: yes, we are likely to implement and stabilize rfc #2070
+2018-03-27 21:29:33	~japaric	we can hopefully fix the binary size problem (panic strings kept in the binary even when panic_fmt = loop {}) by leveraging pure MIR rlibs
+2018-03-27 21:29:39	jamesmunns	const-fn will move unto FCP soon, so we may see that for 2018 era
+2018-03-27 21:30:08	est31	why is const fn specifically important for embedded?
+2018-03-27 21:30:14	jamesmunns	last low prio issue was getting `#[used]` attribute stabilized, which everyone seemed happy with moving to FCP
+2018-03-27 21:30:26	jamesmunns	(almost done, will start answering questions soon)
+2018-03-27 21:30:32	jamesmunns	Other misc things:
+2018-03-27 21:31:13	jamesmunns	We will start shipping more of `llvm-binutils`, probably behind some facade to prevent adding to the user's path, something like cargo-objcopy, etc.
+2018-03-27 21:31:20	~japaric	est31: it's a P-med unstable feature; it's not being stabilize because embedded needs but because it has been in the compiler for a while and we are unlikely to change the design (e.g. drop the const qualifier)
+2018-03-27 21:31:38	~japaric	a P-med (medium priority) unstable feature for embedded**
+2018-03-27 21:32:05	~japaric	const-fn is needed to initialize a static variable that contains a Mutex, for example
+2018-03-27 21:32:21	~japaric	it's not only needed in embedded / bare metal, but also comes up in OS dev
+2018-03-27 21:32:24	jamesmunns	We also had a good talk about the embedded rust book, and decided to initially target it at developers who already know rust, and already know embedded, and point to other resources for learning core concepts. This is committing to ship that much of the embedded rust book in 2018
+2018-03-27 21:32:44	jamesmunns	After that ships, we can start expanding to cover more possible people interested in Rust.
+2018-03-27 21:33:01	est31	japaric: are there things you do in embedded programming where you need const fn?
+2018-03-27 21:33:13	est31	i was just wondering why you are tracking it
+2018-03-27 21:33:22	jamesmunns	That was all the important stuff discussed today, We'll start answering questions now :)
+2018-03-27 21:33:28	dvc	the book is coming along. I perused it today but didn't get to reading it thoroughly
+2018-03-27 21:33:58	dvc	I'm very happy with the target audience =P
+2018-03-27 21:34:11	~japaric	est31: we are tracking it because it came up high in this survey https://github.com/rust-lang-nursery/embedded-wg/issues/31
+2018-03-27 21:34:31	jamesmunns	dvc are you talking about the "embeddednomicon"?
+2018-03-27 21:34:37	dvc	yes
+2018-03-27 21:35:01	est31	japaric: I see :)
+2018-03-27 21:35:26	jamesmunns	We want that to handle low level impl, and also ship a "stable embedded rust book", which covers some more of the high level "how to write your first embedded application using existing board/chip support crates, embedded-hal traits, and existing drivers"
+2018-03-27 21:37:11	~japaric	dvc: the embedonomicon != the embedded Rust book. the nomicon is targeted towards advanced users that want to look into low level impl details; the embedded Rust book is / will be the getting started guide
+2018-03-27 21:37:24	dvc	ok
+2018-03-27 21:39:04	dvc	I'm reimplementing riscv-rt currently so more info on how to handle interrupts would be good
+2018-03-27 21:39:33	dvc	like how do you share a peripheral accross the isr and main properly
+2018-03-27 21:40:33	~japaric	dvc: you can use Mutex<RefCell<Option<T>>> ... or implement rtfm
+2018-03-27 21:41:38	dvc	still need to be able to share one timer for all tasks
+2018-03-27 21:42:11	~japaric	dvc: rtfm doesn't make use of timers at all. At least not right now
+2018-03-27 21:42:24	~japaric	it may optionally require a timer when timing semantics are added
+2018-03-27 21:42:42	dvc	I thought each task is wired to some interrupt
+2018-03-27 21:42:52	~japaric	it is
+2018-03-27 21:42:58	Douman	you need to enable timers
+2018-03-27 21:43:06	Douman	for them to be actually running afaik
+2018-03-27 21:43:24	~japaric	timers? is that a riscv specific thing?
+2018-03-27 21:43:39	dvc	no
+2018-03-27 21:43:46	~japaric	on Cortex-M you have to enable the interrupt in the NVIC peripheral
+2018-03-27 21:44:17	dvc	on riscv there is a CLINT which means Core Local Interrupt
+2018-03-27 21:44:31	~japaric	but don't need to enable timers to make interrupts work
+2018-03-27 21:44:34	dvc	so each core has a MachineTimer interrupt handled by the clint
+2018-03-27 21:44:46	dvc	and there is a PLIC for external interrupts
+2018-03-27 21:44:58	dvc	which is like NVIC
+2018-03-27 21:45:19	dvc	CLINT is like SYSTICK I think
+2018-03-27 21:47:56	dvc	I'll give rtfm another go after releasing e310x-hal
+2018-03-27 21:50:06	dvc	so end of transmission?
+2018-03-27 21:51:07	~japaric	yeah, unless someone wants to discuss something else
+2018-03-27 21:51:12	~japaric	we only had the summary in the agenda
+2018-03-27 21:53:13	dvc	till next week then
+2018-03-27 21:53:17	~japaric	dvc: o/
