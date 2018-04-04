@@ -73,6 +73,14 @@ us grow the embedded crates.io ecosystem!
 
 [wd]: https://github.com/rust-lang-nursery/embedded-wg/issues/39
 
+### [Awesome embedded Rust](https://github.com/rust-embedded/awesome-embedded-rust)
+
+The community is building a curated list of crates useful for embedded development. In this list
+you'll find driver crates, board support crates and general purpose no-std crates. Help us improve
+this list by adding your crate via PR or by tackling any of our [help wanted][aer-hw] issues.
+
+[aer-hw]: https://github.com/rust-embedded/awesome-embedded-rust/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
+
 ## Help wanted!
 
 [These issues need your help!][hw]
