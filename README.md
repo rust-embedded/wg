@@ -73,6 +73,17 @@ us grow the embedded crates.io ecosystem!
 
 [wd]: https://github.com/rust-lang-nursery/embedded-wg/issues/39
 
+### [Awesome embedded Rust][aer]
+
+`Awesome embedded Rust` is a curated list of resources related to embedded programming in Rust with
+the goal to provide a comprehensive collection of information and pointers to get going with
+various microcontroller architectures as well as sensors and actors connected to them.
+
+Help us to become even more awesome by contributing more information you've come across or written
+yourself! Pull requests are most welcome.
+
+[aer]: https://github.com/rust-embedded/awesome-embedded-rust
+
 ## Help wanted!
 
 [These issues need your help!][hw]
