@@ -57,7 +57,7 @@ target = "thumbv7m-none-eabi"
 ```
 
 ``` console
-$ xargo rustc -- -C link-arg=-emain
+$ cargo rustc -- -C link-arg=-emain
 
 $ arm-none-eabi-objdump -Cd target/thumbv7m-none-eabi/debug/app
 ```

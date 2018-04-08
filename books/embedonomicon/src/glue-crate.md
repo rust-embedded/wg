@@ -67,13 +67,13 @@ glue = { path = "glue" }
 ```
 
 ``` console
-$ xargo build
+$ cargo build
 
 $ arm-none-eabi-size target/thumbv7m-none-eabi/debug/app
    text    data     bss     dec     hex filename
       0       0       0       0       0 target/thumbv7m-none-eabi/debug/app
 
-$ xargo rustc -- -C link-arg=-emain
+$ cargo rustc -- -C link-arg=-emain
 
 $ arm-none-eabi-size target/thumbv7m-none-eabi/debug/app
    text    data     bss     dec     hex filename

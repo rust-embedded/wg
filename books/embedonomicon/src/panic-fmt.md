@@ -41,6 +41,6 @@ unsafe extern "C" fn panic_fmt(
 ```
 
 ``` console
-$ xargo build --target thumbv7m-none-eabi
+$ cargo build --target thumbv7m-none-eabi
 error: requires `start` lang_item
 ```
