@@ -1,0 +1,14 @@
+books:
+  image: rust:stretch
+  before_script:
+    - cargo install mdbook
+  script:
+    - cd books/embedded-rust-book
+    - mdbook build
+    - cd ../embedonomicon
+    - mdbook build
+  artifacts:
+    paths:
+      - books/embedded-rust-book/book
+      - books/embedonomicon/book
+    expire_in: 1 month
