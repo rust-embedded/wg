@@ -17,6 +17,6 @@ fn main() {}
 ```
 
 ``` console
-$ xargo build --target thumbv7m-none-eabi
+$ cargo build --target thumbv7m-none-eabi
 error: language item required, but not found: `panic_fmt`
 ```

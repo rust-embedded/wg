@@ -19,12 +19,12 @@ rustflags = [
 target = "thumbv7m-none-eabi"
 ```
 
-Now `xargo build` does pretty much the same thing as the long `xargo rustc` invocation did. I have
+Now `cargo build` does pretty much the same thing as the long `cargo rustc` invocation did. I have
 left out the `-e` linker flag because we'll be using something different in the next chapter. If you
 test this out you should get the empty output binary.
 
 ``` console
-$ xargo build
+$ cargo build
 
 $ arm-none-eabi-size target/thumbv7m-none-eabi/debug/app
    text    data     bss     dec     hex filename

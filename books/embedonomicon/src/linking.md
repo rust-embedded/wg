@@ -3,7 +3,7 @@
 If you try to link the previous program you'll get an error:
 
 ``` console
-$ xargo build --target thumbv7m-none-eabi
+$ cargo build --target thumbv7m-none-eabi
 error: linking with `arm-none-eabi-gcc` failed: exit code: 1
   |
   = note: "arm-none-eabi-gcc" "-L" (..)
@@ -23,7 +23,7 @@ in a bunch of C stuff to make the program more POSIX-y but we don't need all tha
 linker to `ld` we'll be free of the C stuff so let's do that:
 
 ``` console
-$ xargo rustc --target thumbv7m-none-eabi -- \
+$ cargo rustc --target thumbv7m-none-eabi -- \
     -C linker=arm-none-eabi-ld -Z linker-flavor=ld
 ```
 
@@ -45,7 +45,7 @@ We can tell the linker what we want the entry point to be by passing the `-e` fl
 let's use `main` (the one produced by `rustc`) as the entry point.
 
 ``` console
-$ xargo rustc --target thumbv7m-none-eabi -- \
+$ cargo rustc --target thumbv7m-none-eabi -- \
     -C linker=arm-none-eabi-ld -Z linker-flavor=ld -C link-arg=-emain
 ```
 

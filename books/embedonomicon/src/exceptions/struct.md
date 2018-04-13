@@ -251,7 +251,7 @@ ASSERT(_evector == ORIGIN(FLASH) + 0x40, "you forgot to call `exceptions!`");
 Now if the user forgets to call the `exceptions!` they'll get the following error:
 
 ``` console
-$ xargo build
+$ cargo build
 error: linking with `arm-none-eabi-ld` failed: exit code: 1
   |
   = note: "arm-none-eabi-ld" "-L" (..)

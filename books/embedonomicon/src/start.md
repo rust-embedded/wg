@@ -102,7 +102,7 @@ Let's first turn the crate into an object file using:
 
 ``` console
 $ # NOTE disable incremental compilation to reproduce these steps
-$ xargo rustc --target thumbv7m-none-eabi -- --emit=obj -C linker=true # don't link
+$ cargo rustc --target thumbv7m-none-eabi -- --emit=obj -C linker=true # don't link
 
 $ find -name '*.o'
 ./target/thumbv7m-none-eabi/debug/deps/app-6e6a2da6f83262fd.o
