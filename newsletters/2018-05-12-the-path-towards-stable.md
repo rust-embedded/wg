@@ -47,7 +47,7 @@ Legend: `crate-name` - link to CHANGELOG - link to stabilization PR - ~removed u
 - [`cortex-m-rt`][c1] - [CHANGELOG][ch1] - [PR][p1] - ~asm!~ ~core_intrinsics~ ~global_asm!~
   ~lang_items~ ~linkage~ ~naked_functions~ ~used~
 
-[c1]: https://crates.io/crates/cortex-m-rt/0.4.0
+[c1]: https://crates.io/crates/cortex-m-rt/0.5.0
 [ch1]: https://github.com/japaric/cortex-m-rt/blob/master/CHANGELOG.md#v050---2018-05-12
 [p1]: https://github.com/japaric/cortex-m-rt/pull/69
 
@@ -66,14 +66,14 @@ Legend: `crate-name` - link to CHANGELOG - link to stabilization PR - ~removed u
 - [`embedded-hal`][c4] - [CHANGELOG][ch4] - [PR][p4] - ~never_type~
 
 [c4]: https://crates.io/crates/embedded-hal/0.2.0
-[ch4]: https://github.com/japaric/embedded-hal/blob/master/CHANGELOG.md#v020---2018-05-11
+[ch4]: https://github.com/japaric/embedded-hal/blob/master/CHANGELOG.md#v020---2018-05-12
 [p4]: https://github.com/japaric/embedded-hal/pull/80
 
 - [`f3`][c5] - [CHANGELOG][ch5] - [PR][p5]
 
 [c5]: https://crates.io/crates/f3/0.6.0
 [ch5]: https://github.com/japaric/f3/blob/master/CHANGELOG.md#v060---2018-05-12
-[p5]: https://github.com/japaric/f3/pull/XXX
+[p5]: https://github.com/japaric/f3/pull/93
 
 - [`l3gd20`][c6] - [CHANGELOG][ch6] - [PR][p6] - ~Unsized~
 
@@ -97,20 +97,20 @@ Legend: `crate-name` - link to CHANGELOG - link to stabilization PR - ~removed u
 - [`stm32f30x-hal`][c9] - [CHANGELOG][ch9] - [PR][p9] - ~never_type~
 
 [c9]: https://crates.io/crates/stm32f30x-hal/0.2.0
-[ch9]: https://github.com/japaric/stm32f30x-hal/blob/master/CHANGELOG.md#XXX
-[p9]: https://github.com/japaric/stm32f30x-hal/pull/XXX
+[ch9]: https://github.com/japaric/stm32f30x-hal/blob/master/CHANGELOG.md#v020---2018-05-12
+[p9]: https://github.com/japaric/stm32f30x-hal/pull/25
 
 - [`stm32f30x`][c10] - [CHANGELOG][ch10] - [PR][p10] - ~const_fn~ ~global_asm!~ ~try_from~
   ~use_extern_macros~ ~used~
 
 [c10]: https://crates.io/crates/stm32f30x/0.7.0
-[ch10]: https://github.com/japaric/stm32f30x/blob/master/CHANGELOG.md#XXX
-[p10]: https://github.com/japaric/stm32f30x/pull/XXX
+[ch10]: https://github.com/japaric/stm32f30x/blob/master/CHANGELOG.md#v070---2018-05-12
+[p10]: https://github.com/japaric/stm32f30x/pull/16
 
 - [`svd2rust`][c11] - [CHANGELOG][ch11] - [PR][p11]
 
 [c11]: https://crates.io/crates/svd2rust/0.13.0
-[ch11]: https://github.com/japaric/svd2rust/blob/master/CHANGELOG.md#XXX
+[ch11]: https://github.com/japaric/svd2rust/blob/master/CHANGELOG.md#v0130---2018-05-12
 [p11]: https://github.com/japaric/svd2rust/pull/203
 
 There's a lot of breaking changes there but the most visible one is `cortex-m-rt` because it changes
