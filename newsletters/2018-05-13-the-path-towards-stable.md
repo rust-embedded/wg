@@ -1,6 +1,18 @@
 # Cortex-M library development now possible on beta and the path towards stable embedded Rust
 
-> 2018-05-12
+> 2018-05-13
+
+> **TL;DR**
+>
+> * 1.27 = embedded (Cortex-M) *library* development on stable
+> * 1.28 or 1.29 = embedded (Cortex-M) *application* development on stable
+> * We are making breaking changes in the ecosystem in order to move towards development on the
+>   stable channel
+> * If you are a crate maintainer / author, make sure you test your crates with the new versions of
+>   `cortex-m` (and similar) on the current `beta` release of Rust
+> * If the latest version of a dependency doesn't compile on `beta`, file an issue and/or ping us on
+>   the #rust-embedded IRC channel
+> * Thanks for your patience!
 
 We are happy to announce that *library* development for the Cortex-M targets is now possible on the
 beta channel! :tada:
@@ -107,7 +119,8 @@ Legend: `crate-name` - link to CHANGELOG - link to stabilization PR - ~removed u
 [ch10]: https://github.com/japaric/stm32f30x/blob/master/CHANGELOG.md#v070---2018-05-12
 [p10]: https://github.com/japaric/stm32f30x/pull/16
 
-- [`svd2rust`][c11] - [CHANGELOG][ch11] - [PR][p11]
+- [`svd2rust`][c11] (output of) - [CHANGELOG][ch11] - [PR][p11] - ~const_fn~ ~global_asm!~
+  ~try_from~ ~use_extern_macros~ ~used~
 
 [c11]: https://crates.io/crates/svd2rust/0.13.0
 [ch11]: https://github.com/japaric/svd2rust/blob/master/CHANGELOG.md#v0130---2018-05-12
@@ -136,7 +149,7 @@ beta.
 
 If you are the author of a Cortex-M device crate, a crate generated using `svd2rust`, moving it to
 stable only requires regenerating it using `svd2rust` v0.13.0. Do note that the generation process
-[has changed] for the Cortex-M target, and make sure you bump the minor version when you publish a
+[has changed] for the Cortex-M target; also make sure you bump the minor version when you publish a
 new version.
 
 [has changed]: https://docs.rs/svd2rust/0.13.0/svd2rust/#usage
@@ -146,6 +159,19 @@ v0.2.0 of `embedded-hal` and test that it builds on beta. Make sure you bump the
 you publish a new version of your crate -- bumping the version of the `embedded-hal` dependency is a
 breaking change (drivers that depend on `embedded-hal` v0.1.0 can't be used with HAL implementation
 crates that depend on `embedded-hal` v0.2.0).
+
+If you are porting an application to the newest `cortex-m-*` crates you may hit these errors:
+
+- "error: requires `start` lang_item" on binary crates. You need to switch from the standard `main`
+  interface to `#![no_main]` + `entry!`. Use the [examples][qse] in the quickstart template as a
+  reference.
+
+[qse]: https://docs.rs/cortex-m-quickstart/0.3.0/cortex_m_quickstart/examples/_0_minimal/index.html
+
+- "error[E0015]: calls in statics are limited to constant functions, tuple structs and tuple
+  variants". `const fn` is not a stable feature so it's not used in the API by default. The
+  `cortex-m` provides a `"const-fn"` feature to opt into this unstable feature and expose `const`
+  functions in the API; other dependencies should / probably provide a similar feature.
 
 ## What does this all mean for you?
 
