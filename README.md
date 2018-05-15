@@ -81,6 +81,11 @@ this list by adding your crate via PR or by tackling any of our [help wanted][ae
 
 [aer-hw]: https://github.com/rust-embedded/awesome-embedded-rust/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
 
+### Books
+
+* [Embedded Rust](./books/embedded-rust-book), How to use Rust to develop firmware for bare metal.
+* [The Embedonomicon](./books/embedonomicon), Low-level magic that binds together embedded `no_std` programs.
+
 ## Help wanted!
 
 [These issues need your help!][hw]
