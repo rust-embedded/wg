@@ -1,0 +1,168 @@
+2018-06-25 10:59:39	jamesmunns	japaric: are we here today?
+2018-06-25 10:59:52	~japaric	jamesmunns: yes, irc meeting
+2018-06-25 11:00:00	jamesmunns	:+1: then hello!
+2018-06-25 11:00:10  *	thejpster waves
+2018-06-25 11:00:19	hannobraun	Hello
+2018-06-25 11:00:31	korken89	hi
+2018-06-25 11:02:32	~japaric	pftbest: around?
+2018-06-25 11:03:47	~japaric	ok, let's start the meeting. The agenda is at https://github.com/rust-lang-nursery/embedded-wg/issues/109
+2018-06-25 11:04:19	~japaric	let's start with items on the milestone
+2018-06-25 11:04:40	~japaric	regarding stable embedded Rust panic_implementation have been proposed for FCP
+2018-06-25 11:04:52	~japaric	https://github.com/rust-lang/rust/issues/44489#issuecomment-398965881
+2018-06-25 11:05:05	thejpster	with suggest close or suggest merge?
+2018-06-25 11:05:12	~japaric	thejpster: merge
+2018-06-25 11:05:26	thejpster	:)
+2018-06-25 11:06:09	~japaric	that covers the minimal for embedded Rust
+2018-06-25 11:06:14	pftbest	Hello
+2018-06-25 11:06:24	~japaric	there's also the assembly ops in stable ticket
+2018-06-25 11:06:42	~japaric	https://github.com/rust-lang-nursery/stdsimd/issues/437 is the ticket in stdsimd
+2018-06-25 11:06:54	~japaric	jcsoo: could you give us an update on that?
+2018-06-25 11:07:22	~japaric	what's needed to move that forward?
+2018-06-25 11:07:23	jcsoo	hey there. sorry, no update - I have been out of the loop the last several weeks, and there hasn’t been any activity on the issue
+2018-06-25 11:07:57	~japaric	jcsoo: ok, no problem
+2018-06-25 11:08:07	~japaric	related to that this issue was brought up https://github.com/rust-lang-nursery/stdsimd/issues/485#issuecomment-399667411
+2018-06-25 11:08:58	~japaric	basically, `reg_read(); stuff; reg_write();` may not behave as you expect because the compiler is free to reorder code
+2018-06-25 11:09:10	~japaric	this is mainly for dealing with the status register
+2018-06-25 11:09:35	~japaric	or actually it affects RMW ops
+2018-06-25 11:10:11	jamesmunns	Is there some kind of conservative fence we could put around it that would just affect reordering?
+2018-06-25 11:10:36	~japaric	not in the general case
+2018-06-25 11:10:53	~japaric	RMW on the BASEPRI register is fine with a "memory" clobber or a compiler fence
+2018-06-25 11:11:10	~japaric	but if you are touching the status register or a general purpose register then there are no guarantees
+2018-06-25 11:11:22	~japaric	s/compiler fence/memory barrier (dmb)/
+2018-06-25 11:11:39	jcsoo	it would be nice if Rust had a volatile { } block, where all memory accesses within the block would be strict read-write without reordering
+2018-06-25 11:11:59	thejpster	jcsoo, yes, I was about to say the same thing
+2018-06-25 11:12:36	~japaric	that would be like using {read,write}_volatile
+2018-06-25 11:12:46	~japaric	but what about register usage?
+2018-06-25 11:13:28	~japaric	the compiler is free to use registers as it sees fit
+2018-06-25 11:13:46	korken89	Note also that some of the intrinsics are "broken" in HW and need extra work sometimes (such as BASEPRI in Cortex-M7 early revisions), will stdsimd take this under consideration?
+2018-06-25 11:13:49	jcsoo	i’d think if you were using intrinsics for register usage inside the block, that would prevent any LLVM reordering. that wouldn’t solve it completely
+2018-06-25 11:14:24	jcsoo	or rather, that’s what I hope it would do
+2018-06-25 11:14:45	~japaric	jcsoo: I don't know if there's any LLVM mechanism to prevent reordering at the instruction level
+2018-06-25 11:15:09	thejpster	what do people do in C?
+2018-06-25 11:15:24	~japaric	write inline assembly blocks, maybe?
+2018-06-25 11:15:49	thejpster	does that imply different things about re-ordering?
+2018-06-25 11:15:56	thejpster	as opposed to the functional calls we're proposing?
+2018-06-25 11:16:01	~japaric	I mean in the cases where they need to touch / save / write several registers
+2018-06-25 11:16:11	~japaric	think: context switching
+2018-06-25 11:16:30	jcsoo	i guess volatile in LLVM covers memory accesses but doesn’t say anything about register usage: https://llvm.org/docs/LangRef.html#volatile-memory-accesses
+2018-06-25 11:16:31	korken89	thelpster: C/C++ does asm volatile(::: "memory")
+2018-06-25 11:16:54	~japaric	thejpster: I mean the write the whole routine in one giant asm! block
+2018-06-25 11:17:18	~japaric	rather than write separate small asm! blocks, which would be the equivalent of our intrinsic functions
+2018-06-25 11:17:31	thejpster	Ok. But we'd support that if you put the asm in a .S file - although there'd be a function call to jump to it.
+2018-06-25 11:18:00	~japaric	yes, if you want to write something tricky like a context switch routine you should put it in an external assembly file
+2018-06-25 11:18:30	~japaric	if you want to write it in Rust it would have to be global_asm!, not inline assembly in any case
+2018-06-25 11:18:48	~japaric	those routines have weird ABIs in any case
+2018-06-25 11:18:48	jamesmunns	https://groups.google.com/forum/#!topic/llvm-dev/ihEPFCSqQBs is an interesting discussion from 2014, where they decided not to implement non-memory compiler bariers
+2018-06-25 11:19:01	thejpster	I think we have the right approach for Rust 2018 - simple things can be done inline and complicated things need an assembler.
+2018-06-25 11:19:09	thejpster	More material for the book :)
+2018-06-25 11:19:53	jamesmunns	Agreed, though I guess it means more work to evaulate which stdsimd intriniscs should be implemented at all?
+2018-06-25 11:19:55	~japaric	korken89: re working around silicon errata; that's an interesting question. We have a feature for that in cortex-m. In general there's no #[cfg] thing to detect if you are using CM-7 revision 0
+2018-06-25 11:20:09	~japaric	a Cargo feature**
+2018-06-25 11:20:48	~japaric	built-in #[cfg] end at architecture; they don't cover subarchitecture, less processor revisions
+2018-06-25 11:20:58	korken89	Ah, should it be possible?
+2018-06-25 11:21:12	korken89	Else the intricics have to be worst case right?
+2018-06-25 11:21:30	korken89	Else non-correct behaviour can happen
+2018-06-25 11:22:41	~japaric	korken89: I'll leave a comment about the errata issue in the stdsimd issue; let's not dig into that right now
+2018-06-25 11:22:57	~japaric	thejpster: jamesmunns yeah, I think the linked issue is not a blocker for our approach
+2018-06-25 11:23:10	jamesmunns	korken89: thanks for bringing it up! I was not aware of that specific issue
+2018-06-25 11:23:20	~japaric	even if you can write non-correct code with the intrinsics I don't think that should block landing the intrinsics
+2018-06-25 11:23:38	thejpster	are they 'unsafe'?
+2018-06-25 11:23:50	korken89	Thanks for adding it to the issue!
+2018-06-25 11:24:12	~japaric	problematic intrinsics (those that can lead to surprising behavior) should be properly documented or may left unstable
+2018-06-25 11:24:20	~japaric	maybe**
+2018-06-25 11:24:35	~japaric	I don't think all of them have to be unsafe
+2018-06-25 11:24:56	~japaric	I haven't look at how stdsimd deals with unsafety
+2018-06-25 11:25:00	thejpster	but that could work as a marker to say "pay attention, footguns be here"
+2018-06-25 11:25:12	~japaric	but probably would need to be audit for each intrinsic
+2018-06-25 11:25:42	~japaric	'unsafe' should be use for memory unsafety, not as a lint though
+2018-06-25 11:26:44	~japaric	everyone in favor of me commenting about dealing with the reordering issue with documentation / unstability?
+2018-06-25 11:27:05	jcsoo	+1
+2018-06-25 11:27:07	thejpster	although we do use it for Pin traits (like marking a pin as supporting Serial::RTS)
+2018-06-25 11:27:10	thejpster	yup
+2018-06-25 11:27:16	~japaric	also, I think the problematic intrinsics are not going to be the commonly used intrinsic in any case
+2018-06-25 11:27:22	hannobraun	+1
+2018-06-25 11:27:49	~japaric	enable / disable interrupts are more common and behave correctly with a "memory" clobber in the asm! block
+2018-06-25 11:28:10	~japaric	ok, let's move to the next issue
+2018-06-25 11:28:31	~japaric	pftbest: how is the std for msp430 PR going?
+2018-06-25 11:29:35	pftbest	i don't have any progress on llvm assertion yet, sorry
+2018-06-25 11:30:04	thejpster	std?
+2018-06-25 11:30:05	~japaric	so it's blocked by an LLVM bug?
+2018-06-25 11:30:13	~japaric	thejpster: I meant rust-std component
+2018-06-25 11:30:16	pftbest	yes
+2018-06-25 11:30:18	~japaric	i.e. pre-compiled core
+2018-06-25 11:30:20	thejpster	ah
+2018-06-25 11:30:34	thejpster	yeah, that has a bad name
+2018-06-25 11:31:31	~japaric	regarding component: the llvm-tools component PR landed but the manifest has not correctly updated so you can't actually install it using rustup
+2018-06-25 11:31:33	~japaric	have to fix that
+2018-06-25 11:32:22	~japaric	this is the component with llvm-nm, llvm-size, etc. tools
+2018-06-25 11:33:12	~japaric	anyone else has to report anything else about the milestone issue?
+2018-06-25 11:34:08	jamesmunns	whole milestone, or just dev on stable?
+2018-06-25 11:34:15	~japaric	the whole milestone
+2018-06-25 11:34:41	jamesmunns	re: CI testing, Hideki and Vaishali are working on making the docker image for thumb targets here: https://github.com/sekineh/rust/blob/add-ci-thumb/src/ci/docker/thumb-none/Dockerfile
+2018-06-25 11:35:10	jamesmunns	Also we checked in with kennytm, and he said that they would work around the resource limitations for adding new CI targets
+2018-06-25 11:35:31	~japaric	jamesmunns: +1
+2018-06-25 11:35:50	jamesmunns	(he checked in with the infra team, so a semi-official position :) )
+2018-06-25 11:36:11	jamesmunns	Nothing to report re: the book :(
+2018-06-25 11:36:39	~japaric	re: docs. Discovery is half updated locally; need to update some text before pushing
+2018-06-25 11:36:55	~japaric	all the code snippets compile again w/ latest cortex-m crates
+2018-06-25 11:37:41	~japaric	ok, I think that closes the milestone item in the agenda
+2018-06-25 11:37:55	~japaric	the next item is commercial testimonials
+2018-06-25 11:38:23	~japaric	hannobraun asked on the issue if we should include embedded Linux
+2018-06-25 11:38:25	~japaric	thoughts?
+2018-06-25 11:39:01	thejpster	embedded Linux is kinda just Linux
+2018-06-25 11:39:20	hannobraun	Including Embedded Linux is not ideal, given our focus here in the working group. But maybe we can't be too picky right now.
+2018-06-25 11:39:22	~japaric	I think embedded Linux apps that use embedded-hal drivers would be a good sell about re-usability
+2018-06-25 11:39:45	hannobraun	There's simply not much much commercial Rust firmware development activity going on, as far as I can tell.
+2018-06-25 11:39:51	thejpster	japaric, yeah I'd agree with that
+2018-06-25 11:40:38	thejpster	so I think there's two questions here
+2018-06-25 11:40:42	thejpster	what do we want, and what can we get
+2018-06-25 11:40:44	jamesmunns	hannobraun: definitely not much around bare metal/rtos. Embedded Linux has a fair amount of uptake atm
+2018-06-25 11:41:02	thejpster	You should set out a vision of perfection first, and then adapt that to circumstances as required
+2018-06-25 11:41:14	thejpster	Rather than setting out to achieve only what you think is possible
+2018-06-25 11:41:45	hannobraun	jamesmunns: Yes, that's my impression too. Hence the question about whether to showcase that.
+2018-06-25 11:42:28	thejpster	For me, Embedded Rust is #[no_std] Rust.
+2018-06-25 11:42:48	jcsoo	right now embedded-wg hasn’t really done too much to cover the non-bare-metal but not plain vanilla linux case
+2018-06-25 11:42:53	thejpster	And that has to be the primary story, and it's cool to talk about interop and portability and all those other good things too.
+2018-06-25 11:44:20	jcsoo	i think the interesting part to tell would be about doing custom buildroot / yocto for mostly-rust systems with minimal runtime
+2018-06-25 11:46:11	thejpster	I can see the value in that. But I'm not sure it's massively different to any other musl based root filesystem.
+2018-06-25 11:46:20	thejpster	(having built one recently)
+2018-06-25 11:47:42	~japaric	thejpster: are you in favor of including of embedded Linux apps as a secondary focus ("you can also do embedded Linux!"), then?
+2018-06-25 11:47:55	~japaric	jcsoo: do we have (commercial) examples of that?
+2018-06-25 11:48:36	jcsoo	I feel like I’ve heard of some but don’t remember any off the top of my head.
+2018-06-25 11:48:37	thejpster	japaric, I wouldn't rule it out.
+2018-06-25 11:48:50	jcsoo	Another angle would be something like this: https://blog.mozilla.org/blog/2018/02/21/snips-uses-rust-embedded-voice-assistant/
+2018-06-25 11:49:15	jcsoo	So, people specifically developing for resource-constrained systems that might happen to be embeded.
+2018-06-25 11:49:57	thejpster	I wouldn't want people to get the impression we can only do Linux apps
+2018-06-25 11:49:58	jamesmunns	japaric: I know of at least one company doing yocto+rust for embedded systems
+2018-06-25 11:50:07	thejpster	that fact we can go bare metal is super cool
+2018-06-25 11:50:14	jamesmunns	(not sure what % of userspace is rust, but the main app is)
+2018-06-25 11:50:25	thejpster	Go/Java/Javascript/Python/Ruby/Swift - none of these other languages can
+2018-06-25 11:51:01	thejpster	It's about telling that story that we can go low, and we can go high. But for me, going high is covered well by other groups.
+2018-06-25 11:51:49	~japaric	if Rust on embedded Linux is on uptake then I think we should *not* omit it from the webpage -- the page is about embedded Rust after all and embedded Linux has the word "embedded" in it :-)
+2018-06-25 11:52:28	jcsoo	So maybe the emphasis should be on zero-runtime for resource constrained systems.
+2018-06-25 11:53:37	hannobraun	If the deadline for the website comes and we have no commercial uses of bare-metal Rust to showcase, we should prominently include SOMETHING bare-metal, even if it's hobby stuff.
+2018-06-25 11:53:53	jamesmunns	hannobraun: +1
+2018-06-25 11:54:14	thejpster	to be fair, some of my hobby stuff is way more impressive than some of my commercial stuff :p
+2018-06-25 11:54:25	~japaric	:-)
+2018-06-25 11:54:38	korken89	Same here, the hobby projects has all the awesome parts ;)
+2018-06-25 11:54:45	jcsoo	I have some stuff that is in prototype stage that might turn into a project
+2018-06-25 11:54:50	jcsoo	i mean a product
+2018-06-25 11:56:06	jcsoo	what’s the website deadline?
+2018-06-25 11:56:19	~japaric	we are running out of time; I'm of the mind that we should include both no_std embedded and embedded Linux but focus on no_std
+2018-06-25 11:56:22	jamesmunns	Around the 2018 launch, IIRC
+2018-06-25 11:56:58	jamesmunns	I have to run now, talk to you all later!
+2018-06-25 11:57:03	~japaric	jamesmunns: o/
+2018-06-25 11:57:07	jcsoo	japaric: I agree
+2018-06-25 11:57:08  *	thejpster waves
+2018-06-25 11:57:14	~japaric	jcsoo: the website has to be ready before the edition release
+2018-06-25 11:57:41	hannobraun	bye jamesmunns
+2018-06-25 11:57:48	~japaric	ideally by the beta release of the edition the content should be there; the beta should be used to polish the website
+2018-06-25 11:57:52	jcsoo	jamesmunns: bye!
+2018-06-25 11:58:23	~japaric	the beta is planned for August 2 (if it's not pushed back)
+2018-06-25 11:59:44	hannobraun	I agree with what thejpster said, and I also agree with japaric 's conlusion (emphasizing no_std).
+2018-06-25 12:00:22	~japaric	ok, we are out of time. The next meeting is a video meeting. See you all next week!
+2018-06-25 12:00:30	thejpster	bye everyone
+2018-06-25 12:00:33	korken89	It was nice to join, I will be coming back more!
+2018-06-25 12:00:36	jcsoo	bye all!
+2018-06-25 12:01:09	~japaric	korken89: that's for attending!
+2018-06-25 12:02:01	hannobraun	bye all
