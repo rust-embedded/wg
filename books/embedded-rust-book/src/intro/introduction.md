@@ -36,7 +36,7 @@ For this reason, we suggest purchasing the [STMF3DISCOVERY] development board fo
 
 ## Contributing to This Book
 
-Until the initial release of this book (planned to coincide with the 2018 Era release of the Rust Programming Language), the work on this book will be coordinated in [this tracking issue] of the [Embedded Working Group] repository.
+Until the initial release of this book (planned to coincide with the 2018 Edition release of the Rust Programming Language), the work on this book will be coordinated in [this tracking issue] of the [Embedded Working Group] repository.
 
 Pull requests are very welcome.
 
