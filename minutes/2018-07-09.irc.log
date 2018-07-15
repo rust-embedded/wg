@@ -1,0 +1,161 @@
+2018-07-09 11:06:01	~japaric	alright. let's start this meeting
+2018-07-09 11:06:01	awygle	hello
+2018-07-09 11:06:23	~japaric	the first item on the agenda is planning work on the books
+2018-07-09 11:06:42	~japaric	first, we have to finalize the outline of the embedded book
+2018-07-09 11:06:54	~japaric	which is here https://book.rust-embedded.org
+2018-07-09 11:08:16	~japaric	I think section 2 should start with the cortex-m-quickstart template
+2018-07-09 11:08:39	~japaric	writing an embedded binary without cortex-m-rt is nomicon level hard
+2018-07-09 11:09:06	jamesmunns	:+1:
+2018-07-09 11:09:07	thejpster	japaric, I agree, but only if they type in the code as opposed to do a "git clone <example>".
+2018-07-09 11:09:21	thejpster	If you use -rt, there shouldn't be much to type.
+2018-07-09 11:09:29	~japaric	thejpster: sounds good
+2018-07-09 11:09:37	korken89	Agreed, the template is short and concise, and gets you up and running really fast
+2018-07-09 11:10:00	~japaric	jamesmunns: (before I forget; could you take notes of the proposed changes?)
+2018-07-09 11:10:09	jamesmunns	Will do
+2018-07-09 11:10:16	~japaric	in the etherpad: https://public.etherpad-mozilla.org/p/embedded-wg
+2018-07-09 11:10:28	~japaric	so others can help fill in details
+2018-07-09 11:10:38	jamesmunns	Yep, then I will map that to issues in GH
+2018-07-09 11:10:46	thejpster	Could I suggest that section 7 gets moved inbetween 2 and 3 and is renamed "The Rust approach to Embedded"
+2018-07-09 11:11:52	~japaric	also, regarding section 2 we should probably start with just building, flashing and debugging a pure program (no I/O) and then move to the LED
+2018-07-09 11:11:56	thejpster	I'd also be OK with it being before section 2 (Blinking your first LED), but I quite like people trying a little bit before they read about what they've just done and why it's so awesome.
+2018-07-09 11:12:13	~japaric	thejpster: all of section 7?
+2018-07-09 11:12:34	jamesmunns	thejpster: thats what I was going for, its less practice, and more theory/unlearning habits from other paradigms
+2018-07-09 11:12:34	thejpster	7.1, 7.2, 7.3, 7.4 at least
+2018-07-09 11:13:14	ithinuel	+1 to have it even before section 2
+2018-07-09 11:13:16	thejpster	I just felt we should explain why Rust Embedded is special before we get into a very specific implementation (the HAL)
+2018-07-09 11:13:17	korken89	thejpster: Ah, good idea. Most people that come are probably old C or C++ programmers so to see differences and strengths is good.
+2018-07-09 11:13:58	thejpster	regarding the I/O in section two, programs that don't do anything are no fun and often compile to zero bytes of .text :p
+2018-07-09 11:14:42	ithinuel	A colleague of mine learning Rust told me last week that THE rust book was better than the O'Reilly's one because of that (not having a demo project that can scare you :o)
+2018-07-09 11:14:57	~japaric	the "get your feet wet by building / running some code, then learn the high level concepts and finally dive in the details" approach sgtm
+2018-07-09 11:15:05	thejpster	but I agree walking through a bunch of sysclk setup is boring and gets in the way of the fun things, and that moving the sysclk set up to a library defeats the point somewhat
+2018-07-09 11:15:48	jamesmunns	True, I was hoping to get people pushed through "why do I have to learn all this stuff, its complicated, I'm going back to IAR" :D
+2018-07-09 11:15:50	thejpster	I saw with some Raspberry Pi demos that driving the GPIO involves one volatile write to one literal address, but that's because the VPU has already booted and configured the hardware
+2018-07-09 11:16:01	~japaric	which is what thejpster is proposing iiuc
+2018-07-09 11:17:27	jamesmunns	Unfortunately jcsoo isn't around, or I would ask him if it would make sense to add bobbin next to the embedded-hal/tock-os ecosystems
+2018-07-09 11:17:46	jamesmunns	There have already been some discussions around using it (due to some out of the box handling of different programmers)
+2018-07-09 11:17:57	~japaric	hmm, I would avoid writing unsafe code / dealing with magic addresses in section 2
+2018-07-09 11:18:32	jamesmunns	IMO I'd like to at least mention that early, but provide the counterexample of why you would NOT want to do that
+2018-07-09 11:18:50	thejpster	it's what the chip crate is doing for you at the end of the day
+2018-07-09 11:18:51	jamesmunns	since I think experienced embedded programmers would want that question answered at some point
+2018-07-09 11:19:26	thejpster	My lecturers would often make us solve proofs once, and from then on we could skip that bit / use a calculator.
+2018-07-09 11:20:12	thejpster	I have a problem starting with the abstraction because i just think "but what does that do?"
+2018-07-09 11:20:26	korken89	Most C embedded devs would not like anything hidden, they want to see everything
+2018-07-09 11:20:35	~japaric	I think section 2 should use high level code to show that "yes, you can use high level APIs like the ones you have in SDKs"; next section should explain the advantages of Rust and then we should dive it in the ecosystem
+2018-07-09 11:20:47	korken89	This is generally why they do not go to C++ as well
+2018-07-09 11:21:00	~japaric	we can show / walk them through the implementation, but I don't think we should do that in one of the first sections
+2018-07-09 11:21:50	jamesmunns	japaric: how has that discussion gone in the classes/workshops you've taught?
+2018-07-09 11:22:03	jamesmunns	did you get a lot of questions? or did people pretty much run with it?
+2018-07-09 11:22:13	ithinuel	As the book assumes that the ready is already comfortable with Rust programming the probably already know about 7.1 and 7.2 no ?
+2018-07-09 11:22:48	jamesmunns	ithinuel: I'm not entirely sure. Embedded developers can be a bit stuck in their ways
+2018-07-09 11:22:59	jamesmunns	at least for the code that ends up on a uC
+2018-07-09 11:23:17	jamesmunns	I might not be giving embedded developers enough credit though :)
+2018-07-09 11:23:24	thejpster	"This book assumes the following:
+2018-07-09 11:23:25	thejpster	 You are comfortable using the Rust Programming Language, and have written, run, and debugged Rust applications on a desktop environment"
+2018-07-09 11:24:04	korken89	jamesmunns: Indeed, but that is also why most things work. They really care about the details as commonly the chip just is not allowed to crash
+2018-07-09 11:24:49	ithinuel	jamesmunns: I am one of Them :P, I stay away from C++ because it's pretty heavy for what it brings on uC (mostly because its interesting features are not usables on uC)
+2018-07-09 11:25:34	~japaric	jamesmunns: I've only done one workshop like that with the Discovery book; other than the setup stuff which took like 1h+ the rest went rather smooth; didn't get much detail criticism other than :+1:
+2018-07-09 11:25:35	jamesmunns	ithinuel: Exactly. I'm kind of pre-anticipating the argument of "we already decided against C++, why is Rust different?"
+2018-07-09 11:26:33	korken89	I believe it is to show what Rust can solve in real embedded code, that is a real pain in C
+2018-07-09 11:26:41	korken89	Show the hassle that is not needed anymore
+2018-07-09 11:27:09	korken89	Though to find such examples can need its own search
+2018-07-09 11:27:29	ithinuel	I don't think there is a need to prove that building/flashing is not a hassle because there's enough tool that already does that today, we know it is possible.
+2018-07-09 11:28:19	ithinuel	what would probably help convince embedded dev is to show/explain why rust succeed where c++ fails for example
+2018-07-09 11:29:02	ithinuel	I mean error handling (vs no exceptions), 0-cost abstraction, move semantic and all the memory/thread safety features
+2018-07-09 11:29:26	~japaric	we can show binary size / disassembly in section 2 to show that there's no bloat (which is commonly associated with C++)
+2018-07-09 11:29:41	~japaric	but if the program gets too complex it's hard to visualize that there's no bloat
+2018-07-09 11:29:49	korken89	Be careful there though, exceptions are not used in embedded, only 0 cost stuff is used, and the bloat is only myth
+2018-07-09 11:30:13	jamesmunns	I think section 2 should be kept pretty simple, but I think there is room for another section that goes into more advanced topics
+2018-07-09 11:30:28	jamesmunns	like how to structure a larger project, more complex techniques
+2018-07-09 11:30:48	thejpster	jamesmunns +1
+2018-07-09 11:31:04	jamesmunns	something like https://doc.rust-lang.org/book/second-edition/ch20-00-final-project-a-web-server.html
+2018-07-09 11:31:23	~japaric	sections about embedded-hal and RTFM will showcase other Rust features (code reuse, static guarantees, safe concurrency, etc.)
+2018-07-09 11:31:35	thejpster	I'd like to see Section 2 actually blink an LED, but do so using the bare minimum of magic
+2018-07-09 11:32:17	jayaura	Pardon me if I'm intruding,  but I have a suggestion regarding embedded rust book. It would great if one can follow the book with multiple boards. Not everyone might have the exact board. May be 2 or 3 most popular boards, rather than just one popular board would be awesome.
+2018-07-09 11:32:40	ithinuel	Else use as much magic as you want but make it 1.5 as a verification that the installation/tooling/hardware is working ?
+2018-07-09 11:32:40	jamesmunns	jayaura: Thats the long term plan! We'd like to get at least one board complete first though
+2018-07-09 11:32:52	korken89	thejpster: I would agree, blinking a LED is the "hello, world" of embedded
+2018-07-09 11:32:58	~japaric	thejpster: maybe do both? "this is the high level API; now this is the unsafe low level code; they compile down to the same thing (disassembly)"
+2018-07-09 11:33:07	~japaric	zero cost QED
+2018-07-09 11:33:48	thejpster	japaric, that sounds perfect
+2018-07-09 11:33:48	jayaura	jamesmunns: oh i see! okay!
+2018-07-09 11:33:55	korken89	* in release build
+2018-07-09 11:34:05	jamesmunns	I'm in support of taking a "Tarantino approach", show them the end first, then work from the beginning towards that. Either as 1.5 (with a complete example), or step-by-step
+2018-07-09 11:34:20	jamesmunns	(1.5, like what ithinuel said)
+2018-07-09 11:34:40	korken89	japaric: A common issue we faced in converting C users to C++ was how to not get huge debug builds, it really put them of
+2018-07-09 11:34:59	thejpster	that sounds like a conclusion and I sure as hell hope someone was taking good notes, because I'm not sure I could tell you what we agreed.
+2018-07-09 11:35:52	korken89	japaric: I don't think this is as big issue here though, as most commonly a hard fault or segfault happened in release and Rust protects us more here
+2018-07-09 11:36:35	~japaric	korken89: that's (large debug builds) still an issue until someone implements the Cargo feature that lets you build optimized dependencies but leaves the top crate unoptimized and with debuginfo
+2018-07-09 11:36:56	~japaric	huge debug builds produce a linker error though, not a hard fault
+2018-07-09 11:37:13	korken89	Hehe, not in C and C++
+2018-07-09 11:37:21	jamesmunns	thejpster: sorry, what conclusion?
+2018-07-09 11:37:23	korken89	If you break strict aliasing rule
+2018-07-09 11:37:30	korken89	But that are details
+2018-07-09 11:37:55	jamesmunns	korken89: most projects I have seen have checks that you don't have overlapping sections in the linker script, its not hard-mandatory though
+2018-07-09 11:38:50	~japaric	jamesmunns: I believe thejpster meant "the high level first, then walk through the low level steps" way
+2018-07-09 11:38:56	jamesmunns	Gotcha.
+2018-07-09 11:39:07	~japaric	do we all agree on doing it that way ^^
+2018-07-09 11:39:17	korken89	Yes, sounds good
+2018-07-09 11:39:17	thejpster	+1
+2018-07-09 11:39:21	jamesmunns	+1
+2018-07-09 11:39:31	jamesmunns	Whole book? Or mostly section 2?
+2018-07-09 11:39:40	~japaric	section 2
+2018-07-09 11:39:44	jamesmunns	+1
+2018-07-09 11:39:51	ithinuel	+1
+2018-07-09 11:39:52	hannobraun	sounds good
+2018-07-09 11:40:57	~japaric	I don't know if want to go into too much details in the other sections; RTFM 4 will have its own book which covers the implementation details
+2018-07-09 11:42:00	~japaric	so we can just refer to that instead of copy pasting the text in the embedded book
+2018-07-09 11:42:19	thejpster	I think this book should be even handed and fair with all the ecosystems
+2018-07-09 11:42:42	thejpster	I would hate something to think "I didn't like RTFM to Rust isn't for me"
+2018-07-09 11:42:46	thejpster	s/to/so
+2018-07-09 11:43:14	jamesmunns	It would probably be good to move discussion of later chapters to another meeting IMO
+2018-07-09 11:43:28	korken89	Yes
+2018-07-09 11:43:48	jamesmunns	Also for later chapters, I will try to open issues before hand so we can enumerate ideas there first, then decide in the meeting context
+2018-07-09 11:43:55	~japaric	jamesmunns: +1
+2018-07-09 11:44:09	korken89	For Ch 2.5, I would recommend people to have a look at the discussion that has been going on in Issue #112, please come with your comments and views in there - it would be much appreciated
+2018-07-09 11:44:11	jamesmunns	Any objection with 1 issue per chapter? then an issue for any major layout/other changes?
+2018-07-09 11:44:54	jamesmunns	If it gets too verbose, we can break discussions out in to issues for chapters, and treat the top issue as a tracking issue?
+2018-07-09 11:44:56	~japaric	jamesmunns: 1 issue per chapter sgtm but we should try to work a bit on the outline before opening those issues
+2018-07-09 11:45:20	korken89	I think that would be a good approach
+2018-07-09 11:45:36	~japaric	for instance section 3 about embedded-hal list svd2rust (3.1) but embedded-hal doesn't depend on svd2rust cf. embedded-hal for Linux
+2018-07-09 11:45:59	jamesmunns	japaric: Sure. I'll open one issue just for the outline, and only open the issues for chapter 1 and 2 for now
+2018-07-09 11:46:11	~japaric	jamesmunns: +1
+2018-07-09 11:47:36	~japaric	I think the embedded-hal chapter should show an embedded Linux example and focus on drivers -- another chapter can cover svd2rust and hal implementations with static configuration guarantees
+2018-07-09 11:48:53	~japaric	embedded-hal is about code reuse / portability; the static configuration guarantees come from the singleton property that svd2rust exposes
+2018-07-09 11:49:03	jamesmunns	:+1:
+2018-07-09 11:49:28	korken89	Sounds good
+2018-07-09 11:49:38	~japaric	and the static configuration stuff should be presented as a pattern with svd2rust as an example
+2018-07-09 11:50:06	thejpster	+1
+2018-07-09 11:50:29	~japaric	we could present the embedded-hal stuff as a pattern about portability as well with embedded-hal as an example
+2018-07-09 11:51:10	~japaric	bobbin is another approach to portability but it also uses traits at some level
+2018-07-09 11:52:23	~japaric	so, should we go with 2 chapters one about static guarantees (w/ svd2rust as an example) and one about portability (w/ embedded-hal as an example)?
+2018-07-09 11:53:08	korken89	Sounds good
+2018-07-09 11:53:09	thejpster	that sounds better
+2018-07-09 11:53:21	jamesmunns	+1
+2018-07-09 11:53:32	awygle	+1
+2018-07-09 11:54:22	hannobraun	+1
+2018-07-09 11:54:47	thejpster	I need to run
+2018-07-09 11:54:55	thejpster	It seems we didn't get past Agenda item 1.
+2018-07-09 11:54:58	~japaric	thejpster: o/ thanks for coming
+2018-07-09 11:55:12	jamesmunns	thejpster: to be fair, it was a big agenda item :)
+2018-07-09 11:55:34	 *	thejpster waves
+2018-07-09 11:55:36	korken89	thejpster: Until next meeting!
+2018-07-09 11:55:43	hannobraun	thejpster: bye
+2018-07-09 11:55:53	~japaric	5 minutes left; let's continue the book discussion next week
+2018-07-09 11:56:07	~japaric	jamesmunns: could you create 4 issues for the 4 sections we agreed upon?
+2018-07-09 11:56:18	jamesmunns	Agenda + 1-3?
+2018-07-09 11:56:29	~japaric	let's use the remaining time for quick status reports
+2018-07-09 11:56:29	jamesmunns	Sorry, outline, not agenda
+2018-07-09 11:56:53	~japaric	jamesmunns: yes, but we'll have 2 chapters / sections instead of the current section 3
+2018-07-09 11:57:00	jamesmunns	Right.
+2018-07-09 11:57:36	~japaric	status report: made progress on stable assembly ops -- https://github.com/rust-lang-nursery/stdsimd/pull/518
+2018-07-09 11:58:02	~japaric	if that gets stabilized then we'll able to reduce or eliminate the dependency on arm-none-eabi-gcc and external assembly files
+2018-07-09 11:58:53	~japaric	also, the Atomic*.{load,store} API is now available on the thumbv6m and msp430 targets
+2018-07-09 11:59:47	hannobraun	Nice!
+2018-07-09 11:59:48	~japaric	and we are out of time. Thank you all for attending! See you next week time; same time; same channel
+2018-07-09 11:59:58	jamesmunns	Status report for Embedded CI/IRR: @sekineh has opened up this issue to try and unblock our "base case" tests: https://github.com/rust-lang/rust/issues/52163
+2018-07-09 12:00:11	~japaric	jamesmunns: +1
+2018-07-09 12:00:17	jamesmunns	and vaishali has opened up issues for our larger steps towards this: https://github.com/jamesmunns/irr-embedded-2018/issues
+2018-07-09 12:00:37	hannobraun	Bye everyone!
+2018-07-09 12:00:41	jamesmunns	Bye everyone!
+2018-07-09 12:01:04	korken89	Cya all!
+2018-07-09 12:01:05	~japaric	o/
