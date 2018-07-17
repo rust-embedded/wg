@@ -92,7 +92,9 @@ this list by adding your crate via PR or by tackling any of our [help wanted][ae
 When the team deems it necessary the RFC process may be used to make decisions or to design
 processes, user interfaces, APIs, etc.
 
-Learn more about the Rust's RFC process (which is the same as our own) [here][1].
+Learn more about the Rust's RFC process (which is the same as our own) [here][rust-rfc].
+
+[rust-rfc]: https://rust-lang.github.io/rfcs/
 
 To create an RFC, simply:
 - clone this repo to your own personal one
