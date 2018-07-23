@@ -1,0 +1,176 @@
+2018-07-16 11:01:18	jamesmunns	Hey all, any of the wg folks here?
+2018-07-16 11:01:25	ithinuel	hellow
+2018-07-16 11:02:01	jamesmunns	Hey :)
+2018-07-16 11:02:07	~japaric	o/
+2018-07-16 11:02:12	korken89	Can you see what I write?
+2018-07-16 11:02:17	~japaric	korken89: yes
+2018-07-16 11:02:22	ithinuel	korken89: yes
+2018-07-16 11:02:27	jamesmunns	(also my system clock is like 4 minutes fast... I guess that means that I'm super on time)
+2018-07-16 11:02:49	korken89	Perfect! I get strange "cannot send to channel every second message", but I will manage :)
+2018-07-16 11:03:01	korken89	Perfect! I get strange "cannot send to channel" every second message, but I will manage :)
+2018-07-16 11:03:59	~japaric	agenda for this meeting https://github.com/rust-lang-nursery/embedded-wg/issues/123
+2018-07-16 11:04:55	thejpster	Am I in the right place this week?
+2018-07-16 11:04:59	~japaric	thejpster: yes
+2018-07-16 11:05:17	~japaric	ok, let's start this meeting
+2018-07-16 11:05:31	~japaric	first item on the agenda is finalizing the outline of the book
+2018-07-16 11:05:49	~japaric	https://github.com/rust-lang-nursery/embedded-wg/issues/115 has what we discussed last week regarding the outline
+2018-07-16 11:06:07	~japaric	I think we had agreement on the 3 first sections
+2018-07-16 11:06:39	~japaric	though I would change the name of section 3 to "embedded patterns" or something of the sort
+2018-07-16 11:06:54	thejpster	+1
+2018-07-16 11:07:06	korken89	I would agree
+2018-07-16 11:07:33	~japaric	also, I left a comment there: we should also cover concurrency patterns
+2018-07-16 11:07:33	jamesmunns	I think section 7 was going to be "rust embedded patterns"
+2018-07-16 11:07:47	jamesmunns	https://github.com/rust-lang-nursery/embedded-wg/issues/115#issuecomment-403756834
+2018-07-16 11:09:07	korken89	That is true, maybe add HAL to distinguish? "Embedded HAL Patterns" or something of the sort
+2018-07-16 11:09:11	jamesmunns	+1 from me re: covering concurrency patterns, especially with common questions like shared resources, interrupts, etc.
+2018-07-16 11:10:22	~japaric	but the subsections go beyond the embedded-hal crate and are about explaining the patterns with concrete examples
+2018-07-16 11:10:28	~japaric	subsections of 3
+2018-07-16 11:11:14	thejpster	Can someone propose a new Table of Contents and send it as a gist, or update an issue with it?
+2018-07-16 11:11:21	thejpster	I'm having trouble visualising what's going where.
+2018-07-16 11:11:47	thejpster	Maybe add a "proposed Section Outline" at the end of https://github.com/rust-lang-nursery/embedded-wg/issues/115.
+2018-07-16 11:12:30	thejpster	or as a PR on SUMMARY.md
+2018-07-16 11:12:48	jamesmunns	thejpster: +1
+2018-07-16 11:12:49	~japaric	thejpster: bullets 1 to 3 of the issue description would the proposed / discussed outline
+2018-07-16 11:13:11	~japaric	bullets 4 and onwards have not been discussed / reviewed yet
+2018-07-16 11:13:49	~japaric	and I would put concurrency under section 3
+2018-07-16 11:14:07	~japaric	OR we could have 3A, 3B and 3C as their own sections (3, 4 and 5)
+2018-07-16 11:15:20	jamesmunns	Probably better to have their own sections
+2018-07-16 11:15:26	thejpster	I'm quite keen to get some of the bits from Section 7 into the agreed outline. Particularly around premature optimisations, use of unsafe, singletons, pointer indexing, etc.
+2018-07-16 11:15:53	korken89	japaric: I would split it up as the chapter 3 would cover a lot of different branches, also reduce the need to shoehorn a chapter name
+2018-07-16 11:16:03	~japaric	korken89: +1
+2018-07-16 11:17:14	~japaric	thejpster: singletons could be covered as a pattern
+2018-07-16 11:17:37	~japaric	the other topics you mention sound more like recommendations / linting
+2018-07-16 11:18:48	thejpster	To take indexing as an example, I would expect a bit about bounds checking, and how this is safe but slow, and how iterators are safe but fast, etc.
+2018-07-16 11:19:21	~japaric	thejpster: but that's not specific to embedded and it's something that I expect the Rust book would cover
+2018-07-16 11:19:38	thejpster	Ok, that's interesting
+2018-07-16 11:19:56	thejpster	It applies to Rust in general sure, but I think it matters more when you are resource constrained.
+2018-07-16 11:20:44	korken89	The people in embedded care more, lets say
+2018-07-16 11:21:03	thejpster	If you assume most embedded developers are coming from embedded C, the natural way to do it (a for loop) is the 'wrong' way to do it, whereas in general, I think you have a broader reach in terms of where people are coming from (like Python).
+2018-07-16 11:22:08	korken89	I would have a section on it to emphasize how to do it in Rust, with a more in depth reference to the Rust book
+2018-07-16 11:22:10	~japaric	in that case I would name the section as something like "Tips for embedded C developers"
+2018-07-16 11:22:31	~japaric	noting things that should not be written as you would do in C
+2018-07-16 11:22:47	korken89	japaric: +1
+2018-07-16 11:23:05	thejpster	Something along those lines; I don't propose we bikeshed the exact name in this meeting but that works for now.
+2018-07-16 11:23:13	thejpster	The concept I'm fine with.
+2018-07-16 11:23:20	thejpster	So that's six sections?
+2018-07-16 11:23:33	~japaric	https://public.etherpad-mozilla.org/p/embedded-wg
+2018-07-16 11:23:40	~japaric	new outline ^
+2018-07-16 11:24:08	thejpster	LGTM
+2018-07-16 11:25:14	~japaric	we may want to change the order sections but we can decide that later on
+2018-07-16 11:25:25	thejpster	I assume the intro can cover #[no_std], the alloc crate, the rust-std component, etc.
+2018-07-16 11:25:27	~japaric	as it's easy to change the sections
+2018-07-16 11:26:15	korken89	japaric: Indeed, this is fine
+2018-07-16 11:26:23	~japaric	I wouldn't put the alloc crate in the intro
+2018-07-16 11:26:55	~japaric	re: dynamic data structures you can go with fixed capacity collections (heapless) or with heap allocated collections (alloc crate)
+2018-07-16 11:27:06	thejpster	Not a detailed discussion, but a "Hey, this is why you can't have Vec::new()" at least.
+2018-07-16 11:28:11	~japaric	thejpster: the intro should say that #[no_std] means no standard I/O and no memory allocations as a baseline
+2018-07-16 11:29:32	~japaric	we can put dynamic data structures in a section
+2018-07-16 11:29:44	thejpster	fine by me
+2018-07-16 11:30:10	korken89	japaric: I would agree here, generally dynamic memory allocation should be avoided in embedded systems, as they are generally not deterministic in time nor memory usage when fragmentation starts happening
+2018-07-16 11:30:33	thejpster	korken89, that is one viewpoint :)
+2018-07-16 11:30:33	korken89	And knowing max memory usage is one of the key things to not have your chip crash
+2018-07-16 11:31:07	jamesmunns	:)
+2018-07-16 11:31:12	korken89	Max memory usage including fragmentation is a pain to calculate :)
+2018-07-16 11:31:28	jamesmunns	Even jet fighters use dynamic memory - they just aren't allowed to free or allocate after a certain point
+2018-07-16 11:31:44	jamesmunns	Though, some people still enforce "no dynamic memory ever"
+2018-07-16 11:32:00	thejpster	Can I propose we don't have this debate now
+2018-07-16 11:32:05	jamesmunns	Sorry.
+2018-07-16 11:32:10	~japaric	agree, let's not go off topic
+2018-07-16 11:32:12	korken89	Yes, it's for another time
+2018-07-16 11:32:29	~japaric	we should cover C interoperation as well
+2018-07-16 11:32:43	~japaric	two ways: Rust on top of C and exposing Rust code to C programs
+2018-07-16 11:33:04	~japaric	I'm not sure if this is cover in the general Rust book
+2018-07-16 11:33:08	thejpster	So that's https://github.com/rust-lang-nursery/embedded-wg/blob/master/books/embedded-rust-book/src/interop/interop.md
+2018-07-16 11:33:08	~japaric	covered**
+2018-07-16 11:33:29	~japaric	but we should focus on the #[no_std] aspect of interop
+2018-07-16 11:33:37	thejpster	I think this is a critical component for this book, because many users will have large C codebases / libraries they don't want to rip up and replace.
+2018-07-16 11:33:51	thejpster	e.g. TI Tivaware, or ST's CubeMX
+2018-07-16 11:34:01	~japaric	also, bindgen needs special flags, point to the cross compiler, etc.
+2018-07-16 11:34:05	ithinuel	japaric: I don't know if it is in the second edition, but there was a full chapter on FFI in the first one
+2018-07-16 11:36:00	ithinuel	it seems like it's only here : https://doc.rust-lang.org/book/second-edition/ch19-01-unsafe-rust.html?highlight=FFI#calling-an-unsafe-function-or-method
+2018-07-16 11:36:42	~japaric	jamesmunns: I think you were going to contact the Tock folks. If you are in contact could you ask them what it's their plan for Tock apps on stable?
+2018-07-16 11:36:47	ithinuel	* https://doc.rust-lang.org/book/second-edition/ch19-01-unsafe-rust.html#using-extern-functions-to-call-external-code
+2018-07-16 11:37:32	~japaric	the book should only contain code that compiles with the edition release (stable channel)
+2018-07-16 11:37:47	thejpster	+1
+2018-07-16 11:37:54	~japaric	any other section / topic that should go in the book?
+2018-07-16 11:38:13	jamesmunns	I'll reach out to tock folks.
+2018-07-16 11:38:18	~japaric	I don't #[no_std] testing will be done (i.e. be available in stable) for the edition release
+2018-07-16 11:38:20	jamesmunns	Not sure what their stable plans are.
+2018-07-16 11:38:21	~japaric	I don't think**
+2018-07-16 11:39:01	~japaric	but we can cover host testing (testing #[no_std] on the build machine)
+2018-07-16 11:39:07	~japaric	#[no_std] code**
+2018-07-16 11:40:36	~japaric	(#[no_std] testing as in custom test frameworks -- someone is working on it but it will remain an experimental feature for quite some time)
+2018-07-16 11:41:14	thejpster	I might be useful to cover, #[cfg(no_std)] or whatever the dance is to get std working on the host and no_std on the target.
+2018-07-16 11:41:50	~japaric	thejpster: you mean the 'std' / 'use_std' Cargo feature?
+2018-07-16 11:42:17	thejpster	japaric, I meant the #cfg magic that lets me rename std as alloc when compiling tests.
+2018-07-16 11:42:53	~japaric	thejpster: ok
+2018-07-16 11:43:18	 *	japaric never had to do that to run unit tests on the host
+2018-07-16 11:43:34	~japaric	but I think it comes up when you use alloc in your crate
+2018-07-16 11:43:59	thejpster	Sometimes I like to throw a println! in my tests while debugging.
+2018-07-16 11:44:37	~japaric	ok, any other topic for the book?
+2018-07-16 11:44:37	thejpster	https://github.com/thejpster/pc-keyboard/blob/master/src/lib.rs
+2018-07-16 11:44:43	thejpster	#![cfg_attr(not(test), no_std)]
+2018-07-16 11:45:00	thejpster	Not from me, I think the book's in a good place.
+2018-07-16 11:45:45	jamesmunns	+1 from me. I think we will have a better idea as it starts filling in.
+2018-07-16 11:46:07	thejpster	Sorry, I need to run. Months of Monday's being empty and two Monday appointments on the trot. Ping me on any book issues and I'm happy to give feedback.
+2018-07-16 11:46:20	~japaric	alright, let's make issues for these ~9 sections and continue discussion on GH
+2018-07-16 11:46:26	~japaric	thejpster: thanks for attending
+2018-07-16 11:46:27	~japaric	o/
+2018-07-16 11:46:34	thejpster	And if anyone has a Raspberry Pi please hit me up for testing my new magazine article :)
+2018-07-16 11:47:03	~japaric	let's use the rest of the meeting to discuss the embedded web page
+2018-07-16 11:48:20	~japaric	we made this (whiteboard) design back in the Rust All Hands meeting:
+2018-07-16 11:48:20	~japaric	https://camo.githubusercontent.com/ab98defe511c9b49080bff98252dcf6bf85c959c/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f383139434336384634414437383544444535393130463233353842464534383333433042394346363234464544464130463145463843363637353331424330325f313532323235323735373030325f494d475f313537352e6a7067
+2018-07-16 11:48:39	~japaric	jamesmunns: I think you had a picture of an sketch webpage?
+2018-07-16 11:48:50	jamesmunns	let me find it, its on one of the old PRs
+2018-07-16 11:49:46	~japaric	we have to decide on the webpage design and turn in a draft of the content before July ends
+2018-07-16 11:49:48	jamesmunns	https://imgur.com/a/enu4V
+2018-07-16 11:49:52	jamesmunns	(ts ugly)
+2018-07-16 11:50:29	korken89	Looks simple, I think that's a good feature
+2018-07-16 11:50:49	jamesmunns	That was when they didn't have the style for the new website, so it was all just wireframe :)
+2018-07-16 11:50:58	jamesmunns	Also to note:
+2018-07-16 11:51:02	~japaric	that's a draft that was made quite long a go
+2018-07-16 11:51:04	~japaric	ago**
+2018-07-16 11:51:23	jamesmunns	there are some of the contributors from the different wgs meeting in Berlin at the end of this month to work on this together (the 29th)
+2018-07-16 11:52:13	~japaric	https://gist.github.com/japaric/9c431aa943775d59557307c64dd0909a -- these are some websites used as a reference for the design
+2018-07-16 11:52:44	~japaric	so from top to bottom the webpage contains: videos of embedded Rust projects, list of Rust properties / attributes, links to documentation and testimonials
+2018-07-16 11:53:21	~japaric	the attributes are supposed to look like the "Connectivity" in https://www.zephyrproject.org/
+2018-07-16 11:53:36	~japaric	I think we can cross reference the attributes to sections in the book
+2018-07-16 11:53:42	~japaric	static guarantees, concurrency, portability
+2018-07-16 11:54:31	~japaric	the attributes are the 'why choose Rust'
+2018-07-16 11:55:16	~japaric	we need to decide on the attributes and draft text for each
+2018-07-16 11:56:02	~japaric	let's make an issue to draft those
+2018-07-16 11:56:25	korken89	I agree
+2018-07-16 11:56:31	korken89	I would say that the overall structure makes sense, simple with easy access to documentation and examples
+2018-07-16 11:56:48	korken89	Should there be something specific for the embedded C person?
+2018-07-16 11:56:59	korken89	To try and hook them? (I don't know what though)
+2018-07-16 11:57:40	~japaric	the web page is basically a marketing sheet to sell Rust to managers
+2018-07-16 11:57:47	korken89	Ah okey
+2018-07-16 11:58:49	~japaric	most visitors will probably be using C for their development so the page needs to make Rust attractive to them
+2018-07-16 11:59:22	~japaric	re: testimonials we have three types https://github.com/rust-lang-nursery/embedded-wg/issues/108
+2018-07-16 11:59:55	~japaric	only general and detailed testimonials can be turned into the quotes sketched in the page
+2018-07-16 11:59:59	~japaric	I think
+2018-07-16 12:00:38	~japaric	we could have the logos of "friends of embedded Rust" after that. thoughts?
+2018-07-16 12:00:40	jamesmunns	Unless we just have logos and names displayed
+2018-07-16 12:00:45	jamesmunns	yep, +1
+2018-07-16 12:01:21	korken89	sounds good
+2018-07-16 12:03:03	~japaric	ok, I'll write a summary of the page design and post it to issue #49 so it can be reviewed before sending it to the website team
+2018-07-16 12:03:15	~japaric	and make an issue to draft the Rust attributes
+2018-07-16 12:03:57	~japaric	we are over time now, but if anyone wants to give an update on their work please go ahead
+2018-07-16 12:04:07	~japaric	jamesmunns: any news from the CI work?
+2018-07-16 12:04:29	jamesmunns	Had some feedback on https://github.com/rust-lang/rust/issues/52163
+2018-07-16 12:05:05	jamesmunns	I think kennytm and achrichto had some good pointers, might give us some more of the "how" we can implement the tests
+2018-07-16 12:05:17	~japaric	not part of the 2018 milestone but we ported libm to Rust over the weekend (https://github.com/japaric/libm). We'll see if we can ship math support in core by the edition release
+2018-07-16 12:05:33	jamesmunns	Someone on reddit was asking about another lib
+2018-07-16 12:05:39	jamesmunns	`libmvec`?
+2018-07-16 12:05:49	jamesmunns	https://www.reddit.com/r/rust/comments/8z5od6/the_embedded_working_group_newsletter_7/e2hef4z/
+2018-07-16 12:05:54	jamesmunns	I'm not familiar
+2018-07-16 12:06:09	jamesmunns	oh, vector math :)
+2018-07-16 12:06:13	~japaric	haven't heard of that crate
+2018-07-16 12:06:26	jamesmunns	https://sourceware.org/glibc/wiki/libmvec
+2018-07-16 12:06:32	jamesmunns	(gcc lib)
+2018-07-16 12:07:18	~japaric	I doubt high level SIMD stuff will be added to the standard library any time soon
+2018-07-16 12:07:42	~japaric	there's already low level SIMD stuff in core; the plan is to let crates.io grow high level abstractions on top of that
+2018-07-16 12:08:52	korken89	japaric: I went through the libm code, and made an issue on strange use of f64 is f32 functions. I started an issue for it as well and did some error benchmarking.
+2018-07-16 12:09:13	~japaric	ok, the meeting is officially over. Thanks everyone for attending.
+2018-07-16 12:09:19	jamesmunns	Thanks all :)
+2018-07-16 12:09:31	korken89	Thanks, see you!
