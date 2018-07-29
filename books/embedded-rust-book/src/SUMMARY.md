@@ -1,38 +1,36 @@
 # Summary
 
+<!--
+
+Definition of the organization of this book is still a work in process.
+
+Refer to https://github.com/rust-lang-nursery/embedded-wg/issues/115 for
+more information and coordination
+
+-->
+
 - [Introduction](./intro/introduction.md)
-    - [Preconditions](./intro/preconditions.md)
     - [Installation](./intro/install.md)
+        - [Linux](./intro/install/linux.md)
+        - [MacOS](./intro/install/macos.md)
+        - [Windows](./intro/install/windows.md)
+        - [Verify Installation](./intro/install/verify.md)
     - [Tooling](./intro/tooling.md)
     - [Hardware](./intro/hardware.md)
+    - [`no_std`](./intro/no-std.md)
 - [Blinking your first LED](./blinky/blinky.md)
-    - [Project Setup](./blinky/setup.md)
-    - [Writing](./blinky/writing.md)
-    - [Compiling](./blinky/compiling.md)
-    - [Linking](./blinky/linking.md)
-    - [Running and Debugging](./blinky/run-and-debug.md)
-- [The `Embedded-HAL` Ecosystem](./embedded-hal/embedded-hal.md)
-    - [Register Definition Crates](./embedded-hal/rdc.md)
-    - [Chip Support Crates](./embedded-hal/csp.md)
-    - [`Embedded-HAL` Traits](./embedded-hal/traits.md)
-    - [Driver Crates](./embedded-hal/drivers.md)
-    - [Board Support Crates](./embedded-hal/bsp.md)-
-    - [Your Application Code](./embedded-hal/application.md)
-    - [Changing Targets](./embedded-hal/changing-targets.md)
-    - [RTFM: An `Embedded-HAL` based RTOS](./embedded-hal/rtfm.md)
-- [The `Tock-OS` Ecosystem](./tock/tock-os.md)
-- [Interoperability with existing codebases](./interop/interop.md)
-    - [A little C with your Rust](./interop/a-little-c.md)
-    - [A little Rust with your C](./interop/a-little-rust.md)
-    - [Using Cargo as the primary build system](./interop/build-with-cargo.md)
-    - [Using Cargo as a secondary build system](./interop/build-with-not-cargo.md)
-    - [Integrating with FreeRTOS](./interop/freertos.md)
-- [Testing your embedded project](./testing/testing.md)
-
-- [Unsorted](./unsorted/unsorted.md)
-    - [Embracing Abstractions](./unsorted/abstractions.md)
-    - [Unlearning Bad Embedded Habits](./unsorted/unlearning.md)
-    - [Proper use of `unsafe`](./unsorted/unsafe.md)
-    - [Things we don't know how to do yet](./unsorted/unknown.md)
-    - [Embedded Linux](./unsorted/embedded-linux.md)
-    - [Glossary](./unsorted/glossary.md)
+- [Static Guarantees](./static-guarantees/static-guarantees.md)
+    <!-- TODO: Define Sections -->
+- [Portability](./portability/portability.md)
+    <!-- TODO: Define Sections -->
+- [Singletons](./singletons/singletons.md)
+    <!-- TODO: Define Sections -->
+- [Concurrency](./concurrency/concurrency.md)
+    <!-- TODO: Define Sections -->
+- [Dynamic Data Structures](./dynamic/dynamic.md)
+    <!-- TODO: Define Sections -->
+- [Tips for embedded C developers](./c-tips/c-tips.md)
+    <!-- TODO: Define Sections -->
+- [Interoperability](./interoperability/interoperability.md)
+    - [A little C with your Rust](./interoperability/c-with-rust.md)
+    - [A little Rust with your C](./interoperability/rust-with-c.md)

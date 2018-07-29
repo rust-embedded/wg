@@ -1,7 +1,3 @@
 # Blinking your first LED
 
-> **This section should cover:**
->
-> * This section should be an intro using (ideally) NO external crates on how to blink an LED in as few steps as possible
-> * It should be a step by step guide that introduces parts of Rust tooling that are not common to desktop programs
-> * It should also introduce the concept of using `unsafe` to manually dereference raw pointers to talk to a peripheral
+> ❌: This section has not yet been written. Please refer to [embedded-wg#117](https://github.com/rust-lang-nursery/embedded-wg/issues/117) for discussion of this section.
