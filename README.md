@@ -41,6 +41,23 @@ What is it that we really want? At a broad level:
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
 
+### The tools team
+
+The tools team maintains and develops core embedded tools.
+
+#### Members
+
+- [@japaric]
+
+#### Projects
+
+Projects maintained by the tools team
+
+- [`cargo-binutils`](https://github.com/japaric/cargo-binutils)
+- [`cross`](https://github.com/japaric/cross)
+- [`itm`](https://github.com/japaric/itm)
+- [`svd2rust`](https://github.com/japaric/svd2rust)
+
 ### Subprojects
 
 * [AVR fork of Rust](https://github.com/avr-rust/)
