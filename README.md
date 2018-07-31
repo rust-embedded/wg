@@ -41,6 +41,22 @@ What is it that we really want? At a broad level:
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
 
+### The HAL team
+
+The HAL team develops and maintains crates that ease the development of Hardware Abstraction Layers,
+Board Support Crates and drivers.
+
+#### Members
+
+- [@japaric]
+
+#### Projects
+
+Projects maintained by the HAL team.
+
+- [`embedded-hal`](https://github.com/japaric/embedded-hal)
+- [`linux-embedded-hal`](https://github.com/japaric/linux-embedded-hal)
+
 ### Subprojects
 
 * [AVR fork of Rust](https://github.com/avr-rust/)
