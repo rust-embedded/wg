@@ -326,6 +326,15 @@ Projects maintained by the tools team
 - [`itm`]
 - [`svd2rust`]
 
+### The triage team
+
+The triage team is charge of keeping PR queues moving; they ensure no PR is left unattended.
+
+#### Members
+
+- [@Disasm]
+- [@mathk]
+
 ### The IRR 2018 team
 
 This team consists of the participants of the [Increasing Rust Reach (2018) program] who worked on
@@ -391,10 +400,11 @@ https://mozilla.logbot.info/rust-embedded
 [@japaric]: https://github.com/japaric
 [@jcsoo]: https://github.com/jcsoo
 [@korken89]: https://github.com/korken89
+[@mathk]: https://github.com/mathk
 [@nastevens]: https://github.com/nastevens
 [@nerdyvaishali]: https://github.com/nerdyvaishali
-[@parched]: https://github.com/parched
 [@paoloteti]: https://github.com/paoloteti
+[@parched]: https://github.com/parched
 [@pftbest]: https://github.com/pftbest
 [@posborne]: https://github.com/posborne
 [@raw-bin]: https://github.com/raw-bin
