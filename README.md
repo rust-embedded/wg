@@ -49,6 +49,7 @@ Board Support Crates and drivers.
 #### Members
 
 - [@japaric]
+- [@hannobraun]
 
 #### Projects
 
