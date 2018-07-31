@@ -47,6 +47,7 @@ The MS430 team develops and maintains the core of the MSP430 crate ecosystem.
 
 #### Members
 
+- [@cr1901](https://github.com/cr1901)
 - [@pftbest]
 
 #### Projects
