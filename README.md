@@ -50,6 +50,7 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 - [@adamgreig](https://github.com/adamgreig)
 - [@japaric]
 - [@korken89](https://github.com/korken89)
+- [@therealprof](https://github.com/therealprof)
 
 #### Projects
 
