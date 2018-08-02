@@ -71,32 +71,16 @@ The PR will be merged and the changes will be made effective.
 A special team named `triage` will be also be created. This team has the *very* important task of
 keeping the PR queues moving and making sure no PR gets stuck in the review limbo.
 
-This team will consist of volunteers that will triage open PRs to rust-embedded repos on a weekly
-basis. When triaging the members of the `triage` team will assign or change reviewers, add or change
-the labels of the PR, and/or comment on the PRs; they will not review PRs while triaging.
+This team will consist of volunteers that will periodically triage open PRs to rust-embedded repos.
+When triaging the members of the `triage` team will assign or change reviewers, add or change the
+labels of the PR, and/or comment on the PRs; they will not review PRs while triaging.
 
-#### The triaging process
+#### The triage procedure
 
-The proposed triaging process is based on [the one used in the rust-lang/rust repo][rust-triage].
+The proposed triage procedure is [the one used to triage PRs in the rust-lang/rust
+repo][rust-triage].
 
-[rust-triage]: https://github.com/rust-lang/rust/pulls
-
-- Open PRs will get assigned one of these status label: `S-waiting-on-author` or
-  `S-waiting-on-reviewer`.
-
-- If the PR has no assigned reviewer assign a reviewer and set the `S-waiting-on-reviewer` label.
-
-- If around a week has passed since a reviewer was assigned ping the reviewer to remind them about
-  the PR.
-
-- If the reviewer requested changes to the PR apply the `S-waiting-on-author` label.
-
-- If around a week has passed since changes were requested ping the author to remind them that
-  changes are needed.
-
-- If the author made the requested changes change the label to `S-waiting-on-reviewer`.
-
-- If the author hasn't responded to pings for over two weeks, close the PR.
+[rust-triage]: https://forge.rust-lang.org/triage-procedure.html
 
 ## Projects
 
