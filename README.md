@@ -50,6 +50,7 @@ The resources team develops, maintains and curates resources on embedded Rust.
 - [@japaric]
 - [@jamesmunns]
 - [@andre-richter](https://github.com/andre-richter)
+- [@therealprof](https://github.com/therealprof)
 
 #### Projects
 
