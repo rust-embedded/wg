@@ -47,8 +47,10 @@ The tools team maintains and develops core embedded tools.
 
 #### Members
 
-- [@japaric]
 - [@Emilgardis](https://github.com/Emilgardis)
+- [@japaric]
+- [@ryankurte](https://github.com/ryankurte)
+- [@therealprof](https://github.com/therealprof)
 
 #### Projects
 
