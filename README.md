@@ -48,8 +48,9 @@ Board Support Crates and drivers.
 
 #### Members
 
-- [@japaric]
 - [@hannobraun]
+- [@japaric]
+- [@therealprof](https://github.com/therealprof)
 
 #### Projects
 
