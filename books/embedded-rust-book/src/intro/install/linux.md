@@ -48,33 +48,6 @@ $ sudo pacman -S \
 $ yaourt -S openocd
 ```
 
-## Optional packages
-
-- Ubuntu / Debian
-
-``` console
-$ sudo apt-get install \
-  bluez \
-  rfkill
-```
-
-- Fedora
-
-``` console
-$ sudo dnf install \
-  bluez \
-  rfkill
-```
-
-- Arch Linux
-
-``` console
-$ sudo pacman -S \
-  bluez \
-  bluez-utils \
-  rfkill
-```
-
 ## udev rules
 
 These rules let you use USB devices like the F3 and the Serial module without root privilege, i.e.

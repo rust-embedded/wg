@@ -21,8 +21,7 @@ different than your laptop's and we'll have to run and debug programs on a "remo
 
 ## Documentation
 
-Tooling is not everything though. Without documentation is pretty much impossible to work with
-microcontrollers.
+Tooling is not everything though. Without documentation is pretty much impossible to work with microcontrollers.
 
 We'll be referring to all these documents throughout this book:
 
@@ -59,17 +58,6 @@ We'll use all the tools listed below. Where a minimum version is not specified, 
 - `PuTTY` on Windows.
 
 [`itmdump`]: https://crates.io/crates/itm
-
-If your laptop has Bluetooth functionality and you have the Bluetooth module, you can additionally
-install these tools to play with the Bluetooth module. All these are optional:
-
-- Linux, only if you don't have a Bluetooth manager application like Blueman.
-  - `bluez`
-  - `hcitool`
-  - `rfcomm`
-  - `rfkill`
-
-macOS / OSX / Windows users only need the default bluetooth manager that ships with their OS.
 
 Next, follow OS-agnostic installation instructions for a few of the tools:
 
