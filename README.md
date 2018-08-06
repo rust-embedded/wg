@@ -41,6 +41,25 @@ What is it that we really want? At a broad level:
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
 
+### The RISCV team
+
+The RISCV team develops and maintains the core of the RISCV crate ecosystem.
+
+#### Members
+
+- [@bradjc](https://github.com/bradjc)
+- [@danc86](https://github.com/danc86)
+- [@dvc94ch]
+
+#### Projects
+
+Projects maintained by this team
+
+- [`riscv-rust-quickstart`](https://github.com/riscv-rust/riscv-rust-quickstart)
+- [`riscv-rt`](https://github.com/riscv-rust/riscv-rt)
+- [`riscv`](https://github.com/riscv-rust/riscv)
+
+
 ### Subprojects
 
 * [AVR fork of Rust](https://github.com/avr-rust/)
