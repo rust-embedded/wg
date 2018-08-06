@@ -212,7 +212,6 @@ irc.mozilla.org).
 [`cross`]: https://github.com/japaric/cross
 [`embedded-hal`]: https://github.com/japaric/embedded-hal
 [`itm`]: https://github.com/japaric/itm
-[`itm`]: https://github.com/japaric/itm
 [`linux-embedded-hal`]: https://github.com/japaric/linux-embedded-hal
 [`msp430-quickstart`]: https://github.com/pftbest/msp430-quickstart
 [`msp430-rt`]: https://github.com/pftbest/msp430-rt
