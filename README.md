@@ -190,6 +190,7 @@ irc.mozilla.org).
 [@dvc94ch]: https://github.com/dvc94ch
 [@dylanmckay]: https://github.com/dylanmckay
 [@hannobraun]: https://github.com/hannobraun
+[@jamesmunns]: https://github.com/jamesmunns
 [@japaric]: https://github.com/japaric
 [@jcsoo]: https://github.com/jcsoo
 [@korken89]: https://github.com/korken89
