@@ -41,6 +41,29 @@ What is it that we really want? At a broad level:
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
 
+### The Cortex-M team
+
+The Cortex-M team develops and maintains the core of the Cortex-M crate ecosystem.
+
+#### Members
+
+- [@adamgreig](https://github.com/adamgreig)
+- [@japaric]
+- [@korken89](https://github.com/korken89)
+- [@therealprof](https://github.com/therealprof)
+
+#### Projects
+
+Projects maintained by this team.
+
+- [`alloc-cortex-m`](https://github.com/japaric/alloc-cortex-m)
+- [`cortex-m-quickstart`](https://github.com/japaric/cortex-m-quickstart)
+- [`cortex-m-rt`](https://github.com/japaric/cortex-m-rt)
+- [`cortex-m-semihosting`](https://github.com/japaric/cortex-m-semihosting)
+- [`cortex-m`](https://github.com/japaric/cortex-m)
+- [`panic-itm`](https://github.com/japaric/panic-itm)
+- [`panic-semihosting`](https://github.com/japaric/panic-semihosting)
+
 ### Subprojects
 
 * [AVR fork of Rust](https://github.com/avr-rust/)
