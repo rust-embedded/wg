@@ -41,6 +41,23 @@ What is it that we really want? At a broad level:
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
 
+### The MSP430 team
+
+The MS430 team develops and maintains the core of the MSP430 crate ecosystem.
+
+#### Members
+
+- [@cr1901](https://github.com/cr1901)
+- [@pftbest]
+
+#### Projects
+
+Projects maintained by this team
+
+- [`msp430-quickstart`](https://github.com/pftbest/msp430-quickstart)
+- [`msp430-rt`](https://github.com/pftbest/msp430-rt)
+- [`msp430`](https://github.com/pftbest/msp430)
+
 ### Subprojects
 
 * [AVR fork of Rust](https://github.com/avr-rust/)
