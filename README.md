@@ -41,6 +41,26 @@ What is it that we really want? At a broad level:
 [@pftbest]: https://github.com/pftbest
 [@thejpster]: https://github.com/thejpster
 
+### The resources team
+
+The resources team develops, maintains and curates resources on embedded Rust.
+
+#### Members
+
+- [@japaric]
+- [@jamesmunns]
+- [@andre-richter](https://github.com/andre-richter)
+- [@therealprof](https://github.com/therealprof)
+
+#### Projects
+
+Projects maintained by the resources team
+
+- [Awesome embedded Rust](https://github.com/rust-embedded/awesome-embedded-rust)
+- [The Discovery book](https://github.com/japaric/discovery)
+- [The embedded Rust book](https://book.rust-embedded.org/)
+- [The embedonomicon](https://embedonomicon.rust-embedded.org/)
+
 ### Subprojects
 
 * [AVR fork of Rust](https://github.com/avr-rust/)
