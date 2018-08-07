@@ -8,7 +8,15 @@ See [this issue] for more details. This is a very early work in progress.
 
 ## Online Copies of this Book
 
-At the moment, there are no official locations where this book is hosted. Instead, see below for instructions to render and use the book locally.
+An online version of this book can be found at:
+
+* https://book.rust-embedded.org
+* https://book.rust-embedded.com
+
+These are temporary locations, with the eventual hosting to be at https://doc.rust-lang.org.
+
+
+See below for instructions to render and use the book locally.
 
 ## Using
 
