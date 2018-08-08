@@ -64,7 +64,7 @@ Projects maintained by this team.
 - [`cortex-m`]
 - [`itm`]
 - [`panic-itm`]
-- [`panic-semihosting`]
+<!-- - [`panic-semihosting`] -->
 
 ### The HAL team
 
@@ -81,8 +81,8 @@ Board Support Crates and drivers.
 
 Projects maintained by the HAL team.
 
-- [`embedded-hal`]
-- [`linux-embedded-hal`]
+<!-- - [`embedded-hal`] -->
+<!-- - [`linux-embedded-hal`] -->
 
 ### The MSP430 team
 
@@ -135,10 +135,10 @@ The resources team develops, maintains and curates resources on embedded Rust.
 
 Projects maintained by the resources team
 
-- [Awesome embedded Rust]
-- [The Discovery book]
+<!-- - [Awesome embedded Rust] -->
+<!-- - [The Discovery book] -->
 - [The embedded Rust book]
-- [The embedonomicon]
+<!-- - [The embedonomicon] -->
 
 ### The tools team
 
@@ -155,9 +155,9 @@ The tools team maintains and develops core embedded tools.
 
 Projects maintained by the tools team
 
-- [`cargo-binutils`]
-- [`cross`]
-- [`itm`]
+<!-- - [`cargo-binutils`] -->
+<!-- - [`cross`] -->
+<!-- - [`itm`] -->
 - [`svd2rust`]
 
 ### The old guard
