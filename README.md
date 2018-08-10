@@ -139,6 +139,7 @@ Projects maintained by the resources team
 - [The Discovery book]
 - [The embedded Rust book]
 - [The embedonomicon]
+- [@rustembedded twitter]
 
 ### The tools team
 
@@ -199,6 +200,7 @@ irc.mozilla.org).
 [@thejpster]: https://github.com/thejpster
 [@therealprof]: https://github.com/therealprof
 
+[@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
 [The Discovery book]: https://github.com/rust-embedded/discovery
 [The embedded Rust book]: https://book.rust-embedded.org/
