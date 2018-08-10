@@ -64,7 +64,7 @@ Projects maintained by this team.
 - [`cortex-m`]
 - [`itm`]
 - [`panic-itm`]
-<!-- - [`panic-semihosting`] -->
+- [`panic-semihosting`]
 
 ### The HAL team
 
@@ -81,8 +81,8 @@ Board Support Crates and drivers.
 
 Projects maintained by the HAL team.
 
-<!-- - [`embedded-hal`] -->
-<!-- - [`linux-embedded-hal`] -->
+- [`embedded-hal`]
+- [`linux-embedded-hal`]
 
 ### The MSP430 team
 
@@ -135,10 +135,10 @@ The resources team develops, maintains and curates resources on embedded Rust.
 
 Projects maintained by the resources team
 
-<!-- - [Awesome embedded Rust] -->
-<!-- - [The Discovery book] -->
+- [Awesome embedded Rust]
+- [The Discovery book]
 - [The embedded Rust book]
-<!-- - [The embedonomicon] -->
+- [The embedonomicon]
 
 ### The tools team
 
@@ -155,9 +155,9 @@ The tools team maintains and develops core embedded tools.
 
 Projects maintained by the tools team
 
-<!-- - [`cargo-binutils`] -->
-<!-- - [`cross`] -->
-<!-- - [`itm`] -->
+- [`cargo-binutils`]
+- [`cross`]
+- [`itm`]
 - [`svd2rust`]
 
 ### The old guard
@@ -200,28 +200,28 @@ irc.mozilla.org).
 [@therealprof]: https://github.com/therealprof
 
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
-[The Discovery book]: https://github.com/japaric/discovery
+[The Discovery book]: https://github.com/rust-embedded/discovery
 [The embedded Rust book]: https://book.rust-embedded.org/
-[The embedonomicon]: https://embedonomicon.rust-embedded.org/
-[`alloc-cortex-m`]: https://github.com/japaric/alloc-cortex-m
-[`cargo-binutils`]: https://github.com/japaric/cargo-binutils
-[`cortex-m-quickstart`]: https://github.com/japaric/cortex-m-quickstart
-[`cortex-m-rt`]: https://github.com/japaric/cortex-m-rt
-[`cortex-m-semihosting`]: https://github.com/japaric/cortex-m-semihosting
-[`cortex-m`]: https://github.com/japaric/cortex-m
-[`cross`]: https://github.com/japaric/cross
-[`embedded-hal`]: https://github.com/japaric/embedded-hal
-[`itm`]: https://github.com/japaric/itm
-[`linux-embedded-hal`]: https://github.com/japaric/linux-embedded-hal
+[The embedonomicon]: https://github.com/rust-embedded/embedonomicon
+[`alloc-cortex-m`]: https://github.com/rust-embedded/alloc-cortex-m
+[`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
+[`cortex-m-quickstart`]: https://github.com/rust-embedded/cortex-m-quickstart
+[`cortex-m-rt`]: https://github.com/rust-embedded/cortex-m-rt
+[`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m-semihosting
+[`cortex-m`]: https://github.com/rust-embedded/cortex-m
+[`cross`]: https://github.com/rust-embedded/cross
+[`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
+[`itm`]: https://github.com/rust-embedded/itm
+[`linux-embedded-hal`]: https://github.com/rust-embedded/linux-embedded-hal
 [`msp430-quickstart`]: https://github.com/pftbest/msp430-quickstart
 [`msp430-rt`]: https://github.com/pftbest/msp430-rt
 [`msp430`]: https://github.com/pftbest/msp430
-[`panic-itm`]: https://github.com/japaric/panic-itm
-[`panic-semihosting`]: https://github.com/japaric/panic-semihosting
+[`panic-itm`]: https://github.com/rust-embedded/panic-itm
+[`panic-semihosting`]: https://github.com/rust-embedded/panic-semihosting
 [`riscv-rt`]: https://github.com/riscv-rust/riscv-rt
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/riscv-rust/riscv
-[`svd2rust`]: https://github.com/japaric/svd2rust
+[`svd2rust`]: https://github.com/rust-embedded/svd2rust
 
 ## Other projects
 
