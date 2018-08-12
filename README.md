@@ -40,7 +40,7 @@ WG.
 - Giving the casting vote on intra-WG decisions where no [voting majority] can be achieved.
 
 [Rust teams]: https://www.rust-lang.org/en-US/team.html
-[voting majority]: https://github.com/rust-lang-nursery/embedded-wg/blob/master/rfcs/0130-teams.md#voting-majority
+[voting majority]: https://github.com/rust-lang-nursery/embedded-wg/blob/master/rfcs/0136-teams.md#voting-majority
 
 ### The Cortex-M team
 
