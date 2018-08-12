@@ -1,6 +1,6 @@
 # Embedded devices Working Group
 
-[<img src="https://rawgit.com/rust-lang-nursery/embedded-wg/master/assets/logo/ewg-logo-blue-white-on-transparent-256x256.png" align="right" width="256">](https://github.com/rust-lang-nursery/embedded-wg)
+[<img src="assets/logo/ewg-logo-blue-white-on-transparent-256x256.png" align="right" width="256">](https://github.com/rust-embedded/wg)
 
 > Coordination repository of the embedded devices Working Group (WG)
 
