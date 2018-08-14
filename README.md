@@ -80,12 +80,12 @@ The embedded Linux team develops and maintains the core of the embedded Linux cr
 
 Projects maintained by the embedded Linux team
 
-- [`gpio-utils`]: https://github.com/rust-embedded/gpio-utils
-- [`i2cdev`]: https://github.com/rust-embedded/rust-i2cdev
-- [`linux-embedded-hal`]: https://github.com/japaric/linux-embedded-hal
-- [`spidev`]:https://github.com/rust-embedded/rust-spidev
-- [`sysfs-gpio`]: https://github.com/rust-embedded/rust-sysfs-gpio
-- [`sysfs-pwm`]: https://github.com/rust-embedded/rust-sysfs-pwm
+- [`gpio-utils`]
+- [`i2cdev`]
+- [`linux-embedded-hal`]
+- [`spidev`]
+- [`sysfs-gpio`]
+- [`sysfs-pwm`]
 
 ### The HAL team
 
