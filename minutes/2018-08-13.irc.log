@@ -1,0 +1,247 @@
+2018-08-13 11:05:07	~japaric	ok, let's start this meeting
+2018-08-13 11:05:25	~japaric	first item is "Location of operational notes. r? https://github.com/rust-embedded/wg/pull/157"
+2018-08-13 11:05:33	~japaric	I wanted to get you opinion on where to place this info
+2018-08-13 11:05:45	~japaric	but it seems the PR landed between me adding to the agenda and this meeting
+2018-08-13 11:05:55	~japaric	is everyone fine with keeping it in the WG repo for now?
+2018-08-13 11:06:02	adamgreig	yea seems fine
+2018-08-13 11:06:10	hannobraun	yes
+2018-08-13 11:06:16	adamgreig	it's either there or yet another repository and since the notes relate to all members of the wg and its operations it seems reasonable
+2018-08-13 11:06:57	korken89	yes, it's fine for now
+2018-08-13 11:07:06	~japaric	ok, let's keep it there then
+2018-08-13 11:07:31	~japaric	second item is "Create an IRR (Increasing Rust Reach) team."
+2018-08-13 11:07:41	gdamjan	it seems now I can just use `rustup install nightly && rustup target add --toolchain nightly thumbv7m-none-eabi` and then `cargo +nightly build --target thumbv7m-none-eabi` -- thus this completely replace xargo ?
+2018-08-13 11:08:02	~japaric	I want to create an irr-2018 team in the WG org to include the IRR in some convos
+2018-08-13 11:08:04	thenewwazoo	gdamjan: unless you're building out-of-tree changes to core, yes
+2018-08-13 11:08:11	~japaric	any objections?
+2018-08-13 11:08:12	jamesmunns	japaric: should the team be about IRR (its ending soon), or as a new CI team?
+2018-08-13 11:08:36	~japaric	I was thinking of having irr-2018, irr-2019, etc. teams
+2018-08-13 11:08:43	thejpster	Can you briefly describe IRR (in one sentence)?
+2018-08-13 11:08:50	~japaric	the members can join other teams if they want to contribute to other efforts
+2018-08-13 11:09:05	~japaric	thejpster: jamesmunns can
+2018-08-13 11:09:13	jamesmunns	http://reach.rust-lang.org/
+2018-08-13 11:09:23	jamesmunns	Increasing Rust's Reach is one of several programs run by the Rust Programming Language Team to grow Rust's community of project collaborators and leaders.
+2018-08-13 11:09:25	thejpster	delightfully succinct, ta ;)
+2018-08-13 11:10:06	jamesmunns	japaric: +1 for involving them more (as they have been actively helping)
+2018-08-13 11:10:20	hannobraun	no objections from me
+2018-08-13 11:10:41	korken89	same here
+2018-08-13 11:10:43	jamesmunns	Not sold on the idea of an IRR team. Maybe for the next one, we add them as /wg members during the program?
+2018-08-13 11:11:31	jamesmunns	Mostly just because '18 is wrapping up, and I would rather help them find a more permanent home to help in :)
+2018-08-13 11:12:44	~japaric	jamesmunns: to be part of the IRR team they have to join the org. To me it also serves as a historical record "yes, I participated in the IRR project *shows link*"
+2018-08-13 11:13:17	~japaric	jamesmunns: it also makes sense to have e.g. a rust-embedded/testing team but it requires planning and a lead before it can be done
+2018-08-13 11:13:34	jamesmunns	:+1: from me then
+2018-08-13 11:13:42	thejpster	I'm happy
+2018-08-13 11:14:01	korken89	+1
+2018-08-13 11:14:20	adamgreig	+1
+2018-08-13 11:14:27	~japaric	ok, let's create the team then
+2018-08-13 11:14:39	~japaric	next item on the agenda: "IRC logs are down"
+2018-08-13 11:14:45	~japaric	namely https://bot.tockos.org/tockbot-moz/embedded-bot
+2018-08-13 11:14:59	~japaric	it seems to have stopped working sometime last week
+2018-08-13 11:15:04	jamesmunns	alevy: you lurking by chance?
+2018-08-13 11:15:10	hannobraun	still no objections :)
+2018-08-13 11:15:21	thejpster	I'll be honest, I would prefer the IRC log bot to be hosted by us, rather than relying on a third party.
+2018-08-13 11:15:47	~japaric	thejpster: do you know what would that involve? I mean infrastructure wise
+2018-08-13 11:15:52	thenewwazoo	agreed. the tockos bot's UI is pretty nice. perhaps host an instance of that?
+2018-08-13 11:16:19	~japaric	the #rust channels are hosted in https://botbot.me/
+2018-08-13 11:16:21	thejpster	A daemon running on a server somewhere, and I guess you need blessing from Mozilla IRC to connect a bot?
+2018-08-13 11:16:36	thejpster	It seems Selenium used to put their logs on GitHub, which is nice. https://github.com/SeleniumHQ/irc-logs/tree/master/2015/09
+2018-08-13 11:16:43	~japaric	(which looks the same as the tock one :hmm:)
+2018-08-13 11:17:16	jamesmunns	If we can find something that runs in a small docker container, happy to shove it in one of my VPSs
+2018-08-13 11:17:45	~japaric	shall we make an issue to coordinate creating a logger hosted by us then?
+2018-08-13 11:17:45	lkurusa	BotBotMe is open source: https://github.com/BotBotMe
+2018-08-13 11:18:08	thenewwazoo	japaric: I think a tracking issue is the right call
+2018-08-13 11:18:15	jamesmunns	+1
+2018-08-13 11:18:50	~japaric	ok, let's discuss this asynchronously on GH
+2018-08-13 11:19:32	~japaric	next item on the agenda is "Could we briefly mention talking to chip companies about Rust?" from thejpster
+2018-08-13 11:19:36	~japaric	from a few weeks ago
+2018-08-13 11:19:52	thejpster	So this came up maybe a month or two ago on a video call
+2018-08-13 11:20:05	thejpster	I provided some feedback privately based on discussions at my office
+2018-08-13 11:20:26	thejpster	I wanted to ask, is this something we're still interested as a group and if so, which team would drive it.
+2018-08-13 11:20:46	thejpster	I know there's some personal/corporate interest from members and I'm unclear how we delineate that.
+2018-08-13 11:21:27	thejpster	It's right that this group promotes the use of Rust on embedded chips with the silicon vendors, but I wanted thoughts on whether people minded if that was used as a stepping-off point for members making profit.
+2018-08-13 11:21:35	jamesmunns	Full disclosure: I am working on founding a rust/embedded focused consultancy, and I have interest in trying to reach out to silicon vendors to help them do pilots/research in to rust.
+2018-08-13 11:21:41	thejpster	I mean, I'm OK with it (I do this stuff for a living after all) but I wanted it in the open.
+2018-08-13 11:22:00	thejpster	Full disclosure: My company talks to chip vendors about doing their software quite a lot.
+2018-08-13 11:22:33	hannobraun	I'm also working in this space and want to make money. I've already talked to someone at NXP and plan to build more contacts in the future.
+2018-08-13 11:23:10	thejpster	So if we all have a vested interest, we have nothing against vested interests ;)
+2018-08-13 11:23:17	jamesmunns	:D
+2018-08-13 11:23:35	adamgreig	if anything it sounds like all these personal channels could be beneficial to the wg anyway
+2018-08-13 11:23:36	chrysn	jamesmunns, thejpster: do you see any way in which your goals of running your businesses confict with the goals of the wg?
+2018-08-13 11:23:45	chrysn	(for otherwise, why not)
+2018-08-13 11:24:22	jamesmunns	Generally no, though I have already let japaric know, and offered to take myself out of any decisions that could be a conflict of interest
+2018-08-13 11:24:36	korken89	If you can get them interested it is good, we tried talking to vendors some time ago to improve SVDs but we got the cold shoulder back then.
+2018-08-13 11:24:56	jamesmunns	Personally, I would like there to be more work/opportunities in embedded rust overall, and I think anything that adds momentum to that is good
+2018-08-13 11:25:03	adamgreig	maybe the code of conduct should mention conflicts of interest and declaring them?
+2018-08-13 11:25:05	hannobraun	I don't see a conflict right now. I think it's good for embedded Rust overall if there are people in that space offering services.
+2018-08-13 11:25:18	thejpster	Good question, but no. If I thought it did, I'd bring it up.
+2018-08-13 11:25:22	adamgreig	yea, +1 to what jamesmunns said, the more the better
+2018-08-13 11:25:40	jamesmunns	I brought up my involvement here, since it is an area where this is fairly directly related to my business :)
+2018-08-13 11:25:50	chrysn	as vendors and their svds were mentioned: it's not only about their quality, but also about their licensing.
+2018-08-13 11:25:59	thenewwazoo	I think it'd be proper to raise this to the owners of the policies that apply to these initiatives
+2018-08-13 11:26:09	thejpster	I mean, to pick an absurd example, if my boss said "Hey Rust sucks, we're trying to sell more D-lang here so stop doing that", then I'd have something to think about.
+2018-08-13 11:26:20	adamgreig	like finding a new job ;)
+2018-08-13 11:26:30	thejpster	;)
+2018-08-13 11:26:33	ithinuel	thejpster: so do I :/
+2018-08-13 11:26:47	hannobraun	I'm my own boss :)
+2018-08-13 11:27:21	thenewwazoo	I don't seen any apparently conflicts but I think the CoC authors should at least have a chance to consider adding a clause
+2018-08-13 11:27:23	adamgreig	it sounds like we don't have particular issues with wg members also being involved commercially (in fact it'd be surprising if most weren't), but so long as it's more or less clear when people might have conflicting interests then things should be ok?
+2018-08-13 11:27:34	adamgreig	maybe the coc is a good place to formalise that
+2018-08-13 11:27:37	thejpster	Ok, so I think one way forward is to co-ordinate access to the silicon vendors as a team.
+2018-08-13 11:27:37	 *	ithinuel waves at hannobraun
+2018-08-13 11:27:56	thejpster	If we make some progress, then I think it's right to direct them to the friends list
+2018-08-13 11:27:58	hannobraun	ithinuel: o/
+2018-08-13 11:28:15	jamesmunns	:+1: to listing it. In fact, many other open source foundations/groups tend to have a lot of corporate members, just because they can spend full time effort on it
+2018-08-13 11:28:25	chrysn	should we, in the process of formalizing it, start keeping a list of ongoing discussions where we can publish them?
+2018-08-13 11:28:35	alevy	jamesmunns I'm lurking, should I just read the scrollback?
+2018-08-13 11:28:39	jamesmunns	I don't think it has to be a negative thing, but I'm happy to have it listed in the open
+2018-08-13 11:28:45	jamesmunns	alevy: do you know whats up with tockbot?
+2018-08-13 11:28:58	alevy	oh i see. i don't, but will check.
+2018-08-13 11:29:02	alevy	(right now)
+2018-08-13 11:29:04	jamesmunns	(discussion basically went we should make our own, but tockbot seems to be down)
+2018-08-13 11:29:10	thejpster	chrysn, if you mean discussions with silicon vendors, then we should as much as we are allowed. Some will be private discussions
+2018-08-13 11:29:11	~japaric	alevy: thanks :-)
+2018-08-13 11:29:24	jamesmunns	alevy: thanks!
+2018-08-13 11:30:22	 *	thejpster waves at tockbot
+2018-08-13 11:30:41	~japaric	tockbot: welcome back
+2018-08-13 11:30:42	 *	ithinuel waves at tockbot o/
+2018-08-13 11:31:05	thenewwazoo	alright, so run potential CoI as an issue for contemplation by the CoC group, and note no apparent conflicts identified today? :D
+2018-08-13 11:31:28	thejpster	Bah, I was trying to come up with words that mean basically that.
+2018-08-13 11:31:33	jamesmunns	So, action item: make an issue to track updating CoC to expressly list conflict of interest topics? and maybe capturing current commercial status of wg memebers?
+2018-08-13 11:31:39	chrysn	thejpster: yes. where discussion doesn't happen in the open, in some situations it might be ok to have a "@nick is working with company on support".
+2018-08-13 11:31:41	jamesmunns	:D
+2018-08-13 11:31:45	thenewwazoo	+1
+2018-08-13 11:31:50	~japaric	jamesmunns: sgtm
+2018-08-13 11:31:57	korken89	A thing to know with some vendors, they are not really keen on replacing their own HALs a lot. They did significant investment to make it happen.
+2018-08-13 11:32:00	chrysn	(of course, in some situations, not even that will be ok)
+2018-08-13 11:32:16	thejpster	korken89, I agree. And the software teams are generally very busy.
+2018-08-13 11:32:24	thejpster	But the marketing people might see an up-side.
+2018-08-13 11:32:28	korken89	There is a project called MODM, which is a data driven HAL, that has a lot experience with this
+2018-08-13 11:32:29	thenewwazoo	korken89: there's a lot of community interest in authoring them anyway, so "come join this ongoing work" is a nice pitch
+2018-08-13 11:32:44	jamesmunns	But I guess to digress, do we need a WG driven effort to cover this?
+2018-08-13 11:33:00	korken89	Indeed, we should try to get them, just to know how to talk to them
+2018-08-13 11:33:05	adamgreig	a wg team/effort to specifically contact vendors?
+2018-08-13 11:33:21	korken89	Not about replacing, it's about improving, enhancing, selling more chips, yada yada
+2018-08-13 11:33:24	thenewwazoo	I posit that it might be better to make more progress on embedded-hal before engaging vendors seriously
+2018-08-13 11:33:38	jamesmunns	adamgreig: (yep, thats what I meant)
+2018-08-13 11:34:16	korken89	Anyways, if we get them to be interested it would be awesome
+2018-08-13 11:34:23	hannobraun	thenewwazoo: I agree.
+2018-08-13 11:34:28	ithinuel	+1
+2018-08-13 11:34:32	thejpster	I think if we don't co-ordinate, five people might go to the same poor marketing person with five different half-baked ideas.
+2018-08-13 11:35:08	thenewwazoo	I'd prefer to say "here is a reasonably mature HAL you can target, and here are a couple of reference implementations of various chips you make"
+2018-08-13 11:35:33	korken89	thejpster: Indeed, coordination would be key here
+2018-08-13 11:35:34	thejpster	This is the 'official' Rust Embedded group and it seems to make sense that they be the ones promoting Rust on Embedded devices to all manner of people, including silicon vendors
+2018-08-13 11:35:52	thenewwazoo	agreed
+2018-08-13 11:35:56	jamesmunns	I'm happy to coordinate/lead that effort, with the disclosure that I would like to work on it full time as a paid venture (with the intent that everything developed becomes open source)
+2018-08-13 11:36:14	thejpster	I mean outcomes are everything from "That's amazing, I'll write a new HAL now" to "Do you know someone who could write me a HAL" to "That's fun, have a few free devkits" to "Go away"
+2018-08-13 11:36:34	jamesmunns	But, also very willing to not be leading/involved if it is seen as a negative
+2018-08-13 11:36:35	thejpster	It's almost a promotion sub-team
+2018-08-13 11:36:46	adamgreig	we maybe want a single point of contact for vendors who want to initiate conversations as well?
+2018-08-13 11:36:47	thejpster	promotion/marketing/out-reach/etc
+2018-08-13 11:36:59	adamgreig	like a team email (and we also have that open issue on such things)
+2018-08-13 11:37:02	korken89	adamgreig: This sounds good
+2018-08-13 11:37:08	 *	thejpster checks the list of existing sub-teams
+2018-08-13 11:37:25	thenewwazoo	yeah, perhaps identify a single POC for inbound contact, and defer outbound contacts until some increased maturity?
+2018-08-13 11:37:29	jamesmunns	Potential counterpoint: in the development of a HAL/BSP, it might be difficult to be totally open, in the case of NDA information
+2018-08-13 11:38:03	ithinuel	"That's fun, have a few free devkits" would be great to me xD
+2018-08-13 11:38:07	thejpster	I'm going to propose we create a press/promotion/marketing team, and that their first issue is what to call themselves.
+2018-08-13 11:38:32	adamgreig	jamesmunns: right. do we want to say "if you want to work with us [in capacity as the WG] then it must be non-NDA"?
+2018-08-13 11:38:34	hannobraun	thejpster: +1
+2018-08-13 11:38:44	adamgreig	or given as they'll say "well sod off then" what approach do we take?
+2018-08-13 11:38:46	~japaric	thejpster: "cc rust-embedded/name-tbd"
+2018-08-13 11:39:08	adamgreig	sort of a pain to write a HAL based on an NDA datasheet and then open source the HAL
+2018-08-13 11:39:23	adamgreig	nice excuse to just close issues with "I'm right but I can't tell you why" though :p
+2018-08-13 11:39:51	adamgreig	I would think such things might be better not as part of the wg and just done in people's personal/professional capacities
+2018-08-13 11:39:57	jamesmunns	I'm imagining access to the original HDL/IP blocks that are used to generate things like SVDs, etc.
+2018-08-13 11:40:19	ithinuel	adamgreig:  If the datasheet is on NDA I doubt we can expose its content as code in source code form anyway
+2018-08-13 11:40:38	adamgreig	might be better placed to not accept any NDA and be able to open source any RE'd work, shrug
+2018-08-13 11:40:47	thejpster	This is probably off-topic now
+2018-08-13 11:40:48	thenewwazoo	yeah that seems to be a case-by-case issue
+2018-08-13 11:40:49	adamgreig	jamesmunns: right, but maybe similar sorts of minefields
+2018-08-13 11:41:04	adamgreig	yes these sound like issues for this new team to think about
+2018-08-13 11:41:21	jamesmunns	Maybe we can some day have something like this: https://www.linuxfoundation.org/membership/members/
+2018-08-13 11:41:34	jamesmunns	though, membership is probably a bad team name
+2018-08-13 11:41:40	jamesmunns	"partnership" team?
+2018-08-13 11:42:05	hannobraun	friendship team :)
+2018-08-13 11:42:10	jamesmunns	We can open a naming bikeshed issue :)
+2018-08-13 11:42:35	~japaric	ok, this discussion has run for a while let's wrap it up in some action items
+2018-08-13 11:42:38	ithinuel	(( we call that "Partner enablement" in my company
+2018-08-13 11:42:41	~japaric	there seem to be two things to do here
+2018-08-13 11:42:54	~japaric	one is to create this new team to engage businesses
+2018-08-13 11:43:07	thejpster	(and promote Rust on Embedded in general)
+2018-08-13 11:43:21	~japaric	the other is to extended the CoC (or some other document) to point out potential CoI that WG members should avoid
+2018-08-13 11:43:28	thejpster	happy with that
+2018-08-13 11:43:43	jamesmunns	Yep, sounds great to me
+2018-08-13 11:43:45	korken89	sounds good
+2018-08-13 11:43:45	adamgreig	yep
+2018-08-13 11:43:53	ithinuel	(( what does "Col" means in this context ?
+2018-08-13 11:43:54	hannobraun	+1
+2018-08-13 11:43:59	thenewwazoo	conflict of interest
+2018-08-13 11:44:03	~japaric	can I get some volunteers for these two efforts? :-)
+2018-08-13 11:44:13	jamesmunns	i'll open the issues
+2018-08-13 11:44:23	ithinuel	thenewwazoo: oh, that an 'i', thanks !
+2018-08-13 11:44:48	~japaric	I believe these two should end up in RFCs that rust-embedded/all will review and vote for / against
+2018-08-13 11:44:53	thejpster	agreeed
+2018-08-13 11:45:07	korken89	indeed
+2018-08-13 11:45:22	thenewwazoo	I feel like the CoI question is, effectively, running it up the chain (unless there's a separate emb CoC?)
+2018-08-13 11:45:38	thenewwazoo	but in any case, we should track it in an issue
+2018-08-13 11:45:44	ithinuel	+1
+2018-08-13 11:45:50	cr1901	Is it too late to join the meeting :P? I've been reading, but couldn't find a place to pop in.
+2018-08-13 11:45:56	thenewwazoo	you've just joined! welcome :)
+2018-08-13 11:46:02	thenewwazoo	agenda: https://public.etherpad-mozilla.org/p/embedded-wg
+2018-08-13 11:46:20	cr1901	thenewwazoo: Ty :). I was wondering what happened to the - RC 1 item
+2018-08-13 11:46:36	cr1901	on the meeting agenda
+2018-08-13 11:47:27	~japaric	cr1901: hello
+2018-08-13 11:47:36	cr1901	hi!
+2018-08-13 11:47:42	~japaric	ok, let's move to the next item on the agenda
+2018-08-13 11:47:55	~japaric	"Managing operator status on #rust-embedded (currently it's just @japaric)" -- @thejpster? see https://github.com/rust-embedded/wg/pull/154
+2018-08-13 11:48:12	~japaric	idk who initially suggested this topic
+2018-08-13 11:48:24	~japaric	but there's an issue discussing having more IRC operators
+2018-08-13 11:48:44	thejpster	I did
+2018-08-13 11:49:03	thejpster	I'm happy to continue discussion in the issue
+2018-08-13 11:49:11	~japaric	there's this concrete proposal by lkurusa https://github.com/rust-embedded/wg/issues/154#issuecomment-412005612
+2018-08-13 11:49:14	thenewwazoo	I like levex' proposal, though I don't know how +h/+v nominations would work (or if they could/should be granted ad-hoc by +o/+a?)
+2018-08-13 11:49:18	thejpster	I was just worried that if you left the channel, we'd be op-less
+2018-08-13 11:49:42	lkurusa	thenewwazoo: you can tell ChanServ to do the +h/+v automatically
+2018-08-13 11:49:59	lkurusa	oh nvm, misread
+2018-08-13 11:50:26	thenewwazoo	I also propose minimum two +a (lead + designee?)
+2018-08-13 11:50:53	thejpster	Is this channel even registered with ChanServ?
+2018-08-13 11:50:54	ithinuel	Is there some documentation about what these things mean ?
+2018-08-13 11:51:15	thenewwazoo	ithinuel: /msg chanserv help
+2018-08-13 11:51:20	lkurusa	thejpster: yes, registered to japaric
+2018-08-13 11:51:30	ithinuel	 /msg chanserv help
+2018-08-13 11:51:30	lkurusa	 /msg ChanServ INFO #rust-embedded
+2018-08-13 11:51:41	lkurusa	will give you all the info you need ^
+2018-08-13 11:52:11	ithinuel	lkurusa: thank you
+2018-08-13 11:52:47	~japaric	should we make a RFC doc for how IRC is managed? covering what this + stuff means and who is supposed to do what
+2018-08-13 11:53:02	lkurusa	(seems like an overkill to me)
+2018-08-13 11:53:40	~japaric	I think it's hard to make an informed decision if you lack the background knowledge though
+2018-08-13 11:53:44	jamesmunns	Partnership team issue: https://github.com/rust-embedded/wg/issues/169
+2018-08-13 11:53:49	jamesmunns	CoI issue: https://github.com/rust-embedded/wg/issues/170
+2018-08-13 11:53:50	thejpster	I'm happy to leave it to be discussed in the issue. I'm satisified that steps are being taken / have been taken.
+2018-08-13 11:54:01	~japaric	jamesmunns: thanks!
+2018-08-13 11:54:32	lkurusa	the differences between +h/+o/+a are rather small
+2018-08-13 11:54:41	lkurusa	+h has no rights apart from kick/ban
+2018-08-13 11:54:58	lkurusa	+o can +h/+v people, and optionally modify op list
+2018-08-13 11:55:04	lkurusa	+a can do pretty much anything
+2018-08-13 11:55:19	lkurusa	(+v is really just letting them speak if the channel is muted, which is not)
+2018-08-13 11:55:32	~japaric	:bell: five minutes left
+2018-08-13 11:56:12	cr1901	Anything I have to contribute can wait till next week, tbh :P. Gives me some time to think/update relevant GH issues.
+2018-08-13 11:56:38	jamesmunns	Anyone have something on the agenda they feel is critical to discuss now, rather than async?
+2018-08-13 11:56:54	~japaric	lkurusa: your proposal sgtm but I think rust-embedded/all should vote for it on GH
+2018-08-13 11:57:12	lkurusa	sounds good!
+2018-08-13 11:57:57	thejpster	When is the next meeting?
+2018-08-13 11:57:59	adamgreig	does mozilla irc map levels to +a/o/h as you'd expect?
+2018-08-13 11:58:00	~japaric	re: new meeting time, more people have filled the doodle so I'll update the meeting times and the list who can make it
+2018-08-13 11:58:10	adamgreig	it has quite a granular levels system
+2018-08-13 11:58:11	~japaric	I'll update on the issue itself
+2018-08-13 11:58:13	thenewwazoo	doodle link?
+2018-08-13 11:58:14	adamgreig	anyway yes sorry can be discussed on gh
+2018-08-13 11:58:17	thenewwazoo	n/m
+2018-08-13 11:58:38	~japaric	thenewwazoo: the doodle link is private to WG members
+2018-08-13 11:58:43	 *	thenewwazoo nods
+2018-08-13 11:58:46	~japaric	but the summary is on GH
+2018-08-13 11:58:55	~japaric	but not up to date
+2018-08-13 11:59:39	 *	lkurusa is gonna go to another meeting, have a great week, all!
+2018-08-13 11:59:48	~japaric	thejpster: I believe we are wating for the availability of riscv members before we can decide
+2018-08-13 11:59:57	thejpster	okey dokey
+2018-08-13 12:00:19	~japaric	I'll post the final decision in the GH issue; subscribe to it
+2018-08-13 12:01:11	~japaric	the meeting is officially over. Thanks everyone for attending. See you next week.
