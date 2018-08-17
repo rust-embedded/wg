@@ -184,6 +184,18 @@ Projects maintained by the tools team
 - [`itm`]
 - [`svd2rust`]
 
+### The IRR 2018 team
+
+This team consists of the participants of the [Increasing Rust Reach (2018) program] who worked on
+the [embedded project] of adding CI tests for embedded platforms to the compiler, and their mentor.
+
+[Increasing Rust Reach (2018) program]: http://reach.rust-lang.org/2018/participants
+[embedded project]: http://reach.rust-lang.org/#projects
+
+- [@jamesmunns][] (mentor)
+- [@nerdyvaishali]
+- [@sekineh]
+
 ### The old guard
 
 This list is the membership of the embedded WG when it was first created and it's kept around for
