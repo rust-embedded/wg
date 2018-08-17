@@ -231,9 +231,11 @@ irc.mozilla.org).
 [@jcsoo]: https://github.com/jcsoo
 [@korken89]: https://github.com/korken89
 [@nastevens]: https://github.com/nastevens
+[@nerdyvaishali]: https://github.com/nerdyvaishali
 [@pftbest]: https://github.com/pftbest
 [@posborne]: https://github.com/posborne
 [@ryankurte]: https://github.com/ryankurte
+[@sekineh]: https://github.com/sekineh
 [@thejpster]: https://github.com/thejpster
 [@therealprof]: https://github.com/therealprof
 
