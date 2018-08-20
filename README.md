@@ -21,6 +21,90 @@ What is it that we really want? At a broad level:
 - To make embedded systems programming more accessible for people that are not already embedded
   systems developers.
 
+## What we do
+
+At a high level we have two main tasks:
+
+*We work with the community to improve the embedded ecosystem.*
+
+- We maintain and develop core crates in the embedded ecosystem ensuring that the development
+  roadmap aligns with the needs of its users. You can find all the crates we maintain in the
+  [Organization](#organization) section.
+
+- We develop and curate resources about embedded Rust development. For example, see the [books] we
+  have [written] and the [curated list of embedded crates][awesome] we maintain.
+
+[books]: https://rust-embedded.github.io/discovery
+[written]: https://rust-embedded.github.io/embedonomicon
+[awesome]: https://github.com/rust-embedded/awesome-embedded-rust
+
+- We maintain and moderate the venues the embedded community uses to discuss. That includes this
+  coordination repository and our IRC channel (#rust-embedded @ irc.mozilla.org).
+
+*And, we serve as a bridge between the [Rust teams] and the embedded community.*
+
+[Rust teams]: https://www.rust-lang.org/team.html
+
+- If you need a language or a compiler feature to improve your embedded software let us know and
+  we'll discuss your request with the appropriate Rust team. For example, see [this request] for
+  making the compiler emit information about the stack usage of functions, which was later
+  [implemented] as an experimental feature.
+
+[this request]: https://github.com/rust-embedded/wg/issues/106
+[implemented]: https://github.com/rust-lang/rust/pull/51946
+
+- Similarly, if you need some unstable API in the standard library to be stabilized to make your
+  crate work on the stable we'll forward your request to the library team. For example, see [this
+  proposal] to add ARM instructions to `core::arch::arm` to eliminate the need for the unstable
+  inline assembly feature (`asm!`) in the most common scenarios.
+
+[this proposal]: https://github.com/rust-embedded/wg/issues/63
+
+## How you can help
+
+Everyone can contribute to the embedded WG efforts! There are several ways to help out:
+
+- [Let us know] where the gaps are. If you think the language, the compiler, the tooling, the
+  documentation or the crate ecosystem is lacking some feature, information or library to build
+  embedded software let us know and we'll bring it up to the Rust teams or organize the community to
+  build the crates or tools to fill the gaps.
+
+[Let us know]: https://github.com/rust-embedded/wg/issues
+
+- Participate in [RFC (Request For Comments)][rfc] threads. We are always looking into ways to
+  improve. This may involve things from changing how we run the WG to landing major breaking changes
+  in core crates. To ensure we are *actually* making things better we need your input! That's why
+  all these changes are preceded by an "RFC", a discussion thread (which may or may not be backed by
+  a proper RFC document) where we evaluate the pros and cons of a proposal and explore alternatives.
+  Only after there's consensus on accepting the proposal is the proposal made effective.
+
+[rfc]: https://github.com/search?q=org%3Arust-embedded+is%3Aopen+label%3Arfc&type=Issues
+
+- [Help wanted!]. There's always lots to do but the WG members only have so much free time. You can
+  help us fixing bugs, implementing features, writing tests, trying out examples and tutorials,
+  writing documentation, fixing typos, etc. We'll mentor you through these tasks and review your
+  work. In some cases you may not even need previous embedded experience or access embedded hardware
+  to help us out so don't let that discourage you from checking out our help wanted issues.
+
+[Help wanted!]: https://github.com/search?q=org%3Arust-embedded+is%3Aopen+label%3A%22help+wanted%22&type=Issues
+
+- Join our weekly meetings on IRC. We use these meetings as a faster, synchronous alternative to the
+  RFC threads on GitHub. The agenda is [posted] in the issue tracker of this repository in advance
+  to the meeting. Everyone is free to join the meeting and share their thoughts. You can also
+  nominate an existing GH thread for discussion if you think it would benefit from a more
+  synchronous discussion.
+
+[posted]: https://github.com/rust-embedded/wg/issues?q=is%3Aissue+is%3Aopen+label%3Ameeting
+
+- We have several teams focused on different areas: tooling, Cortex-M crates, etc. and each team
+  maintains several projects (crates, docs and / or tools) that live under the [rust-embedded]
+  organization. You can collaborate with the maintenance and development of these projects by
+  becoming a project collaborator (consult with the team that owns the project) or by [joining] the
+  team.
+
+[rust-embedded]: https://github.com/rust-embedded
+[joining]: https://github.com/rust-embedded/wg/blob/master/rfcs/0136-teams.md#adding-new-members
+
 ## Organization
 
 The WG is composed of a lead and several teams whose functions are defined in [RFC
@@ -306,12 +390,6 @@ you'll find driver crates, board support crates and general purpose no-std crate
 this list by adding your crate via PR or by tackling any of our [help wanted][aer-hw] issues.
 
 [aer-hw]: https://github.com/rust-embedded/awesome-embedded-rust/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
-
-## Help wanted!
-
-[These issues need your help!][hw]
-
-[hw]: https://github.com/rust-lang-nursery/embedded-wg/issues?q=is%3Aissue+is%3Aopen+label%3Ahelp-wanted
 
 ## RFCs
 
