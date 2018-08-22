@@ -353,6 +353,16 @@ most of them are members of one of the teams listed above.
 
 ### Contact
 
+Each team can be privately contacted via the following e-mail addresses:
+
+- cortex-m@teams.rust-embedded.org
+- embedded-linux@teams.rust-embedded.org
+- hal@teams.rust-embedded.org
+- msp430@teams.rust-embedded.org
+- riscv@teams.rust-embedded.org
+- resources@teams.rust-embedded.org
+- tools@teams.rust-embedded.org
+
 You can usually find the members of the embedded WG on the #rust-embedded channel (server:
 irc.mozilla.org).
 
