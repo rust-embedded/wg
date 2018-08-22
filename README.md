@@ -400,6 +400,7 @@ Learn more about the Rust's RFC process (which is the same as our own) [here][ru
 
 [rust-rfc]: https://rust-lang.github.io/rfcs/
 
+
 To create an RFC, simply:
 - clone this repo to your own personal one
 - copy `0000-template.md` to `text/0000-my-feature.md` (where "my-feature" is
