@@ -137,6 +137,7 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 - [@korken89]
 - [@thejpster]
 - [@therealprof]
+- [@ithinuel]
 
 #### Projects
 
@@ -182,6 +183,7 @@ Board Support Crates and drivers.
 - [@japaric]
 - [@thejpster]
 - [@therealprof]
+- [@ithinuel]
 
 #### Projects
 
