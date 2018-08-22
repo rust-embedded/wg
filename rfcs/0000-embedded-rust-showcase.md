@@ -21,7 +21,7 @@ developers.
 The main embedded Rust website will contain a shortlist of especially notable
 projects, but is aimed at presenting a very high-level overview to all users
 including non-technical users. This proposed list would be able to present more
-projects in more detail, and will require that their source code is publically
+projects in more detail, and will require that their source code is publicly
 available so embedded developers interested in Rust can inspect it.
 
 # Detailed design
@@ -50,19 +50,27 @@ To be considered for inclusion, projects must:
 
 * Involve embedded Rust, in other words, use Rust and run on embedded hardware
 
-* Have publically available source code
+* Have publicly available source code
 
 The objective of this list is to showcase Rust code in action; we can't do this
 if people can't read the code! There might be space on the main Embedded Rust
 website to showcase projects known to use Rust but without public code. We
-don't require that the source code is under an open source license; just that
-it's available for interested users to read.
+don't require any specific license; just that it's available for interested
+users to read.
 
 * Have working CI builds
 
 Since we want people to be able to learn from the code, we require it at least
 builds successfully. Working CI also shows what versions of Rust it builds on,
 which is useful to establish if a project works on stable Rust.
+
+* Have build instructions
+
+These might be as simple as `cargo build` or might document any specific
+Rust versions, build oddities, or other steps required to produce the
+final firmware. Projects could also document their physical build, for example
+whether a particular development board was used, or what custom hardware is
+present, but this is not required.
 
 * Have at least one photograph/video/GIF of the project in action
 
