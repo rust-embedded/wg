@@ -1,0 +1,253 @@
+2018-08-21 20:04:39	~japaric	ok, let's start the meeting
+2018-08-21 20:05:01	~japaric	first, a reminder to review IRC Operational Notes - https://github.com/rust-embedded/wg/pull/172
+2018-08-21 20:05:10	~japaric	needs a few more approvals to be merged
+2018-08-21 20:05:21	~japaric	you can review it after this meeting
+2018-08-21 20:06:08	~japaric	and I believe we don't have enough people to reach voting majority so we'll have to do the voting on GH
+2018-08-21 20:06:36	~japaric	(/all is 19 people now)
+2018-08-21 20:06:36	theJPster	how many people do we have in total and how many do we need?
+2018-08-21 20:06:42	theJPster	19?!
+2018-08-21 20:06:57	adamgreig	so we're one short? aw
+2018-08-21 20:07:02	jamesmunns	We're now web-scale
+2018-08-21 20:07:06	jamesmunns	Just added my +1
+2018-08-21 20:07:44	adamgreig	and some margin short of that on the etherpad votes (sorry, I thought we'd be voting on irc rather than etherpad?)
+2018-08-21 20:08:05	~japaric	adamgreig: and I believe jnross_ and ithinuel are not on the WG
+2018-08-21 20:08:19	~japaric	(unless jnross_ has a different GH name)
+2018-08-21 20:08:22	jnross_	I just removed myself, sorry.  First meeting.
+2018-08-21 20:08:22	adamgreig	given the agenda item later re ithinuel i assume so
+2018-08-21 20:08:29	adamgreig	no it's ok you can be on the attendee list!
+2018-08-21 20:08:35	adamgreig	just i was accidentally counting that as WG members
+2018-08-21 20:08:46	ithinuel	:)
+2018-08-21 20:09:08	~japaric	jnross_: it's fine to write done your name in the attendance
+2018-08-21 20:09:16	~japaric	down**
+2018-08-21 20:09:49	~japaric	jamesmunns: the idea was to accept the proposal of making a blog and a forum and discuss the details of how to implement them in separate issues
+2018-08-21 20:10:20	prof	172 just needs those two auto-dismissed approvals, then we have 10.
+2018-08-21 20:10:56	~japaric	ok, let's discuss the curated list of projects -- https://github.com/rust-embedded/wg/issues/147
+2018-08-21 20:11:22	adamgreig	I think for the forseeable future it would be nice to include non-stable projects but perhaps in a less-prominent or at-the-end section
+2018-08-21 20:11:51	adamgreig	lots of cool rust projects started as nightly only and giving them exposure can help build momentum and let us work out what we want to focus on stabilising
+2018-08-21 20:12:17	~japaric	thoughts? ^
+2018-08-21 20:12:19	adamgreig	of course at the same time we want to promote embedded-on-stable and make that the most prominent thing
+2018-08-21 20:12:19	theJPster	When you say "Compile on stable by 1.31" do you mean they have to promise that it will compile on stable when 1.31 comes out, or that this rule only applies once 1.31 is out?
+2018-08-21 20:12:22	prof	I fully agree.
+2018-08-21 20:12:33	korken89	adamgreig: +1
+2018-08-21 20:13:06	~japaric	theJPster: it won't be in the list if it doesn't compile on 1.31-beta (6 weeks before 1.31 comes out)
+2018-08-21 20:13:14	~japaric	is what I meant
+2018-08-21 20:13:36	hannobraun	Maybe allow all, but emphasize stable projects. Some kind of "compiles on stable" badge.
+2018-08-21 20:13:47	theJPster	how do we verify anything we already have meets that requirement?
+2018-08-21 20:14:07	adamgreig	presumably we'd verify it once 1.31-beta is available, while selecting the list
+2018-08-21 20:14:24	korken89	Should there be some specific CI script people can use?
+2018-08-21 20:14:35	adamgreig	hannobraun: yea, i like that. put the compiles on stable at the top and first, and later on 'Nightly-Only Projects' with a note that they can't build on stable yet
+2018-08-21 20:15:02	theJPster	I like badges.
+2018-08-21 20:15:14	adamgreig	who doesn't! we can have them for the project repo READMEs too
+2018-08-21 20:15:16	jamesmunns	+1 to hannobraun/adamgreig, binning sounds good to me
+2018-08-21 20:15:24	adamgreig	maybe we should make an embedded rust badge and a 'builds on stable' badge :p
+2018-08-21 20:15:45	theJPster	Maybe we could offer a standard .travis-ci.yml for people to use (and a .gitlab-ci.yml)
+2018-08-21 20:15:46	jamesmunns	I have no idea how you could turn our logo into a 25px tall badge :p
+2018-08-21 20:15:47	korken89	adamgreig: +1, badges gives an easy quick overview
+2018-08-21 20:16:01	adamgreig	just the little blue chip with no rust or text i guess
+2018-08-21 20:16:13	adamgreig	on a related note "code must be public" is fine but does that mean open source or specific licenses etc?
+2018-08-21 20:16:27	korken89	jamesmunns: perhaps start with the bog-standard text badge generators?
+2018-08-21 20:16:40	jamesmunns	korken89: yeah, that makes sense.
+2018-08-21 20:16:44	~japaric	adamgreig: no, I meant literally public; no restrictions on licenses
+2018-08-21 20:16:49	adamgreig	works for me
+2018-08-21 20:16:52	thenewwazoo	oh damn. i can't gate is_debugger_attached on armv6m because cortex-m1 is armv6m too
+2018-08-21 20:16:57	prof	Published? ;)
+2018-08-21 20:17:01	theJPster	So, if, say, Sennheiser came along and said "Here's a cool mixing desk we developed in Rust", but the code is closed-source, we wouldn't include that in the list?
+2018-08-21 20:17:09	jamesmunns	I've never seen a cortex-m1 in the field
+2018-08-21 20:17:29	theJPster	I'd say "F/OSS" is just another badge (and possible another co-efficient in the scoring system)
+2018-08-21 20:17:35	jamesmunns	> The Cortex-M1 is an optimized core especially designed to be loaded into FPGA chips.
+2018-08-21 20:17:35	adamgreig	jamesmunns: it's for fpga softcores
+2018-08-21 20:17:38	jamesmunns	oh
+2018-08-21 20:17:40	jamesmunns	:+1:
+2018-08-21 20:17:43	~japaric	theJPster: if they did that; I would put them on the webpage rather than on the other list
+2018-08-21 20:18:16	adamgreig	right, this is presumably a list of projects people might look at to learn from and see how people are writing code
+2018-08-21 20:18:19	jamesmunns	yep, we will also have a "publicity showcase" on the rust-lang.org website, but its more for managers/publicity than developers
+2018-08-21 20:18:27	theJPster	Ok, I'll go with that.
+2018-08-21 20:18:28	adamgreig	once it's closed source they might as well have programmed it in C or Ada or visual basic
+2018-08-21 20:18:31	korken89	thenewwazoo: I did the same error for M0 when testing it the first time, on an M4 core it's working fine
+2018-08-21 20:18:32	prof	Yeah, that would certainly make for a cool testimonial.
+2018-08-21 20:18:42	theJPster	I have an issue with "must run on stable" as a SHALL rather than a SHOULD.
+2018-08-21 20:18:55	theJPster	Monotron, for example, seems to get plenty of attention, but you do have to cut some corners to get that sort of thing to work.
+2018-08-21 20:19:05	theJPster	(const fn, inline asm, etc)
+2018-08-21 20:19:21	ithinuel	theJPster: I'd see them more on a "embedded rust friends" page rather than a list where none can see how it's done :x
+2018-08-21 20:19:38	thenewwazoo	educational vs promotional
+2018-08-21 20:19:44	adamgreig	theJPster: did you see ^ about having non-stable projects just be later in the list / in a "nightly-only" section?
+2018-08-21 20:19:48	jamesmunns	Yeah, I don't like excluding things at the moment, but making it clear what to expect before diving in to the code is nice, whether its badges or bins
+2018-08-21 20:20:39	theJPster	japaric was pretty clear that his intention was that nightly programs wouldn't be on the list
+2018-08-21 20:20:43	korken89	Sounds good, as jamesmunns is stating, I agree it's a bit early to exclude things
+2018-08-21 20:20:49	~japaric	how do we assign badges? manually testing? self report?
+2018-08-21 20:21:14	adamgreig	self report in the first instance and file issues if it's wrong?
+2018-08-21 20:21:25	jamesmunns	adamgreig: :+1:
+2018-08-21 20:21:25	korken89	Let users handle it themselves for the repos, for adding to the list we just check the CI
+2018-08-21 20:21:26	theJPster	If this is some sort of curated list, how do we review or even measure 'quality'? How do we know it sets a good example for people to follow?
+2018-08-21 20:21:39	prof	@japaric: I'd like similar to the awesome list. People create a PR and someone needs to review.
+2018-08-21 20:22:07	hannobraun	prof: +1
+2018-08-21 20:22:37	adamgreig	at the moment we don't have a strict criteria for the awesome list, would we be stricter here? anything beyond 'builds on stable to go in the 'stable' bin, source is available, is embedded rust'?
+2018-08-21 20:22:48	adamgreig	same thing theJPster is saying, do we want to check the actual quality?
+2018-08-21 20:22:55	adamgreig	doing an actual code review seems a bit heavy-handed (plus a lot of work)
+2018-08-21 20:23:08	korken89	adamgreig: Sounds like a lot of work :)
+2018-08-21 20:23:20	~japaric	adamgreig: plus the code may change over time :-)
+2018-08-21 20:23:23	adamgreig	we have the official rust-embedded repos and quickstarts and examples as good exampls to follow
+2018-08-21 20:23:37	theJPster	"The Rust Embedded Working Group make no representations as to the quality or functionality of any of the projects listed underneath. They may eat your cat. Caveat Emptor."
+2018-08-21 20:23:41	adamgreig	i don't think we need to be sure that every "cool project" we link has perfect code
+2018-08-21 20:24:02	adamgreig	not clear to me we even need to disclaim it, just say "here are cool projects using embedded rust whose source you can check out"
+2018-08-21 20:24:02	korken89	theJPster: +1
+2018-08-21 20:24:20	prof	adamgreig: True. however we do have enough people now to keep an eye on quality. I'm also trying to raise quality bar on the awesome list as we get more and more entries.
+2018-08-21 20:24:55	adamgreig	makes sense, we don't want the list just full of up single blinking LEDs
+2018-08-21 20:25:15	theJPster	It feels like the Awesome List is the place to just put projects as they are offered, and this is the place to elevate ones that have some "seal of approval"
+2018-08-21 20:25:29	adamgreig	so PRs to add projects, must be embedded rust with available code, inclusion is then at reviewer's discretion?
+2018-08-21 20:25:31	theJPster	(https://www.qwertee.com/product/seal-of-approval-248)
+2018-08-21 20:25:53	adamgreig	sure, it is a 'curated' list after all
+2018-08-21 20:26:11	theJPster	we could bike-shed some sort of scoring system off-line.
+2018-08-21 20:26:35	adamgreig	is it ok to just say it should be a high quality project as decided by one or two reviewers?
+2018-08-21 20:27:07	~japaric	how about voting majority by the resources (or some other) team?
+2018-08-21 20:27:15	adamgreig	that works too
+2018-08-21 20:27:18	prof	japaric: +1
+2018-08-21 20:27:21	theJPster	+1
+2018-08-21 20:27:24	korken89	japaric: +1
+2018-08-21 20:27:24	~japaric	e.g. cortex-m team reviews Cortex-M projects maybe?
+2018-08-21 20:27:49	adamgreig	happy with that but since the list is a resource perhaps all the projects should be just the resources team, keeps it consistent
+2018-08-21 20:28:18	~japaric	or we can let the resources team ask for another team's opinion
+2018-08-21 20:28:34	adamgreig	sounds good
+2018-08-21 20:28:37	korken89	japaric: sgtm
+2018-08-21 20:28:45	jamesmunns	Happy to help, though if we require more than a cursory check, it will get out of hand
+2018-08-21 20:29:09	jamesmunns	like, if it has CI, does actually build, doesn't look immediately offensive code wise, will probably get a :+1:
+2018-08-21 20:29:11	adamgreig	at the moment i doubt we'll be overwhelmed, once embedded rust picks up we can revisit the idea
+2018-08-21 20:29:23	korken89	Indeed
+2018-08-21 20:29:23	~japaric	ok, we are near the half hour mark; let's summarize this discussion
+2018-08-21 20:29:35	jamesmunns	We might just write a checklist they can self-fill and we can spot check?
+2018-08-21 20:29:49	jamesmunns	as an issue template perhaps?
+2018-08-21 20:29:52	theJPster	I think you can template PRs?
+2018-08-21 20:29:53	jamesmunns	okay to move on though.
+2018-08-21 20:30:30	~japaric	overall +1 on the idea; let users submit their projects as PRs; resources team to review the submission
+2018-08-21 20:30:41	~japaric	requirements: embedded Rust; public code; anything else?
+2018-08-21 20:30:57	theJPster	CI
+2018-08-21 20:31:05	adamgreig	is CI required if it's an actual project rather than a library?
+2018-08-21 20:31:27	~japaric	"it should continue to build / link" CI sounds like a good requirement to me
+2018-08-21 20:31:33	theJPster	it's a fairly low bar if the code is public and it gives you a "this currently builds" badge
+2018-08-21 20:31:38	adamgreig	fair
+2018-08-21 20:31:44	korken89	Indeed
+2018-08-21 20:31:57	adamgreig	so we drop the 'builds on stable' but note that non-stable will be noted as such and/or put at the bottom in their own list?
+2018-08-21 20:32:28	jamesmunns	we can give out "bonus points" for stable, other stuff :)
+2018-08-21 20:32:54	~japaric	adamgreig: yes, exact mechanism (badges vs bins) TBD
+2018-08-21 20:32:57	prof	badge. :-D
+2018-08-21 20:33:30	adamgreig	CI makes it easy to check if it builds on stable too
+2018-08-21 20:33:33	adamgreig	just check their CI builds on stable ;)
+2018-08-21 20:34:29	~japaric	ok, we need volunteers to write a short RFC document about this
+2018-08-21 20:34:33	~japaric	then we can vote on it
+2018-08-21 20:35:17	 *	adamgreig volunteers
+2018-08-21 20:35:34	~japaric	I don't know if you want to write some sort of rubric for evaluating the proposals
+2018-08-21 20:35:38	~japaric	adamgreig: +1
+2018-08-21 20:36:24	~japaric	ok, moving on to the next item
+2018-08-21 20:37:02	~japaric	jamesmunns: I put https://github.com/rust-embedded/wg/issues/153 in there but IDK if you want to discuss that right now or instead do asynchronous voting on making a forum and blog
+2018-08-21 20:37:35	~japaric	I asked about getting a free discourse instance but received no answer yet
+2018-08-21 20:37:59	jamesmunns	not prepared on that topic atm, still catching up on all the notifications post-rustconf
+2018-08-21 20:37:59	~japaric	jamesmunns: err, I meant https://github.com/rust-embedded/wg/issues/148
+2018-08-21 20:38:05	jamesmunns	Oh
+2018-08-21 20:38:28	jamesmunns	Yeah, the two items you suggested for vote seem reasonable to me
+2018-08-21 20:38:57	jamesmunns	I think the forum item is still up in the air, if we pick something non-self-maintained, I'm generally on board.
+2018-08-21 20:39:14	jamesmunns	would prefer to reject self-hosted until we have a dedicated ops team
+2018-08-21 20:39:33	~japaric	jamesmunns: ok, I'll make two PRs to vote on those
+2018-08-21 20:39:39	theJPster	I don't see what's wrong with u.r-l.o and /r/rust tbh
+2018-08-21 20:39:42	jamesmunns	re blog: it seems uncontroversial. I think as long as the content is markdown and easy to add by PR, most people will be happy
+2018-08-21 20:39:56	theJPster	I'm reticient to add yet more things to trawl through on a regular basis
+2018-08-21 20:40:08	theJPster	blog is fine, I can add that to Feedly ;)
+2018-08-21 20:40:29	~japaric	jamesmunns: I agree
+2018-08-21 20:41:20	~japaric	ok, next item which I previously skipped https://github.com/rust-embedded/wg/issues/153
+2018-08-21 20:41:21	prof	sagtm…
+2018-08-21 20:41:39	~japaric	there's consensus on having e-mail aliases
+2018-08-21 20:41:55	~japaric	but there was discussion under which subdomain to put them
+2018-08-21 20:42:01	jamesmunns	Also, I think we need to open a pre-rfc about IRC, just to push all the discussion to that issue
+2018-08-21 20:42:08	~japaric	cortex-m@teams.rust-embedded.org
+2018-08-21 20:42:12	~japaric	cortex-m@team.rust-embedded.org
+2018-08-21 20:42:20	~japaric	cortex-m-team@rust-embedded.org
+2018-08-21 20:42:27	jamesmunns	it keeps coming up, and I don't want to stifle discussion, but its out of scope for that issue
+2018-08-21 20:42:31	~japaric	jamesmunns: +1
+2018-08-21 20:42:53	prof	I prefer short: Why not cortex-m@rust-embedded.org?
+2018-08-21 20:43:13	adamgreig	the reasoning is since these emails will be mailgun or something, the MX for that whole (sub)domain will go there
+2018-08-21 20:43:26	jamesmunns	:+1: from me for teams?.rust-embedded.org
+2018-08-21 20:43:26	adamgreig	if we later want to allow other things@rust-embedded.org (like personal accounts???) they couldn't easily coexist
+2018-08-21 20:43:33	theJPster	I'm honestly ok with team. or teams. - it was a weak preference for team.
+2018-08-21 20:43:39	prof	That would exclude the 3rd option from japarics list.
+2018-08-21 20:44:08	adamgreig	seems like a compelling technical reason to use a subdomain, and given that I'd prefer teams.rust-embedded.org
+2018-08-21 20:44:21	prof	adamgreig +1
+2018-08-21 20:44:40	korken89	Sounds good
+2018-08-21 20:45:09	~japaric	I'll make a PR for teams.r-e.o then
+2018-08-21 20:45:35	jamesmunns	(also weak preference for teams over team)
+2018-08-21 20:45:41	prof	same
+2018-08-21 20:45:51	theJPster	happy with that
+2018-08-21 20:46:00	~japaric	ok, next item
+2018-08-21 20:46:07	~japaric	ithinuel: around?
+2018-08-21 20:46:13	ithinuel	yes
+2018-08-21 20:46:37	~japaric	you wanted to join the hal and cortex-m teams
+2018-08-21 20:46:50	~japaric	there are some members around now; it's your chance :-)
+2018-08-21 20:47:03	ithinuel	Indeed, I would like to contribute to both team
+2018-08-21 20:47:39	adamgreig	you are finding the bugs in our obviously very high latency join-a-team system
+2018-08-21 20:47:42	ithinuel	I have some experience in both domain :)
+2018-08-21 20:47:50	jamesmunns	maybe introduce yourself, what kind of stuff you work on, and what kind of embedded rust stuff you've worked on? I don't think we've worked together on anything so far :)
+2018-08-21 20:47:53	prof	HAL could use some more opinions to gain momentum.
+2018-08-21 20:47:55	theJPster	ithinuel helped me run the Cambridge Rust Meetup stall at Raspberry Fields so +1 +1 +1 from me :)
+2018-08-21 20:48:08	theJPster	and works that that *other* big tech firm in town
+2018-08-21 20:48:38	adamgreig	cambridge only has two big tech firms?! :P
+2018-08-21 20:48:48	thenewwazoo	Zipcar and ...?
+2018-08-21 20:48:50	 *	thenewwazoo ducks
+2018-08-21 20:48:53	theJPster	pfft, the others are outsiders ;)
+2018-08-21 20:48:55	jamesmunns	:D :D :D
+2018-08-21 20:49:02	korken89	I don't see any issue here :)
+2018-08-21 20:49:04	ithinuel	And before joining *that* big tech firm I built deeply embedded &connected products for about 10 years
+2018-08-21 20:49:56	ithinuel	I mostly worked on cm3 based chip and a little bit on microchip chips
+2018-08-21 20:50:10	jamesmunns	awesome :)
+2018-08-21 20:50:32	adamgreig	my only reservation is in general about how many people we have and need on the teams and how it affects being able to get consensus and pass votes
+2018-08-21 20:50:51	adamgreig	i don't think we're at the point where it's a problem yet but it's already seemingly hard to get votes on /all
+2018-08-21 20:50:54	ithinuel	I'm also working on the hal layer of a pretty large opensourced project powered
+2018-08-21 20:50:59	ithinuel	*-powered
+2018-08-21 20:51:04	theJPster	I think we can address that through our ability to actively retire non-participants
+2018-08-21 20:51:11	adamgreig	sure
+2018-08-21 20:51:16	adamgreig	certainly there's plenty of work to do on both teams
+2018-08-21 20:51:17	jamesmunns	ithinuel has been pretty active around github and IRC lately, at least as far as I have seen
+2018-08-21 20:51:48	adamgreig	sure, i have absolutely no problem with ithinuel joining
+2018-08-21 20:51:57	hannobraun2	Hey everone. Lost connection a while ago.
+2018-08-21 20:52:00	korken89	Same here
+2018-08-21 20:52:01	adamgreig	wb
+2018-08-21 20:52:14	hannobraun2	Seems I came at the right time. +1 to ithinuel :)
+2018-08-21 20:52:21	adamgreig	but at some point we might want to discuss at least in outline how we're doing with team numbers and people joining
+2018-08-21 20:52:32	adamgreig	might never become an issue, shrug
+2018-08-21 20:52:34	theJPster	too many volunteers is a great problem to have
+2018-08-21 20:52:37	adamgreig	I think you've got your soft approval though ithinuel!
+2018-08-21 20:52:40	jamesmunns	definitely by making sub-sub-teams
+2018-08-21 20:52:53	jamesmunns	just make sure each node is small enough to fit in a single cache line
+2018-08-21 20:52:55	prof	theJPster +1 :-D
+2018-08-21 20:52:58	ithinuel	\o/
+2018-08-21 20:53:17	~japaric	ithinuel: you can go ahead and make the PRs adding yourself to the teams
+2018-08-21 20:53:26	~japaric	each team will then review
+2018-08-21 20:53:36	ithinuel	Thanks !
+2018-08-21 20:53:36	~japaric	see the doc in the repo for the exact procedure
+2018-08-21 20:54:35	~japaric	adamgreig: I agree that the size of /all is becoming a problem when voting; don't have any suggestion though
+2018-08-21 20:55:05	adamgreig	I guess we'll keep an eye on it.
+2018-08-21 20:55:26	theJPster	I could do with a mail filter to pick out the stuff I need to vote on, as opposed to the general chit-chat.
+2018-08-21 20:55:31	theJPster	It's very hard to keep on top of it all.
+2018-08-21 20:55:48	jamesmunns	I was shown https://octobox.io/, which seems interesting
+2018-08-21 20:55:50	~japaric	maybe have members voluntarily exclude themselves from voting and that would lower the number of required votes?
+2018-08-21 20:56:07	adamgreig	a vote-required label on GH might help with email filters
+2018-08-21 20:56:10	adamgreig	though we already have decision-required
+2018-08-21 20:56:11	prof	I would consider this still to be the early forming phase so I'm not worried about to many additional newcomers in the next weeks/months.
+2018-08-21 20:56:12	jamesmunns	basically a dashboard, instead of an inbox. Does attempt to filter by "why did you get this notification"
+2018-08-21 20:57:01	prof	Something like rfcbot?
+2018-08-21 20:57:17	~japaric	I know that in the rust-lang org you may need to ping people on IRC to remind them to vote, or remind them during triage meetings
+2018-08-21 20:58:07	~japaric	we are almost out of time
+2018-08-21 20:58:12	~japaric	any short update you'd like to share?
+2018-08-21 20:58:21	jamesmunns	Quick update regarding CoI discussions https://github.com/rust-embedded/wg/issues/170
+2018-08-21 20:58:23	thenewwazoo	heh so close to the #35 discussion :D
+2018-08-21 20:58:25	adamgreig	let's put discussing the voting issue onto next meeting's agenda?
+2018-08-21 20:58:46	~japaric	adamgreig: sgtm
+2018-08-21 20:59:07	~japaric	thenewwazoo: what that yours? I didn't write a name next to it
+2018-08-21 20:59:12	jamesmunns	I had some discussions with the core team, and they are planning on discussing this in their next meeting. The guidance I got is that we are doing the right steps now
+2018-08-21 20:59:15	thenewwazoo	it was, but it's not pressing :)
+2018-08-21 20:59:19	jamesmunns	and what we do may be useful/relevant to other teams, or the rust project in general
+2018-08-21 20:59:49	jamesmunns	So, no action items or guidance, but it might be a good time to discuss across the rust project in general. We should keep moving forward with the pre-rfc as planned
+2018-08-21 20:59:50	thenewwazoo	we'll get to it when we get to it. I'm charging ahead with my own design to get some real-world experience
+2018-08-21 21:00:43	adamgreig	sounds good jamesmunns!
+2018-08-21 21:00:44	~japaric	jamesmunns: thanks
+2018-08-21 21:00:45	jamesmunns	Also personally, I met a lot of cool people at RustConf, and lots of people interested in embedded!
+2018-08-21 21:01:04	korken89	Awesome!
+2018-08-21 21:01:13	jamesmunns	I hope the talk videos get posted soon, and I'm in the process of dumping all my slide knowledge and notes into the embedded book
+2018-08-21 21:01:20	~japaric	ok, this meeting is officially over. Thanks everyone for attending! See you next week
