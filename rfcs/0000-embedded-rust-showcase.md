@@ -29,14 +29,14 @@ available so embedded developers interested in Rust can inspect it.
 
 ## New Repository
 
-We create a new repository, `embedded-rust-showcase` (TBC), in the
+We create a new repository, `showcase` (TBC), in the
 rust-embedded organisation and under the existing Resources team. It will use
 the same underlying technology as the upcoming embedded Rust website to render
 Markdown to a web page.
 
 ## New Web Page
 
-The new web page would live at https://showcase.embedded-rust.org (TBC).
+The new web page would live at https://showcase.rust-embedded.org (TBC).
 
 Each project is listed with a photograph/GIF/video, description, and other
 details (see Submission section).
@@ -78,9 +78,9 @@ contain the following information:
 * Images, GIFs, or video of the project
 * Whether or not the project builds on stable Rust
 
-After a project is submitted, the resources team will review the PR and
-vote on inclusion. They may consult other relevant teams in the process,
-but final approval of submissions is at the discretion of the resources team.
+After a project is submitted, the resources team will review the PR, possibly
+consulting the other teams when relevant. Approval can then be granted by any
+of the resources team members.
 
 # Alternatives
 
@@ -97,5 +97,3 @@ but final approval of submissions is at the discretion of the resources team.
 [unresolved]: #unresolved
 
 * Final name for repository/web page
-* The specific technical solution for rendering the repository contents to a
-  web page
