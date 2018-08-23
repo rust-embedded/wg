@@ -8,9 +8,9 @@ The default linker for the 4 ARM Cortex-M targets listed below has changed from
 - `thumbv7em-none-eabi`
 - `thumbv7em-none-eabihf`
 
-This will break the builds of *binaries* and *cdylibs* that you were using the
-default linker -- that is you were *not* using `-C linker` to change the linker
--- *and* that were passing extra flags to the linker using any of these rustc
+This will break the builds of *binaries* and *cdylibs* that are using the
+default linker -- that is `-C linker` is not being passed to rustc to change the
+linker -- *and* that pass extra flags to the linker using any of these rustc
 flags: `-C link-arg`, `-C link-args`, `-Z pre-link-arg` or `-Z pre-link-args`.
 Building libraries (`rlib`s and `staticlib`s) is not affected by this change.
 
