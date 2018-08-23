@@ -302,6 +302,11 @@ most of them are members of one of the teams listed above.
 You can usually find the members of the embedded WG on the #rust-embedded channel (server:
 irc.mozilla.org).
 
+Our IRC channel is logged using [logbot] and you can find the logs at
+https://mozilla.logbot.info/rust-embedded
+
+[logbot]: https://mozilla.logbot.info
+
 [@Emilgardis]: https://github.com/Emilgardis
 [@adamgreig]: https://github.com/adamgreig
 [@andre-richter]: https://github.com/andre-richter
