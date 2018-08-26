@@ -317,6 +317,7 @@ https://mozilla.logbot.info/rust-embedded
 [@dvc94ch]: https://github.com/dvc94ch
 [@dylanmckay]: https://github.com/dylanmckay
 [@hannobraun]: https://github.com/hannobraun
+[@ithinuel]: https://github.com/ithinuel
 [@jamesmunns]: https://github.com/jamesmunns
 [@japaric]: https://github.com/japaric
 [@jcsoo]: https://github.com/jcsoo
