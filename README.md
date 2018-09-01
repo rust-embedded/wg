@@ -152,6 +152,20 @@ Projects maintained by this team.
 - [`panic-itm`]
 - [`panic-semihosting`]
 
+### The Cortex-R team
+
+The Cortex-R team develops and maintains the core of the Cortex-R crate ecosystem.
+
+#### Members
+
+- [@japaric]
+- [@paoloteti]
+
+#### Projects
+
+It's early days for this team. They don't maintain projects within this
+organization at the moment.
+
 ### The embedded Linux team
 
 The embedded Linux team develops and maintains the core of the embedded Linux crate ecosystem.
@@ -324,6 +338,7 @@ https://mozilla.logbot.info/rust-embedded
 [@korken89]: https://github.com/korken89
 [@nastevens]: https://github.com/nastevens
 [@nerdyvaishali]: https://github.com/nerdyvaishali
+[@paoloteti]: https://github.com/paoloteti
 [@pftbest]: https://github.com/pftbest
 [@posborne]: https://github.com/posborne
 [@ryankurte]: https://github.com/ryankurte
