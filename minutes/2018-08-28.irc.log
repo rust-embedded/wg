@@ -1,0 +1,237 @@
+2018-08-28 20:04:24	~japaric	ok, let's start this meeting!
+2018-08-28 20:04:33	~japaric	first we have two reminders and two notices
+2018-08-28 20:04:50	~japaric	first, reminder to vote on "Embedded Rust showcase" https://github.com/rust-embedded/wg/pull/187
+2018-08-28 20:05:02	~japaric	second, reminder to register on IRC using NickServ and then to report your nick in this thread so I can turn you into an operator. See https://github.com/rust-embedded/wg/pull/172#issuecomment-416027867
+2018-08-28 20:05:13	~japaric	now the notices
+2018-08-28 20:05:22	~japaric	 `panic_handler` has (finally) entered FCP :tada: : https://github.com/rust-lang/rust/issues/44489#issuecomment-416672941
+2018-08-28 20:05:39	~japaric	which means that in like two weeks we can send a PR to stabilize it
+2018-08-28 20:05:59	thenewwazoo	what work is needed for that to happen? are volunteers needed?
+2018-08-28 20:06:25	~japaric	I believe I have a closed PR stabilizing it
+2018-08-28 20:06:41	~japaric	it'd be best to re-open that one then it'll be higher in the bors queue (older PRs are given priority)
+2018-08-28 20:07:16	~japaric	we also need to document the feature in the reference; I have an open, stale PR for it
+2018-08-28 20:07:23	@korken89	Finally!
+2018-08-28 20:07:30	@korken89	Ah, it changed name I see
+2018-08-28 20:07:59	~japaric	ok, the other notice is that: rand` developers want input on this PR to make `rand` more no_std / embedded friendly. https://github.com/rust-random/rand/pull/579
+2018-08-28 20:08:18	~japaric	please take a look at it and give some feedback, specially if have done stuff with RNG
+2018-08-28 20:08:54	~japaric	now moving to the issues to discuss
+2018-08-28 20:09:04	@therealprof	Just did.
+2018-08-28 20:09:11	~japaric	thenewwazoo wanted to talk about "What is the right forum to discuss (the many possible) approaches to embedded-hal issue #35?"
+2018-08-28 20:09:32	~japaric	thenewwazoo: can you drive the discussion?
+2018-08-28 20:09:53	thenewwazoo	that conversation is kind of wide-ranging and brought up questions that are related but maybe not specifically in-scope for embedded-hal
+2018-08-28 20:10:14	~japaric	so the embedded-hal issue tracker is not appropriate for this discussion
+2018-08-28 20:10:21	thenewwazoo	as a specific example, there are evolving patterns for things like clock configuration that wouldn't trait impls
+2018-08-28 20:10:22	~japaric	could you use the /wg issue tracker?
+2018-08-28 20:10:57	thenewwazoo	https://github.com/rust-embedded/wg/issues/ ?
+2018-08-28 20:11:04	~japaric	yes
+2018-08-28 20:11:18	thenewwazoo	cool. is that also the right place for broader design-y type discussions?
+2018-08-28 20:11:57	awygle	i would tend to think of the /wg issue tracker as more appropriate for "what should the wg be working on" discussions rather than technical design
+2018-08-28 20:11:57	@therealprof	Regarding #35, has anyone (besides me) checked out the shared-bus crate?
+2018-08-28 20:12:41	~japaric	yes, to me this sounds like cross cutting design question that should involve not only the hal team but also the cortex-m and other arch teams
+2018-08-28 20:13:17	Lumpio-	Coincidentally I just did a shared bus of sorts with the USB thing, multiple device classes can share the same USB peripheral talking on different endpoints (addresses essentially)
+2018-08-28 20:13:27	ryankurte	therealprof I had a nosey but haven't got a grasp of it just yet.
+2018-08-28 20:13:34	thenewwazoo	another example is DMA trait design
+2018-08-28 20:13:49	thenewwazoo	right now that lives in a device HAL crate, but has obvious implications for cortex-m generally
+2018-08-28 20:14:37	Lumpio-	However USB endpoints are pretty much independent of each other so no arbitration or such is needed. I solved the need to have a shared reference to the peripheral by just using non-mut references and interior mutability for the very few things that needed it.
+2018-08-28 20:15:47	@adamgreig	is this the sort of discussion that might be more suited to e.g. discourse?
+2018-08-28 20:16:08	@therealprof	I find shared-bus an outstanding solution for a big problem and if others agree would like to promote it a bit, e.g. via our new blog.
+2018-08-28 20:16:29	cr1901	I haven't actually taken a look at it yet
+2018-08-28 20:16:31	awygle	I don't see a problem with the current venue, personally. It's a hal issue being discussed on the hal issue tracker.
+2018-08-28 20:16:38	@adamgreig	it seems like it doesn't quite belong in embedded-hal issues since it's a bit more widely focused, so wg/issues is an option, but maybe for sketching out designs a forum would be better
+2018-08-28 20:16:56	@adamgreig	awygle: i guess the feeling is it's discussing things that go beyond what embedded-hal is going to support
+2018-08-28 20:17:03	@therealprof	adamgreig: +1
+2018-08-28 20:17:10	@adamgreig	and/or it's been discussed there and still isn't solved :P
+2018-08-28 20:17:24	cr1901	Oh, is shared bus an abstraction for doing things like "using two different GPIO pins on the same I/O port from two different threads"?
+2018-08-28 20:17:38	cr1901	and making sure they don't trample each other*
+2018-08-28 20:17:38	@adamgreig	or 'use the same i2c bus'
+2018-08-28 20:18:06	 *	cr1901 files away to ask q's later
+2018-08-28 20:18:12	@therealprof	cr1901: Yeah.
+2018-08-28 20:18:18	thenewwazoo	cr1901: in the specific case yeah, but the discussion there is getting broader than just that
+2018-08-28 20:18:37	thenewwazoo	and I'm wondering where to have that discussion, amongst others
+2018-08-28 20:18:53	cr1901	 /join #shared-bus
+2018-08-28 20:19:27	@therealprof	thenewwazoo: Only because someone hijacked that issue. ;)
+2018-08-28 20:19:33	 *	thenewwazoo ducks
+2018-08-28 20:19:45	thenewwazoo	hey man I'm trying to have it in the right place :D
+2018-08-28 20:20:00	thenewwazoo	it looks like https://forum.rust-embedded.org isn't a thing yet?
+2018-08-28 20:20:32	~japaric	thenewwazoo: we need someone to write an RFC for it :wink:
+2018-08-28 20:20:42	@therealprof	That's okay. As long as the original issue doesn't go under in the noise. ;)
+2018-08-28 20:21:37	awygle	adamgreig: in that case maybe I don't understand thr intended scope of hal. I'll shut up and read more :-)
+2018-08-28 20:21:45	~japaric	having a user forum to discuss broader issues that don't fit in the issue tracker sgtm. It also reduces the amount of traffic / comments in the issue trackers
+2018-08-28 20:22:09	@adamgreig	it seems like the sort of conversation that needn't be github issues until it turns into a concrete rfc
+2018-08-28 20:22:19	@adamgreig	or at least a pre-rfc :p
+2018-08-28 20:22:20	thenewwazoo	I read hal as being focused on specific traits to be impld, and not patterns that may be chip-specific, or support crates that wouldn't fit in emb-hal
+2018-08-28 20:23:55	thenewwazoo	that's why I bring up the DMA thing in a device crate - the design discussion is kind of buried there, but if something must go in a device hal crate before broader adoption, is that the right place?
+2018-08-28 20:24:30	@adamgreig	i wonder if this sort of design can also evolve naturally for a while longer as people try out different ways of doing things and see what sticks
+2018-08-28 20:24:34	thenewwazoo	sorry, in a _reference_ hal crate (e.g. f103)
+2018-08-28 20:25:11	thenewwazoo	oh totally! but where is the right place to surface and discuss various proposals/implementations?
+2018-08-28 20:25:22	@adamgreig	the proposed forum seems like it would be ideal
+2018-08-28 20:25:29	@adamgreig	and irc is nice but not very good at async
+2018-08-28 20:25:36	ryankurte	I think the point of embedded-hal is as a common higher level interface for us to build things on? And thinking about it that way, things like sharing and dma are relevant/useful there, once we've worked them out?
+2018-08-28 20:25:38	@therealprof	It would be. The big Q here is: Can DMA operations be abstracted in a way that would allow implementations across different vendor chips?
+2018-08-28 20:26:01	@adamgreig	somehow surely yes, since plenty of C RTOSs and HALs manage it
+2018-08-28 20:26:34	@therealprof	Huh?
+2018-08-28 20:26:47	@korken89	therealprof: They usually pull in different backends to a common interface
+2018-08-28 20:27:02	@adamgreig	yea, so the user-facing API is the same independent of what chip is being built for
+2018-08-28 20:27:05	thenewwazoo	yeah, i expressly see emb-hal as being cross-target (correct me if I'm wrong)
+2018-08-28 20:27:08	@adamgreig	which is the point of emb-hal
+2018-08-28 20:27:19	@adamgreig	i think the design problem is mostly on how on earth you do dma ergonomically in rust
+2018-08-28 20:27:21	thenewwazoo	so stm32 abstractions shouldn't leak into it, which makes me think stm32-specific discussion doesn't belong there
+2018-08-28 20:27:37	@therealprof	Exactly.
+2018-08-28 20:27:43	~japaric	mod comment: let's please keep the discussion at the meta level and not go into details about DMA and stuff
+2018-08-28 20:27:50	@adamgreig	right
+2018-08-28 20:28:01	thenewwazoo	it sounds like a forum is the right answer but, uh...
+2018-08-28 20:28:01	thenewwazoo	hehehe
+2018-08-28 20:28:03	@adamgreig	we had a non-quorum vote on the forum last time
+2018-08-28 20:28:16	~japaric	jamesmunns had concerns about making a forum, iirc
+2018-08-28 20:28:28	~japaric	and maybe thejpster had some too
+2018-08-28 20:28:45	@adamgreig	looking back jpster -1 and jamesmums abstained
+2018-08-28 20:28:48	jamesmunns	I mostly had concerns about hosting our own or paying for hosting
+2018-08-28 20:28:57	jamesmunns	I am pro forum
+2018-08-28 20:29:09	jamesmunns	I abstained because we haven't really discussed "how" yet
+2018-08-28 20:29:12	awygle	This segues nicely into "how do votes"
+2018-08-28 20:29:16	@adamgreig	sounds like it wants a mini rfc?
+2018-08-28 20:29:18	@therealprof	Yeah, I think the administrative/moderation part was the big turn-off.
+2018-08-28 20:29:40	@adamgreig	it's a shame we can't just have a sub-forum on the rust discourse
+2018-08-28 20:29:46	@ithinuel	I +1 for the forum though, easier to catch up as answers tend to be more "contructed" than a casual chat on IRC
+2018-08-28 20:29:47	@adamgreig	but afaik discourse doesn't really have 'sub forums'
+2018-08-28 20:30:15	awygle	I have to run so I'll just say quickly that regarding voting protocol I very much want a way to passively abstain from things I don't care about one way or the other.
+2018-08-28 20:30:32	@ithinuel	are internals.rust-lang.org and http://users.rust-lang.org/ two different instances ?
+2018-08-28 20:30:34	~japaric	can we move forward with an RFC that's focused on determining the how to implement this before mergingi it?
+2018-08-28 20:30:37	thenewwazoo	to vote "present"?
+2018-08-28 20:30:49	~japaric	ithinuel: yes, they are. You need diff credentials to access each one
+2018-08-28 20:31:12	@adamgreig	awygle: so you'd like for your not-voting to not also count as specifically abstaining wrt majorities?
+2018-08-28 20:31:18	@adamgreig	that was phrased terribly
+2018-08-28 20:31:30	@adamgreig	I mean, you don't want to have to vote on things just because not voting counts against them getting enough votes?
+2018-08-28 20:32:05	~japaric	(previous comment, "can we move forward", was re:forum)
+2018-08-28 20:32:06	thenewwazoo	that sounds like 'aye', 'nay', and 'present' votes where quorum is attained but a vote doesn't count in the tally
+2018-08-28 20:32:33	@adamgreig	sorry yes let's not jump ahead
+2018-08-28 20:32:44	thenewwazoo	would a category in users.rust-lang.org be appropriate?
+2018-08-28 20:33:16	thenewwazoo	along with a focused "hey let's close this issue/move this side-bar discussion over there" in open issues?
+2018-08-28 20:33:34	~japaric	maybe? you could do a test run for a few weeks to see how that works
+2018-08-28 20:33:37	@adamgreig	by default people see every thread and atm there are no categories for any other wg, right?
+2018-08-28 20:33:38	thenewwazoo	I worry about visibility there
+2018-08-28 20:33:51	thenewwazoo	adamgreig: it appears that way, yes
+2018-08-28 20:33:58	~japaric	though I imagine it would be hard to migrate the discussion had during the test run to some instance that's not discourse
+2018-08-28 20:34:14	thenewwazoo	yeah, losing history would be a definite concern
+2018-08-28 20:34:43	ryankurte	ooh, I like that for zero maintenance.
+2018-08-28 20:35:00	~japaric	ryankurte: using u.r-l.o you mean?
+2018-08-28 20:35:07	hannobraun	I think using existing forums is a no-go. Too hard to follow for those interested, too much noise for those not interested.
+2018-08-28 20:35:11	ryankurte	users.rust.com
+2018-08-28 20:35:17	ryankurte	does losing history matter if a) it'll still be there, just not where we want and b) we're super clear about it being an experiment
+2018-08-28 20:36:03	ryankurte	Uhh. users.rust-lang.org
+2018-08-28 20:36:07	ryankurte	I mean
+2018-08-28 20:36:21	~japaric	(u.r-l.o == users.rust-lang.org)
+2018-08-28 20:36:28	ryankurte	ahhhhhhh
+2018-08-28 20:36:51	ryankurte	Right yeah, sorry. I was frantically searching for what option I had missed 🤣
+2018-08-28 20:36:58	@adamgreig	i'm also lukewarm on using u.r-l.o due to the noise
+2018-08-28 20:37:14	~japaric	could we boost visibility by posting links to the threads on the newsletters?
+2018-08-28 20:37:16	@adamgreig	I don't know what the overhead of running another instance is, maybe r-l can host another besides users adn internals for embedded?
+2018-08-28 20:37:33	@adamgreig	I also don't know how much faff it then becomes to moderate and maintain...
+2018-08-28 20:37:45	jamesmunns	japaric was going to look into it, a hosted instance costs $100/mo
+2018-08-28 20:37:50	@adamgreig	japaric: that could work, and i guess you can somehow tag embedded threads
+2018-08-28 20:38:17	thenewwazoo	yeah, it looks like an embedded category is the canonical solution there
+2018-08-28 20:38:56	ryankurte	Anything that doesn't require us running it definitely has my vote, but, if we want to try one out I can probably spin up an instance / that'd be a goo segue to starting the ops team.
+2018-08-28 20:39:00	~japaric	I asked someone (re: discourse instance for the WG) on the Rust team but no answer yet; I think they are on PTO (vacation) right now. I'll try someone else.
+2018-08-28 20:39:28	@adamgreig	it sounds like we have good support for some kind of forum, just hard to work out the exact details
+2018-08-28 20:39:31	thenewwazoo	k, should we table this until we hear back from a u.r-l.o owner and/or discourse?
+2018-08-28 20:39:46	@adamgreig	+1
+2018-08-28 20:39:47	ryankurte	+1
+2018-08-28 20:39:56	@korken89	+1
+2018-08-28 20:39:59	cr1901	+1
+2018-08-28 20:40:02	~japaric	sgtm
+2018-08-28 20:40:10	 *	thenewwazoo nods contentedly
+2018-08-28 20:40:18	hannobraun	+1 for tabling
+2018-08-28 20:40:24	@adamgreig	that issue has been in the backlog for how long now thenewwazoo? :P
+2018-08-28 20:40:38	thenewwazoo	hahaha yeah, a while, but that's fine
+2018-08-28 20:40:50	~japaric	can someone add a comment to https://github.com/rust-embedded/wg/issues/148 mentioning the use case and what we are waiting on?
+2018-08-28 20:40:58	thenewwazoo	I'm still over here building my own shit according to my own needs regardless :D
+2018-08-28 20:41:15	thenewwazoo	I'll add that note
+2018-08-28 20:41:23	~japaric	thenewwazoo: thanks
+2018-08-28 20:41:32	~japaric	ok, next issue to discuss
+2018-08-28 20:41:42	~japaric	How to get more contributors to help out with "Help wanted" issues?
+2018-08-28 20:41:59	~japaric	we have 9 open help wanted issues assigned to the RC1 milestones
+2018-08-28 20:42:11	~japaric	they have been open for weeks but no one has volunteer
+2018-08-28 20:42:15	@therealprof	I think first we need to attract more people to Rust.
+2018-08-28 20:42:38	~japaric	Since last week I have been posting a link to these issues on twitter and discord
+2018-08-28 20:42:48	@therealprof	I was hoping the showcase would address that.
+2018-08-28 20:42:54	thenewwazoo	we could surface a "if you're looking to get started, check out our Help Wanted issues" somewhere high-profile
+2018-08-28 20:43:02	thenewwazoo	if such a thing isn't already done
+2018-08-28 20:43:10	@adamgreig	that's pretty much what's been posted on twitter etc
+2018-08-28 20:43:12	~japaric	we had one new contributor during that week
+2018-08-28 20:43:24	Lumpio-	I imagine embedded people are harder to win over because there's so much pre-existing device specific stuff
+2018-08-28 20:43:24	~japaric	thenewwazoo: it's also covered in the README of the wg repo
+2018-08-28 20:43:58	thenewwazoo	I feel like that readme is more relevant to people who want to get involved in the administration, and less in the coding, but maybe I'm wrong?
+2018-08-28 20:44:13	thenewwazoo	I'm thinking like somewhere in the emb-hal docs, or in cortex-m-qs?
+2018-08-28 20:44:50	@adamgreig	it might be worth putting a shoutout in the c-m-qs readme
+2018-08-28 20:44:58	@adamgreig	since presumably a lot of new embedded people will start near that
+2018-08-28 20:45:26	thenewwazoo	yeah, that's my goal
+2018-08-28 20:45:40	@adamgreig	(I feel like fewer new people will be at embedded-hal since it tends to be people developing drivers?)
+2018-08-28 20:45:55	cr1901	Also not a good first project IME
+2018-08-28 20:46:03	 *	cr1901 's experience not typical
+2018-08-28 20:46:10	@therealprof	I feel the main issue here is that we're still operating at a advanced to expert level in embedded Rust. We need to lure in the makers and tinkerers to gain publicity and visibility in the public.
+2018-08-28 20:46:11	~japaric	alright, I'll add a shootout to the c-m-qs readme; anywhere else this should go?
+2018-08-28 20:46:29	thenewwazoo	I dunno, my first project was building a hal from scratch (stm32l4x6) and it went pretty okay
+2018-08-28 20:46:38	thenewwazoo	lots of c&p from stm32f103
+2018-08-28 20:46:45	cr1901	I couldn't get past the async stuff
+2018-08-28 20:46:46	@adamgreig	keeping up the twitter stuff seems good too
+2018-08-28 20:46:54	@adamgreig	especially with @rustlang RTing
+2018-08-28 20:47:00	thenewwazoo	^ +1
+2018-08-28 20:47:20	jamesmunns	They RT most of the stuff I tag them in :)
+2018-08-28 20:47:25	@adamgreig	the recent embedded rust postcards and other conf stuff will hopefully help too and all pointed people in the vague direction of help wanted
+2018-08-28 20:49:15	~japaric	ok, I'll also continue with the tweets
+2018-08-28 20:49:17	@therealprof	I lured into two people to build their project in Rust but that was only possible because I produced a big pile of code for them. I can't do that always and for everyone. ;)
+2018-08-28 20:49:18	jamesmunns	How does the upstream rust project/other wgs handle help wanted?
+2018-08-28 20:49:54	ryankurte	Maybe we could re-broadcast via there and lure already rust people to the dark side of embedded?
+2018-08-28 20:50:26	~japaric	jamesmunns: hmm, issues tagged "Help wanted" are probably enough for rust-lang/rust since it's high traffic
+2018-08-28 20:50:42	~japaric	the other WGs I'm not sure; I have seen tweets but idk if they do anything else
+2018-08-28 20:50:51	thenewwazoo	maybe a help-wanted tagged issue in rust-lang/rust with a pointer to emb? :D
+2018-08-28 20:51:11	thenewwazoo	"Hey, help is wanted over there too!" [Help Wanted]
+2018-08-28 20:51:11	@adamgreig	an issue that we only close once we've finished embedded on rust? :P
+2018-08-28 20:51:23	thenewwazoo	:D
+2018-08-28 20:51:37	@therealprof	Finish. O_O
+2018-08-28 20:51:44	~japaric	ok, thanks for the input; let's move to the next issue before we are out of time
+2018-08-28 20:52:14	~japaric	voting is slow, apparently. Thoughts?
+2018-08-28 20:52:15	@adamgreig	so my suggestion of reducing the vote count required as time goes by got a bunch of thumbs up on github
+2018-08-28 20:52:27	~japaric	adamgreig: so like exponential backoff?
+2018-08-28 20:52:34	@therealprof	:-D
+2018-08-28 20:52:37	@adamgreig	essentially
+2018-08-28 20:52:49	@adamgreig	I mean I think you'd want to cap it somewhere so you can't pass an rfc with one vote
+2018-08-28 20:53:08	@adamgreig	it might look more like the fcp thing though
+2018-08-28 20:53:38	@adamgreig	well- my original suggestion was you go from 50% required to 33% required after a week, and then maybe 25% required after that
+2018-08-28 20:53:47	~japaric	by fcp thing you mean the condition that requires at least 3 people to approve?
+2018-08-28 20:54:01	@adamgreig	but perhaps a similar suggestion is after a week of only positive votes (and yea maybe some small fixed number required) you enter fcp for another week and then accept
+2018-08-28 20:54:19	@adamgreig	if you can do something that gets out of requiring a number of votes which scales with the size of the wg, you break the scaling issue
+2018-08-28 20:54:30	@adamgreig	and after 2+ weeks you can hopefully assume anyone who objects has had a chance to see it and raise concerns
+2018-08-28 20:54:57	@adamgreig	my other point is quicker I think: should the person suggesting an rfc get to vote on it?
+2018-08-28 20:55:04	@adamgreig	I could cast the deciding vote on showcase right now for instance
+2018-08-28 20:55:12	thenewwazoo	what about +1, -1,  for "tada" to speed reaching quorum?
+2018-08-28 20:55:32	@adamgreig	I don't think the time taken to click 'approve' on github issue is the problem?
+2018-08-28 20:55:37	thenewwazoo	er, +1, -1, and "tada" for "present"
+2018-08-28 20:55:49	hannobraun	I likt all of adamgreig's suggestions.
+2018-08-28 20:55:54	jamesmunns	Yeah, the voting itself isn't hard, its wrangling people
+2018-08-28 20:55:57	@adamgreig	yea
+2018-08-28 20:56:07	@ithinuel	adamgreig: about your other point, I guess that would make sense only if the person suggesting an RFC could disagree with it
+2018-08-28 20:56:10	@adamgreig	and mostly I think that's because there will always be a bunch of issues that a lot of the wg are indifferent to
+2018-08-28 20:56:23	@adamgreig	ithinuel: well it's more that if they're suggesting an rfc they presumably do agree, so at least all rfcs get one vote!
+2018-08-28 20:56:31	jamesmunns	Also allowing for people having time in life, or even just noticing a call to vote among all of the other email notifications out there
+2018-08-28 20:56:33	@adamgreig	but you don't have to be in the wg to suggest an rfc
+2018-08-28 20:57:14	@adamgreig	at the moment I've noticed people haven't voted on their own RFCs, which I guess is the same thing as how you wouldn't approve your own PR (which of course I agree with)
+2018-08-28 20:57:23	@adamgreig	but for voting on RFCs it seems like the proposer should still get a vote
+2018-08-28 20:57:35	@adamgreig	and nothing in our operating policy seems to prevent it either
+2018-08-28 20:57:46	@adamgreig	the majority doesn't say "a majority excluding proposer"
+2018-08-28 20:57:53	jamesmunns	I have to go, talk to you all later!
+2018-08-28 20:57:58	@adamgreig	o/
+2018-08-28 20:58:29	@adamgreig	just to sneak it into the meeting: you can have functions returning ! in stable rust, I don't think that last item is a problem at all
+2018-08-28 20:58:33	cr1901	tada for present... cute
+2018-08-28 20:58:33	hannobraun	bye James
+2018-08-28 20:59:39	posborne	I would be in favor of seeing <50% be required; I like the FCP idea.  I definitely miss stuff in the sea of GH notifications often.
+2018-08-28 20:59:40	thenewwazoo	tada was the closest to a neutral emoji
+2018-08-28 20:59:50	@adamgreig	it sounds like perhaps the voting thing wants a short rfc to propose changing voting to either a reduced-majority-required or a FCP-style thing (my preference, on balance)
+2018-08-28 21:00:01	@adamgreig	and then we just need to get that approved :P
+2018-08-28 21:00:31	~japaric	adamgreig: could you make such RFC?
+2018-08-28 21:00:35	~japaric	we are out of time now
+2018-08-28 21:00:37	@adamgreig	hmm
+2018-08-28 21:00:39	@adamgreig	yes I think so
+2018-08-28 21:00:42	@adamgreig	if I do it tonight :P
+2018-08-28 21:00:49	~japaric	adamgreig: thanks!
+2018-08-28 21:01:02	~japaric	otherwise we can cont discussing this next week
+2018-08-28 21:01:18	~japaric	Thank you all for attending! See you next week
