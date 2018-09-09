@@ -126,6 +126,25 @@ WG.
 [Rust teams]: https://www.rust-lang.org/en-US/team.html
 [voting majority]: https://github.com/rust-lang-nursery/embedded-wg/blob/master/rfcs/0136-teams.md#voting-majority
 
+
+### The Cortex-A team
+
+The Cortex-A team develops and maintains the core of the Cortex-A crate ecosystem.
+
+#### Members
+
+- [@andre-richter]
+- [@raw-bin]
+- [@wizofe]
+
+#### Projects
+
+Projects maintained by this team.
+
+- `cortex-a`
+- `register-rs`
+- `rust-raspi3-tutorial`
+
 ### The Cortex-M team
 
 The Cortex-M team develops and maintains the core of the Cortex-M crate ecosystem.
@@ -341,10 +360,12 @@ https://mozilla.logbot.info/rust-embedded
 [@paoloteti]: https://github.com/paoloteti
 [@pftbest]: https://github.com/pftbest
 [@posborne]: https://github.com/posborne
+[@raw-bin]: https://github.com/raw-bin
 [@ryankurte]: https://github.com/ryankurte
 [@sekineh]: https://github.com/sekineh
 [@thejpster]: https://github.com/thejpster
 [@therealprof]: https://github.com/therealprof
+[@wizofe]: https://github.com/wizofe
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
