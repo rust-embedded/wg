@@ -44,11 +44,12 @@ for two weeks. There must still be zero unresolved concerns; but only 33% of
 the members need to approve for a proposal to be accepted.
 
 After those two weeks have passed (three weeks in total), _any_ number of
-approvals will permit a vote to be accepted, so long as there are no
-unresolved concerns. A member is explicitly permitted to raise a concern
-that there are not sufficient votes or an issue has not received sufficient
-attention and thereby block it from being accepted until that concern is
-addressed.
+approvals will permit a vote to be accepted, so long as there are no unresolved
+concerns. A member is explicitly permitted to raise a concern that there are
+not sufficient approvals or an issue has not received sufficient attention and
+thereby block it from being accepted until that concern is addressed. An
+exception is made if the only approval is from the proposer, in which case
+one further approval will be required.
 
 ## Notifying Members
 
@@ -61,6 +62,12 @@ By notifying members of outstanding votes each week, it is hoped that every
 member will have sufficient time to consider whether they have concerns over
 a specific vote. If the full three weeks elapses with no concerns raised,
 we conclude no members have concerns.
+
+## Self Voting
+
+We clarify that members may approve their own proposals in order to help reach
+the required majority, but such votes will not be sufficient alone to accept a
+proposal.
 
 # Alternatives
 
@@ -82,3 +89,8 @@ We could increase the two-week 33% period to three weeks or longer.
 
 We could omit the final stage where any number of approvals accepts a vote,
 always requiring at least the 33% (or 25%) majority.
+
+## No Self Voting
+
+At the moment the voting majority rules implicitly permit self voting. We could
+explicitly prohibit this instead.
