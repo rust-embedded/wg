@@ -224,6 +224,21 @@ Projects maintained by this team
 - [`msp430-rt`]
 - [`msp430`]
 
+### The ops team
+
+The ops team manages our domains, DNS records, e-mail aliases, etc.
+
+#### Members
+
+- [@nastevens]
+- [@ryankurte]
+
+#### Projects
+
+Projects maintained by this team
+
+- [`rust-embedded-provisioning`]
+
 ### The RISCV team
 
 The RISCV team develops and maintains the core of the RISCV crate ecosystem.
@@ -371,6 +386,7 @@ https://mozilla.logbot.info/rust-embedded
 [`riscv-rt`]: https://github.com/riscv-rust/riscv-rt
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/riscv-rust/riscv
+[`rust-embedded-provisioning`]: https://github.com/nastevens/rust-embedded-provisioning
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
 [`svd2rust`]: https://github.com/rust-embedded/svd2rust
 [`sysfs-gpio`]: https://github.com/rust-embedded/rust-sysfs-gpio
