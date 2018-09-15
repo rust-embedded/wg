@@ -1,0 +1,153 @@
+2018-09-11 20:07:17	~japaric	ok, let's start this meeting
+2018-09-11 20:07:21	Astro	during the past few days rustc nightly hangs indefinitely compiling cortex-m-rt; does anyone experience something similar?
+2018-09-11 20:07:37	@adamgreig	Astro: https://github.com/rust-embedded/cortex-m-rt/issues/117
+2018-09-11 20:07:41	Astro	thx
+2018-09-11 20:07:48	@adamgreig	(it's rustc and fixed in upcoming nightly)
+2018-09-11 20:08:08	~japaric	first thing is to remind you that there are two open RFCs waiting for review
+2018-09-11 20:08:13	~japaric	they are linked in the paper
+2018-09-11 20:08:23	~japaric	the voting majority one and the Cortex-A team one
+2018-09-11 20:08:32	 *	japaric hasn't had a chance at look at either
+2018-09-11 20:08:58	~japaric	next we move onto the milestone issues that we didn't cover last week
+2018-09-11 20:09:02	hannobraun	Cortex-A isn't awaiting review, if I understand correctly. It's more like a draft.
+2018-09-11 20:09:07	~japaric	jamesmunns: around?
+2018-09-11 20:09:27	hannobraun	Well, not awaiting approval, I mean
+2018-09-11 20:10:08	~japaric	hannobraun: ack
+2018-09-11 20:10:26	~japaric	let's skip issue 1 since jamesmunns is not around
+2018-09-11 20:10:38	~japaric	issue 2 I'll tackle this week
+2018-09-11 20:11:09	~japaric	issue 3 and 4 shouldn't be too much work if anyone wants to fix the reported issues
+2018-09-11 20:11:26	~japaric	otherwise I'll try to get to them this week
+2018-09-11 20:12:10	~japaric	for issue 5 we have a PR that turns cortex-m-quickstart into a cargo-generate template
+2018-09-11 20:12:20	@therealprof	(y)
+2018-09-11 20:12:27	~japaric	I'm not sure what's the status for the other arches
+2018-09-11 20:12:36	~japaric	I'll ping the other teams on the issue
+2018-09-11 20:13:14	~japaric	issues 6 and 7 are about updating the DNS
+2018-09-11 20:13:16	awygle	i feel confident we don't have any for msp430 at the moment
+2018-09-11 20:13:34	~japaric	which should hopefully be fixed this week
+2018-09-11 20:14:03	~japaric	the DNS upgrade should happen this week and we'll probably open a formal PR to create an ops team
+2018-09-11 20:14:17	~japaric	more details in https://github.com/rust-embedded/wg/issues/156
+2018-09-11 20:14:46	~japaric	the last item in the backlog is "communicating absences"
+2018-09-11 20:14:58	~japaric	this is an idea I got from andre-ritcher
+2018-09-11 20:15:16	~japaric	the proposal is to share information about the absences of team members in e.g. a private google calendar
+2018-09-11 20:15:48	~japaric	this information could be used to reduce the voting majority threshold since not all members are around
+2018-09-11 20:16:21	@adamgreig	hmm
+2018-09-11 20:16:24	~japaric	and in general it's good to enough if people are not going to be around for extended periods of time, I guess
+2018-09-11 20:16:39	@adamgreig	i was imagining the voting majority threshold being to adapt to not all members wanting to vote on an issue rather than not being present to do so
+2018-09-11 20:16:40	~japaric	thoughts on having something of this sort?
+2018-09-11 20:16:45	awygle	i see this as interesting but not enormously useful
+2018-09-11 20:16:54	@adamgreig	if anything i'd want to postpone major votes if someone's been away a bunch and hasn't had time to look at something
+2018-09-11 20:17:05	awygle	probably most useful for japaric and other "core team" members (idk if we have a formal notion of that or not)
+2018-09-11 20:17:11	hannobraun	adamgreig: +1
+2018-09-11 20:17:43	@therealprof	Not a big fan of a private absence calendar.
+2018-09-11 20:18:09	@korken89	I get a feeling that this can easily be forgotten
+2018-09-11 20:18:41	@adamgreig	depending on how we feel about information being semi-public we could just have apologies in issue threads for upcoming meetings
+2018-09-11 20:18:54	@adamgreig	but that's both public and still of somewhat questionably utility
+2018-09-11 20:20:38	~japaric	ok, it seems that the idea doesn't have much approval. We can revisit it later, perhaps when andre-richter is around
+2018-09-11 20:21:00	@korken89	:+1
+2018-09-11 20:21:18	~japaric	ok, let's resume triaging milestone issues
+2018-09-11 20:21:49	~japaric	let's start with issue 9
+2018-09-11 20:22:00	~japaric	there was some progress last week: https://github.com/rust-embedded/book/pull/20
+2018-09-11 20:22:52	~japaric	I have written content for this section that covers writing an embedded program that runs on QEMU; it then covers how to run the program on hardware
+2018-09-11 20:23:04	@theJPster	sorry I'm late. Got in late, parcels to collect, dinner to cook...
+2018-09-11 20:23:37	 *	japaric waves theJPster
+2018-09-11 20:23:42	 *	theJPster can't find the etherpad
+2018-09-11 20:23:49	~japaric	etherpad is down
+2018-09-11 20:23:52	@theJPster	:(
+2018-09-11 20:23:55	~japaric	theJPster: https://paper.dropbox.com/doc/Embedded-WG--AMhRQnCqT0_UrRKlO6PGPW7vAg-5pdv734N8KpxHFMJijuoL
+2018-09-11 20:24:32	~japaric	theJPster: currently discussing issue 9
+2018-09-11 20:25:05	~japaric	I hope that land that PR this week after the beta comes out
+2018-09-11 20:25:30	~japaric	oh, and I forgot to mention but panic_handler will be available in the beta that comes out this week
+2018-09-11 20:25:45	~japaric	so you should be able to follow the book using 1.30-beta
+2018-09-11 20:26:10	@theJPster	yay
+2018-09-11 20:26:30	~japaric	I'll also be updating discovery and the embedonomicon this week to work with 1.30-beta
+2018-09-11 20:26:51	@korken89	Awesome!
+2018-09-11 20:26:56	@adamgreig	+1, yay beta
+2018-09-11 20:28:04	@adamgreig	as i mentioned last meeting i expect to have some time this week to have a crack at (some of) concurrency/tips for C/integration with C chapters, though as before if anyone is keen or interested please shout out and take them
+2018-09-11 20:28:05	@therealprof	I absolutely love the new #[entry] and #[exception] macros.
+2018-09-11 20:28:41	@adamgreig	especially shout if you're interested in doing concurrency as it's probably my least comfortable of the topics
+2018-09-11 20:28:42	~japaric	re issue 9 / section 2. If you have more suggestions about what else to cover leave comments in https://github.com/rust-embedded/book/issues/4
+2018-09-11 20:29:36	~japaric	I think that's it for issue 9
+2018-09-11 20:29:38	@therealprof	I've converted both my stm32f042 and nrf51 series of crates to use the latest cortex-m-rt stuff. I'm hoping we can land the #[interrupt] macro as well so we have a complete and ergonomic story.
+2018-09-11 20:30:05	~japaric	picking back up issue 8, which I skipped
+2018-09-11 20:30:18	~japaric	the setup instructions need to be updated
+2018-09-11 20:30:33	~japaric	because of the new PR (#20)
+2018-09-11 20:30:47	~japaric	they have to cover installing cargo-genarate, using the beta, remove gcc, etc.
+2018-09-11 20:31:12	@theJPster	:)
+2018-09-11 20:31:35	@theJPster	can we get cargo-generate pre-packaged in some way? cargo-foo things are a bit of an ass to build
+2018-09-11 20:31:41	~japaric	I guess I can do that since the requisites are in my head
+2018-09-11 20:31:55	@adamgreig	it's sort of a shame cargo-generate requires openssl/cmake be installed i guess
+2018-09-11 20:32:01	~japaric	theJPster: last time I head, the plan was to ship cargo-generate as a built-in Cargo command
+2018-09-11 20:32:15	@adamgreig	that'd be nice
+2018-09-11 20:32:29	~japaric	I have also requested to have cargo-add shipped as a built-in Cargo command
+2018-09-11 20:33:08	~japaric	cargo-add issue: https://github.com/rust-lang/cargo/issues/5586 if you want make noise
+2018-09-11 20:33:43	~japaric	I'll check with the cargo team to see if built-in cargo-generate is going to happen
+2018-09-11 20:34:53	~japaric	other than that, issue 8 also has an open PR. I think there's still other stuff to cover in it
+2018-09-11 20:35:36	~japaric	I think that's all for issue 8
+2018-09-11 20:36:23	~japaric	issue 10, we have to decide what else to cover
+2018-09-11 20:36:49	~japaric	I asked on the thread if it would make sense to cover &'static mut T, which is the no-allocator version of Box<T>
+2018-09-11 20:37:09	~japaric	no answer yet, so I'll check back later
+2018-09-11 20:37:16	@therealprof	Re: cargo add-ins. cargo-bloat was recently broken for embedded by a cargo dependency update. Swift reaction of the developer after the report fixed the problem by removing the cargo dependency and another update also made it work for embedded again.
+2018-09-11 20:38:46	~japaric	ok, moving on. section 11 saw no progress last week
+2018-09-11 20:39:10	~japaric	I won't have time to work on that this week
+2018-09-11 20:39:30	~japaric	but adamgreig might be able to do some work this week
+2018-09-11 20:39:51	@therealprof	It's been hard to keep up with you last week. ;)
+2018-09-11 20:40:42	~japaric	therealprof: I'm busy this week so you'll have an easier time
+2018-09-11 20:41:22	~japaric	ok, next: issues 12 and 13 are waiting for a PR to be reviewed.
+2018-09-11 20:41:35	~japaric	sadly, haven't had a chance to look at it
+2018-09-11 20:42:08	@korken89	Same here, I will start helping a lot more actively after the upcoming Monday (heavy deadlines right now)
+2018-09-11 20:42:19	~japaric	probably won't have time this week either since I'm prioritizing writing / updating books
+2018-09-11 20:42:33	~japaric	so it'd be nice if someone else could take a look
+2018-09-11 20:43:08	@therealprof	Where's the PR for 12 and 13?
+2018-09-11 20:43:27	~japaric	https://github.com/rust-embedded/book/pull/15
+2018-09-11 20:43:29	~japaric	therealprof: ^
+2018-09-11 20:44:04	@therealprof	I'll review it later today.
+2018-09-11 20:44:20	~japaric	therealprof: +1
+2018-09-11 20:44:22	@korken89	Thanks!
+2018-09-11 20:44:37	@therealprof	Watched that talk from jamesmunns the other day. That was really a good one.
+2018-09-11 20:45:25	~japaric	next: issues 14 and 15 saw no progress last week
+2018-09-11 20:45:51	~japaric	adamgreig and somewhere else volunteered to write stuff in the coming weeks, iirc
+2018-09-11 20:46:09	@korken89	I was one of the ones volunteering
+2018-09-11 20:46:26	~japaric	korken89: for both?
+2018-09-11 20:46:35	@adamgreig	yep, I should have some time this week to have a go, was going to be looking at the two c sections first and potentially then concurrency but if aynone else wants to do any then please do
+2018-09-11 20:46:35	 *	japaric looks at last week minutes
+2018-09-11 20:46:38	@korken89	14
+2018-09-11 20:46:45	@korken89	(After Monday :) )
+2018-09-11 20:46:53	@adamgreig	korken89: i'll start with 15 if you wanna take 14 then :P
+2018-09-11 20:47:11	@korken89	adamgreig: Sure!
+2018-09-11 20:47:17	@adamgreig	though 'tips' is probably quite amenable to a bunch of people contributing
+2018-09-11 20:47:45	@korken89	s/Tips/Guidelines
+2018-09-11 20:47:53	@korken89	?
+2018-09-11 20:48:02	@adamgreig	I guess it will be a mix of both
+2018-09-11 20:48:07	@korken89	Probably
+2018-09-11 20:48:12	~japaric	members.par_iter().map(write_tips)
+2018-09-11 20:48:22	@therealprof	:-D
+2018-09-11 20:48:22	@korken89	We start writing and see what happens :)
+2018-09-11 20:48:26	@adamgreig	I expect some amount of "you're used to doing this in C, but in rust you should instead do this because of this"
+2018-09-11 20:48:34	@therealprof	You forgot to collect. ;)
+2018-09-11 20:48:51	~japaric	s/map/for_each/ probably
+2018-09-11 20:49:47	~japaric	ok, issue 17
+2018-09-11 20:50:10	@korken89	Was there a decision to move it to an ish-WiKi?
+2018-09-11 20:50:10	~japaric	the other book about debugging
+2018-09-11 20:50:17	~japaric	https://github.com/rust-embedded/new-book
+2018-09-11 20:50:22	~japaric	it now has a repo ^
+2018-09-11 20:50:41	@korken89	Ahh
+2018-09-11 20:50:48	~japaric	if you want to be a collab to that repo ping me
+2018-09-11 20:51:26	@korken89	I will probably help there
+2018-09-11 20:51:38	@korken89	Ah I was already there, nvm :)
+2018-09-11 20:51:40	~japaric	also it needs a better name
+2018-09-11 20:52:22	~japaric	but I guess you can bikeshed a name in a GH issue
+2018-09-11 20:52:41	@korken89	Rust
+2018-09-11 20:52:43	~japaric	last issue is the embedded rust showcase
+2018-09-11 20:53:05	~japaric	anyone wants to volunteer to make it happen?
+2018-09-11 20:54:28	~japaric	I'll take that as a not yet
+2018-09-11 20:54:43	~japaric	ok, any (short) news that you want to share in the last 5 mins?
+2018-09-11 20:55:55	@theJPster	I'm at Retro Computer Festival this weekend
+2018-09-11 20:56:08	@theJPster	https://twitter.com/therealjpster/status/1039579088292401160
+2018-09-11 20:56:09	@therealprof	Guess I fired all my shots too early. ;)
+2018-09-11 20:56:13	@theJPster	I might take orders for shirts :)
+2018-09-11 20:56:33	~japaric	theJPster: cool!
+2018-09-11 20:56:33	@theJPster	Also, I have like 1,000 cards with all the embedded URLs on the back
+2018-09-11 20:56:38	@theJPster	so hit me up if you want some
+2018-09-11 20:57:30	@theJPster	(there's two of that pack you see on the edge of the box)
+2018-09-11 20:57:49	@adamgreig	aw, I'd come along if I was still in Cambridge. enjoy
+2018-09-11 20:59:10	@korken89	Sorry, I have to leave - thanks for today all!
+2018-09-11 20:59:36	~japaric	ok, that's all for this meeting. Thank you all for attending. See you next week!
