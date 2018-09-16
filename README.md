@@ -134,6 +134,7 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 #### Members
 
 - [@andre-richter]
+- [@parched]
 - [@raw-bin]
 - [@wizofe]
 
@@ -141,9 +142,7 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 
 Projects maintained by this team.
 
-- `cortex-a`
-- `register-rs`
-- `rust-raspi3-tutorial`
+- To be updated soon.
 
 ### The Cortex-M team
 
@@ -357,6 +356,7 @@ https://mozilla.logbot.info/rust-embedded
 [@korken89]: https://github.com/korken89
 [@nastevens]: https://github.com/nastevens
 [@nerdyvaishali]: https://github.com/nerdyvaishali
+[@parched]: https://github.com/parched
 [@paoloteti]: https://github.com/paoloteti
 [@pftbest]: https://github.com/pftbest
 [@posborne]: https://github.com/posborne
