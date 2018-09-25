@@ -9,6 +9,12 @@ a great choice for embedded development.
 
 [issue tracker]: https://github.com/rust-lang-nursery/embedded-wg/issues
 
+**Want to get started with embedded development with Rust?** Check out our
+[embedded Rust book][book] and the rest of our [bookshelf].
+
+[book]: https://rust-embedded.github.io/bookshelf/book
+[bookshelf]: https://rust-embedded.github.io/bookshelf
+
 ## Vision
 
 What is it that we really want? At a broad level:
@@ -31,12 +37,8 @@ At a high level we have two main tasks:
   roadmap aligns with the needs of its users. You can find all the crates we maintain in the
   [Organization](#organization) section.
 
-- We develop and curate resources about embedded Rust development. For example, see the [books] we
-  have [written] and the [curated list of embedded crates][awesome] we maintain.
-
-[books]: https://rust-embedded.github.io/discovery
-[written]: https://rust-embedded.github.io/embedonomicon
-[awesome]: https://github.com/rust-embedded/awesome-embedded-rust
+- We develop and curate resources about embedded Rust development. Check our
+  [bookshelf]!
 
 - We maintain and moderate the venues the embedded community uses to discuss. That includes this
   coordination repository and our IRC channel (#rust-embedded @ irc.mozilla.org).
