@@ -73,6 +73,17 @@ us grow the embedded crates.io ecosystem!
 
 [wd]: https://github.com/rust-lang-nursery/embedded-wg/issues/39
 
+### [Embedded category in the user forum][ef]
+
+As an experiment the [Rust lang user forum][urlo] has gained a new `embedded` category.
+
+This is meant as a friendly exchange for anyone interested in embedded topics with Rust.
+
+So if you want to discuss ideas, problems or solutions please feel free to chime in on existing topics or create a new one!
+
+[urlo]: https://users.rust-lang.org
+[ef]: https://users.rust-lang.org/c/embedded
+
 ## Help wanted!
 
 [These issues need your help!][hw]
