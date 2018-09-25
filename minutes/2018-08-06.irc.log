@@ -1,0 +1,208 @@
+2018-08-06 11:04:23	~japaric	ok, let's start this meeting
+2018-08-06 11:04:33	~japaric	again, the agenda is in https://public.etherpad-mozilla.org/p/embedded-wg
+2018-08-06 11:05:06	~japaric	the first item on the agenda was proposed by thejpster a few weeks back but he won't be attending today so let's skip it
+2018-08-06 11:05:07	prof	Helloo!
+2018-08-06 11:05:15	~japaric	prof: o/
+2018-08-06 11:05:26	~japaric	prof: agenda - https://public.etherpad-mozilla.org/p/embedded-wg
+2018-08-06 11:05:48	cr1901	Well since I'm around, I might as well listen :P
+2018-08-06 11:05:49	~japaric	the second item on the agenda was written in the etherpad last week: "Managing operator status on #rust-embedded (currently it's just @japaric)"
+2018-08-06 11:05:57	~japaric	but I'm not sure who wrote it
+2018-08-06 11:06:29	~japaric	in any case we can discuss it
+2018-08-06 11:06:51	lkurusa	i'm in favor of giving OP to leads
+2018-08-06 11:06:57	korken89	I have no strong opinions here
+2018-08-06 11:07:34	~japaric	lkurusa: there will be just the lead (me) and teams after RFC 136
+2018-08-06 11:08:27	~japaric	active, trusted org members should become IRC operators
+2018-08-06 11:08:43	~japaric	I think it may be best to open an issue, cc all the members and see who's interested
+2018-08-06 11:08:46	korken89	What is the current issue with managing the IRC?
+2018-08-06 11:09:03	korken89	japaric: I agree
+2018-08-06 11:09:18	lkurusa	+1
+2018-08-06 11:09:19	~japaric	korken89: not sure, I haven't been too active but I have seen spam bots
+2018-08-06 11:09:38	cr1901	This channel is often low-traffic IME
+2018-08-06 11:09:44	~japaric	not that there's much to be done about those because they post and immediately leave
+2018-08-06 11:10:10	korken89	Ah okey
+2018-08-06 11:10:18	~japaric	ok, let's make an issue then and discuss this on GH first
+2018-08-06 11:10:31	korken89	japaric: +1
+2018-08-06 11:10:43	~japaric	ok, next item is reviewing the open RFCs
+2018-08-06 11:10:54	~japaric	first one is the one about teams https://github.com/rust-lang-nursery/embedded-wg/pull/136
+2018-08-06 11:11:28	~japaric	no concerns raised but there was a question about whether there should be an ops team
+2018-08-06 11:11:52	prof	What would be the job of the ops team?
+2018-08-06 11:12:14	~japaric	prof: manage infra re forums, blog, hosting and the like
+2018-08-06 11:12:17	korken89	prof: "Are we going to have a separate team for infrastructure / ops (looking after domains/DNS/websites/blogs/etc.) or would that fall within the resources team?"
+2018-08-06 11:12:41	~japaric	but we don't have much infra atm; other than some DNS records
+2018-08-06 11:12:58	korken89	It is easy for stuff like this to fall between the cracks when everything gets larger
+2018-08-06 11:13:09	~japaric	I think we can revisit this after we address the communication plan RFC
+2018-08-06 11:13:32	korken89	japaric: Agreed
+2018-08-06 11:13:57	prof	I think we can probably leave the few infrastructure resources to the resources team.
+2018-08-06 11:14:37	~japaric	ok, let's re-evaluate the ops team later
+2018-08-06 11:14:56	prof	(y)
+2018-08-06 11:15:06	~japaric	if there are no other concerns about the teams RFC we can approve it today
+2018-08-06 11:15:28	cr1901	What about AVR? Just curious
+2018-08-06 11:15:37	~japaric	we discussed that rfc extensively last week
+2018-08-06 11:15:47	cr1901	ahh, nevermind
+2018-08-06 11:15:48	~japaric	cr1901: not yet in tree
+2018-08-06 11:16:19	cr1901	oh I see...
+2018-08-06 11:16:36	korken89	It seems that all teams have atleast a core amount of members
+2018-08-06 11:16:41	~japaric	cr1901: and there's an avr-rust org so it's not precisely short staffed like the Cortex-M crates
+2018-08-06 11:17:20	~japaric	let's approve the teams RFC then
+2018-08-06 11:17:23	korken89	I was wondering though, should be put an approximate amount of time we can spend maintaining within the team?
+2018-08-06 11:17:32	cr1901	Fair enough. AVR team seems to do their own thing anyway...
+2018-08-06 11:17:36	~japaric	we also have RFC to create the initial teams
+2018-08-06 11:18:13	~japaric	korken89: you mean the members should report how much time they can invest maintaining or that we should request some weekly amount of time from them?
+2018-08-06 11:18:27	korken89	For those who want to
+2018-08-06 11:18:40	korken89	A detail, but I generally put out fixed time slots during the week for this work so people know when to expect answers
+2018-08-06 11:18:51	~japaric	let's discuss about the RFCs about each team; any concern with the team / crate selection?
+2018-08-06 11:19:07	prof	Not from me.
+2018-08-06 11:19:21	korken89	Looks good for me
+2018-08-06 11:19:21	cr1901	pftbest understands that my involvement right now is basically limited to "make sure code compiles"
+2018-08-06 11:19:36	~japaric	korken89: you mean write down something like office hours?
+2018-08-06 11:19:47	korken89	japaric: exactly
+2018-08-06 11:20:17	~japaric	it sounds fine to me to include that in the README, if the members wants
+2018-08-06 11:20:36	~japaric	korken89: ^
+2018-08-06 11:20:49	korken89	japaric: thanks, we will fix within the team later :)
+2018-08-06 11:20:49	prof	:-D
+2018-08-06 11:21:19	prof	That'll be tricky, some of us are between timezones a lot.
+2018-08-06 11:21:28	~japaric	the teams I have listed in the etherpad are the one whose members have approved
+2018-08-06 11:21:52	~japaric	we are still waiting for the embedded Linux team to answer / approve
+2018-08-06 11:22:15	~japaric	but we can go ahead and create the other teams now
+2018-08-06 11:22:19	jamesmunns	(just got here, re-reading history)
+2018-08-06 11:22:24	~japaric	jamesmunns: o/
+2018-08-06 11:22:32	korken89	jamesmunns: welcome
+2018-08-06 11:23:07	~japaric	as there are no concerns I'll go head and form the 6 teams listed in the etherpad
+2018-08-06 11:23:21	~japaric	and start transfering the repos to the org
+2018-08-06 11:24:41	~japaric	ok, I wrote the next item on the agenda about having a new meeting time
+2018-08-06 11:24:43	jamesmunns	:+1:
+2018-08-06 11:24:46	korken89	japaric: nice!
+2018-08-06 11:24:59	~japaric	I think it would be good to re-evaluate the meeting time now that we have more people involved
+2018-08-06 11:25:25	jamesmunns	Is the plan still to have one meeting? Or are the teams expected to meet on their own, and someone from that team comes to the "big" meeting?
+2018-08-06 11:25:50	~japaric	I will create a GH issue with a doodle link and cc all the org members; we can discuss the specific meeting time next week
+2018-08-06 11:26:30	~japaric	jamesmunns: I think we may want two weekly meetings with compulsory attendance of some teams to one of the meetings
+2018-08-06 11:26:46	korken89	Sounds good
+2018-08-06 11:26:51	jamesmunns	I'm also cool with dropping the hangouts meetings in general. We haven't had one in a while
+2018-08-06 11:26:52	~japaric	e.g. Monday: Cortex-M, resources and tools
+2018-08-06 11:27:48	~japaric	jamesmunns: agree; it's hard to get any video solution working for many people
+2018-08-06 11:28:41	korken89	If there is a meeting that requires hangouts, one specific can be made for that
+2018-08-06 11:28:55	~japaric	ok, I'll put up the doodle and we can discuss details next week
+2018-08-06 11:29:01	~japaric	korken89: agree
+2018-08-06 11:29:58	~japaric	ok, the next item on the agenda is the RFC for a communication plan
+2018-08-06 11:30:06	~japaric	https://github.com/rust-lang-nursery/embedded-wg/issues/148
+2018-08-06 11:30:12	~japaric	jamesmunns: could you lead the discussion?
+2018-08-06 11:30:20	jamesmunns	Sure
+2018-08-06 11:30:36	jamesmunns	We've had a couple methods for communication discussed in the past
+2018-08-06 11:30:47	jamesmunns	I tried to collect most of the ideas into a single RFC for discussion
+2018-08-06 11:31:23	jamesmunns	Issue 148 lists the "what", e.g. what components we could have, like a forum, blog, etc. as well as the "how", or the tooling we would use for that
+2018-08-06 11:32:04	jamesmunns	I'd love to get feedback on what people think of what I've enumerated, e.g. :+1: or :-1:, or if there are any other things we could be doing
+2018-08-06 11:32:16	prof	I was wondering what kind of content you'd be seeing for the blog?
+2018-08-06 11:32:29	prof	Is it open to anyone or only team members?
+2018-08-06 11:32:32	jamesmunns	At the very least, it could be a home for our newsletters every 2 weeks
+2018-08-06 11:32:46	prof	Any specific topics?
+2018-08-06 11:32:48	jamesmunns	I would say anyone could make a PR to share something to that repo
+2018-08-06 11:33:11	jamesmunns	Generally anything related to embedded rust IMO
+2018-08-06 11:33:19	~japaric	jamesmunns: +1 on having a forum; +1 on using discourse because of familiarity and because it *might* be possible to get free hosting in the future -- I know discourse gives free hosting to open source projects; Rust has free hosting iirc
+2018-08-06 11:33:38	jamesmunns	Ah, that would change some of my recommendations :)
+2018-08-06 11:33:51	cr1901	Who would run the blog?
+2018-08-06 11:34:05	jamesmunns	cr1901: resources team, I would suppose
+2018-08-06 11:34:07	~japaric	prof: jamesmunns we'll very likely make announcements for RC1 and RC2 on the blog
+2018-08-06 11:34:38	~japaric	stuff like the announcement about "embedded library development possible on beta" from a while back
+2018-08-06 11:34:47	jamesmunns	Right now our most effective "hey everyone read this" is japaric's twitter, followed by the rustembedded twitter, for things like japaric just mentioned
+2018-08-06 11:34:59	prof	What would be the relationship to the various personal blogs? Would we encourage people to use the official blog instead to get some content?
+2018-08-06 11:35:21	lkurusa	we could host a planet, too, maybe?
+2018-08-06 11:35:25	jamesmunns	I'm happy with guest posts, as long as they are not commercially plugging anything
+2018-08-06 11:35:30	jamesmunns	lkurusa: "planet"?
+2018-08-06 11:35:47	lkurusa	a platform where content is syndicated from people's blogs
+2018-08-06 11:35:48	prof	I
+2018-08-06 11:35:58	lkurusa	see for instance, https://fedoraplanet.org/
+2018-08-06 11:36:09	jamesmunns	bad SSL cert :|
+2018-08-06 11:36:13	~japaric	jamesmunns: a collections of blogs like https://planet.mozilla.org/
+2018-08-06 11:36:43	prof	I'd be +1 for the blog if we can get the content stream going, -1 if we just have one post every 2 week. ;)
+2018-08-06 11:36:43	~japaric	all blog posts appear there I think
+2018-08-06 11:36:43	jamesmunns	Cool, I will check that out. I had not heard of that before
+2018-08-06 11:37:15	jamesmunns	Planet would be good, though we would still need a blog for our newsletters to include it in the stream :)
+2018-08-06 11:37:39	jamesmunns	So it would be blog + planet. But that would probably scale better once we have multiple blogs
+2018-08-06 11:37:45	~japaric	re: post every 2 weeks. We should consider changing the newsletter cadence to weekly now that there will be more teams that can mentor "help wanted" stuff
+2018-08-06 11:38:02	korken89	I think a blog is also a good way to invite a writer, if we stumble over a good project or similar
+2018-08-06 11:38:12	jamesmunns	japaric: :+1:, but I will need to find at least one more pair of hands to help out with it :D
+2018-08-06 11:38:33	~japaric	jamesmunns: :-). Sorry, my hands are full already.
+2018-08-06 11:39:03	jamesmunns	Haha, definitely. I'll follow up with the resources team
+2018-08-06 11:39:08	~japaric	jamesmunns: +1
+2018-08-06 11:39:30	prof	:-D
+2018-08-06 11:40:15	prof	I'm +1 for book and forum, -1 for Wiki.
+2018-08-06 11:40:18	~japaric	korken89: I think good guest posts would be something like "we are using pattern $X in our project $Y; here's how it works"
+2018-08-06 11:40:34	jamesmunns	prof: any reason why?
+2018-08-06 11:41:13	korken89	japaric: Exactly
+2018-08-06 11:41:21	jamesmunns	I was hoping for something like the archwiki, where a lot of the FAQ style content could be captured
+2018-08-06 11:41:25	prof	Yeah, too many sources of information.
+2018-08-06 11:42:00	prof	People can contribute to the books, too.
+2018-08-06 11:42:05	lkurusa	i think the wiki would mostly get abandoned after a while
+2018-08-06 11:42:05	jamesmunns	IMO the books cover all "doesn't change very often, and helps all developers" content
+2018-08-06 11:42:16	lkurusa	the scope of "embedded" is too wide
+2018-08-06 11:42:35	lkurusa	there'd be a few great articles, and a lot of bad articles
+2018-08-06 11:43:02	jamesmunns	I was hoping to capture some of the less-universal knowledge
+2018-08-06 11:43:23	jamesmunns	for example, how to play nice with STM32 clocking when using X Y or Z
+2018-08-06 11:43:43	jamesmunns	that wouldn't go in the book, but could be valuable for multiple developers
+2018-08-06 11:43:51	prof	Yeah, but typically people will ask for help in the forums.
+2018-08-06 11:43:51	jamesmunns	But yeah, curation is hard.
+2018-08-06 11:43:54	~japaric	jamesmunns: I'm a bit concerned about the wiki as well. Good content needs curation and the wiki will in addition need moderation; I'm not sure how good GH wiki tooling in those two aspects. Also GH wiki strike me as something with very low visibility; I never check a GH repo's wiki
+2018-08-06 11:44:18	~japaric	but maybe that's just me :-)
+2018-08-06 11:44:23	jamesmunns	Okay, not married to the idea, just wanted to share what I had in mind :)
+2018-08-06 11:44:30	prof	@japaric fully agree.
+2018-08-06 11:44:38	lkurusa	to be frank, i didn't even realize we wanted to use GH wiki, i always thought it was mediawiki or something similar
+2018-08-06 11:44:45	jamesmunns	Totally happy to drop. We can always revisit at a later date.
+2018-08-06 11:44:51	prof	If needed we can also put up a cookbook.
+2018-08-06 11:45:10	jamesmunns	lkurusa: Github wiki was my personal suggestion, to avoid hosting as much of our own stuff as possible
+2018-08-06 11:45:23	jamesmunns	Due to cost, people willing to maintain it long term, etc.
+2018-08-06 11:45:56	jamesmunns	If we can establish a budget and ops team, I would probably lean towards something else as well.
+2018-08-06 11:46:22	~japaric	re: FAQ, which I mentioned in the RFC thread. I think we could put in the forum as a pinned, locked topic and have content added to it via PRs to a copy hosted in some repo
+2018-08-06 11:47:02	prof	@japaric: +1
+2018-08-06 11:47:34	korken89	japaric: +1
+2018-08-06 11:47:54	~japaric	or we could have the FAQ as its own thing but I think having it on the forum makes it easier for people to run into it when searching for answers via the forum search bar
+2018-08-06 11:48:09	lkurusa	+1
+2018-08-06 11:48:19	cr1901	+1
+2018-08-06 11:48:26	jamesmunns	Does discourse play nice with google indexing?
+2018-08-06 11:48:40	~japaric	jamesmunns: no idea
+2018-08-06 11:48:43	jamesmunns	(not everyone who has a problem will be a forum user on day one)
+2018-08-06 11:49:04	jamesmunns	I don't remember seeing too many searches ending up on a discourse forum, but that might just be a bad observation
+2018-08-06 11:49:46	prof	If there's an interesting topic we could also turn it into a blog article.
+2018-08-06 11:49:56	jamesmunns	(googling seems to show no problem, probably over paranoid :) )
+2018-08-06 11:50:01	~japaric	"photon serial how" first hit is their discourse forum (using google; which is probably biased on my old search queries)
+2018-08-06 11:50:09	~japaric	jamesmunns: ^
+2018-08-06 11:50:18	jamesmunns	Just interested in making sure we have good discoverability :)
+2018-08-06 11:50:43	jamesmunns	Most of that probably comes from making the forum well used, and linked to by other stuff (so it shows up higher on google results)
+2018-08-06 11:51:30	jamesmunns	japaric: :+1:
+2018-08-06 11:51:44	~japaric	less than 10 mins left; could we summarize what seem to have agreement on in the etherpad?
+2018-08-06 11:51:46	jamesmunns	yep, same result from my end
+2018-08-06 11:52:05	jamesmunns	japaric: on it
+2018-08-06 11:52:10	~japaric	jamesmunns: thanks
+2018-08-06 11:52:42	~japaric	other thoughts: +1 on not having comments on blog posts
+2018-08-06 11:52:51	eddyb	awygle: I don't remember anything sadly
+2018-08-06 11:53:55	prof	So -1 to blog commenting? ;)
+2018-08-06 11:54:10	prof	-1 from me as well.
+2018-08-06 11:54:22	jamesmunns	Yeah, if we have a forum or somewhere else for discussion, no need for comments, another thing to moderate
+2018-08-06 11:54:30	cr1901	-1 from me too (I disagree w/ blog comments on principle)
+2018-08-06 11:54:30	prof	That.
+2018-08-06 11:54:54	korken89	japaric: Agree
+2018-08-06 11:55:11	cr1901	You want to discuss the article, link to it from your preferred "social network"
+2018-08-06 11:55:33	~japaric	-1 on having a subreddit; have, recently, heard negative comments about people behavior on r/rust due to seemingly lack of moderation tools (I don't usually read reddit comments; I just check the links)
+2018-08-06 11:55:43	~japaric	-2 on using reddit as a forum :-)
+2018-08-06 11:55:51	prof	:-D
+2018-08-06 11:56:22	jamesmunns	Any 2nd preference if we can't get a hosted discourse for free?
+2018-08-06 11:56:28	~japaric	+1 on using discourse for the forums because of the reasons I mentioned before
+2018-08-06 11:56:48	 *	japaric can't think of any other forum solutions
+2018-08-06 11:57:10	jamesmunns	Hosted is 99$/mo for managed, or $5-$10/mo for self-hosted on a VPS, plus then we need someone/multiple people to handle ops
+2018-08-06 11:57:18	lkurusa	we can come back to that question later
+2018-08-06 11:57:34	jamesmunns	Leave comments on the issue, please :)
+2018-08-06 11:57:36	prof	Let's check if we can discourse for free first before checking alternatives.
+2018-08-06 11:57:48	lkurusa	^
+2018-08-06 11:58:08	jamesmunns	japaric: could you please reach out to whoever offered that from the Rust or Discourse side?
+2018-08-06 11:58:09	~japaric	prof: I'll ask the Rust team about discourse
+2018-08-06 11:58:14	jamesmunns	:+1:
+2018-08-06 11:59:49	~japaric	and we are out of time
+2018-08-06 12:00:04	~japaric	I wanted to discuss RC1 issues but no time left
+2018-08-06 12:00:22	~japaric	I'll cc teams on GH on every issue I have assigned to the RC1
+2018-08-06 12:00:41	prof	(y)
+2018-08-06 12:00:53	~japaric	once we have everything under the rust-embedded org it'll be easier to see all the RC1 issues at once
+2018-08-06 12:01:06	~japaric	we can discuss how to tackle those issues next week
+2018-08-06 12:01:45	korken89	Thanks all!
+2018-08-06 12:01:57	jamesmunns	Have a good week!
+2018-08-06 12:01:59	lkurusa	thank you all, have a great week!
+2018-08-06 12:02:02	~japaric	thanks all for attending; see you next week
+2018-08-06 12:02:03	~japaric	o/

@@ -1,0 +1,184 @@
+2018-07-23 11:07:02	~japaric	ok, let's start this meeting
+2018-07-23 11:07:23	~japaric	we have to clarify quite a few things around the looks of the embedded web page
+2018-07-23 11:07:53	~japaric	first item in the header of the web page (line 24 in the etherpad)
+2018-07-23 11:08:31	~japaric	so, we agreed we wanted a video of embedded projects but we didn't define whether we wanted a single video or something like a carousel
+2018-07-23 11:08:42	thejpster	I'd like to see a single video, in this kind of style: https://humanism.org.uk/thatshumanism/
+2018-07-23 11:09:18	hannobraun	I always imagined the video header to be more in the Patreon style. I think it's main purpose is to grab attention, so longer videos might be counterproductive.
+2018-07-23 11:09:19	korken89	Can someone share the etherpad link?
+2018-07-23 11:09:29	~japaric	korken89: https://public.etherpad-mozilla.org/p/embedded-wg
+2018-07-23 11:09:35	korken89	Thanks!
+2018-07-23 11:09:50	thejpster	Ok, I don't like the patreon page because it autoplays. When you make satellite modems, high bandwidth websites make you sad.
+2018-07-23 11:09:59	~japaric	thejpster: :-)
+2018-07-23 11:10:01	thejpster	Also, there's no video controls.
+2018-07-23 11:10:27	~japaric	I also don't like videos that autoplay
+2018-07-23 11:10:29	thejpster	If it's at the top like this, I'd prefer the segger.com example.
+2018-07-23 11:10:39	thejpster	But I really want someone to make a whiteboard video too :)
+2018-07-23 11:10:44	korken89	A single video to catch the viewer is good, as long as there is a "more"
+2018-07-23 11:10:57	~japaric	the segger page uses static images in the header
+2018-07-23 11:11:12	~japaric	thejpster: whiteboard video?
+2018-07-23 11:11:19	thejpster	https://humanism.org.uk/thatshumanism/
+2018-07-23 11:11:36	~japaric	oh, I see
+2018-07-23 11:12:05	~japaric	korken89: what would "more" lead to?
+2018-07-23 11:12:06	thejpster	We almost certainly don't have that kind of budget, but I offer it as an example.
+2018-07-23 11:12:36	hannobraun	I have no problem with autoplay as long as there's no audio involved. Bandwidth is a valid concern though.
+2018-07-23 11:13:29	korken89	japaric: Showcases of what people have done, but it can be a part of the testimonials as well
+2018-07-23 11:13:29	~japaric	if we have a video that autoplays and has no control I think it would be hard to add links to the projects' pages
+2018-07-23 11:13:41	korken89	People like videos :)
+2018-07-23 11:13:52	~japaric	agree
+2018-07-23 11:13:55	thejpster	People like sharing videos on social media.
+2018-07-23 11:14:00	korken89	Indeed
+2018-07-23 11:14:06	hannobraun	thejpster: My understanding is, that we're currently talking about video to show off embedded projects. So we'd need real footage.
+2018-07-23 11:14:31	thejpster	I'm not sure we've got enough projects to make that work. I'm also concerned they'd go out of date fairly quickly.
+2018-07-23 11:15:00	hannobraun	I think it makes sense that if we show off multiple projects in a video or carousel, there should be some kind of link to more details about the project.
+2018-07-23 11:15:25	korken89	@thejpster: Not yet probably
+2018-07-23 11:15:51	thejpster	A generic "Imagine a world where your cheap generic plastic junk wasn't also full of security holes. Imagine a world when you didn't have to spend six months debugging a buffer overflow. *Cut to wide shot of scorched earth*" kind of thing.
+2018-07-23 11:16:03	hannobraun	thejpster: How would they go out of date? Even if the ecosystem moves on, they'd still be cool projects made with Rust.
+2018-07-23 11:16:43	thejpster	It just feels like things are fairly fast moving, projects come, projects go.
+2018-07-23 11:17:58	~japaric	perhaps there should be a (video) gallery of projects but it should be its own page
+2018-07-23 11:18:09	~japaric	I'd rather not make the landing page grow in size over time
+2018-07-23 11:18:21	~japaric	size and content**
+2018-07-23 11:18:42	hannobraun	In my mind, the point is to show people that you can do cool things with Rust. Even if a specific project is no longer maintained or doesn't even compile, a video of a cool robot powered by Rust will always demonstrate what Rust is capable of.
+2018-07-23 11:18:43	thejpster	I'd support that
+2018-07-23 11:19:12	thejpster	(I was referring to @japaric's comment)
+2018-07-23 11:19:43	hannobraun	Makes sense.
+2018-07-23 11:19:49	~japaric	if we go with a separate gallery page we probably want to use the header to grab attention by having a video that autoplays
+2018-07-23 11:20:18	~japaric	if it doesn't autplays the visitor may not bother clicking the header; reducing the attention grabbing effect
+2018-07-23 11:20:36	~japaric	and the video should be a collection of flashy projects built with Rust
+2018-07-23 11:21:00	~japaric	and have a 'see more projects' link that leads to the gallery page
+2018-07-23 11:21:16	hannobraun	And if you click the video, it links to the gallery page.
+2018-07-23 11:21:29	~japaric	that too
+2018-07-23 11:22:19	~japaric	how does that sound? ^^^
+2018-07-23 11:22:55	hannobraun	I totally agree with japaric.
+2018-07-23 11:23:16	korken89_2	Sorry, I had a lost connection, but I'll join from here
+2018-07-23 11:23:38	thejpster	that all seems fine to me
+2018-07-23 11:23:41	~japaric	korken89_2: you can see the logs in https://bot.tockos.org/tockbot-moz/embedded-bot/
+2018-07-23 11:24:00	korken89_2	Ah, awesome! Thanks
+2018-07-23 11:24:27	korken89_2	Sounds good japaric
+2018-07-23 11:24:28	~japaric	the gallery would be maintained by the community. We can discuss the exact layout of that in another meeting
+2018-07-23 11:24:39	~japaric	layout and update / inclusion policy**
+2018-07-23 11:25:23	thejpster	Would it be more efficient for a small team (/ one person) to work up some concepts and show them to the group?
+2018-07-23 11:25:36	thejpster	I'm not entirely sure design-by-committee is going to be practical.
+2018-07-23 11:25:39	~japaric	thejpster: you mean for the gallery?
+2018-07-23 11:26:01	thejpster	tbh, for the website in general. I mean, as long as we're agreed on the broad thrust.
+2018-07-23 11:26:21	thejpster	I have no real artistic merit and don't really consider myself qualified to comment on such matters.
+2018-07-23 11:26:32	korken89_2	I would agree with thejpster here, this type of thing can be bikesheded forever
+2018-07-23 11:26:44	 *	thejpster has the benefit of a design department and so usually avoids these sorts of things
+2018-07-23 11:26:57	~japaric	jamesmunns and I will work with the web designer but we need to agree on the initial content / layout
+2018-07-23 11:28:45	thejpster	Ok, so my weak preference is to embed videos (no autoplay, playback controls, ideally on YouTube so I can cast them somewhere else) rather than use them for headings, but ... *shrug*
+2018-07-23 11:29:17	~japaric	thejpster: noted, will bring it up as an alternative and discuss it with the designer
+2018-07-23 11:29:24	thejpster	I agree with keeping the gallery content off on a second page, but maybe rotate "project of the week" or something on the front page so it isn't completely static.
+2018-07-23 11:30:07	thejpster	I'm unclear what a video of a project would look like - animated slideshow, talking heads, wide shots of the hardware on an engineer's desk, screencaps ?
+2018-07-23 11:31:56	hannobraun	thejpster: In my mind, an attention-grabbing video would be stitched together of very short clips of different projects. A few seconds of a blinking LED, a few seconds of a balancing robot, etc.
+2018-07-23 11:32:22	~japaric	I agree with hannobraun for the header video
+2018-07-23 11:32:37	~japaric	for the gallery we could leave the projects to pick their own format and just give them the space
+2018-07-23 11:33:12	thejpster	I think you'll have to resort to stock video clips. I can't imagine you'll get the shots you need in appropriate quality from a random selection of projects built by a random selection of people.
+2018-07-23 11:33:32	hannobraun	Yes. The gallery could use much longer videos or another form of presentation completely. There the focus would be more on depth.
+2018-07-23 11:34:08	~japaric	thejpster: we'll see what the website team says
+2018-07-23 11:34:47	~japaric	ok, I think the header is settled
+2018-07-23 11:34:59	~japaric	moving on, the next section is the why Rust section
+2018-07-23 11:35:02	thejpster	Ok, I'm just going by the number of time I had to walk across a bridge to film things: https://vimeo.com/102209989
+2018-07-23 11:35:06	thejpster	s/things/this
+2018-07-23 11:35:17	~japaric	line 57 in the etherpad
+2018-07-23 11:35:38	hannobraun	thejpster: My main concern would be that the video would look weird, because we'd get different quality from different projects. It's hard to judge for me, it's been ages since I worked with video.
+2018-07-23 11:35:38	thejpster	I like all of those. LGTM.
+2018-07-23 11:35:49	~japaric	I think we had something like https://www.zephyrproject.org/ in mind
+2018-07-23 11:36:03	~japaric	but we want to add links to the book in the text
+2018-07-23 11:36:40	thejpster	Inter-op icon is like a handshake or something
+2018-07-23 11:36:58	~japaric	there's a list of 5 reasons / attributes. does the style and selection sound good to you?
+2018-07-23 11:37:12	thejpster	yeah, they all seem fine
+2018-07-23 11:37:27	~japaric	the icons are still to be determined
+2018-07-23 11:37:30	korken89_2	lgtm
+2018-07-23 11:37:47	hannobraun	I also think these look good.
+2018-07-23 11:37:48	~japaric	if you have ideas speak now :P
+2018-07-23 11:37:56	thejpster	for concurrency, I'd have a couple of gears
+2018-07-23 11:37:57	~japaric	ideas for the icons*
+2018-07-23 11:38:35	thejpster	oh I can't paste images into the etherpad
+2018-07-23 11:38:45	~japaric	you can paste the link
+2018-07-23 11:38:55	thejpster	Nah, I've got Word 2016's Icon page open
+2018-07-23 11:39:40	thejpster	portability is totally the little luggage trolley with a box on it
+2018-07-23 11:39:47	~japaric	the static analysis icon could be a magnifying glass?
+2018-07-23 11:39:55	thejpster	or a microscope
+2018-07-23 11:40:04	hannobraun	Maybe some kind of padlock for static analysis (as in, it's solid, safe)? Not sure about this.
+2018-07-23 11:40:33	hannobraun	thejpster: Ha, I like that (portability icon) :)
+2018-07-23 11:40:38	~japaric	just write down the ideas
+2018-07-23 11:40:47	~japaric	in the etherpad
+2018-07-23 11:40:53	~japaric	a link to an image also helps
+2018-07-23 11:41:04	thejpster	http://thumbsnap.com/KmjeEDop
+2018-07-23 11:41:23	~japaric	thejpster: +1
+2018-07-23 11:42:01	~japaric	ok, I think that covers all the icons
+2018-07-23 11:42:08	~japaric	if you think of something else feel free to write it down
+2018-07-23 11:42:17	~japaric	next section is documentation
+2018-07-23 11:42:23	~japaric	line 115 in the etherpad
+2018-07-23 11:42:35	~japaric	we have 3 books planned for the edition release
+2018-07-23 11:42:44	~japaric	we can use the same icon + text style for this section
+2018-07-23 11:43:07	~japaric	or we could keep it simple like the "Getting started", "View the code" buttons in https://www.zephyrproject.org/
+2018-07-23 11:43:29	~japaric	if we go with the icons we need to choose them
+2018-07-23 11:43:30	~japaric	thoughts?
+2018-07-23 11:44:03	thejpster	As an aside, is Discovery going to move into the WG, or remain an @japaric thing?
+2018-07-23 11:44:18	thejpster	If we've got a theme, let's stick with it. Icons + text + link is fine.
+2018-07-23 11:44:23	thejpster	I like the chip idea, it's cute.
+2018-07-23 11:44:23	hannobraun	I think the icons you suggested are fine. Can't think of anything better.
+2018-07-23 11:44:44	korken89_2	I would agree as well
+2018-07-23 11:44:52	~japaric	I think it should be under discovery.rust-embedded.org and under the rust-embedded GH org (once we nail down the GH orgs)
+2018-07-23 11:45:24	~japaric	alright then we go with the icons + text style and packages for the icons
+2018-07-23 11:45:44	thejpster	^^ sounds good to me
+2018-07-23 11:45:55	~japaric	ok, next section is testimonials
+2018-07-23 11:45:59	~japaric	line 142
+2018-07-23 11:46:21	~japaric	style and layout is tbd
+2018-07-23 11:46:34	hannobraun	I'm still bugging people about testimonials. It's slow-going, but I hope I can get some more people to post in that issue.
+2018-07-23 11:46:49	~japaric	we got testimonials in https://github.com/rust-lang-nursery/embedded-wg/issues/108; I have picked two of them as examples
+2018-07-23 11:46:52	~japaric	hannobraun: +1
+2018-07-23 11:47:14	thenewwazoo	haha I owe hannobraun one too :D
+2018-07-23 11:47:16	~japaric	any suggestions / examples for the style and layout of the testimonials?
+2018-07-23 11:47:26	thenewwazoo	I've gotten approval from PR I just have to write it up
+2018-07-23 11:47:33	~japaric	thenewwazoo: +1
+2018-07-23 11:48:02	thejpster	You can quote my video or my blog post if that helps.
+2018-07-23 11:48:04	~japaric	we probably don't this section to get too long
+2018-07-23 11:48:11	hannobraun	Regarding the style of testimonials: How about both? Short summary on homepage, link to testimonials page, where there's a list of the full testimonials.
+2018-07-23 11:48:13	~japaric	too vertically long**
+2018-07-23 11:48:34	hannobraun	thenewwazoo: Nice, thank you for working on it!
+2018-07-23 11:48:48	thejpster	Maybe like a little carousel of company icons on the front page and then link through to the tweet-length quotes + logos + links.
+2018-07-23 11:49:05	thenewwazoo	I was planning on writing about three sentences. "We wanted to cure ourselves of bugs that could be caught at compile time. Thanks to Rust, our teeth are whiter &c..."
+2018-07-23 11:49:41	~japaric	thenewwazoo: like https://s3.envato.com/files/165715490/6_slick_testimonial.jpg ?
+2018-07-23 11:49:49	~japaric	err, I meant thejpster ^
+2018-07-23 11:50:26	hannobraun	thejpster: Sounds good, but if we can condense testimonials to one sentence, like japaric did for the examples, I'd think it would be good to show those sentences directly.
+2018-07-23 11:51:12	~japaric	I want to note that we'll work on refining the content / text on the embedded page during the 6 weeks after Preview 2 (August 2)
+2018-07-23 11:51:44	hannobraun	japaric: I like that style, although maybe with company logos instead of faces.
+2018-07-23 11:52:49	~japaric	how about a one liner as header and then more complete text as in https://support.prontomarketing.com/hc/en-us/article_attachments/202014164/Website-Platform-Testimonials-03.gif
+2018-07-23 11:53:00	~japaric	hannobraun: +1 on logo instead of face
+2018-07-23 11:53:20	korken89_2	I would agree on logos there instead of faces
+2018-07-23 11:53:23	thenewwazoo	yeah, PR would never approve my face
+2018-07-23 11:54:21	~japaric	do we agree on carousel + logo + text + name + title?
+2018-07-23 11:54:59	thenewwazoo	+1
+2018-07-23 11:55:15	thejpster	+1
+2018-07-23 11:55:37	~japaric	ok, we can start working with that
+2018-07-23 11:55:45	~japaric	last section before we run out of time
+2018-07-23 11:56:03	hannobraun	japaric: Sounds good.
+2018-07-23 11:56:13	~japaric	last section is friends in the spirit of https://www.rust-lang.org/en-US/friends.html
+2018-07-23 11:56:46	thenewwazoo	that seems like it'd be a superset of testimonials
+2018-07-23 11:56:50	~japaric	I think the idea here was to put some companies here that could not give too many details of their products, or give a testimonial
+2018-07-23 11:57:19	~japaric	the companies in the testimonials section would appear here as well
+2018-07-23 11:58:05	~japaric	but they could include a description of their product "what they made with Rust', instead of how they liked Rust
+2018-07-23 11:58:19	thenewwazoo	I wonder if posting an appeal for testimonials/friends on HN would get enough attention to be useful
+2018-07-23 11:58:47	nagisa	ain’t that a subset of friends of the usual Rust page?
+2018-07-23 11:59:18	~japaric	nagisa: it is but since it's a smaller set your logo is less likely to get lost in the sea of logos
+2018-07-23 11:59:24	thenewwazoo	yeah, I'd think the Friends page would be (optionally link to post) logos with no text
+2018-07-23 12:00:21	hannobraun	I don't think we need to limit the number of friends. It's the last item, and right now it probably won't be too many anyway.
+2018-07-23 12:00:30	thenewwazoo	agreed
+2018-07-23 12:01:40	korken89_2	Indeed
+2018-07-23 12:02:06	~japaric	I think we can keep the section growing over time like friends of Rust grows
+2018-07-23 12:02:17	~japaric	companies add themselves via PR
+2018-07-23 12:02:37	korken89_2	japaric: +1
+2018-07-23 12:03:26	~japaric	ok, thanks everyone for the input. We'll take this to the website team and post updates on the GH issue and/or mention them in these meetings
+2018-07-23 12:03:45	~japaric	we are over time now but if anyone wants to give any update go ahead
+2018-07-23 12:04:57	~japaric	jamesmunns had this update regarding testing: https://github.com/rust-lang-nursery/embedded-wg/issues/129#issuecomment-407087928
+2018-07-23 12:05:23	~japaric	he's looking for suggestions on crates / code examples to test in rust-lang/rust CI
+2018-07-23 12:05:44	~japaric	I think you can contact him directly or leave a suggestion in the corresponding issue
+2018-07-23 12:05:58	~japaric	https://github.com/rust-lang-nursery/embedded-wg/issues/52
+2018-07-23 12:06:31	thejpster	ok, i'll think on that one
+2018-07-23 12:06:41	~japaric	I have reaccomodated the remaining work items for the 2018 edition in two new milestones. See https://github.com/rust-lang-nursery/embedded-wg/milestones
+2018-07-23 12:07:59	~japaric	finally, I created an issue to discuss having math support in core. See https://github.com/rust-lang/rfcs/issues/2505 and leave comments if you have any thoughts on the topic.
+2018-07-23 12:08:21	~japaric	ok, that is all. Thank you all for attending! See you next week on IRC. Same time; same channel.
+2018-07-23 12:08:50	korken89_2	Thanks and see you all next time!
+2018-07-23 12:09:28	hannobraun	Goodbye everyone!
+2018-07-23 12:09:34	 *	thejpster waves

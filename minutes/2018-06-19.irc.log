@@ -1,0 +1,179 @@
+2018-06-19 13:58:10	~japaric	o/
+2018-06-19 13:59:09	jamesmunns	hey!
+2018-06-19 13:59:34	hannobraun	Hi, I'm here.
+2018-06-19 13:59:46	adamgreig	\o
+2018-06-19 14:00:56	jamesmunns	japaric: are you in the infra team meetings?
+2018-06-19 14:01:11	~japaric	jamesmunns: no
+2018-06-19 14:01:19	~japaric	I'm not part of the infra team
+2018-06-19 14:01:23	jamesmunns	Okay, no worries
+2018-06-19 14:02:29	~japaric	let's start the (IRC) meeting. There's no agenda so let's use the time to report the status of on-going work.
+2018-06-19 14:02:50	~japaric	jamesmunns: mind talking about the status of the reach program?
+2018-06-19 14:03:07	jamesmunns	Sure!
+2018-06-19 14:03:14	thejpster	btw https://www.reddit.com/r/rust/comments/8r9jkk/what_happened_to_the_6th_biweekly_embedded/
+2018-06-19 14:03:26	jamesmunns	Vaishali and Hideki started with plans, will link shortly
+2018-06-19 14:04:06	jamesmunns	We've reached out to kennytm, who gave a general thumbs up to our plan, and promised to make CI runners available
+2018-06-19 14:04:23	jamesmunns	(the CI resources are stretched a little thin at the moment)
+2018-06-19 14:04:40	jamesmunns	CI plan tracked here: https://github.com/jamesmunns/irr-embedded-2018/blob/master/ci-plan.md
+2018-06-19 14:05:52	jamesmunns	re: newsletters
+2018-06-19 14:06:34	jamesmunns	https://github.com/rust-lang-nursery/embedded-wg/pull/104 is open, but needs to be merged, though I am already behind on Newsletter 7. I'll try to pick that up by this weekend and we can resume regular service :)
+2018-06-19 14:07:12	jamesmunns	Also, I created a "rust embedded" twitter account we can use if we want
+2018-06-19 14:07:13	jamesmunns
+2018-06-19 14:07:17	jamesmunns	https://twitter.com/rustembedded
+2018-06-19 14:07:25	thejpster	+1
+2018-06-19 14:07:37	jamesmunns	(similar to https://twitter.com/rustwasm)
+2018-06-19 14:08:11	~japaric	jamesmunns: let's merge newsletter 6 & 7 and release a single newsletter this weekend. Did we get input for newsletter 7 (in the GH issue)?
+2018-06-19 14:08:36	jamesmunns	No input yet. I would say if we start plugging it now, we can get enough stuff together by this weekend
+2018-06-19 14:09:36	~japaric	I think I saw some stuff to cross compile Rust code to the ESP / Xtensa arch using mrustc; seems worth noting in the newsletter
+2018-06-19 14:09:43	~japaric	I think it was on reddit; can't find the link atm
+2018-06-19 14:10:31	~japaric	pftbest: around?
+2018-06-19 14:11:21	jamesmunns	Also some other people from the rust-reach group came up with some "embedded rust" logo ideas (for the twitter), here are the current contributions: https://imgur.com/a/yrjwphk
+2018-06-19 14:11:54	~japaric	jamesmunns: nice
+2018-06-19 14:12:25	thejpster	I love that top one.
+2018-06-19 14:12:30	jamesmunns	If anyone has any feedback, let me know and I can pass it on
+2018-06-19 14:12:48	hannobraun	Nice!
+2018-06-19 14:12:55	thejpster	QFP is my second favourite package, after DIP :)
+2018-06-19 14:12:59	adamgreig	cool, also a fan of the top one
+2018-06-19 14:13:20	jamesmunns	Whatever we choose, I plan to make a bunch of stickers :D
+2018-06-19 14:13:30	thejpster	YAY!
+2018-06-19 14:13:31	~japaric	jamesmunns: are we expecting more entries or should we pick one before the weekend?
+2018-06-19 14:13:31	hannobraun	I like the first one.
+2018-06-19 14:14:01	jamesmunns	It was an open suggestion in the rust reach, we could probably open an issue and decide by this weekend
+2018-06-19 14:14:20	jamesmunns	(I'll take care of that)
+2018-06-19 14:14:42	~japaric	I also like the first one; would be interested in also seeing that logo but w/o the "Embedded" text
+2018-06-19 14:14:58	adamgreig	+1
+2018-06-19 14:15:17	jamesmunns	I'll put it up on the issue, so we can comment directly to the people who drew it
+2018-06-19 14:15:26	~japaric	jamesmunns: thanks
+2018-06-19 14:15:29	hannobraun	Would it be an option to add that logo to READMEs, release announcements and such for various embedded crates?
+2018-06-19 14:15:57	jamesmunns	I'd say anything that comes from the "embedded wg"
+2018-06-19 14:16:26	thejpster	are we embedded-rust-wg or rust-embedded-wg?
+2018-06-19 14:16:46	adamgreig	if the logo contains the rust trademark presumably that policy would apply?
+2018-06-19 14:16:54	adamgreig	( https://www.rust-lang.org/en-US/legal.html )
+2018-06-19 14:16:57	jamesmunns	rust peoples embedded liberation front
+2018-06-19 14:17:15	~japaric	jamesmunns: +1
+2018-06-19 14:17:22	thejpster	people's liberation front for embedded rust.
+2018-06-19 14:17:30	hannobraun	jamesmunns: Might also be worth a thought to open it up to the larger ecosystem.
+2018-06-19 14:17:50	jamesmunns	adamgreig: good call, we should probably get an "official" ok re: use of the logo, but I dont expect and problems
+2018-06-19 14:18:02	jamesmunns	especially if we aren't selling merch, etc
+2018-06-19 14:18:19	adamgreig	I think the existing policy is clear enough, I more meant it would probably govern other people using the embedded logo too
+2018-06-19 14:18:39	adamgreig	i.e. open source copyright licence, permissive non-commercial trademark licence, permission required for commercial
+2018-06-19 14:20:47	jamesmunns	Opened an issue, pinging the origial artists before I repost there: https://github.com/rust-lang-nursery/embedded-wg/issues/107
+2018-06-19 14:21:37	jamesmunns	japaric: Do we want to establish a new meeting time based on thejpster's doodle?
+2018-06-19 14:21:42	thejpster	It would be nice if, to pick a random example, TI were to have some crate on github in the future, with the logo in their README.md. I can't work out at the moment whether that would be OK, or whether it would be commercial.
+2018-06-19 14:21:50	thejpster	jamesmunns, yes please.
+2018-06-19 14:23:18	~japaric	jamesmunns: yes, there seem to be a few alternatives
+2018-06-19 14:23:55	thejpster	unlike Sir Bob, I like Mondays
+2018-06-19 14:23:57	~japaric	and jcsoo vote is missing
+2018-06-19 14:25:21	~japaric	everyone's OK with changing the meeting time to Mondays?
+2018-06-19 14:25:53	jamesmunns	Yep, I would prefer earlier than later (so that 18:00CEST would be good)
+2018-06-19 14:26:26	~japaric	6 PM CEST wfm
+2018-06-19 14:26:41	~japaric	thejpster: hannobraun is 6 PM ok for you?
+2018-06-19 14:26:46	hannobraun	Perfectly fine with me.
+2018-06-19 14:27:05	thejpster	works for me
+2018-06-19 14:27:17	thejpster	I can hang around late at work, or rush home. Either is fine.,
+2018-06-19 14:27:22	hannobraun	japaric: yes
+2018-06-19 14:27:30	thejpster	wait
+2018-06-19 14:27:33	thejpster	1800 CEST
+2018-06-19 14:27:56	thejpster	do you mean 1800 Europe/Berlin?
+2018-06-19 14:28:05	jamesmunns	or whatever time zone berlin is in right now (I can never get the right abbreviation)
+2018-06-19 14:28:10	thejpster	which would be 1700 Europe/London
+2018-06-19 14:28:19	jamesmunns	yes, exactly
+2018-06-19 14:28:25	thejpster	The problem is Berlin is in CEST half the year and CEDT the other half
+2018-06-19 14:29:18	jamesmunns	Yeah. I would agree with "18:00 Europe/Berlin"
+2018-06-19 14:29:27	thejpster	Ok, 1800 Europe/Berlin == 1700 Europe/London is perfect.
+2018-06-19 14:29:42	thejpster	== whatever the US does (IIRC the daylight savings don't line up)
+2018-06-19 14:29:47	jamesmunns	yeah....
+2018-06-19 14:29:47	hannobraun	I think CEST and CEDT are the same. Right now it's CEST, winter is CET.
+2018-06-19 14:30:12	thejpster	oops, yes. You are right.
+2018-06-19 14:30:13	hannobraun	Let's just use UTC and never talk about time zones again :)
+2018-06-19 14:30:19	thejpster	if only!
+2018-06-19 14:30:51	thejpster	You should see the bug open on Android about not support UTC..
+2018-06-19 14:30:59	hannobraun	So 1600 UTC.
+2018-06-19 14:31:04	thejpster	For now
+2018-06-19 14:31:08	thejpster	It'll move with daylight savings
+2018-06-19 14:31:22	~japaric	ok, I'll send an e-mail w/ new meeting time = Monday 1800 Europe/Berlin; we can check with jcsoo over there
+2018-06-19 14:32:03	hannobraun	That's still open? I actually tried to switch my daily life to UTC a few years ago. That was already a problem in 2014 or so.
+2018-06-19 14:33:20	~japaric	jamesmunns: I'm looking at https://github.com/rust-lang-nursery/embedded-wg/pull/102
+2018-06-19 14:33:24	thejpster	sorry about htat
+2018-06-19 14:33:34	~japaric	the discovery book needs to be updated to work with latest cortex-m-* crates
+2018-06-19 14:33:48	~japaric	but the part you are importing is not going to be affected I think
+2018-06-19 14:33:49	mathk2-M	Side remark are you going to move away from github to a more free alternative like gitlab ?
+2018-06-19 14:33:53	jamesmunns	Yeah, I started the import, with the intent to go through step by step
+2018-06-19 14:34:12	jamesmunns	and correct any wrong steps. Hasn't happened yet
+2018-06-19 14:34:16	thejpster	japaric, will the discovery book continue to exist, or does this replace it?
+2018-06-19 14:34:31	~japaric	jamesmunns: I'll update discovery this week; hopefully before the weekend
+2018-06-19 14:34:34	jamesmunns	mathk2-M: probably we wil stay with GitHub as long as the official Rust project is there.
+2018-06-19 14:34:53	~japaric	thejpster: I guess it depends on how much of discovery ends in the embedded book
+2018-06-19 14:35:09	~japaric	but I think it's going to continue to exist independently
+2018-06-19 14:35:19	~japaric	the target audience is different than the one from the embedded book
+2018-06-19 14:35:24	jamesmunns	japaric: Okay, my edits don't add too much, I can always restart
+2018-06-19 14:36:05	jamesmunns	yeah, afaiu, "embedded rust book" is for "I know embedded, and want to learn rust", and discovery is "I know rust, and want to learn embedded"
+2018-06-19 14:36:50	jamesmunns	or for the embedded rust book, maybe even "I know rust and embedded, but not together"
+2018-06-19 14:36:55	jamesmunns	at least initially.
+2018-06-19 14:37:06	thejpster_	ugh, I'm really struggling with this wifi today
+2018-06-19 14:37:08	~japaric	mathk2-M: I second jamesmunns re GH
+2018-06-19 14:37:37  *	thejpster_ is catching up on the TockOS logs
+2018-06-19 14:37:50	thejpster_	ok, the distinction between the books makes sense
+2018-06-19 14:38:06	thejpster_	we should record that in the preamble and maybe cross link in case people end up with the wrong one
+2018-06-19 14:38:21	jamesmunns	thejpster_: :+1:
+2018-06-19 14:38:57	jamesmunns	with that and the embedonomicon, we'll have a whole bookshelf :)
+2018-06-19 14:39:09	thejpster_	japaric, can you note on 102 you're happy with the licence change?
+2018-06-19 14:39:34	thejpster_	I think it's right that derivates of the embedded-wg book must remain open
+2018-06-19 14:39:40	mathk2-M	one remark about the discovery book. That was my introduction for doing embedded rust. At that time I didn't know much about the ST product so I decide to pick one of the latest nucleo board but I realize too late that it is not covered by the book. So now  I am abotu to build my how stm32f7-hal crate.
+2018-06-19 14:39:42	thejpster_	derivates? derivatives
+2018-06-19 14:40:42	mathk2-M	About github I have no strong opinions on that just asking.
+2018-06-19 14:41:41	jamesmunns	I should also plug that if anyone has any "commercial testimonials" re: embedded rust, we should start collecting those for the new rust website
+2018-06-19 14:42:05	thejpster_	Working on it ... but no, not yet.
+2018-06-19 14:42:21	jamesmunns	(the website will be retooled for the 2018 launch, include space for the working groups)
+2018-06-19 14:42:31	thejpster_	is that www.rust-embedded.org?
+2018-06-19 14:42:32	~japaric	jamesmunns: let's put that in the next newsletter
+2018-06-19 14:42:39	thejpster_	Or do we get space on rust-lang.org?
+2018-06-19 14:42:40	jamesmunns	yeah, I'd also say "well polished examples" would fit initially too
+2018-06-19 14:42:40	~japaric	thejpster_: rust-lang.org
+2018-06-19 14:42:44	jamesmunns	space on rust-lang.org
+2018-06-19 14:42:45	thejpster_	nice
+2018-06-19 14:42:56	thejpster_	www.rust-embedded.org should bounce to that then
+2018-06-19 14:43:15	jamesmunns	I'm pretty sure we'll be linking to the monotron video from Rustfest
+2018-06-19 14:43:40	thejpster_	never heard of it :p
+2018-06-19 14:44:01	jamesmunns	Yeah, we need to talk to Nick Stevens, he helped me set up the DNS for book.rust-embedded.org
+2018-06-19 14:44:48	~japaric	jamesmunns: issue for testimonials https://github.com/rust-lang-nursery/embedded-wg/issues/108
+2018-06-19 14:45:14	jamesmunns	tyvm, I will cross link that in the new website issue tracker
+2018-06-19 14:46:37	~japaric	do you know if we have space limits? i.e. will we have to pick from the testimonials submissions?
+2018-06-19 14:47:26	jamesmunns	japaric: not sure. I'd imagine we could get a carosel of hero images/videos if we have enough
+2018-06-19 14:47:35	jamesmunns	not sure what the style is going to look like tho
+2018-06-19 14:47:36	thejpster_	japaric, that would be a nice problem to have. I think I'm more worried about an empty page :/
+2018-06-19 14:48:17	jamesmunns	I know of a couple embedded-linux things we could plug there, but not too many bare metal
+2018-06-19 14:49:34	thenewwazoo	what's the timeline for gathering them?
+2018-06-19 14:49:47	adamgreig	i'm using https://github.com/AirborneEngineering/blethrs commercially fwiw
+2018-06-19 14:49:52	hannobraun	If we're going to present Embedded Linux stuff there, I can ask 49Nord and slowtec if they have anything they can talk about.
+2018-06-19 14:49:52	thejpster_	I have a working demo of an Embedded Rust Linux app opening an AF_RPMSG socket, talking to the Kernel which posts messages to an Embedded Rust bare-metal app running on a Cortex-M4 using VirtIO V-Rings. But I can't tell you about it yet.
+2018-06-19 14:50:01	adamgreig	on stm32f4
+2018-06-19 14:50:15	thejpster_	And as the TI source code is a train wreck and I've had to reverse engineer everything, it's kind of hacky
+2018-06-19 14:50:31	jamesmunns	thejpster_: we should absolutely not chat more about that outside of the meeting :)
+2018-06-19 14:50:46	thejpster_	jamesmunns, yes, let's not do that ;)
+2018-06-19 14:51:01	thenewwazoo	we're currently building two embedded telematics devices on L4 and L0
+2018-06-19 14:51:14	jamesmunns	thejpster_: I actually might have a really great use case for that in the near future
+2018-06-19 14:51:20	thenewwazoo	I also cannot talk about them, naturally
+2018-06-19 14:51:33	thejpster_	This is the fundamental problem with commercial quals
+2018-06-19 14:51:39	thenewwazoo	yep
+2018-06-19 14:52:02	jamesmunns	Might be good to get vague "sound bites", even if you cant talk about project details
+2018-06-19 14:52:03	thenewwazoo	right now the only thing I can say is that I'm writing HALs and you can find them on github
+2018-06-19 14:52:38	jamesmunns	Stuff like "At Company X, we use Rust for products and it was really great" is actually enough for the pointy haired types
+2018-06-19 14:52:44	hannobraun	thejpster_ jamesmunns Please absolutely leave me out of these kinds of discussions :)
+2018-06-19 14:53:43	thejpster_	So I'll toss in https://www.cambridgeconsultants.com/insights/presentation-mozillas-rust-and-why-we-love-it and https://vimeo.com/224912526
+2018-06-19 14:54:01	jamesmunns	thejpster_: could you please link on the issue?
+2018-06-19 14:54:26	thejpster_	jamesmunns, done
+2018-06-19 14:54:32	jamesmunns	tyvm
+2018-06-19 14:58:02	jamesmunns	Also, welome back japaric, I hope you had a good vacation :D
+2018-06-19 14:58:15	~japaric	jamesmunns: we should collect the names of companies that can only say "we use Rust at X" in the issue
+2018-06-19 14:58:21	~japaric	jamesmunns: thanks
+2018-06-19 14:58:40	thejpster_	japaric, you mean like an embedded subset of the friends list?
+2018-06-19 14:58:59	~japaric	in case we don't get too many companies that can publicly talk about their embedded Rust products
+2018-06-19 14:59:02	jamesmunns	I think we talked about a "friends of embedded rust" in previous meetings
+2018-06-19 14:59:06	~japaric	thejpster_: yes
+2018-06-19 14:59:43	jamesmunns	but yeah, we should try and catch people at different levels, "we use rust and will add a logo", "we use rust and heres a vague testimonial", and "heres a lot of detail about how we use rust"
+2018-06-19 15:00:38	~japaric	I need to go to another meeting -- jamesmunns: could you leave a comment about those different levels in the issue
+2018-06-19 15:00:49	~japaric	we can discuss this in more detail next week
+2018-06-19 15:01:54	~japaric	thanks everyone for attending! See you next week
+2018-06-19 15:02:00  *	thejpster_ waves
+2018-06-19 15:03:14	jamesmunns	See you monday!
+2018-06-19 15:06:34	hannobraun	Bye!

@@ -1,0 +1,184 @@
+2018-04-24 20:57:23	thejpster	Is there an embedded wg meeting today?
+2018-04-24 20:57:35	~japaric	thejpster: yes, here
+2018-04-24 20:57:41	prof	Supposedly. ;)
+2018-04-24 20:58:59	thejpster	OK. I might not be able to stick around long
+2018-04-24 20:59:45	jamesmunns	Hey all :)
+2018-04-24 21:00:23	pftbest_	Hello
+2018-04-24 21:01:59	emilgardis	Hello :)
+2018-04-24 21:02:16	thejpster	Is skade here today?
+2018-04-24 21:02:29	jamesmunns	Argh
+2018-04-24 21:02:34	thejpster	orak
+2018-04-24 21:02:41	jamesmunns	No, I was home sick today and totally forgot to invite him
+2018-04-24 21:02:48	thejpster	lol
+2018-04-24 21:02:55	jamesmunns	I will ping him though
+2018-04-24 21:03:55	jcsoo	hey there!
+2018-04-24 21:04:53	~japaric	alright. Hello everyone. Let's start this meeting
+2018-04-24 21:05:04	~japaric	the agenda is at https://github.com/rust-lang-nursery/embedded-wg/issues/89
+2018-04-24 21:05:23	~japaric	let's start with the milestone issues
+2018-04-24 21:05:49	~japaric	I'm currently working on reducing the number of unstable features that the Cortex-M crates use
+2018-04-24 21:05:58	~japaric	(this is issue #42)
+2018-04-24 21:06:07	~japaric	so far: bare-metal v0.1.2 compiles on stable (with default features disabled)
+2018-04-24 21:06:08	--	pmoore is now known as pmoore|away
+2018-04-24 21:06:15	~japaric	and there's a PR that removes all unstable features from cortex-m-rt -- https://github.com/japaric/cortex-m-rt/pull/69
+2018-04-24 21:06:40	~japaric	I'll be working next on cortex-m-semihosting, cortex-m and svd2rust (in that order)
+2018-04-24 21:06:59	~japaric	You can follow along by watching this cortex-m-quickstart PR -- https://github.com/japaric/cortex-m-quickstart/pull/29
+2018-04-24 21:07:41	~japaric	After that is done I'll work on inferring linker-flavor (to drop -Z linker-flavor)
+2018-04-24 21:08:04	thejpster	Does KEEP in the linker script remove the need for #[used]?
+2018-04-24 21:08:05	~japaric	and I think then the only thing left to do would be #[panic_implementation]
+2018-04-24 21:08:59	~japaric	thejpster: no, w/o #[used] symbols never make it to the linker so it doesn't matter if you use KEEP or not
+2018-04-24 21:09:14	~japaric	right now I'm working around the lack of stable #[used] by making all the symbols public
+2018-04-24 21:09:30	~japaric	but this only works if the symbol is "reachable" (i.e. instead a public module)
+2018-04-24 21:09:46	~japaric	if the symbol is public but it's inside a private (non pub) module then the symbol won't make it to the linker
+2018-04-24 21:10:04	thejpster	ok, thanks.
+2018-04-24 21:10:10	jcsoo	I saw some discussion about stablizing #[used], possibly with a different name
+2018-04-24 21:10:11	~japaric	this is a bit brittle and the reachability requirement should be documented
+2018-04-24 21:10:17	jcsoo	how likely does that seem to happen?
+2018-04-24 21:10:58	~japaric	I think T-lang is OK with stabilizing #[used], but some people want to bikeshed the name
+2018-04-24 21:11:43	jamesmunns	link to bikeshed: https://github.com/rust-lang/rfcs/pull/2386
+2018-04-24 21:12:01	~japaric	T-lang is OK with stabilizing the feature itself**
+2018-04-24 21:12:25	~japaric	they are less decided on the name
+2018-04-24 21:12:54	jcsoo	is it a big deal if #[link_keep] is what is decided?
+2018-04-24 21:12:56	~japaric	personally I'd rather not spend much time trying to find the perfect name; most people are not going to deal with this attribute
+2018-04-24 21:13:02	pftbest_	right now you can place #[used] on functions and the compiler doesn't warn against it
+2018-04-24 21:13:32	~japaric	pftbest_: that's a good point; could you leave a comment about that in the tracking issue (in rust-lang/rust)
+2018-04-24 21:13:43	pftbest_	ok
+2018-04-24 21:13:46	jcsoo	maybe it would be good to go with #[link_keep] and get this one over with
+2018-04-24 21:13:58	jamesmunns	tracking issue: https://github.com/rust-lang/rust/issues/40289
+2018-04-24 21:14:23	thejpster	yeah, I'm fine with #[link_keep]
+2018-04-24 21:15:08	~japaric	ok, I'll leave a comment on the RFC thread about that after this meeting (unless someone else wants to)
+2018-04-24 21:15:16	~japaric	that = OK with #[link_keep]
+2018-04-24 21:15:50	jcsoo	I can post right now
+2018-04-24 21:15:53	~japaric	jcsoo: +1
+2018-04-24 21:16:06	jamesmunns	the wg has spoken: "meh"
+2018-04-24 21:16:27	~japaric	anything else you want to discuss about the embedded Rust on stable issue?
+2018-04-24 21:16:46	meh	ヽ(´ｰ｀ )ﾉ
+2018-04-24 21:16:47	~japaric	I believe I already dropped the '-Z thinlto=no' flag on the latest quickstart release so no worries about that flag
+2018-04-24 21:16:56	jcsoo	Thanks for helping sort out the lld issues!
+2018-04-24 21:17:07	jamesmunns	(sorry meh: name collision)
+2018-04-24 21:17:40	jcsoo	It's a bit unfortunate that there doesn't seem to be anyplace detailing what works and what doesn't on LLD.
+2018-04-24 21:17:52	~japaric	jcsoo: they are not really sorted out; they are just work arounds
+2018-04-24 21:18:16	~japaric	we should update rustc LLD; LLD HEAD seems to behave better; the objdump less weird on HEAD compared to what rustc LLD outputs
+2018-04-24 21:18:24	~japaric	objdump looks*
+2018-04-24 21:18:56	~japaric	both rustc LLD and LLD HEAD seem to work fine though
+2018-04-24 21:19:07	thejpster	I'm less worried about LLD support than I am about getting on stable, fwiw.
+2018-04-24 21:19:33	thejpster	"You also need arm-none-eabi-gcc" is easier to sell than "pick a random nightly compiler and never dare change it"
+2018-04-24 21:20:22	~japaric	thejpster: yeah, in any case you'll need arm-none-eabi-gcc (or at least as) to use (external) assembly on stable
+2018-04-24 21:20:27	jcsoo	I think stable is more important for people considering putting rust into production
+2018-04-24 21:20:27	prof	Yeah, unless ARM decides to screw up a whole release again…
+2018-04-24 21:20:30	jamesmunns	:+1: from me. It is a nicer story without having an external dep, but if it is an effort sink, it is still a reasonable dep
+2018-04-24 21:20:50	jcsoo	But it is very nice for existing rust devs to dip their toes in without having to install a big dependency
+2018-04-24 21:21:25	adamgreig	suspect existing embedded devs will already have arm-none-eabi-* installed anyway though
+2018-04-24 21:21:25	thejpster	To that end, is there anything we can help with on getting stablised assembly API, or #[panic_implementation] or will that just happen?
+2018-04-24 21:21:26	jamesmunns	(also having to worry about supporting multiple version of gcc's ld, since you know someone is going to be using 4.x)
+2018-04-24 21:22:12	jamesmunns	If we do keep the ld dep, would probably be good to "bless" a specific version, at least in docs
+2018-04-24 21:22:23	~japaric	thejpster: for stable assembly, a RFC needs to be written
+2018-04-24 21:22:34	~japaric	for #[panic_implementation] someone needs to do the compiler work
+2018-04-24 21:22:59	thejpster	OK, that RFC sounds high priority if we're to make the cut-off date
+2018-04-24 21:23:29	jcsoo	Here's the internals thread on inline assembly: https://internals.rust-lang.org/t/pre-rfc-inline-assembly/6443/41
+2018-04-24 21:23:44	thejpster	are we just aiming for cortex-m3/4/7 for stable on Rust 2018, or other archs too?
+2018-04-24 21:24:12	jcsoo	Here's the rust tracking issue: https://github.com/rust-lang/rust/issues/29722
+2018-04-24 21:24:14	~japaric	jcsoo: the RFC I was referring to is the one where we just have some assembly ops in core as functions (core::asm::$arch)
+2018-04-24 21:24:17	thejpster	(and perhaps we can add the list of archs to #42 so I don't forget)
+2018-04-24 21:24:18	jcsoo	aha
+2018-04-24 21:24:26	emilgardis	Do we have a timeline for all this? Or is it "We want to have this done in 2018"
+2018-04-24 21:24:54	thejpster	Rust 2018, which ships September
+2018-04-24 21:25:04	thejpster	meaning we need to be on the train about 13 weeks before that
+2018-04-24 21:25:09	prof	@thejpster: For me M0/M0+ is far more important. Especially since we have a real story here.
+2018-04-24 21:25:24	jamesmunns	I believe that we need to have everything on the beta train by CW 31 (end of July), so it can ship on CW 37
+2018-04-24 21:26:02	~japaric	thejpster: avr and riscv seem unlikely to make it to stable by the edition release given that the llvms are not even enabled
+2018-04-24 21:26:03	thejpster	oh yeah, six weeks. Fence post error :/
+2018-04-24 21:26:18	~japaric	msp430 I guess we could make it into stable as a tier 2
+2018-04-24 21:26:24	jamesmunns	I believe the plan is the 4 ARM arch (M0, M0+, M3, M4, M7, with f's where they apply) + msp430 if it makes it as tier 2
+2018-04-24 21:26:28	pftbest_	msp430 needs interrupts
+2018-04-24 21:26:29	thejpster	So there's the thumbv6 (M0/M1) question, and Cortex-R support.
+2018-04-24 21:26:47	~japaric	thejpster: thumbv6 is on par with thumbv7
+2018-04-24 21:27:00	prof	The available RISC-V implementations still seem to have major issues.
+2018-04-24 21:27:13	jcsoo	Is this discussion just about core::asm or just in general?
+2018-04-24 21:27:21	thejpster	Do we have an answer for the lack of atomics?
+2018-04-24 21:27:31	jamesmunns	(jcsoo probably both, but more for the stable-2018 discussion)
+2018-04-24 21:27:41	thejpster	In general, I think, but it has a big effect on what we need to get in to the asm RFC
+2018-04-24 21:27:51	prof	I can confirm thumbv6 works great.
+2018-04-24 21:28:03	thejpster	even allocate/collections?
+2018-04-24 21:28:10	~japaric	thejpster: the answer is that atomics are not present in core; all the other crates are unstable
+2018-04-24 21:28:12	jcsoo	what would be different for M0 and M0+ vs the others for core::asm? would they be a subset?
+2018-04-24 21:28:58	thejpster	japaric, not necessary for core, I agree with. But they are defined in core.
+2018-04-24 21:28:58	prof	Never tried allocate/collections but I could.
+2018-04-24 21:29:14	thejpster	prof, I think the allocator needs atomics.
+2018-04-24 21:29:35	pftbest_	atomics are a good point, is there any effort to specify only load store atomics?
+2018-04-24 21:29:40	~japaric	thejpster: alloc at least compiles for thumbv6
+2018-04-24 21:30:09	thejpster	japaric, oh. good to know. I'll look in to it.
+2018-04-24 21:30:35	~japaric	pftbest_: no CAS atomics for thumbv6 would be nice. I can ask how to move on that front
+2018-04-24 21:30:43	prof	@jcsoo: Yeah it's a subset. With additional limitations.
+2018-04-24 21:31:44	~japaric	pftbest_: I suspect msp430 can also do atomic loads / stores just fine but doesn't have instructions for CAS loops?
+2018-04-24 21:31:46	prof	Is there a ticket collecting what's missing?
+2018-04-24 21:31:59	pftbest_	japaric: correct
+2018-04-24 21:32:48	pftbest_	japaric: there is a bug in llvm at the moment that prevents using any atomics, but we can fix it
+2018-04-24 21:33:08	~japaric	pftbest_: is that msp430 specific, or does it affect other archs?
+2018-04-24 21:33:19	pftbest_	just msp430
+2018-04-24 21:33:30	jcsoo	I need to jump off to catch a train, but I will see if I can at least put together a list of what might instructions might make sense for thumbv6 and thumbv7 at least
+2018-04-24 21:33:38	~japaric	emilgardis: the timeline is Cortex-M tier1 and works on stable by the edition release
+2018-04-24 21:33:43	~japaric	jcsoo: +1
+2018-04-24 21:33:49	jcsoo	Not ready yet for a RFC or pre-RFC but I will add it to the tracking issue that we have
+2018-04-24 21:34:10	prof	Great. I'd like to help.
+2018-04-24 21:34:13	emilgardis	Ok
+2018-04-24 21:34:22	jcsoo	take care everyone!
+2018-04-24 21:34:27	~japaric	jcsoo: o/
+2018-04-24 21:34:36	jamesmunns	See you later jcsoo!
+2018-04-24 21:34:37	emilgardis	cya
+2018-04-24 21:35:59	~japaric	anything else that you want to bring up related to #42 (embedded Rust on stable)?
+2018-04-24 21:36:11	pftbest_	since we are going to add arch specific part to the core for asm,
+2018-04-24 21:36:41	pftbest_	can we add a one more macro for msp430 that will use msp430-interrupt internally
+2018-04-24 21:36:54	pftbest_	so we don't have to stabilize it
+2018-04-24 21:37:05	~japaric	you mean add a macro to core?
+2018-04-24 21:37:20	pftbest_	hm
+2018-04-24 21:37:40	pftbest_	sorry, i forgot that macro expand locally
+2018-04-24 21:37:51	pftbest_	so it will not work :(
+2018-04-24 21:38:20	thejpster	I need to run too.
+2018-04-24 21:38:25	~japaric	yeah, I think the only way would be to stabilize msp430-interrupt
+2018-04-24 21:38:29	~japaric	thejpster: ok, cya
+2018-04-24 21:38:31  *	thejpster waves
+2018-04-24 21:38:59	~japaric	pftbest_: would it be possible to define the interrupt externally using C or assembly and have that call some Rust function via the C ABI?
+2018-04-24 21:39:18	~japaric	that could be a workaround for the msp430-interrupt ABI being unstable
+2018-04-24 21:39:30	skade	ping
+2018-04-24 21:39:37	jamesmunns	ACK
+2018-04-24 21:39:55	pftbest_	japaric: yes, it's possible but it would have much overhead
+2018-04-24 21:40:23	jamesmunns	Though I think thejpster was one of the people who wanted to talk to skade, and he just left
+2018-04-24 21:40:42	~japaric	pftbest_: but it would be stable :-). I think it's similar to using external assembly; it also has overhead
+2018-04-24 21:40:51	~japaric	you can drop to nightly to get zero overhead
+2018-04-24 21:41:02	~japaric	same thing with inline asm!
+2018-04-24 21:41:17	jamesmunns	(questions for skade were generally a check whether our current plan for 2018 matches the desires from the commercial people you have talked to)
+2018-04-24 21:41:37	jamesmunns	current plan is here: https://github.com/rust-lang-nursery/embedded-wg/issues/42
+2018-04-24 21:42:39	skade	I think anything that moves towards having at least one popular target stable is a good sign
+2018-04-24 21:42:47	jamesmunns	Generally the focus is to get some subset of targets (particularly ARM Cortex and MSP) on to stable in time for the 2018 era, for general day-to-day usability. Some low level functionality would still require nightly
+2018-04-24 21:43:49	skade	well, one big point was getting a project with some level of certification as a showcase, but that's nothing the WG can provide
+2018-04-24 21:44:39	prof	What kind of certification?
+2018-04-24 21:45:06	skade	someone at STM mentioned they only showcase projects of at least SIL 2
+2018-04-24 21:47:03	prof	Is there anyone doing SIL analysis on Rust projects already?
+2018-04-24 21:47:10	jamesmunns	note: SIL comes from IEC61508 (https://en.wikipedia.org/wiki/IEC_61508), typically used on safety critical devices. Avionics and automotive have similar standards
+2018-04-24 21:47:53	~japaric	do you need a certified compiler to get your application SIL certified?
+2018-04-24 21:48:35	jamesmunns	I'd have to read the standards, not sure on that
+2018-04-24 21:48:41	skade	no, but an unproven compiler is a roadbump
+2018-04-24 21:48:51	skade	as far as I understood
+2018-04-24 21:49:09	prof	Not as far as I know. But you need to go through risk analysis and built-in safety features help a lot keeping risk factors down.
+2018-04-24 21:51:25	prof	If someone has done that on Rust programs already one could apply some of the basic risk factors and at least get an idea where we might land.
+2018-04-24 21:52:27	jamesmunns	I'd be happy to work with someone. I've worked with 61508 for software devices in the past, would be more than happy to advise
+2018-04-24 21:52:29	prof	Precedence could be useful.
+2018-04-24 21:52:35	skade	it's not that I have ever done that, so, it's mainly by hersay
+2018-04-24 21:52:38	skade	hearsay
+2018-04-24 21:53:06	pftbest_	does anyone use clang(llvm) on safety critical systems?
+2018-04-24 21:53:07	jamesmunns	I wish I still had my copy of 61508-3, it would be easier for me to do a writeup of what is necessary for a rust project
+2018-04-24 21:53:21	prof	Certainly.
+2018-04-24 21:53:34	skade	jamesmunns: how much would a copy cost?
+2018-04-24 21:54:34	jamesmunns	https://webstore.iec.ch/publication/5517 says in the ~250-300 Eur per volume range
+2018-04-24 21:54:40	skade	pftbest_: maybe worth watching this talk. https://www.youtube.com/watch?v=pmy1Ttieh3I
+2018-04-24 21:55:00	pftbest_	thanks
+2018-04-24 21:55:10	jamesmunns	We'd probably want at least volume 3 (software) and volume 7 (techniques), if I remember correctly
+2018-04-24 21:55:36	~japaric	ok, 5 mins left. I have to go to other meeting right after this.
+2018-04-24 21:56:25	~japaric	one final note: if you are attending RustFest Paris impl days and want to help on issues related to the 2018 edition milestone leave a comment in this thread: https://github.com/rust-lang-nursery/embedded-wg/issues/90
+2018-04-24 21:57:13	~japaric	we'll org some work items for atendees to tackle. We can discuss what those would be in the next meeting
+2018-04-24 21:57:58	~japaric	I'll send an e-mail about next meeting, which is supossed to be a video meeting, as I think next Tuesday is a holiday
+2018-04-24 21:58:08	~japaric	so maybe next meeting can be on IRC, and the video meeting can be two weeks
+2018-04-24 21:58:23	jamesmunns	+1 from me
+2018-04-24 22:00:03	~japaric	skade: thanks for the input about what commercial users want. We have open agenda meetings now so if you think anyone you know who's interested in embedded Rust would like to bring up an issue please point them to the WG repo (e.g. https://github.com/rust-lang-nursery/embedded-wg/issues/89)
+2018-04-24 22:00:12	emilgardis	I would like that as I'm interested in what could be done :+1:
+2018-04-24 22:00:21	~japaric	thank you all for attending! See you next week

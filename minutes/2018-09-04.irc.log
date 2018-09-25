@@ -1,0 +1,232 @@
+2018-09-04 20:02:26	~japaric	ok, let's start this meeting!
+2018-09-04 20:02:32	~japaric	first two reminders
+2018-09-04 20:02:42	~japaric	1) vote on [RFC] initial Cortex-R team -- https://github.com/rust-embedded/wg/pull/199
+2018-09-04 20:02:50	~japaric	if you haven't already
+2018-09-04 20:03:03	~japaric	2) review infrastructure changes (if you are familiar with ops stuff) -- https://github.com/rust-embedded/wg/issues/156#issuecomment-418196668
+2018-09-04 20:03:20	--	Mode #rust-embedded [+o ithinuel] by ChanServ
+2018-09-04 20:03:24	@ithinuel	Hi there
+2018-09-04 20:03:35	@ithinuel	Sorry for being late
+2018-09-04 20:03:39	~japaric	the first item on the agenda is triaging issues that need be done for the milestone
+2018-09-04 20:03:44	~japaric	ithinuel: we just started :-)
+2018-09-04 20:04:14	~japaric	for the edition milestone**
+2018-09-04 20:04:20	~japaric	I have written all the edition issues in the etherpad
+2018-09-04 20:04:35	~japaric	along with their current status and how's currently working on them
+2018-09-04 20:04:47	~japaric	let's go over each of them
+2018-09-04 20:05:02	~japaric	Book: Introduction
+2018-09-04 20:05:08	~japaric	the GH link is missing
+2018-09-04 20:05:28	~japaric	https://github.com/rust-embedded/book/issues/3
+2018-09-04 20:06:03	~japaric	we need someone to work on this
+2018-09-04 20:06:10	~japaric	jamesmunns: are you actively working on this one?
+2018-09-04 20:06:36	jamesmunns	Not actively on the intro
+2018-09-04 20:06:59	jamesmunns	I marked the sections in progress from me ATM
+2018-09-04 20:07:12	~japaric	anyone wants to volunteer to look work on this or look over it?
+2018-09-04 20:07:23	~japaric	volunteer to work on this**
+2018-09-04 20:07:37	@therealprof	I'm such a terrible writer but I'd be happy to proof it.
+2018-09-04 20:07:50	jamesmunns	Happy to mentor anyone :) This one is partially implemented, but needs some filling out
+2018-09-04 20:07:53	@therealprof	What about pinging Nicoretti?
+2018-09-04 20:08:27	~japaric	therealprof: sgtm, could you ping them?
+2018-09-04 20:08:40	~japaric	therealprof: jamesmunns can I assign the issue to you as mentors / reviewers?
+2018-09-04 20:08:48	@therealprof	Doing it right away.
+2018-09-04 20:08:59	jamesmunns	Yep, thanks!
+2018-09-04 20:09:33	~japaric	alright, thanks
+2018-09-04 20:09:39	@korken89	I can also help proof reading
+2018-09-04 20:09:59	@korken89	I would like to help write as well, but have a bit too much outside this ATM to dare take on something big
+2018-09-04 20:10:07	~japaric	korken89: thanks, I'll add you as a collab so you can review PRs
+2018-09-04 20:10:49	~japaric	ok, the next issue is the second chapter about writing the first program
+2018-09-04 20:11:02	@ithinuel	<- terrible writer but up for proof reading as well
+2018-09-04 20:11:04	~japaric	I'll pull in some text from a quickstart PR
+2018-09-04 20:11:19	~japaric	so I think that one is good for now
+2018-09-04 20:11:32	jamesmunns	We may want to ping sekineh, he is working on the CI still, and actively looking at QEMU atm
+2018-09-04 20:11:50	~japaric	jamesmunns: +1
+2018-09-04 20:12:12	~japaric	I'll ping them
+2018-09-04 20:12:21	@therealprof	I'd be happy to expand on the quickstart examples if needed.
+2018-09-04 20:12:24	jamesmunns	Thanks japaric
+2018-09-04 20:12:43	~japaric	therealprof: please knock yourself out :-)
+2018-09-04 20:13:06	~japaric	ok, issue 3 is about the collections chapter
+2018-09-04 20:13:13	~japaric	a draft was merged last week
+2018-09-04 20:13:26	~japaric	we have to decide if we want to add something else to the chapter
+2018-09-04 20:13:33	~japaric	but we can do that on the issue
+2018-09-04 20:13:59	~japaric	next issue (4) is about concurrency
+2018-09-04 20:14:13	~japaric	this one is empty; I planned to write about interrupts and critical sections but haven't had the time
+2018-09-04 20:14:57	@theJPster	I'm quite looking forward to this section :)
+2018-09-04 20:15:05	@theJPster	It's the bit I've found trickiest about Monotron,.
+2018-09-04 20:15:07	@therealprof	What's the foundation for that?
+2018-09-04 20:15:15	@therealprof	RT or RTFM?
+2018-09-04 20:15:44	~japaric	unless someone wants to volunteer this probably won't see much progress in the next few weeks
+2018-09-04 20:15:50	cja	whoops, late
+2018-09-04 20:16:11	@adamgreig	I might be able to help out with that and a few other sections next week but definitely not this week
+2018-09-04 20:16:18	@therealprof	Sounds like we have a volunteer. ;)
+2018-09-04 20:16:37	~japaric	therealprof: more general than that. I planned to write about when a critical section is needed and where you can use e.g. a spsc lockless queue
+2018-09-04 20:16:54	@korken89	japaric: If you want help with core parts of RTFM I can help write there, though I currently do not have experience with the Rust version of RTFM.
+2018-09-04 20:16:55	~japaric	I would be writing `unsafe` code that's actually safe
+2018-09-04 20:17:06	@therealprof	Ah, cool.
+2018-09-04 20:17:13	@therealprof	Oooh. :-D
+2018-09-04 20:17:18	cja	Is the issue to work on the doc, or have someone go through it to see if it's consistent/coherent? I recall an issue last week about the OSX side?
+2018-09-04 20:17:22	@theJPster	Does that include atomics too?
+2018-09-04 20:17:47	~japaric	theJPster: I had nothing planned about atomics
+2018-09-04 20:17:58	@theJPster	I think they're an important part of concurrency
+2018-09-04 20:19:06	jamesmunns	brb
+2018-09-04 20:19:11	~japaric	if someone wants to write about atomics that'd be great :-)
+2018-09-04 20:19:11	@therealprof	cja: Writing chapters…
+2018-09-04 20:19:44	cja	apologies, I should have dug in the backlog better
+2018-09-04 20:20:01	~japaric	ok, let's move to issue 7 since jamesmunns is afk
+2018-09-04 20:20:10	~japaric	tips for C devs
+2018-09-04 20:20:12	@korken89	The nice thing about atomics is that they work more or less the same as in normal Rust, only on Cortex-M0 we do not have atomics sadly
+2018-09-04 20:20:44	~japaric	no one's working on this atm. Any volunteers for writing this?
+2018-09-04 20:21:51	~japaric	one of the topics is about cross compiling to embedded Linux; that should be too hard to cover
+2018-09-04 20:21:58	~japaric	shouldn't be**
+2018-09-04 20:21:59	@adamgreig	I won't have time this week, but probably next week or after I'd be happy to have a go at this and the next one. if anyone else is interested please go ahead though.
+2018-09-04 20:22:28	~japaric	adamgreig: thanks
+2018-09-04 20:22:36	@therealprof	I'm pretty much booked out I'm afraid… (also doing C stuff, grr…)
+2018-09-04 20:22:58	~japaric	ok, let's revisit 7 next week
+2018-09-04 20:23:07	@theJPster	likewise, I'm afraid. Too many conferences!
+2018-09-04 20:23:08	jamesmunns	(back)
+2018-09-04 20:23:23	~japaric	issue 8 is about mixing C and Rust code
+2018-09-04 20:23:30	~japaric	no one's working on this atm
+2018-09-04 20:23:39	~japaric	adamgreig may be able to work on it starting next week
+2018-09-04 20:23:46	~japaric	any other volunteer for writing this?
+2018-09-04 20:24:02	jamesmunns	I will also ping spacekookie about it, who gave a talk at rustconf about this
+2018-09-04 20:24:02	Lumpio-	korken89: ...except on Cortex-M3 where LLVM seems to emit incorrect assembly sometimes which I discovered today
+2018-09-04 20:24:06	Lumpio-	But I can talk about that later
+2018-09-04 20:24:24	~japaric	jamesmunns: thanks
+2018-09-04 20:24:46	cja	japaric: is there a single page with issues for today?
+2018-09-04 20:24:47	@ryankurte	I might be able to do a little on 8, though some of it is definitely over my head atm.
+2018-09-04 20:24:57	@ryankurte	s|some|most|g tbqh
+2018-09-04 20:24:59	~japaric	cja: https://public.etherpad-mozilla.org/p/embedded-wg
+2018-09-04 20:25:16	@korken89	Lumpio-: :o Is there an tracking issue for this?
+2018-09-04 20:25:21	cja	thank you
+2018-09-04 20:25:51	Lumpio-	korken89: https://bugs.llvm.org/show_bug.cgi?id=38828 - I just filed it so it's unconfirmed on there but we went over the problem on #llvm and it seems to be an actual bug
+2018-09-04 20:26:01	~japaric	ryankurte: I'll assign 8 to you so at least you'll be in the loop
+2018-09-04 20:26:21	Lumpio-	Might be good to keep in mind while working with atomics on Cortex-M3 for now
+2018-09-04 20:26:21	~japaric	ok, let's move on
+2018-09-04 20:26:35	~japaric	let's go over issue 5 and 6 now that jamesmunns is back
+2018-09-04 20:27:05	~japaric	jamesmunns: I haven't had time to check your PR
+2018-09-04 20:27:14	jamesmunns	Issue 5 - I slightly mention embedded hal, and how the portability story works, but not much in depth
+2018-09-04 20:27:22	jamesmunns	maybe the intro page - ish
+2018-09-04 20:27:45	awygle	I would also like to help review, especially things around portability
+2018-09-04 20:27:55	cja	As someone new to rust embedded I'm happy to read anything written and provide feedback (being an intended reader, basically), but I'm not much help for writing the chapters myself tus far
+2018-09-04 20:28:02	~japaric	I'll review the PR later this week. It'd be good if others reviewed it too
+2018-09-04 20:28:21	jamesmunns	PR is https://github.com/rust-embedded/book/pull/15 - if anyone wants to take a look :)
+2018-09-04 20:28:53	jamesmunns	There also used to be a "singletons" chapter, which I have renamed "peripherals"
+2018-09-04 20:28:58	jamesmunns	(it covers singletons)
+2018-09-04 20:29:05	~japaric	ok, I think 5 and 6 should be well covered for this week
+2018-09-04 20:29:11	jamesmunns	There isn't an issue for that, I should probably make one for that.
+2018-09-04 20:29:21	~japaric	jamesmunns: +1
+2018-09-04 20:29:38	~japaric	jamesmunns: I have some notes about the global singleton pattern that I want to put into a PR
+2018-09-04 20:29:46	awygle	Where is the book outline located?
+2018-09-04 20:29:48	~japaric	(peripherals are *owned* singletons; not the same thing)
+2018-09-04 20:30:01	~japaric	awygle: sidebar https://rust-embedded.github.io/book/
+2018-09-04 20:30:17	@korken89	Quick side note, is there a way to see book PRs rendered? Reading raw MD is a bit tedious
+2018-09-04 20:30:20	jamesmunns	japaric: happy to chat, or look at review comments, just let me know
+2018-09-04 20:30:28	jamesmunns
+2018-09-04 20:30:29	jamesmunns
+2018-09-04 20:30:49	jamesmunns	whoops: https://rust-embedded.github.io/book/
+2018-09-04 20:30:53	~japaric	korken89: I don't think so
+2018-09-04 20:30:58	jamesmunns	oh
+2018-09-04 20:30:59	jamesmunns	prs
+2018-09-04 20:31:04	jamesmunns	sorry :|
+2018-09-04 20:31:06	~japaric	korken89: you can view the rendered markdown in the PR
+2018-09-04 20:31:16	@korken89	Just hitting "view" in the Github PR seems to work :)
+2018-09-04 20:31:26	~japaric	yeah, that's what I meant
+2018-09-04 20:31:28	@therealprof	Yes, most of the times.
+2018-09-04 20:31:54	~japaric	ok, issue 9 is about the outline of the book
+2018-09-04 20:32:14	~japaric	but we need more content to see if we are going to rearrange the chapters or split chapters
+2018-09-04 20:32:17	~japaric	so blocked atm
+2018-09-04 20:32:47	~japaric	issue 10 is about https://github.com/rust-embedded/book/issues/10
+2018-09-04 20:32:54	~japaric	which was not originally planned for the book
+2018-09-04 20:32:58	~japaric	but seems useful
+2018-09-04 20:33:00	~japaric	ryankurte: ^
+2018-09-04 20:33:18	~japaric	in particular I'd like to put OS specific stuff about GDB and OpenOCD there
+2018-09-04 20:33:28	~japaric	to not duplicate it in other resources like the book and discovery
+2018-09-04 20:33:54	~japaric	thoughts?
+2018-09-04 20:34:05	emilgardis	I think that's a great idea
+2018-09-04 20:34:14	jamesmunns	:+1: and link to the book from discovery?
+2018-09-04 20:34:40	@korken89	Sounds good
+2018-09-04 20:34:43	~japaric	jamesmunns: yes, though I'm not sure if this should go in the book (appendix?) or be a separate mdbook
+2018-09-04 20:34:58	@ryankurte	I can't remember where but iirc #10/#112 was deemed too much for the book?
+2018-09-04 20:35:02	@ryankurte	Ahh, ^
+2018-09-04 20:35:12	~japaric	I was thinking if more obscure like which OpenOCD .cfg file for this board could live there
+2018-09-04 20:35:20	~japaric	in which case it would essentially be like a wiki
+2018-09-04 20:35:23	~japaric	but edited via PRs
+2018-09-04 20:35:33	~japaric	more obscure stuff**
+2018-09-04 20:35:36	jamesmunns	Not opposed to using mdbook as a wiki :)
+2018-09-04 20:36:03	@therealprof	Which board? The F3 disco?
+2018-09-04 20:36:53	~japaric	therealprof: I recently worked with a RM42 board (Cortex-R core) OpenOCD didn't work out of the box. Had to look for some "IDs" (DAP_ID, iirc?) online to make it work
+2018-09-04 20:37:16	~japaric	the ID was in the data sheet but the value you had to use depended on which revision of the chip you were using
+2018-09-04 20:37:35	~japaric	that's the kind of obscure stuff I'm referring to
+2018-09-04 20:37:49	@therealprof	Ah, yes.
+2018-09-04 20:37:52	@adamgreig	sounds not especially rust related so +1 on having it not in the book
+2018-09-04 20:37:55	@ryankurte	I still think it'd be excellent to have a flow-chart esque resource for getting code onto board and debug out. Maybe specific board support (and supported boards) could be it's own book/sub-book/subsection?
+2018-09-04 20:37:59	@therealprof	Especially since the last release is really old.
+2018-09-04 20:38:44	@ryankurte	And then the actual support could refer back to the book for more general openocd/jlink/whatever parts?
+2018-09-04 20:39:32	emilgardis	I think a wiki would be more fitting for specific board support @ryankurte
+2018-09-04 20:40:10	~japaric	emilgardis: but this debugging resource would be a wiki in mdbook format
+2018-09-04 20:41:18	emilgardis	Aha, I suppose that'd work for me
+2018-09-04 20:42:04	@ryankurte	Yeah, whatever works / the wiki proposal didn't get a lot of love last time / I'm happy with either.
+2018-09-04 20:42:04	@ryankurte	I'm mostly suggesting that the content here (https://github.com/rust-embedded/book/issues/10#issue-349356813) be separate from specific board support stuff somewhere else.
+2018-09-04 20:42:50	~japaric	let's try to make a decision: who's in favor of an additional mdbook that covers the stuff in the above link ^?
+2018-09-04 20:43:15	jamesmunns	generally :+1:, any reason it is limited to just debugging, vs "embedded wiki powered by mdbook"?
+2018-09-04 20:43:28	@korken89	+1
+2018-09-04 20:43:28	@adamgreig	I don't think it belongs in the main book, happy for it to be its own mdbook, could also be some sort of wiki
+2018-09-04 20:43:34	emilgardis	+1
+2018-09-04 20:43:38	@adamgreig	so let's say +1
+2018-09-04 20:44:07	@therealprof	+1
+2018-09-04 20:44:42	posborne	+1
+2018-09-04 20:44:43	~japaric	jamesmunns: it could be extended into a embedded wiki in the future. I'm trying to get some initial decision right now; we can revisit the wiki idea
+2018-09-04 20:44:44	@nastevens	Take my vote with a grain of salt, but +1
+2018-09-04 20:45:19	~japaric	that sounds like the majority of the present
+2018-09-04 20:45:34	~japaric	now, who volunteers for writing this?
+2018-09-04 20:46:36	~japaric	they don't have to write the whole thing at once. Starting with a skeleton (see book) is fine.
+2018-09-04 20:46:43	@ryankurte	I'm happy to work on the New Book (and I think there were others in the thread) ^_^
+2018-09-04 20:47:16	@ryankurte	What is the status of the debugging section in The Book, then? Separate issue to track what should be included there?
+2018-09-04 20:47:18	@korken89	I can help with filling out, but I am a bit pressed for free time right now (and coming 2 weeks)
+2018-09-04 20:47:38	~japaric	ryankurte: the issue would be moved into the new repo
+2018-09-04 20:48:02	~japaric	ryankurte: I'll make a new repo and add you and /resources as collabs
+2018-09-04 20:48:14	@ryankurte	I'd still argue for some mention of programming / debugging etc. in the book, but, works for me!
+2018-09-04 20:48:19	@therealprof	Same. But FWIW I do have a lot of the hardware mentioned in the ticket here.
+2018-09-04 20:49:13	DaQue_	I’m really new to rust.  Any reason I shouldn’t be able to switch between using Xargo and the new method the nightly is using any time I want. A lot of beginner tutorial stuff still uses Xargo
+2018-09-04 20:50:26	~japaric	DaQue_: short version is that you shouldn't use Xargo or follow material that uses Xargo
+2018-09-04 20:50:35	~japaric	continuing the triage
+2018-09-04 20:50:45	~japaric	next issue is 11, the embedded Rust showcase
+2018-09-04 20:50:53	~japaric	the RFC was approved
+2018-09-04 20:51:00	DaQue_	Thanks
+2018-09-04 20:51:02	~japaric	but still need someone to implement this
+2018-09-04 20:51:13	~japaric	any volunteer?
+2018-09-04 20:51:42	~japaric	I think the hardest part would be finding a template
+2018-09-04 20:51:55	~japaric	or we could start with just a README.md
+2018-09-04 20:52:27	@theJPster	Yeah I'd keep it simple. Content first, style second.
+2018-09-04 20:52:45	@therealprof	I really haven't had any time to check out the stuff and won't have for the forseeable future.
+2018-09-04 20:52:53	~japaric	theJPster: are you volunteering? :-)
+2018-09-04 20:53:15	@theJPster	I mean you can write my name down, but I won't get anything done.
+2018-09-04 20:53:18	@therealprof	I do have some ideas for showcases though.
+2018-09-04 20:53:45	~japaric	ok, let's revisit that next week
+2018-09-04 20:53:50	@therealprof	Just received my Anne Pro 2 and wanted to try the Rust firmware for it.
+2018-09-04 20:54:05	~japaric	issue 12, before we run out of time
+2018-09-04 20:54:08	emilgardis	+1
+2018-09-04 20:54:12	~japaric	stable assembly operations
+2018-09-04 20:54:17	~japaric	i.e. core::arch::arm
+2018-09-04 20:54:30	~japaric	I want to de-milestone / de-prioritize this one
+2018-09-04 20:54:45	~japaric	since cortex_m::{asm,register} works on stable w/o gcc
+2018-09-04 20:54:53	~japaric	and because I don't have time to push this over the finish line
+2018-09-04 20:55:30	@korken89	I'd say it's fine to de-milestone it
+2018-09-04 20:55:47	@therealprof	+1
+2018-09-04 20:55:50	@theJPster	cortex-m includes interrupt control, right?
+2018-09-04 20:55:59	@therealprof	Yep.
+2018-09-04 20:56:27	jamesmunns	abstain, haven't spent enough time needing asm inline, outside of what cortex_m already offers
+2018-09-04 20:56:37	@theJPster	I mean, nop, wfi, cpsid/cpsie cover must use cases.
+2018-09-04 20:57:01	@adamgreig	yes the new prebuilt asm workaround helps a lot
+2018-09-04 20:57:06	@theJPster	(unless you hand-write your video generation routines, in which case cortex-m is never going to be enough)
+2018-09-04 20:57:13	@adamgreig	i assume we still really want those intrinsics landed by 2018 itself though
+2018-09-04 20:57:15	@therealprof	:-D
+2018-09-04 20:57:25	@theJPster	I'm +1
+2018-09-04 20:57:42	~japaric	adamgreig: yeah, but they may not be stable for Rust 2018
+2018-09-04 20:58:15	@adamgreig	I guess they can land in any old compiler version thereafter though
+2018-09-04 20:58:29	@adamgreig	'old' is a bit misleading there, I mean they can be part of the normal updates
+2018-09-04 20:58:45	~japaric	editions are decoupled from std / core
+2018-09-04 20:58:58	~japaric	so if the intrinsics land in 1.32 they'll be available to both editions
+2018-09-04 20:59:01	@adamgreig	yes, that's what I was clumsily getting at
+2018-09-04 20:59:17	@adamgreig	re-prioritising seems fine then
+2018-09-04 20:59:21	@adamgreig	de-*
+2018-09-04 20:59:31	posborne	+1
+2018-09-04 20:59:54	~japaric	we didn't cover all the issues but the ones that we didn't aren't high priority; we can check them next week
+2018-09-04 21:00:07	~japaric	thanks everyone for attending! See you next week

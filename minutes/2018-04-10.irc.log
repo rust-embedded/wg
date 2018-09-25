@@ -1,0 +1,170 @@
+2018-04-10 21:05:38	thejpster	Yo, sorry I'm late.
+2018-04-10 21:05:49	~japaric	thejpster: o/
+2018-04-10 21:05:53	thejpster	Is the meeting here or on hangouts?
+2018-04-10 21:05:57	~japaric	here
+2018-04-10 21:06:00	thejpster	yay
+2018-04-10 21:06:06	thejpster	I do not have a face for video today.
+2018-04-10 21:06:49	~japaric	jcsoo: pftbest I assume you are around since you are on the etherpad?
+2018-04-10 21:06:57	jcsoo	hey there
+2018-04-10 21:06:59	pftbest_	yes
+2018-04-10 21:07:16	jcsoo	hello everyone!
+2018-04-10 21:07:20	jamesmunns	Ack its tuesday!
+2018-04-10 21:07:39	jamesmunns	Lucky timing. Also here (now)
+2018-04-10 21:08:12	~japaric	ok, let's start
+2018-04-10 21:08:32	~japaric	as last week we'll go through the milestoned items to see how they have progressed
+2018-04-10 21:08:52	~japaric	first, https://github.com/rust-lang-nursery/embedded-wg/issues/53 has been fixed for real this time
+2018-04-10 21:09:00	~japaric	so the issue has been closed
+2018-04-10 21:09:02	~japaric	yay
+2018-04-10 21:09:38	~japaric	next, we have embedded Rust on stable  https://github.com/rust-lang-nursery/embedded-wg/issues/42
+2018-04-10 21:09:47	~japaric	quite a bit has happened since last week
+2018-04-10 21:10:07	~japaric	rust-std components for ARM Cortex-M have landed
+2018-04-10 21:10:14	~japaric	so you can use Cargo instead of Xargo
+2018-04-10 21:10:26	thejpster	I'm using then now - they work great (if you spell your targets correctly)
+2018-04-10 21:10:39	~japaric	thejpster: +1
+2018-04-10 21:10:40	myeisha	confirmed awesome.
+2018-04-10 21:10:43	jcsoo	impressed this is all happening so quickly
+2018-04-10 21:10:52	jamesmunns	Its that #allhands magic
+2018-04-10 21:11:40	~japaric	ok, next #![no_std] expansion now contains `extern crate compiler_builtins`
+2018-04-10 21:11:56	~japaric	so you don't need `#[feature(compiler_builtins_lib)]` feature gate anymore
+2018-04-10 21:12:08	~japaric	there was some breakage in cortex-m-rt but it already got patched
+2018-04-10 21:12:20	pftbest_	msp430 was also patched
+2018-04-10 21:12:25	~japaric	pftbest_: +1
+2018-04-10 21:12:50	jcsoo	ordering a dev board now!
+2018-04-10 21:13:10	~japaric	it seems this change caused some other breakage with custom targets
+2018-04-10 21:13:17	~japaric	there have been reports in the Xargo repo
+2018-04-10 21:13:24	~japaric	but haven't take a look yet
+2018-04-10 21:14:27	~japaric	regarding issue #42 I realized we hadn't considered unstable compiler flags
+2018-04-10 21:14:52	~japaric	and quite a few people are using -Z linker-flavor to use LD, instead of GCC, as the linker
+2018-04-10 21:15:19	~japaric	but linker-flavor may not be necessary with this idea from acrichto
+2018-04-10 21:15:22  *	japaric digging link
+2018-04-10 21:15:40	~japaric	https://github.com/rust-lang/rust/issues/49794#issuecomment-379807238
+2018-04-10 21:15:54	~japaric	basically we make rustc infer the linker flavor based on the name of the linker
+2018-04-10 21:16:09	~japaric	I think that should remove the need for linker-flavor when using LD
+2018-04-10 21:16:46	~japaric	I'll look into that next week unless someone else beats me to it
+2018-04-10 21:17:46	pftbest_	I've seen people putting ld in a linker field, because of the name "linker", so it may be a good thing to autodetect
+2018-04-10 21:18:43	~japaric	pftbest_: hmm, you mean auto select a linker based on the target name?
+2018-04-10 21:19:15	pftbest_	japaric: no, detect linker flavor
+2018-04-10 21:19:34	~japaric	ok
+2018-04-10 21:20:15	~japaric	the only blocker to get the MVP of embedded Rust on stable is panic_fmt
+2018-04-10 21:20:43	~japaric	nagisa is willing to mentor the implementation of RFC 2070, which adds a stable alternative to panic_fmt
+2018-04-10 21:21:25	~japaric	so, it'll hopefully be implemented soon-ish
+2018-04-10 21:21:39	nagisa	yeah, just gotta get around to writing the instructions up and making myself more available on IRC
+2018-04-10 21:22:01	~japaric	I'll ask the Rust team for how long the feature should be tested before riding the train towards stable
+2018-04-10 21:22:20	nagisa	for panic_fmt, there ain’t much risk
+2018-04-10 21:22:49	nagisa	we could probably manage to stabilise after 6 weeks after it is implemented (i.e. the next release)
+2018-04-10 21:23:18	~japaric	nagisa: that'd be great
+2018-04-10 21:23:45	~japaric	ok, I think that concludes issue #42 (embedded on stable), unless someone wants to bring some other point
+2018-04-10 21:24:11	myeisha	japaric: i'm still seeing linker errors, but that might not be related
+2018-04-10 21:24:19	~japaric	the other issue that saw some progress is #43 - one step setup
+2018-04-10 21:24:21	myeisha	(with lto disabled, anyway)
+2018-04-10 21:24:59	~japaric	myeisha: linker scripts can be tricky; I found a few holes after multiple codegen units became the default
+2018-04-10 21:25:19	myeisha	i'll debug some more and report results later.
+2018-04-10 21:25:29	~japaric	regarding #43, the latest release of cortex-m-rt supports linking with LLD
+2018-04-10 21:25:33	~japaric	myeisha: +1
+2018-04-10 21:25:48	jamesmunns	Do we want to make a Rust on Stable 1.1 issue to track stuff like `const fn` and `#[used]` that are nice to have?
+2018-04-10 21:26:08	~japaric	details in https://users.rust-lang.org/t/cortex-m-rt-v0-4-0-now-you-can-link-arm-cortex-m-programs-using-lld/16751/1
+2018-04-10 21:26:22	jamesmunns	(not sure if we had other stuff we ditched, other than stabilizing asm)
+2018-04-10 21:27:02	~japaric	jamesmunns: #42 already lists const fn, #[used] and asm
+2018-04-10 21:27:20	jamesmunns	(sorry, I meant if we wanted to close #42 once we have the stable mvp)
+2018-04-10 21:27:37	thejpster	Can I ask, is there a process for getting `extern crate compiler_builtins;` removed from everything on crates.io?
+2018-04-10 21:28:19	~japaric	jamesmunns: we could close it, or re-use the issue and remove the milestone
+2018-04-10 21:28:22	thejpster	Oh, no, ignore me.
+2018-04-10 21:28:30	jamesmunns	:+1:
+2018-04-10 21:28:33	~japaric	probably closing is better for tracking progress though
+2018-04-10 21:29:21	~japaric	thejpster: I'd say the process is let authors fix their stuff once they realize it broke
+2018-04-10 21:29:56	thejpster	japaric, it's be being an idiot. Let me rephrase the question. Can we produce better errors if you try and use a target that you haven't installed with rustup?
+2018-04-10 21:29:57	~japaric	or do you think we should proactively send PRs to fix stuff, or similar?
+2018-04-10 21:30:17	thejpster	thumbv7em-none-eabi != thumbv7em-none-eabihf != thumbv7-none-eabi
+2018-04-10 21:30:24	~japaric	oh, yeah I think the error looks a bit weird now
+2018-04-10 21:30:34	--	saiba_ is now known as saiba
+2018-04-10 21:30:35	~japaric	I think it says 'compiler_builtins' crate is missing
+2018-04-10 21:30:37	thejpster	It shouts at you about compiler_builtins not existing
+2018-04-10 21:30:43	~japaric	whereas before it said 'core' is missing
+2018-04-10 21:31:13	thejpster	I moved into a folder with a .cargo/config and it all got weird.
+2018-04-10 21:31:15	~japaric	I think that can be fixed be swapping the order of the 'extern crate's in the expansion
+2018-04-10 21:31:41	thejpster	If it was possible to add "Help: have you used rustup to add the target $TARGET"
+2018-04-10 21:31:46	thejpster	that would really help
+2018-04-10 21:32:03	jcsoo	+1 ran into this myself
+2018-04-10 21:32:07	myeisha	+1
+2018-04-10 21:32:48	wyvern	I also had that "duh" moment when I tried the `xargo`-free lifestyle
+2018-04-10 21:32:57	~japaric	thejpster: swapping the order of the extern crates produces the old error message
+2018-04-10 21:33:04	~japaric	"note: the `thumbv6m-none-eabi` target may not be installed"
+2018-04-10 21:33:27	~japaric	can someone open an issue and cc oli-obk?
+2018-04-10 21:33:34	~japaric	the expansion should be
+2018-04-10 21:33:37	~japaric	#[macro_use]
+2018-04-10 21:33:37	~japaric	extern crate core;
+2018-04-10 21:33:37	~japaric	extern crate compiler_builtins;
+2018-04-10 21:33:46	~japaric	right now it looks the other way around
+2018-04-10 21:34:08	~japaric	and compiler_builtins has a #[macro_use] on it, which it's not required
+2018-04-10 21:35:20	jamesmunns	I'll make a ticket
+2018-04-10 21:35:26	jamesmunns	rust-lang/rust, right?
+2018-04-10 21:35:27	~japaric	jamesmunns: thanks
+2018-04-10 21:35:30	~japaric	jamesmunns: yes
+2018-04-10 21:35:35	jamesmunns	(issue, too much time in JIRA at work)
+2018-04-10 21:35:57	pftbest_	how can you see what #[no_std] expands to?
+2018-04-10 21:36:13	~japaric	pftbest_: `cargo expand`
+2018-04-10 21:36:20	pftbest_	oh
+2018-04-10 21:36:22	~japaric	it's a custom subcommand
+2018-04-10 21:36:27	~japaric	so you need to install it first
+2018-04-10 21:36:34	pftbest_	thanks
+2018-04-10 21:36:45	~japaric	but it's just sugar for: cargo rustc -- -Z pretty=expanded or something
+2018-04-10 21:37:07	pftbest_	i thought it is just for macros
+2018-04-10 21:38:07	~japaric	ok, after that detour
+2018-04-10 21:38:13	~japaric	I was saying something about lld
+2018-04-10 21:38:59	~japaric	I had to work around some issue by patching the linker script in cortex-m-rt but after that it seems to work
+2018-04-10 21:39:35	~japaric	and you can use the lld shipped with the Rust toolchain, instead of having to install arm-non-eabi-ld
+2018-04-10 21:39:42	adamgreig	i've been having some weird issues today that only appeared with lld and not with ld, but can't say for sure they were lld and haven't really narrowed down yet
+2018-04-10 21:39:51	adamgreig	being able to use rust lld is really nice though
+2018-04-10 21:40:16	~japaric	adamgreig: please open a ticket in cortex-m-rt if you can repro the issues with lld
+2018-04-10 21:40:20	adamgreig	yea will do
+2018-04-10 21:40:24	~japaric	adamgreig: +1
+2018-04-10 21:42:30	~japaric	the other bullet under issue #43 are the llvm-tools
+2018-04-10 21:42:37	~japaric	there's a discussion on the rust-lang/rust repo
+2018-04-10 21:42:44	~japaric	https://github.com/rust-lang/rust/issues/49584
+2018-04-10 21:42:51	~japaric	it has quite a few thumbs up
+2018-04-10 21:43:14	~japaric	but still need an official OK from whichever team is supposed to OK it
+2018-04-10 21:43:55	~japaric	making a PoC PR may speed up things
+2018-04-10 21:44:27	~japaric	I have no bandwidth for that this week though
+2018-04-10 21:45:03	~japaric	the other issue that made some progress in the book / documentation one
+2018-04-10 21:45:34	~japaric	the embedonomicon landed in the WG repo
+2018-04-10 21:45:40	~japaric	and jamesmunns added some stuff for CI
+2018-04-10 21:46:04	~japaric	but I think there's no hosting yet
+2018-04-10 21:46:15	jamesmunns	(working on it :) )
+2018-04-10 21:46:26	~japaric	jamesmunns: +1
+2018-04-10 21:46:34	jamesmunns	one important question, where do we want to host it (domain wise)
+2018-04-10 21:47:02	jamesmunns	I can pretty easily spin it on to one of my existing domains (jamesmunns.com, onevariable.com), or I can buy a new domain that is relevant
+2018-04-10 21:47:34	~japaric	I think some domain with the words rust and embedded on it would make it feel more right
+2018-04-10 21:48:01	~japaric	and there's already rustembedded.org (?) and areweembedded.com (?)
+2018-04-10 21:48:02	jamesmunns	but tbh, it would be nice to have at something like `http://www.rust-embedded.org/`
+2018-04-10 21:48:57	jamesmunns	(which is owned by the community, they've offered to share, but I would need to set up the domain correctly, I'll follow up with them, or register something in the next week or so
+2018-04-10 21:49:10	~japaric	jamesmunns: we can ask posborne / nastevens
+2018-04-10 21:49:47	jamesmunns	https://gitlab.onevariable.com/james/embedded-wg-ci/ already builds the books as artifacts, so I just need to shove that into an nginx container and deploy it somewhere
+2018-04-10 21:50:37	wyvern	(not to derail the conversation, but hosting on s3 is near-free, ultra reliable, and you get a Let's Encrypt cert too)
+2018-04-10 21:51:11	jamesmunns	wyvern good point. Right now I have a digitalocean droplet that sits at about 0.1% load, so I never mind shoving more into that. S3 is a good option too
+2018-04-10 21:51:35	wyvern	less to worry about when the next heartbleed hits :)
+2018-04-10 21:51:50	thejpster	I would generally promote a community resource. I'm sure @jamesmunns isn't going anywhere, but I've seen examples where someone ran a website and then left the group.
+2018-04-10 21:51:57	jamesmunns	For static sites its about the same
+2018-04-10 21:52:22	adamgreig	is github pages + custom domain an option?
+2018-04-10 21:52:29	jamesmunns	Yeah, if we could get one of the official official websites to provide hosting (like next to the current books), I would be happy with that. this is only until that happens
+2018-04-10 21:52:48	jamesmunns	so this is hosting for the book until the 1.0 release (of the book), then we expect it will live somewhere else
+2018-04-10 21:52:59	thejpster	If expenditure is required, maybe we need to set up a community group and get a bank account? This feels like the kind of thing Rust needs to solve once and copy-paste.
+2018-04-10 21:53:46	jamesmunns	re: expenditure, I'm fine with the $xx/year for now, if it makes life easier
+2018-04-10 21:54:18	jamesmunns	But, agreed, long term, I shouldn't be a single point of failure
+2018-04-10 21:54:46	jamesmunns	I'm happy to make it happen now, and hand it off to somewhere more official (once that exists)
+2018-04-10 21:56:51	thejpster	+1
+2018-04-10 21:57:20	thejpster	If it helps, I have a Raspberry Pi 3 on Mythic Beasts I can point arbitrary stuff at. If we want to round-robin the DNS or something.
+2018-04-10 21:58:05	jamesmunns	lets follow up with this and let japaric cover anything else that still needs to be discussed :)
+2018-04-10 21:58:10	jamesmunns	(follow up after)
+2018-04-10 21:58:28	~japaric	I have nothing more to cover
+2018-04-10 21:58:32	jamesmunns	oh
+2018-04-10 21:58:37	~japaric	if someone wants to bring anything else they have 2 mins
+2018-04-10 21:59:19	adamgreig	i'm back at trying to make a unified stm32 device support and/or hal implementation thing, if anyone else is interested in chatting about it sometime
+2018-04-10 21:59:38	adamgreig	i have quite a good foothold on what is shared with what and how and what differs and where etc, but obviously a ton of work ahead
+2018-04-10 21:59:55	jcsoo	@adamgreig - I am working on this too, would love to compare notes
+2018-04-10 22:00:08	adamgreig	cool, let's
+2018-04-10 22:00:14	myeisha	heh. we can make a club.
+2018-04-10 22:00:14	pftbest_	japaric: how would one go about adding msp430-none-elf targets in rustup?
+2018-04-10 22:00:28	jamesmunns	adamgreig: if any changes would be necessary/nice to have in svd2rust, feel free to ping me :)
+2018-04-10 22:00:38	jcsoo	@adamgreig - email me at jcsoo@agora.com and we can set up a time to talk!
+2018-04-10 22:00:59	ryankurte	@japaric is there a problem with the current gh pages hosting? Supports custom domains, free and zero hassle, easy to front with cloudflare or the like if we need anything tricky.
+2018-04-10 22:01:00	~japaric	I'm going to officially end this meeting. Thanks everyone for attending!

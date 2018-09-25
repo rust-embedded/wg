@@ -1,0 +1,228 @@
+2018-07-30 11:04:21	~japaric	ok, let's start this meeting. The agenda is in https://public.etherpad-mozilla.org/p/embedded-wg
+2018-07-30 11:04:48	~japaric	today we'll be discussing RFC #130 which has been copy pasted into the etherpad
+2018-07-30 11:05:17	~japaric	it's about growing the rust-embedded org and creating teams to maintain core embedded crates
+2018-07-30 11:05:52	~japaric	I'm not going repeat the whole RFC here but we'll discuss it sections
+2018-07-30 11:06:20	~japaric	I think we can skip the summary and discuss the section about the role of the team, line 62
+2018-07-30 11:06:41	~japaric	thoughts on this section?
+2018-07-30 11:06:58	~japaric	anything else you think the teams should do
+2018-07-30 11:07:27	thejpster	By what mechanism can someone remove themselves or be removed from a team?
+2018-07-30 11:07:44	jamesmunns	Totally for it, as written. Having one meeting place for discussion, evaluation, and comparison is a great idea, IMO
+2018-07-30 11:07:56	~japaric	thejpster: that's listed as TBD in the unresolved questions section
+2018-07-30 11:08:15	thejpster	my bad, I didn't get that far
+2018-07-30 11:08:33	korken89	I agree, looks good
+2018-07-30 11:08:38	thejpster	+1
+2018-07-30 11:08:38	~japaric	jamesmunns: what do you mean by a meeting place. IRC?
+2018-07-30 11:08:45	jamesmunns	metaphorical
+2018-07-30 11:09:02	jamesmunns	i.e. there is one page to go to (the rust-embedded organization)
+2018-07-30 11:09:02	~japaric	I believe GH has a kind of chat thing that teams can use
+2018-07-30 11:09:12	~japaric	I think it's not public though
+2018-07-30 11:09:12	ithinuel	I'm quite new to online contributions to such projects, who is "widely used" defined ?
+2018-07-30 11:09:23	lkurusa	japaric: Gitter?
+2018-07-30 11:09:47	~japaric	ithinuel: that's loosely defined in the "crate inclusion policy" section
+2018-07-30 11:10:43	~japaric	lkurusa: not gitter, there's some UI in GH itself
+2018-07-30 11:11:05	jamesmunns	one small comment, are there any drawbacks of moving out of the rust/rust-lang-nursery space?
+2018-07-30 11:11:25	jamesmunns	lkurusa: I think it is only visitble if you are in a "GitHub Team", or maybe even just the new dashboard data
+2018-07-30 11:11:32	jamesmunns	I hadn't seen it before a week ago or so
+2018-07-30 11:11:35	ithinuel	japaric: Ok, I thought there was a definition that I missed somewhere :p
+2018-07-30 11:11:45	~japaric	jamesmunns: I don't think so
+2018-07-30 11:12:10	thejpster	Is /rust-embedded in any way less 'official' than /rust ?
+2018-07-30 11:12:12	~japaric	but to have a team under the rust org we'll have to have the people join that org
+2018-07-30 11:12:28	jamesmunns	Actually, there might be some positives, regarding setting up stuff like github pages
+2018-07-30 11:12:45	ithinuel	jamesmunns japaric lkurusa you need to be in a "Team" to see this UI. https://github.com/orgs/yourorg/teams
+2018-07-30 11:12:46	jamesmunns	"official"-ness is what I had in mind, but I don't know if anyone puts any stock into that
+2018-07-30 11:12:57	~japaric	thejpster: the wasm wg is completely hosted outside the rust org; they have a rustwasm org
+2018-07-30 11:13:08	thejpster	Ok, then I'm happy.
+2018-07-30 11:13:16	thejpster	rustwasm or rust-wasm?
+2018-07-30 11:13:18	jamesmunns	same here
+2018-07-30 11:13:20	~japaric	thejpster: we'll have a page on the rust-lang.org website to vouch for our oficcialness
+2018-07-30 11:13:44	~japaric	thejpster: https://github.com/rustwasm
+2018-07-30 11:13:54	thejpster	Ugh https://github.com/rust-wasm exists but is empty.
+2018-07-30 11:14:12	 *	thejpster gets the jitters when things are wilfully inconsistent.
+2018-07-30 11:14:21	thejpster	I'll get over it
+2018-07-30 11:14:23	lkurusa	jamesmunns: thanks, in the meantime i found a blogpost about "team discussions" which i assume is this
+2018-07-30 11:15:04	~japaric	ok, it sounds like everyone is OK with the role of the team
+2018-07-30 11:15:43	~japaric	the question about having a meeting place for each team is pending
+2018-07-30 11:15:49	~japaric	we can come back to it later
+2018-07-30 11:15:56	~japaric	next is the team membership section
+2018-07-30 11:16:07	~japaric	it describes a mechanism to add new members to a team
+2018-07-30 11:16:30	~japaric	and states that all teams and its members will be listed in the README of the rust-embedded/wg repo
+2018-07-30 11:16:52	~japaric	rust-embedded/wg will be the new name of the current rust-lang-nursery/embedded-wg repo
+2018-07-30 11:16:55	jamesmunns	Is there any parallel in this for the current Rust organization? Or are we blazing new trails here?
+2018-07-30 11:17:04	jamesmunns	I don't object, but consistency is good.
+2018-07-30 11:17:38	~japaric	the rust org doesn't have a mechanism like this afaik
+2018-07-30 11:17:44	jamesmunns	s/I don't object/I think this is a really good initial approach/
+2018-07-30 11:17:47	korken89	One point here, when requesting to become a member, it will become a permanent record. Should a person first talk to the current maintainers? I can see that some people would not apply to become part if they are worried that they might not get accepted
+2018-07-30 11:17:48	~japaric	I don't know how they add new members
+2018-07-30 11:18:04	~japaric	s/add/choose/
+2018-07-30 11:18:09	korken89	Just a thought
+2018-07-30 11:18:25	thejpster	korken89, that's a good point. I'd like to see an e-mail address or other private communications mechanism for these discussions.
+2018-07-30 11:18:27	~japaric	korken89: they should talk with the team before applying
+2018-07-30 11:18:36	jamesmunns	korken89: good point, do we have any private lines of contacts we want to publish?
+2018-07-30 11:18:58	~japaric	also, under unresolved question there's a question about having a would-be member start out as a collaborator to some repo first
+2018-07-30 11:19:07	korken89	Nice, I would then propose a official way to have "first contact"
+2018-07-30 11:19:20	jamesmunns	The short answer could also be "come find us and PM us on IRC", if we don't want a mailing list
+2018-07-30 11:19:43	korken89	Indeed, I believe this would be sufficient
+2018-07-30 11:19:57	thejpster	I'm already drowning in github email, so IRC is OK by me.
+2018-07-30 11:20:06	~japaric	thejpster: :-)
+2018-07-30 11:20:33	pftbest	you need all members to agree on adding new people, but what if some team member cannot be contacted?
+2018-07-30 11:20:34	~japaric	the list of team members should list their IRC handles
+2018-07-30 11:21:10	~japaric	pftbest: good question
+2018-07-30 11:21:12	korken89	pftbest: Good point
+2018-07-30 11:21:21	thejpster	and they should all be +r
+2018-07-30 11:21:28	~japaric	if there are too many members on a team; majority could suffice
+2018-07-30 11:21:37	TeXitoi	rust in fcp do majority with no negative
+2018-07-30 11:22:12	jamesmunns	+1 from me for "majority +1 also no -1".
+2018-07-30 11:22:19	hannobraun	Not replying for x weeks could be counted as abstaining.
+2018-07-30 11:22:28	~japaric	I think doing what rust does for fcp makes sense
+2018-07-30 11:22:57	thejpster	+1
+2018-07-30 11:23:00	korken89	I would agree on majority
+2018-07-30 11:23:02	thejpster	(tee hee)
+2018-07-30 11:23:06	hannobraun	+1
+2018-07-30 11:23:24	jamesmunns	Does the same process make sense for removing members?
+2018-07-30 11:23:37	ithinuel	+1
+2018-07-30 11:23:47	jamesmunns	I guess, excluding the member, if they are not happy about going?
+2018-07-30 11:24:02	jamesmunns	I don't think this has happened in embedded, and rarely if ever in rust as a whole
+2018-07-30 11:24:26	thejpster	I wouldn't want us to have to make policy on the fly if it becomes an issue though
+2018-07-30 11:24:36	jamesmunns	thejpster: exactly
+2018-07-30 11:24:39	thejpster	That's a difficult place to be and I'd like to be able to point at some long standing process
+2018-07-30 11:24:50	korken89	thejpster: +1
+2018-07-30 11:24:54	TeXitoi	I doesn't work because the excluded can veto
+2018-07-30 11:25:16	jamesmunns	TeXitoi: I would assume someone nominated from removal wouldn't get a vote.
+2018-07-30 11:25:21	~japaric	jamesmunns: same mechanism for removing members sgtm; unless the member wants to retire then they can just inform their team?
+2018-07-30 11:25:29	jamesmunns	*from => for
+2018-07-30 11:25:54	thejpster	that all sounds fine, as long as it's written down
+2018-07-30 11:25:55	jamesmunns	japaric: I know the npm orga still passes a PR to remove members. I don't think retirement will be a big deal either way.
+2018-07-30 11:26:21	thejpster	I assume the CoC applies to members' activities.
+2018-07-30 11:26:25	~japaric	jamesmunns: sorry, I meant there would still be a PR but no voting is required
+2018-07-30 11:26:39	thejpster	(where they relate to their work on the group)
+2018-07-30 11:26:51	jamesmunns	japaric: +1. Fine with or without a vote. Whatever is simpler to write in the rules :)
+2018-07-30 11:27:19	lkurusa	would the vote really matter if someone wants to retire?
+2018-07-30 11:27:26	thejpster	and please define majority in the event there's an even number of people
+2018-07-30 11:27:59	jamesmunns	We have to call in Aaron Turon to make the deciding vote :D
+2018-07-30 11:28:24	thejpster	Or the WG lead gets a casting vote, which is how we run council meetings
+2018-07-30 11:28:45	ithinuel	lkurusa: Indeed, I don't thinks we can force someone to contribute/participate
+2018-07-30 11:29:12	jamesmunns	thejpster: there is an even number of E-WG members
+2018-07-30 11:29:30	jamesmunns	But, I would still agree with your suggestion
+2018-07-30 11:30:02	lkurusa	thejpster: +1 to casting vote from WG lead
+2018-07-30 11:30:11	TeXitoi	majority definition: https://github.com/anp/rfcbot-rs/pull/188/files#diff-160a0c7f0b997b0346674f165cd9de50R259
+2018-07-30 11:30:55	korken89	thejpster: Indeed, following council meetings' procedure should be fine
+2018-07-30 11:31:48	~japaric	ok, let's have the lead do the casting vote in the case there's an even number of people and no majority
+2018-07-30 11:32:08	jamesmunns	+1
+2018-07-30 11:32:39	hannobraun	+1
+2018-07-30 11:32:41	korken89	+1
+2018-07-30 11:32:46	~japaric	ok, I think that covers membership?
+2018-07-30 11:32:47	pftbest	+1
+2018-07-30 11:33:24	~japaric	wait, there's the question of whether something should first be a collaborator before becoming a member of a team
+2018-07-30 11:33:35	~japaric	should that be required or left to the decision of the team?
+2018-07-30 11:33:44	jamesmunns	Up to discretion of team IMO
+2018-07-30 11:33:48	thejpster	I agree
+2018-07-30 11:33:52	jamesmunns	We can make it stricter if necessary later
+2018-07-30 11:34:18	hannobraun	agree
+2018-07-30 11:34:36	korken89	I agree
+2018-07-30 11:34:44	~japaric	ok
+2018-07-30 11:34:46	thejpster	If Aaron turns up, he hasn't made any embedded-wg commits (that I know of...) but still a good person to have on your team
+2018-07-30 11:35:22	~japaric	:-)
+2018-07-30 11:35:39	~japaric	ok, next section is the triage team
+2018-07-30 11:35:44	~japaric	line 99
+2018-07-30 11:36:02	~japaric	the section defines the triage team which are in charge of keep the PR queue moving
+2018-07-30 11:36:13	~japaric	they operate in the same way the rust triage team operates
+2018-07-30 11:36:27	~japaric	I couldn't find op notes about how the rust triage team operates
+2018-07-30 11:36:37	~japaric	so I wrote down my observations of how they work
+2018-07-30 11:36:53	jamesmunns	Out of band comment: Triage team might be an awesome place for people to start contributing before being added to the organization. Can non-members be triage team?
+2018-07-30 11:37:27	lkurusa	It mentions volunteers, so I assume so
+2018-07-30 11:37:35	thejpster	I don't see why the triage team has to be a strict subset of the superset of all teams
+2018-07-30 11:37:39	TeXitoi	can someone be a member of the triage team and another team, and if yes, can such a person review the PR ("The triage team can't review PRs" is quite ambiguous to this question)
+2018-07-30 11:38:02	~japaric	I think it would be tricky to give them the ability to label issues if they are not members. They would have to become collabs on all the repos?
+2018-07-30 11:38:59	jamesmunns	I can't think of a way to avoid that, other than having a bot that listens to label requests. Likely too complicated to implement, at least for a while
+2018-07-30 11:39:00	~japaric	TeXitoi: a person can be on the triage team and other teams, yes
+2018-07-30 11:39:25	thejpster	I'd replace "can't" with "don't".
+2018-07-30 11:39:39	TeXitoi	thejpster: +1
+2018-07-30 11:41:14	~japaric	ok, I think there are no more questions / comments about this section
+2018-07-30 11:41:45	~japaric	next it's the crate inclusion policy section
+2018-07-30 11:42:05	thejpster	why do you cite `stm32f103xx-hal` excluded on principle - lack of scope, or lack of use?
+2018-07-30 11:42:09	~japaric	it defines a mechanism for assigning crates to team
+2018-07-30 11:42:30	~japaric	lack of scope
+2018-07-30 11:42:46	jamesmunns	Do you mean we should exclude all BSP and/or HAL crates?
+2018-07-30 11:42:49	thejpster	so that would extend to all XXX-hal crates then?
+2018-07-30 11:43:00	~japaric	yes, I think we should exclude them
+2018-07-30 11:43:26	~japaric	otherwise the org could end up maintaining a large number of them
+2018-07-30 11:43:33	pftbest	is compiling on stable a hard rule?
+2018-07-30 11:43:34	korken89	I would agree, there will be a huge number of them
+2018-07-30 11:43:40	~japaric	then it becomes hard to say we are not going to maintain this specific one
+2018-07-30 11:43:52	jamesmunns	embedded-wg-nursery?
+2018-07-30 11:43:53	~japaric	so the number will probably keep growing
+2018-07-30 11:44:32	~japaric	and *ideally* companies / vendor should be maintaining the HAL / BSP crates
+2018-07-30 11:44:54	thejpster	Let's say a chip specific crate is excluded, but chip-family (stm32, tiva, nRF) could be included if it was widely used
+2018-07-30 11:45:02	thejpster	japaric, yeah, but that's not going to happen
+2018-07-30 11:45:09	~japaric	thejpster: :-)
+2018-07-30 11:45:11	TeXitoi	svd2rust generated crate => BSP crate ?
+2018-07-30 11:45:15	jamesmunns	I'm for including crates, and using a similar structure as the embedded-wg, but also would be okay with saying "bsp/hal crates are user maintained"
+2018-07-30 11:45:23	jamesmunns	TeXitoi: yep
+2018-07-30 11:45:56	thejpster	Maybe it's worth a glossary here (or somewhere) - board, chip, chip-family, core, arch?
+2018-07-30 11:46:12	korken89	Perhaps only mention known good ones to help users find in the jungle of bsp crates?
+2018-07-30 11:46:13	~japaric	thejpster: family svd2rust generated crates like the stm32 one could be included based on user base but that would be up to the team, I guess
+2018-07-30 11:46:26	jamesmunns	Or, I would say be selective. stm32f103xx is probably the best candidate to include.
+2018-07-30 11:46:55	thejpster	I'm uncomfortable with saying "this chip crate is special"
+2018-07-30 11:47:04	thejpster	because then you get into arguments about what constitutes special
+2018-07-30 11:47:15	korken89	Same here, there will be discussions directly
+2018-07-30 11:47:27	jamesmunns	thejpster: I would guess it comes up to how well maintained it already is, etc. But I guess if it is maintained, it doesnt need to be included
+2018-07-30 11:47:31	~japaric	jamesmunns: down below I have proposed f30x-hal and f3 to be included only because they are used by the discovery book, which is widely used
+2018-07-30 11:47:32	ithinuel	in the *ideal* world I imagine that vendor maintaining their hal/family would do it under their own org instead of under embedded-wg anyway
+2018-07-30 11:47:54	~japaric	widely used and part of the official docs**
+2018-07-30 11:48:44	~japaric	but I guess they don't really need to be in the org if the discovery book sticks to stable releases
+2018-07-30 11:48:58	jamesmunns	I'd still like to have well supported crates in a central place, for discoverability. But, I wouldn't "veto" if everyone else disagreed.
+2018-07-30 11:49:21	jamesmunns	We can tackle that as a separate issue at a future date.
+2018-07-30 11:49:39	~japaric	yes, I think it's not the time to discuss specific crates
+2018-07-30 11:49:43	korken89	jamesmunns: +1 for discoverability
+2018-07-30 11:49:44	thejpster	I think I'm happy with the guidance, we can argue about what meets that guidance later
+2018-07-30 11:49:46	jamesmunns	:+1:
+2018-07-30 11:49:59	~japaric	everyone on board with the stated policy to assign crates to teams?
+2018-07-30 11:50:04	jamesmunns	+1
+2018-07-30 11:50:09	korken89	+1
+2018-07-30 11:50:11	hannobraun	+1
+2018-07-30 11:50:50	ithinuel	+1
+2018-07-30 11:50:52	~japaric	alright, next up is a series of guidelines
+2018-07-30 11:51:08	thejpster	+1
+2018-07-30 11:51:10	~japaric	for reviewing and publishing crates
+2018-07-30 11:51:22	~japaric	the goal here is consistency
+2018-07-30 11:51:33	~japaric	across all the repos under the org
+2018-07-30 11:51:46	~japaric	the contents can be further discussed
+2018-07-30 11:52:10	~japaric	but do you all agree in that we should *have* these guidelines?
+2018-07-30 11:52:27	jamesmunns	+1 from me for all guidelines as written
+2018-07-30 11:53:07	hannobraun	+1 from me too
+2018-07-30 11:53:20	lkurusa	looks great, +1
+2018-07-30 11:53:33	korken89	+1 here as well
+2018-07-30 11:54:13	thejpster	+1
+2018-07-30 11:54:57	newpavlov	bystander comment: I think it will be nice to keep HAL and driver crates in meta repositories, and not as repository per crate. currently it's kinda hard to get overview of exisiting crate,even with awesome-embedded-rust
+2018-07-30 11:55:04	TeXitoi	"A mini RFC must be written" is maybe a bit strong
+2018-07-30 11:55:09	~japaric	ok, 5 minutes left. We can continue discussion on guidelines and on the exact team membership in the RFC PR
+2018-07-30 11:56:16	~japaric	TeXitoi: depends maybe on how small "mini" means; also I imagine the team could decide whether the change requires an RFC
+2018-07-30 11:56:27	jamesmunns	japaric: +1
+2018-07-30 11:57:06	~japaric	the contributor could simply send the PR w/o the RFC and the team will decide whether a RFC where the stakeholders chip in is required
+2018-07-30 11:57:22	korken89	Sounds good
+2018-07-30 11:57:37	~japaric	people can share their updates in these last minutes
+2018-07-30 11:58:19	~japaric	(though we had the newsletter recently so the updates may already be in there)
+2018-07-30 11:58:36	thejpster	I'm talking to the Centre for Computing History about running an Intro to Rust workshop.
+2018-07-30 11:58:50	korken89	The company I'm at just finish a bootloader in embedded Rust, I will write a text for the website about it and we will open source the bootloader
+2018-07-30 11:58:54	~japaric	there's a PR for adding RISCV support to rustc by dvc - https://github.com/rust-lang/rust/pull/52787
+2018-07-30 11:58:57	thejpster	(that's the computer museum in cambridge, england, the home of the computer).
+2018-07-30 11:59:04	jamesmunns	Made a PR for the book covering the intro section (mostly), and with the new decided outline. I would appreciate review comments, or commits to fill in some of the missing intro sections
+2018-07-30 11:59:07	korken89	I did not have time to get it to the newsletter yet
+2018-07-30 11:59:08	jamesmunns	https://github.com/rust-lang-nursery/embedded-wg/pull/133
+2018-07-30 11:59:13	TeXitoi	japaric: OK, I'm just concern about needing to write a dedicated document for each breaking changes
+2018-07-30 12:00:08	jamesmunns	thejpster: as a one time Rust workshop?
+2018-07-30 12:00:18	thejpster	well to start
+2018-07-30 12:00:21	thejpster	they run workshops all the time
+2018-07-30 12:00:26	~japaric	TeXitoi: I think we don't need a document per breaking change, but the CHANGELOG should include details about breaking change, e.g. indicating the migration path
+2018-07-30 12:00:35	thejpster	they have a room full of Raspberry Pis (and a room full of BBC Model Bs)
+2018-07-30 12:00:36	jamesmunns	thejpster: Nice!
+2018-07-30 12:00:39	TeXitoi	japaric: +1
+2018-07-30 12:01:02	lkurusa	i haven't introduced myself yet, and this is my first meeting, i'm Lev (usually going by lkurusa or levex nicks). I work on scalable operating systems and i currently work on a simple-but-not-too-simple init system for a couple linux boards. looking forward to contributing :-)
+2018-07-30 12:01:30	TeXitoi	japaric: the CHANGELOG _must_ include details about breaking change ;-)
+2018-07-30 12:01:31	~japaric	lkurusa: welcome Lev!
+2018-07-30 12:01:50	jamesmunns	lkurusa: welcome!
+2018-07-30 12:01:52	~japaric	TeXitoi: yes
+2018-07-30 12:01:53	korken89	lkrursa: Nice to meet you!
+2018-07-30 12:02:28	ithinuel	lkurusa: Welcome :)
+2018-07-30 12:02:30	lkurusa	nice to meet you all!
+2018-07-30 12:02:47	~japaric	I oficially end this meeting. It was a very productive one. Thank you all for participating!
