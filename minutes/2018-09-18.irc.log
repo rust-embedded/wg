@@ -1,0 +1,175 @@
+2018-09-18 20:03:19	~japaric	ok, let's start the meeting with issues 5 and 6
+2018-09-18 20:03:44	~japaric	jamesmunns: what's the status of PR 15? Is there anything blocking it? Or is just waiting for review?
+2018-09-18 20:04:20	jamesmunns	waiting for me to finish cleaning up the type-state stuff
+2018-09-18 20:04:42	jamesmunns	I will break off the peripheral stuff, get it mergeable, then open a separate PR for that, so we can get it mostly merged
+2018-09-18 20:04:54	jamesmunns	(for that == type state part)
+2018-09-18 20:05:33	@ryankurte	i uhh. dropbox will only let me type backwards, idk.
+2018-09-18 20:05:48	jamesmunns	(welcome etruknayr!)
+2018-09-18 20:06:04	~japaric	jamesmunns: ok, thanks for the update
+2018-09-18 20:06:09	@ryankurte	the cursor seems super broken. but, here.
+2018-09-18 20:06:57	~japaric	let's now cover issues 1 and 2
+2018-09-18 20:07:12	~japaric	https://github.com/rust-embedded/book/pull/20 updates the first two chapters
+2018-09-18 20:07:33	~japaric	that PR has had a few rounds of review but I think it should be ready to land now
+2018-09-18 20:08:20	~japaric	I think we are waiting for thejpster to check it again and the we can r+ it
+2018-09-18 20:08:34	@adamgreig	just got here, sorry for lateness
+2018-09-18 20:08:54	@therealprof	+1
+2018-09-18 20:09:31	~japaric	after that I think the chapter 1 and 2 will be in good shape for newcomers to follow though chapter 2 is not yet complete
+2018-09-18 20:09:57	@therealprof	Yep, coming along nicely.
+2018-09-18 20:10:11	~japaric	I asked if cargo-generate will become a built-in subcommand in time for the edition
+2018-09-18 20:10:38	~japaric	the answer was that it will require an approved RFC so it's very unlikely that'll make it the cut for the edition (~5 weeks)
+2018-09-18 20:11:11	@adamgreig	that's a bit of a pain given installing cargo-generate is not completely trivial, but i guess not much to be done about it
+2018-09-18 20:11:29	~japaric	related to that, the Cargo team approved turning cargo-add into a built-in command; it someone gets the job done in ~5 weeks it'll be part of the edition release
+2018-09-18 20:12:22	~japaric	adamgreig: yep, all templating solutions that use git or fetch url require openssl, which makes them hard to install
+2018-09-18 20:12:58	~japaric	ok, I think that's it for issues 1 and 2
+2018-09-18 20:13:13	~japaric	issue 3 saw no change since last week but it's in good shape so we can skip it
+2018-09-18 20:13:33	~japaric	adamgreig: any news on the concurrency stuff (issue 4)?
+2018-09-18 20:14:10	@adamgreig	i made a rough start but nothing to show yet, sorry
+2018-09-18 20:14:41	~japaric	adamgreig: that's ok; just checking
+2018-09-18 20:14:43	Lumpio-	Issue 4 on which repo, I'm curious
+2018-09-18 20:14:52	~japaric	Lumpio-: issue 4 in the dropbox list
+2018-09-18 20:14:57	Lumpio-	...oh, heh
+2018-09-18 20:15:31	@adamgreig	but yea it's on my doing list and hopefully have more to say soonish
+2018-09-18 20:15:47	~japaric	adamgreig: +1
+2018-09-18 20:16:33	~japaric	ok, next issue 7 adamgreig and korken89 were going to work on it
+2018-09-18 20:16:46	~japaric	korken89 is not around
+2018-09-18 20:17:20	~japaric	and I assume that since adamgreig was working on the other item this hasn't seen much progress
+2018-09-18 20:17:41	jamesmunns	(gotta run, will check logs later)
+2018-09-18 20:18:09	@adamgreig	yes, I'd left tips for korken98 and integration has received a PR
+2018-09-18 20:18:16	~japaric	ok, next issue is integration with C codebases
+2018-09-18 20:18:26	~japaric	anyone had a chance to look at the PR?
+2018-09-18 20:18:44	@therealprof	Oh, there's a PR? Missed that.
+2018-09-18 20:18:50	@adamgreig	https://github.com/rust-embedded/book/pull/23 (not from me)
+2018-09-18 20:18:54	@ryankurte	I gave it a read, looks like a good start to me!
+2018-09-18 20:19:10	@adamgreig	I had a quick read and it looks good, haven't left a review yet
+2018-09-18 20:19:29	~japaric	alright, it's good to know that's being reviewed
+2018-09-18 20:19:41	@therealprof	Yeah, lots of comments.
+2018-09-18 20:20:10	@therealprof	Well, some at least. ;)
+2018-09-18 20:20:36	~japaric	moving on, issue 9 is the book outline
+2018-09-18 20:20:50	~japaric	I just made a PR adding a FAQ to the book https://github.com/rust-embedded/book/pull/25
+2018-09-18 20:20:56	~japaric	I'm not sure if it should go in the book
+2018-09-18 20:21:09	~japaric	but I'll be adding more miscellaneous topics to the book
+2018-09-18 20:21:20	~japaric	then we can decide how to sort them within the book
+2018-09-18 20:21:29	~japaric	or if we should move them in separate documents
+2018-09-18 20:21:33	@therealprof	I like it. Will review later.
+2018-09-18 20:21:44	~japaric	e.g. the Rust FAQ is its own page
+2018-09-18 20:21:48	~japaric	rustdoc rendered iirc
+2018-09-18 20:22:10	~japaric	(rust FAQ: https://www.rust-lang.org/en-US/faq.html)
+2018-09-18 20:23:30	@adamgreig	I can see the advantage of it being its own document
+2018-09-18 20:24:15	@ryankurte	Yeah looks excellent! I think it's own document (maybe as part of the docs.r-e.o cluster of things?) sounds good.
+2018-09-18 20:24:51	~japaric	on a related note, I'll soon create a new repo for the docs landing page (like https://doc.rust-lang.org/)
+2018-09-18 20:25:26	~japaric	I'll set up CI (+ cron) to pull the latest version of the books and publish everything on GH pages
+2018-09-18 20:25:41	@adamgreig	+1
+2018-09-18 20:25:43	@ryankurte	+1
+2018-09-18 20:25:46	@therealprof	+1
+2018-09-18 20:26:15	~japaric	if that goes well we can have that published on docs.rust-embedded.org
+2018-09-18 20:26:46	~japaric	ok, next issue is issue 10, the other book
+2018-09-18 20:26:57	~japaric	ryankurte: did you have a chance to work on it?
+2018-09-18 20:27:50	@ryankurte	not yet! hopefully will have a chance on the plane next week.
+2018-09-18 20:29:10	~japaric	ryankurte: ok, it would be good to create issues for individual topics in the repo then other people might help writing them
+2018-09-18 20:29:31	@therealprof	(y)
+2018-09-18 20:30:33	@ryankurte	sounds good, will split them out next I have some time.
+2018-09-18 20:30:44	~japaric	ryankurte: +1
+2018-09-18 20:30:53	~japaric	next issue is the embedded Rust showcase (#11)
+2018-09-18 20:31:30	~japaric	I guess everyone is already busy with something else to work on this
+2018-09-18 20:31:51	@adamgreig	I wonder if we can low-effort start collecting a list of potential projects on the issue tracker or something
+2018-09-18 20:32:00	@therealprof	+1
+2018-09-18 20:32:30	~japaric	do we even have a repo for this?
+2018-09-18 20:32:32	 *	japaric checks
+2018-09-18 20:32:49	~japaric	I guess not
+2018-09-18 20:32:52	@adamgreig	I don't think so
+2018-09-18 20:32:56	@adamgreig	just the original issue
+2018-09-18 20:33:12	~japaric	I'll create a repo and assign the resources team to it
+2018-09-18 20:33:20	@adamgreig	+1
+2018-09-18 20:33:32	@therealprof	I've a couple of ideas already. Need a reminder to nudge people whether they'd like to make an appearance.
+2018-09-18 20:33:34	@adamgreig	issue #1 can be collecting potential projects then
+2018-09-18 20:33:45	@therealprof	+1
+2018-09-18 20:33:45	~japaric	if someone else wants access to the repo let me know
+2018-09-18 20:33:49	~japaric	adamgreig: +1
+2018-09-18 20:34:57	~japaric	ok, let's see how that works out during the week
+2018-09-18 20:35:22	~japaric	issue 12 is about testing cortex-m code as part of rust-lang/rust CI
+2018-09-18 20:35:30	~japaric	there's a PR up https://github.com/rust-lang/rust/pull/53996 which I'm reviewing
+2018-09-18 20:36:08	~japaric	the PR is testing compilation, linking and running the program on QEMU
+2018-09-18 20:36:26	~japaric	it's looking good; I hope we can land it soon-ish
+2018-09-18 20:36:54	~japaric	next up, issue 13 is about updating the discovery to use the 2018 edition
+2018-09-18 20:37:07	~japaric	the PR is up https://github.com/rust-embedded/discovery/pull/114
+2018-09-18 20:37:23	~japaric	it's waiting for an extra review
+2018-09-18 20:37:53	~japaric	if no one gets to it this week I think I'll just land it and let the users tests (yay, testing in production)
+2018-09-18 20:38:31	@therealprof	That's fine for me. Second opinion was just a suggestion. ;)
+2018-09-18 20:38:43	~japaric	:-)
+2018-09-18 20:39:07	~japaric	issues 14 and 15 are about fixing reported issues in the embedonomicon
+2018-09-18 20:39:18	~japaric	there's also a PR up https://github.com/rust-embedded/embedonomicon/pull/20
+2018-09-18 20:39:27	~japaric	which is wating for review
+2018-09-18 20:39:44	~japaric	though, I think theJPster just approved it
+2018-09-18 20:39:55	@therealprof	Yep.
+2018-09-18 20:40:00	@theJPster	:)
+2018-09-18 20:40:06	~japaric	theJPster: +1
+2018-09-18 20:40:26	@therealprof	lldb is such a sad story…
+2018-09-18 20:40:40	~japaric	therealprof: :-( I tried
+2018-09-18 20:41:03	@therealprof	Yeah, there's little we can do about it.
+2018-09-18 20:41:27	~japaric	next issue, 16, is about using cargo-generate for the templates
+2018-09-18 20:41:37	~japaric	cortex-m-quickstart already moved to that format
+2018-09-18 20:42:17	~japaric	and as that's our only public facing template for the edition I have removed the issue from the 2018 milestone
+2018-09-18 20:43:45	~japaric	so that issue is done
+2018-09-18 20:43:54	~japaric	issues 17 and 18 are about the domains
+2018-09-18 20:43:58	~japaric	the DNS infra work got done
+2018-09-18 20:44:05	~japaric	but there are some problems with the domains
+2018-09-18 20:44:14	~japaric	which I have reported in https://github.com/nastevens/rust-embedded-provisioning/issues/2
+2018-09-18 20:44:30	~japaric	ryankurte: ^
+2018-09-18 20:44:41	@ryankurte	yeah, i've just seen that issue, will follow up.
+2018-09-18 20:45:02	~japaric	but there's also a proposal to have everything under docs.rust-embedded.org -- see https://github.com/rust-embedded/wg/issues/208
+2018-09-18 20:45:04	@ryankurte	I guess this'll all be superseded by the docs. config in the near future anyway?
+2018-09-18 20:45:08	@ryankurte	^^
+2018-09-18 20:45:21	~japaric	ryankurte: yeah, moving to docs would probably fix the issue
+2018-09-18 20:46:15	~japaric	so I'm going to track the docs issue in the dropbox instead of the other two dns issues
+2018-09-18 20:46:26	@ryankurte	afaik someone was personally hosting the book previously? I think that's where we've gone wrong.
+2018-09-18 20:46:27	@ryankurte	https://github.com/nastevens/rust-embedded-provisioning/blob/3988d0c630b884477c9c078af6b86276aef728f6/route53.tf#L36
+2018-09-18 20:46:39	@ryankurte	(not that this needs to be discussed here/now)
+2018-09-18 20:47:36	~japaric	ryankurte: (yeah, I believe the docs were being hosted on jamesmunns' domain)
+2018-09-18 20:47:40	@adamgreig	yes, that looks like the problem (the a record is digitalocean and not github)
+2018-09-18 20:48:01	~japaric	s/domain/server/
+2018-09-18 20:48:19	@ryankurte	right, given that I'll update the issue and we can deal with it along with the docs. changes.
+2018-09-18 20:48:40	~japaric	finally, there's another issue that wasn't in the dropbox
+2018-09-18 20:49:17	~japaric	which is finalizing the contents of the embedded web page on the new rust website
+2018-09-18 20:49:36	~japaric	that is https://github.com/rust-embedded/wg/issues/131
+2018-09-18 20:50:19	@adamgreig	is the provisional content available anywhere?
+2018-09-18 20:50:22	~japaric	I have been punting this but we have to work on this with the website team to finish this in the next few weeks
+2018-09-18 20:50:27	~japaric	adamgreig: there's a PR
+2018-09-18 20:50:44	~japaric	https://github.com/rust-embedded/wg/pull/132
+2018-09-18 20:51:18	~japaric	jamesmunns and I have access to the website repository and we'll work with the website team on this
+2018-09-18 20:51:48	@therealprof	So many TODOs in that PR.
+2018-09-18 20:51:49	~japaric	but if someone else wants to help let me know and I'll give you access to the repo; we'll probably need more help to get this done in time
+2018-09-18 20:53:44	~japaric	with that the triage is over
+2018-09-18 20:53:58	~japaric	if someone wants to share some news the floor is open
+2018-09-18 20:54:30	@therealprof	How can we proceed with the #[interrupt] macro?
+2018-09-18 20:54:53	@therealprof	I think it's important that we land (and document) this.
+2018-09-18 20:55:20	@adamgreig	I think that just needs another +1 or two and we can merge?
+2018-09-18 20:55:26	~japaric	therealprof: well, landing it needs a majority of approvals
+2018-09-18 20:55:27	@theJPster	I was at Retro Computer Festival last weekend. It was brilliant and I highly recommend it. Lots of interest in Monotron and Embedded Rust.
+2018-09-18 20:55:29	@adamgreig	well, and the corresponding svd2rust
+2018-09-18 20:55:43	~japaric	documenting it needs volunteers :-)
+2018-09-18 20:55:44	@adamgreig	#[ramfunc] is badly stalled though I think
+2018-09-18 20:55:46	@theJPster	I have 1,000 printed A6 "Embedded Rust" postcards, with all the URLs on the reverse. Let me know if you want some.
+2018-09-18 20:56:21	@therealprof	theJPster: You're really going all in it seems. :-D
+2018-09-18 20:56:28	@theJPster	also, I ported Tiny BASIC to the Monotron. It loads into RAM, and the Rust menu code calls the Tiny BASIC C code which calls the Rust framebuffer code.
+2018-09-18 20:56:44	@theJPster	Vistaprint really know how to nudge you up a couple of levels on the order
+2018-09-18 20:56:51	@adamgreig	haha
+2018-09-18 20:56:57	@adamgreig	"an extra £2 to print ten times as many!!"
+2018-09-18 20:57:07	 *	adamgreig looks at stacks of business cards...
+2018-09-18 20:57:23	Lumpio-	No surprise the setup cost is most of the cost for (relatively) small batches 8)
+2018-09-18 20:57:48	@theJPster	Well, they're here. I made a T-shirt too.
+2018-09-18 20:57:51	@therealprof	japaric: I'd be happy to document it. It really makes the story whole for me.
+2018-09-18 20:58:15	@theJPster	But I'm not taking orders for that. If you want one, just upload the Rust Embedded PNG to your favourite on-line T-shirt vendor.
+2018-09-18 20:58:52	~japaric	theJPster: before I forget, this PR is waiting for your re-review https://github.com/rust-embedded/book/pull/20
+2018-09-18 20:58:54	@ryankurte	hmm, could chuck them on redbubble to make it easy for people?
+2018-09-18 20:59:12	@ryankurte	but maybe uploading an image is easy enough.
+2018-09-18 20:59:31	~japaric	theJPster: your last review was "requested changes" and I think we can't bors r+ it unless it's removed or changed
+2018-09-18 21:00:03	@therealprof	Any planned attendance for the next conferences?
+2018-09-18 21:00:41	hannobraun	therealprof: I'll be at RustFest Rome
+2018-09-18 21:00:52	@theJPster	I'll be at Rust Belt Rust
+2018-09-18 21:00:54	hannobraun	Snatched up the last ticket of the first batch today :)
+2018-09-18 21:01:00	@theJPster	japaric, ah sorry. That doesn't come up in my mailfilter
+2018-09-18 21:01:00	~japaric	therealprof: that reminds me that I want to open an issue to see who'll be attending RustFest rome
+2018-09-18 21:01:36	~japaric	if there's enough WG members we can sit down and plan what we want to do next year
+2018-09-18 21:02:14	@therealprof	There's a lot of stuff for me to do around that time but I'll see whether I can make it.
+2018-09-18 21:02:30	@therealprof	… if I manage to snatch a ticket that is. ;)
+2018-09-18 21:02:54	~japaric	ok, that's it for this meeting. Thank you all for attending and see you next week!
