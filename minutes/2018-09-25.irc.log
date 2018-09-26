@@ -1,0 +1,209 @@
+2018-09-25 20:06:00	~japaric	ok, let's start this meeting!
+2018-09-25 20:06:06	jamesmunns	Hey, I just got back from the sky
+2018-09-25 20:06:26	@therealprof	Watching sky… j/k
+2018-09-25 20:06:43	~japaric	first, we got ourselves a category in the users forum: https://users.rust-lang.org/c/embedded
+2018-09-25 20:07:08	~japaric	I have written this pinned topic https://users.rust-lang.org/t/about-the-embedded-category/20714
+2018-09-25 20:07:10	jamesmunns	Nice! I'll plug it on the twitter shortly, and I can add it to the newsletter
+2018-09-25 20:07:17	~japaric	if you have feedback on that let me know
+2018-09-25 20:07:49	~japaric	also, how can we publicize this new category? other than the newsletter / twitter
+2018-09-25 20:07:53	~japaric	should we link from the wg repo?
+2018-09-25 20:07:56	@ryankurte	awesome!
+2018-09-25 20:07:57	jamesmunns	Feedback: I'm glad we have a forum now :)
+2018-09-25 20:08:10	@ryankurte	wg repo, homepage?
+2018-09-25 20:08:16	@theJPster	This is excellent. Much better than trying to run our own thing.
+2018-09-25 20:08:26	@ryankurte	+1
+2018-09-25 20:08:38	@korken89	Yeah, looking good!
+2018-09-25 20:08:40	jamesmunns	someday rust-embedded/ops, some day.
+2018-09-25 20:08:40	cr1901	Nice, glad they added a subtopic
+2018-09-25 20:09:09	~japaric	can someone make a PR adding a link to the category?
+2018-09-25 20:09:27	@therealprof	Where?
+2018-09-25 20:09:34	~japaric	wg repo
+2018-09-25 20:09:41	@therealprof	Sure.
+2018-09-25 20:09:53	~japaric	also, keep an eye on the forum; I think you can set notifications / e-mail alerts for specific categories
+2018-09-25 20:09:55	~japaric	therealprof: thanks
+2018-09-25 20:10:35	~japaric	settings > notifications > categories > watched
+2018-09-25 20:10:41	jamesmunns	Updated the newsletter PR to mention it: https://github.com/rust-embedded/blog/pull/16
+2018-09-25 20:10:54	jamesmunns	(also reviews on that welcome)
+2018-09-25 20:11:09	~japaric	jamesmunns: thanks
+2018-09-25 20:11:15	~japaric	ok, moving on
+2018-09-25 20:11:34	~japaric	since we are mainly working on docs atm I thought it may be a good idea to temporarily grow the resources team
+2018-09-25 20:11:56	~japaric	so we have more reviewers and people monitoring the book repos
+2018-09-25 20:12:19	~japaric	thoughts?
+2018-09-25 20:12:39	jamesmunns	A+++ from me. Life has gotten way busier than expected, and I appreciate all the book contributions from everyone
+2018-09-25 20:12:45	~japaric	this would be up to the edition release / end of the year then new members can decide whether to stay in the team or leave
+2018-09-25 20:12:58	@korken89	Sounds good!
+2018-09-25 20:13:30	~japaric	also I know some WG members have volunteered for proofreading / reviewing PRs; having them on the resources team is an easier way to give them reviewer / push access
+2018-09-25 20:13:41	@theJPster	+1 from me
+2018-09-25 20:13:47	~japaric	volunteers? korken89?
+2018-09-25 20:13:52	@theJPster	I can barely *read* my emails, let alone review all the things.
+2018-09-25 20:13:53	@korken89	Yeah, count me in
+2018-09-25 20:14:18	cr1901	+1
+2018-09-25 20:14:18	~japaric	I'll ask adamgreig since they are not around
+2018-09-25 20:14:22	~japaric	korken89: thanks
+2018-09-25 20:15:31	~japaric	ryankurte: would be interested in temporarily joining the resources team?
+2018-09-25 20:15:56	@ryankurte	sure!
+2018-09-25 20:15:57	@therealprof	okay for me, more people — less work. ;)
+2018-09-25 20:16:20	@ryankurte	I already have all the permissions on the new book anyway, but happy to help out wherever is useful.
+2018-09-25 20:16:30	~japaric	ryankurte: awesome, thanks
+2018-09-25 20:16:48	@therealprof	be warned: japaric has been creating new content like mad. ;)
+2018-09-25 20:16:53	~japaric	I think we can move to the next item which is related
+2018-09-25 20:17:25	@korken89	therealprof: I am drowning in all the PR emails xD
+2018-09-25 20:17:42	~japaric	the idea back when we formed the groups was to have a triage team to look over PRs so they are not forgotten
+2018-09-25 20:17:59	~japaric	sadly the triage team doesn't exist right now
+2018-09-25 20:18:10	@ryankurte	korken89: octobox.io ftw
+2018-09-25 20:18:12	~japaric	so I think we could the triaging ourselves
+2018-09-25 20:18:18	~japaric	could do**
+2018-09-25 20:18:58	~japaric	hopefully labeling things should make easier to find PRs that need review
+2018-09-25 20:19:00	~japaric	e.g. https://github.com/search?q=org%3Arust-embedded++is%3Aopen+is%3Apr+label%3AT-resources&type=Issues
+2018-09-25 20:19:20	@korken89	ryankurte: Thanks, I will have a look!
+2018-09-25 20:20:03	@ryankurte	seems reasonable?
+2018-09-25 20:20:13	~japaric	idk if there's a better view of PRs from across a repo that have the same label
+2018-09-25 20:20:52	@theJPster	my main problem is going to review things that are already merged. Octobox doesn't seem to help with that.
+2018-09-25 20:20:57	~japaric	in any case, if you have the time go around the PRs adding / updating the labels
+2018-09-25 20:21:22	~japaric	there are labels for teams e.g. T-resources and labels for PR status e.g. S-wating-on-review
+2018-09-25 20:21:36	~japaric	if they don't exist in a repo feel free to create then
+2018-09-25 20:21:45	@therealprof	+1
+2018-09-25 20:21:58	@korken89	+1
+2018-09-25 20:22:29	~japaric	we can try this for a few weeks and see if it helps reviewers find open PRs
+2018-09-25 20:22:36	@korken89	Is there any place where normal labels are described? I saw them being used here and there, but not 100% sure on how to use them correctly
+2018-09-25 20:23:11	~japaric	there's a doc for the labels the rust-lang/rust triage team uses
+2018-09-25 20:23:12	~japaric	one sec
+2018-09-25 20:23:26	@korken89	japaric: Awesome, thanks!
+2018-09-25 20:23:29	~japaric	https://forge.rust-lang.org/triage-procedure.html
+2018-09-25 20:23:31	~japaric	korken89: ^
+2018-09-25 20:23:39	jamesmunns	Could we add this to our CONTRIBUTING.md?
+2018-09-25 20:23:41	@ryankurte	maybe that's a candidate for somewhere in the ops files?
+2018-09-25 20:23:45	jamesmunns	(going to go look at it now)
+2018-09-25 20:24:03	jamesmunns	Ah, we don't have one for the top level /wg repo
+2018-09-25 20:24:10	@korken89	Awesome, a complete guide! Thanks japaric!
+2018-09-25 20:24:13	@ryankurte	jamesmunns: or there, yeah. common to all repos I guess.
+2018-09-25 20:24:47	~japaric	jamesmunns: contributors can't add / edit labels though
+2018-09-25 20:25:06	jamesmunns	Ah, right
+2018-09-25 20:25:35	~japaric	maybe link to the forge link from wg/ops/review.md
+2018-09-25 20:25:39	@korken89	jamesmunns: +1 on having it visible in CONTRIBUTING.md
+2018-09-25 20:26:10	jamesmunns	I think it could make sense to have a "For Maintainers", and "For Contributors" section, somewhere
+2018-09-25 20:26:29	jamesmunns	Would also help with "onboarding" new WG members. A lot of our process is momentum
+2018-09-25 20:27:04	~japaric	jamesmunns: that's what the ops directory is supposed to be for https://github.com/rust-embedded/wg/tree/master/ops
+2018-09-25 20:27:13	~japaric	perhaps it's not visible enough?
+2018-09-25 20:27:49	@theJPster	I didn't know that was a thing
+2018-09-25 20:27:51	jamesmunns	Ah, I thought that was more for traditional devops (hosting, infra, etc) topics. but to be fair I haven't kept tabs on that as well as I should have
+2018-09-25 20:28:12	jamesmunns	(aside: is "traditional devops" actually a thing?)
+2018-09-25 20:28:19	~japaric	crafting a common CONTRIBUTING.md sounds good but I think we are going off-topic here
+2018-09-25 20:28:49	~japaric	we are near the half hour mark so let's move to reviewing edition issues
+2018-09-25 20:29:24	~japaric	issue 1, book intro
+2018-09-25 20:29:30	~japaric	I think this is in good shape now
+2018-09-25 20:29:40	~japaric	jamesmunns: there's a TODO in the landing page
+2018-09-25 20:29:47	~japaric	of the book
+2018-09-25 20:29:52	~japaric	https://rust-embedded.github.io/book/
+2018-09-25 20:30:36	jamesmunns	Made a comment about it, there is an equivalent section in the main rust book
+2018-09-25 20:30:47	jamesmunns	and my initial skeleton was mostly copying the original book
+2018-09-25 20:31:01	jamesmunns	I'm okay to remove it, we can always re-add it when someone has content that could go there
+2018-09-25 20:31:18	@korken89	I think the paragraph is important though
+2018-09-25 20:31:28	~japaric	jamesmunns: can you move your comment to this issue https://github.com/rust-embedded/book/issues/3 ?
+2018-09-25 20:31:37	@korken89	Just to push on what we are helping to solve
+2018-09-25 20:31:49	jamesmunns	japaric: can do
+2018-09-25 20:32:16	~japaric	we can discuss what to write in that thread
+2018-09-25 20:32:45	~japaric	also, if you have feedback about what else should be covered in that first chapter leave a comment in book#3
+2018-09-25 20:33:42	jamesmunns	https://github.com/rust-embedded/book/issues/3#issuecomment-424453390
+2018-09-25 20:33:42	~japaric	ok, issue 2 is about the second chapter
+2018-09-25 20:33:55	@therealprof	I think we should address the big fat TODO rather sooner than later.
+2018-09-25 20:34:05	~japaric	jamesmunns: thanks
+2018-09-25 20:34:12	@therealprof	Even if it's just temporary and will be refined later.
+2018-09-25 20:35:03	@korken89	therealprof: +1
+2018-09-25 20:35:26	~japaric	therealprof: please let's discuss that on book#3
+2018-09-25 20:35:36	@korken89	Sounds good!
+2018-09-25 20:36:06	@therealprof	Oh, funny. I totally forgot I've already turned my head inside out about this one. :-D
+2018-09-25 20:36:27	~japaric	chapter 2 has had many additions since last week
+2018-09-25 20:36:43	~japaric	there's a PR about adding a panicking section to it
+2018-09-25 20:36:46	@therealprof	Oh yes.
+2018-09-25 20:36:50	@therealprof	:-D
+2018-09-25 20:36:56	~japaric	and I think what's left to cover is semihosting and register access
+2018-09-25 20:37:58	~japaric	I'll write that (the status) down in book#4; if you have more feedback please comment there
+2018-09-25 20:38:15	~japaric	next: issue 3 is about collections
+2018-09-25 20:38:22	~japaric	no change since last week
+2018-09-25 20:38:46	~japaric	I have some notes on &'static mut T (and DMA) that I might put up for review this week
+2018-09-25 20:39:10	@korken89	Please do, I am quite interested on that one
+2018-09-25 20:39:17	~japaric	other than that I don't think we'll cover anything else in that chapter
+2018-09-25 20:39:43	~japaric	if you'd like to see something else please comment in book#8
+2018-09-25 20:40:10	~japaric	issue 4 is about the concurrency chapter
+2018-09-25 20:40:29	~japaric	adamgreig is not around
+2018-09-25 20:40:41	~japaric	korken89: were you also going to help out with this chapter?
+2018-09-25 20:41:13	@korken89	I can help on theory and similar about RTFM, but I do not have experience in writing my own OS in Rust yet
+2018-09-25 20:41:20	@korken89	Though I am more than happy to help reviewing
+2018-09-25 20:41:32	~japaric	in any case, we can revisit this next week
+2018-09-25 20:41:49	~japaric	issue 5, portability chapter jamesmunns?
+2018-09-25 20:42:14	jamesmunns	I have only basic notes, my next book focus is the Type State Programming Chapter
+2018-09-25 20:42:41	jamesmunns	I will open up a new PR with the notes from my RustConf talk, in case the diagram or slight outline inspires someone else
+2018-09-25 20:42:58	~japaric	jamesmunns: ok, thanks
+2018-09-25 20:43:47	~japaric	issue 6, static guarantees chapter would be PR 15, right?
+2018-09-25 20:43:49	thenewwazoo	I've been relying _very_ heavily on some exploratory work I've been doing for ADC trait design, so I may be
+2018-09-25 20:43:51	~japaric	jamesmunns: ^
+2018-09-25 20:44:06	thenewwazoo	that is, regarding the type system to enforce safe behavior
+2018-09-25 20:44:21	jamesmunns	PR#15 is the old "singletons" chapter
+2018-09-25 20:44:27	thenewwazoo	so please do post your notes, jamesmunns
+2018-09-25 20:44:53	jamesmunns	static guarantees became "type state programming", but there is probably more to cover around static guarantees than that
+2018-09-25 20:45:22	jamesmunns	https://github.com/rust-embedded/book/pull/15/commits/7791f066de96e9449a9dcfe0117c30cc41094dd9 is the last commit before I reduced PR#15 to only cover peripherals
+2018-09-25 20:45:40	jamesmunns	I will re-add those sections to two new PRs: One for Type State, one for Portability
+2018-09-25 20:45:50	jamesmunns	I don't have any other notes around static guarantees, however.
+2018-09-25 20:46:51	~japaric	ok, we might want to review the outline after PR#15 lands but let's do that on the issue tracker
+2018-09-25 20:47:10	~japaric	tagged PR#15 as waiting-on-review
+2018-09-25 20:47:28	jamesmunns	https://github.com/rust-embedded/book/tree/7791f066de96e9449a9dcfe0117c30cc41094dd9/src/typestate-programming is probably easier to see what I am going to open a PR for
+2018-09-25 20:47:31	jamesmunns	japaric: thank you!
+2018-09-25 20:47:43	~japaric	next: issue 7, tips for C/C++
+2018-09-25 20:47:52	~japaric	korken89: ^
+2018-09-25 20:48:19	@korken89	Thanks for reminding, I will add it to my TODO list for the coming days
+2018-09-25 20:48:20	~japaric	status for w38 says ??? :-)
+2018-09-25 20:48:46	~japaric	ok, let's check back next week
+2018-09-25 20:49:18	~japaric	issue 8, integration with C codebases
+2018-09-25 20:49:34	~japaric	anyone knows the status of PR#23?
+2018-09-25 20:49:39	~japaric	https://github.com/rust-embedded/book/pull/23
+2018-09-25 20:49:49	 *	japaric has not been following
+2018-09-25 20:49:52	jamesmunns	author wrote "I fixed the marked sections in the existing text, but I'll try to finish the rest of it by the end of the week!"
+2018-09-25 20:49:55	jamesmunns	(yesterday)
+2018-09-25 20:50:03	cr1901	If there's 5 mins at the end, may I suggest another book section if it's not been discussed already?
+2018-09-25 20:50:10	jamesmunns	I can ping spacekookie at work tomorrow
+2018-09-25 20:50:30	~japaric	jamesmunns: thanks
+2018-09-25 20:50:35	~japaric	tagged as waiting-on-author
+2018-09-25 20:51:13	~japaric	issue 9, outline is blocked on having more content; moving on
+2018-09-25 20:51:25	~japaric	issue 10, the debugging book
+2018-09-25 20:51:41	~japaric	ryankurte opened issues for the chapters
+2018-09-25 20:52:10	~japaric	korken89: maybe you can coordinate with ryankurte to see how you can tackle the issues?
+2018-09-25 20:52:34	~japaric	(or were you going to review instead of write?)
+2018-09-25 20:52:51	@korken89	I think we can do that, the plan was to help writing
+2018-09-25 20:52:53	~japaric	cr1901: may be best to open an issue in the book repo
+2018-09-25 20:53:03	~japaric	korken89: +1
+2018-09-25 20:53:12	cr1901	japaric: Ack will do
+2018-09-25 20:53:22	cr1901	Atm I have nothing more to add, just listening :P
+2018-09-25 20:53:30	~japaric	next: issue 11, showcase
+2018-09-25 20:53:41	~japaric	the repo exists https://github.com/rust-embedded/showcase
+2018-09-25 20:53:57	~japaric	issue showcase#1 is being used to collect projects could go in the list
+2018-09-25 20:54:16	~japaric	if you have project in mind leave a comment there
+2018-09-25 20:54:22	~japaric	cr1901: theJPster ^
+2018-09-25 20:54:46	@theJPster	will do
+2018-09-25 20:54:56	~japaric	issue 12, rust-lang/rust tests
+2018-09-25 20:55:01	cr1901	I need to fix msp430 backend before I add my project
+2018-09-25 20:55:13	cr1901	which I'm not doing a great job of ;)
+2018-09-25 20:55:20	~japaric	sekineh added an example to the cortex-m-rt repo which will be used as a test in rust-lang/rust
+2018-09-25 20:55:31	~japaric	the cortex-m-rt PR landed and the rust-lang/rust PR should be updated this week
+2018-09-25 20:56:09	~japaric	issues 13, 14 and 15 were fixed last week; I'll move them to the end of the list
+2018-09-25 20:56:34	~japaric	issue 19, the docs landing page
+2018-09-25 20:56:49	~japaric	see https://rust-embedded.github.io/bookshelf/
+2018-09-25 20:57:15	~japaric	repo: https://github.com/rust-embedded/bookshelf
+2018-09-25 20:57:47	~japaric	if we are happy with how it looks we can put it in docs.rust-embedded.org or some other subdomain
+2018-09-25 20:58:10	@ryankurte	suppose we could have an infra issue for that? I'd vote for docs.*
+2018-09-25 20:58:17	~japaric	I'll make an issue about that so we can bikeshed the subdomain name
+2018-09-25 20:58:20	jamesmunns	+1 for docs.
+2018-09-25 20:59:04	~japaric	1 min left
+2018-09-25 20:59:17	~japaric	last issue, 20, is about the webpage
+2018-09-25 20:59:18	@ryankurte	perfect, then we can pr from there.
+2018-09-25 20:59:28	jamesmunns	I'm interested to hear what cr1901 has in mind for the book :)
+2018-09-25 20:59:53	~japaric	jamesmunns: we have access to the website repo and we have to get this moving
+2018-09-25 21:00:19	~japaric	I think there's a deadline for this in 2 (?) weeks
+2018-09-25 21:00:38	cr1901	jamesmunns: Afk for now, I'll discuss later
+2018-09-25 21:00:39	~japaric	for updating the content
+2018-09-25 21:00:53	jamesmunns	Gotcha, I will go back and look at where it's at. I haven't thought about it in a while
+2018-09-25 21:01:19	jamesmunns	We have some of the testimonials now, and more content.
+2018-09-25 21:01:23	~japaric	jamesmunns: I'll make a PR or an issue in the website repo and we can discuss it there
+2018-09-25 21:01:38	jamesmunns	japaric: that would be great. Even if the issue is just a todo checklist
+2018-09-25 21:02:02	~japaric	ok, we are out of time!
+2018-09-25 21:02:14	~japaric	thanks everyone for attending! see you all next week
