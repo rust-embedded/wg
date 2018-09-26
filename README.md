@@ -432,6 +432,17 @@ this list by adding your crate via PR or by tackling any of our [help wanted][ae
 
 [aer-hw]: https://github.com/rust-embedded/awesome-embedded-rust/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
 
+### [Embedded category in the user forum][ef]
+
+As an experiment the [Rust lang user forum][urlo] has gained a new `embedded` category.
+
+This is meant as a friendly exchange for anyone interested in embedded topics with Rust.
+
+So if you want to discuss ideas, problems or solutions please feel free to chime in on existing topics or create a new one!
+
+[urlo]: https://users.rust-lang.org
+[ef]: https://users.rust-lang.org/c/embedded
+
 ## RFCs
 
 When the team deems it necessary the RFC process may be used to make decisions or to design
