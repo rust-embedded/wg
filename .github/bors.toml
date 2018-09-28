@@ -1,4 +1,4 @@
-block_labels = ["blocked", "needs-decision", "do-not-merge"]
+block_labels = ["S-blocked", "S-waiting-on-team", "needs-decision", "do-not-merge"]
 delete_merged_branches = true
 required_approvals = 1
 status = ["continuous-integration/travis-ci/push"]
