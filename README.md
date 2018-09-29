@@ -200,6 +200,7 @@ Board Support Crates and drivers.
 - [@thejpster]
 - [@therealprof]
 - [@ithinuel]
+- [@ryankurte]
 
 #### Projects
 
