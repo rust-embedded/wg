@@ -5,8 +5,8 @@ This RFC proposes updating our voting guidelines to make it easier for
 uncontroversial proposals to be accepted as the number of members in
 the working group grows. Specifically, the number of approving votes
 required will remain 50% of the members for one week, then be decreased
-to 33% for two weeks, and then if no concerns are raised any number of
-approvals will accept the proposal.
+to 33% for two weeks, and then if no concerns only two approvals by members
+other than the proposer are required for acceptance.
 
 Considerations are also made for notifying working group members of
 outstanding voting issues.
@@ -43,31 +43,32 @@ After one week has passed, the threshold is reduced to 33%, and remains at 33%
 for two weeks. There must still be zero unresolved concerns; but only 33% of
 the members need to approve for a proposal to be accepted.
 
-After those two weeks have passed (three weeks in total), _any_ number of
-approvals will permit a vote to be accepted, so long as there are no unresolved
-concerns. A member is explicitly permitted to raise a concern that there are
-not sufficient approvals or an issue has not received sufficient attention and
-thereby block it from being accepted until that concern is addressed. An
-exception is made if the only approval is from the proposer, in which case
-one further approval will be required.
+After those two weeks have passed (three weeks in total), two approvals from
+members who are not the propser will permit a vote to be accepted, so long as
+there are no unresolved concerns. A member is explicitly permitted to raise a
+concern that there are not sufficient approvals or an issue has not received
+sufficient attention and thereby block it from being accepted until that
+concern is addressed.
 
 ## Notifying Members
 
 At each weekly meeting, outstanding votes will be identified, and members
-present at the meeting reminded to consider voting. After each meeting,
-all members of the relevant group will be emailed with a reminder of any
-pending votes.
+present at the meeting reminded to consider voting. It is the responsibiltiy
+of the proposer to ensure the vote is listed on a meeting's agenda. Weeks
+where a vote is not listed on a meeting's agenda will not count towards
+reducing the required voting threshold.
 
-By notifying members of outstanding votes each week, it is hoped that every
-member will have sufficient time to consider whether they have concerns over
-a specific vote. If the full three weeks elapses with no concerns raised,
-we conclude no members have concerns.
+By notifying members of outstanding votes at the weekly meetings, it is hoped
+that every member will have sufficient time to consider whether they have
+concerns over a specific vote. If the full three weeks elapses with no concerns
+raised, we conclude no members have concerns.
 
 ## Self Voting
 
 We clarify that members may approve their own proposals in order to help reach
 the required majority, but such votes will not be sufficient alone to accept a
-proposal.
+proposal, and at least two approvals by members other than the proposer will
+always be required to accept a proposal.
 
 # Alternatives
 
