@@ -1,0 +1,226 @@
+2018-10-02 20:05:45	~japaric	alright, let's start this meeting
+2018-10-02 20:06:25	@therealprof	+1
+2018-10-02 20:06:44	~japaric	first, a reminder: quick an eye on PRs waiting for review https://github.com/search?q=org%3Arust-embedded++is%3Aopen+label%3AS-waiting-on-review&type=Issues
+2018-10-02 20:07:04	~japaric	for instance that one is blocking the bookshelf from being updated on a nightly basis
+2018-10-02 20:07:33	~japaric	let's now go over the milestone issues
+2018-10-02 20:08:18	~japaric	first issue is the introduction chapter
+2018-10-02 20:08:25	~japaric	not much change since last week
+2018-10-02 20:08:50	~japaric	not much left to do either I think
+2018-10-02 20:09:26	~japaric	next issue (2) is the getting started chapter
+2018-10-02 20:09:43	~japaric	the section on panicking landed
+2018-10-02 20:09:53	~japaric	no change other than that
+2018-10-02 20:10:33	@theJPster	I went through the first few chapters of the book today. I posted a couple of comments but in general it was looking good.
+2018-10-02 20:10:58	 *	theJPster also just approved #32
+2018-10-02 20:11:22	~japaric	theJPster: thanks
+2018-10-02 20:11:39	~japaric	issue 3 about collections saw no change since last week
+2018-10-02 20:12:23	~japaric	issue 4 is about concurrency. adamgreig any update?
+2018-10-02 20:12:37	@adamgreig	sorry nothing to report this week, was totally flooded with work.. hope to have something by the weekend
+2018-10-02 20:13:17	~japaric	ok
+2018-10-02 20:14:08	~japaric	issue 5 is about portability. jamesmunns did you get a change to put up your notes for review?
+2018-10-02 20:14:42	jamesmunns	Not yet, been working on the website PRs
+2018-10-02 20:15:12	jamesmunns	Will try and get the portability and type state note PRs up
+2018-10-02 20:15:19	jamesmunns	(up tonight)
+2018-10-02 20:15:25	~japaric	jamesmunns: +1
+2018-10-02 20:15:27	~japaric	thanks
+2018-10-02 20:16:32	~japaric	that covers both issues 5 and 6
+2018-10-02 20:17:02	jamesmunns	That being said, if someone wants to write about traits and portability, my notes are very scarce
+2018-10-02 20:17:23	jamesmunns	So open to having takers for that chapter. I will work on finishing out the type state chapter next
+2018-10-02 20:17:35	~japaric	hal team ^ therealprof ryankurte hannobraun
+2018-10-02 20:17:54	@therealprof	Hm…
+2018-10-02 20:18:20	hannobraun	I don't have much time at the moment, unfortunately.
+2018-10-02 20:18:35	@therealprof	Same here, I'm afraid.
+2018-10-02 20:18:57	~japaric	I'm pretty busy this week as well. Let's check again next week.
+2018-10-02 20:18:58	@ryankurte	Ahh, I am much the same :-/
+2018-10-02 20:19:03	@ryankurte	+1
+2018-10-02 20:19:07	jamesmunns	It must be that time of year :/
+2018-10-02 20:20:34	~japaric	issue 7, tips for C/C++ devs. any news? korken89 adamgreig
+2018-10-02 20:20:43	@korken89	I have been working on the debugging section/book, I will start uploading parts there for review this week.
+2018-10-02 20:21:03	chrysn	i might be able to put in something on the bindgen side
+2018-10-02 20:21:07	@korken89	If there is a specific part @adamgreig would like me to do, just tell me and I can shift focus there
+2018-10-02 20:21:20	@adamgreig	I haven't done anything on the tips section yet
+2018-10-02 20:21:40	@adamgreig	though it might be something we can just chat about on irc after the meeting and put some ideas together?
+2018-10-02 20:21:41	chrysn	(sorry, that'd go into section 8)
+2018-10-02 20:22:00	~japaric	adamgreig: +1
+2018-10-02 20:22:34	@korken89	Sounds good!
+2018-10-02 20:22:54	~japaric	issue 8, integration with C codebases. anyone knows what's the status of PR 23?
+2018-10-02 20:23:12	jamesmunns	Pinged Katharina, she addressed some issues, will reping
+2018-10-02 20:23:33	jamesmunns	I think most of the content is there. I can take a look at the PR too, to see if I can assist closing anything out
+2018-10-02 20:24:02	posborne	I can revisit that one as well as I provided an earlier review
+2018-10-02 20:24:07	@ryankurte	I was working on a cmake integration example / helper file, but not sure whether it's worth adding there or not.
+2018-10-02 20:24:29	~japaric	jamesmunns: posborne thanks
+2018-10-02 20:24:37	jamesmunns	ryankurte: definitely capture it somewhere! Either there, or in the FAQ, and link from the book
+2018-10-02 20:24:47	~japaric	I think at this point the PR is still waiting-on-author
+2018-10-02 20:25:05	posborne	ryankurte: I have some done stuff in that area (cmake) as well and would be happy to review
+2018-10-02 20:25:28	~japaric	ryankurte: you can always add the text under unsorted topics
+2018-10-02 20:25:37	~japaric	we'll eventually figure out where it should go
+2018-10-02 20:25:43	@ryankurte	posborne: neat, thanks! Will ping when I've reworked it.
+2018-10-02 20:25:53	@ryankurte	japaric: cool cool cool
+2018-10-02 20:26:05	~japaric	unsorted topics is in the book repo
+2018-10-02 20:26:15	@therealprof	Has anyone seen: "-C default-linker-libraries" yet?
+2018-10-02 20:27:07	@therealprof	Might be interesting for integrating with C/C++.
+2018-10-02 20:27:17	~japaric	is that a rustc flag?
+2018-10-02 20:27:24	~japaric	doesn't show under '-C help'
+2018-10-02 20:27:25	@therealprof	Yes.
+2018-10-02 20:27:36	@therealprof	https://github.com/rust-lang/rust/pull/54675
+2018-10-02 20:29:28	@therealprof	@japaric Would you think it is worthwhile to add a few words about figuring out where the flash is spent with cargo-bloat?
+2018-10-02 20:30:19	~japaric	therealprof: I think it makes sense to have a chapter on profiling covering cargo-bloat, stack-sizes and other tools, if any
+2018-10-02 20:31:08	@therealprof	Sounds good. I thought about putting this into the optimisation bit you wrote but either is fine for me.
+2018-10-02 20:31:38	~japaric	therealprof: could you open an issue so the idea doesn't get lost?
+2018-10-02 20:31:55	~japaric	issue 9, book outline, continues blocked, I think
+2018-10-02 20:32:03	@therealprof	Will do.
+2018-10-02 20:33:24	~japaric	issue 10, the new-book, korken89 mentioned they have been working on it. any other news? ryankurte
+2018-10-02 20:33:59	@korken89	I will start making PR(s) during this week
+2018-10-02 20:34:11	@theJPster	make five and you get a t-shirt, apparently
+2018-10-02 20:34:21	@ryankurte	japaric: none from here, korken89: neat!
+2018-10-02 20:34:25	~japaric	korken89: +1
+2018-10-02 20:34:54	@korken89	I might as others to help a bit on some topics
+2018-10-02 20:35:00	jamesmunns	I will sponsor t-shirts and stickers for work towards the book :D
+2018-10-02 20:35:00	@theJPster	https://hacktoberfest.digitalocean.com/
+2018-10-02 20:35:01	@korken89	For example I have never used a J-Link
+2018-10-02 20:35:21	@ryankurte	korken89: I can definitely cover the jlink part
+2018-10-02 20:35:33	@korken89	ryankurte: Awesome!
+2018-10-02 20:35:51	@therealprof	:-D
+2018-10-02 20:36:00	@korken89	jamesmunns: Swag :D My only weakness!
+2018-10-02 20:36:24	~japaric	ok, next issue (11) is about the embedded showcase
+2018-10-02 20:36:36	~japaric	the status is still help wanted
+2018-10-02 20:37:13	@therealprof	Getting started is the hardest part.
+2018-10-02 20:38:12	~japaric	issue 12, testing embedded targets in rust-lang/rust: the PR has been updated; I'll review it this week
+2018-10-02 20:38:50	~japaric	next issue is about the docs landing page
+2018-10-02 20:39:01	~japaric	I made a poll; let me find the link
+2018-10-02 20:39:21	~japaric	https://github.com/rust-embedded/wg/issues/208#issuecomment-424685351
+2018-10-02 20:39:54	~japaric	the majority voted for docs.rust-embedded.org
+2018-10-02 20:40:16	@therealprof	So be it then. ;)
+2018-10-02 20:40:26	~japaric	and there was also a poll about renaming the bookshelf repo to "docs"
+2018-10-02 20:40:45	~japaric	the majority answered yes but the votes were more split
+2018-10-02 20:41:12	@adamgreig	i was one of the no votes but not strongly against, happy to go with the majority
+2018-10-02 20:41:26	@therealprof	Yeah, I also was one of the no votes.
+2018-10-02 20:41:35	~japaric	we should go ahead with docs.rust-embedded.org cc ryankurte
+2018-10-02 20:41:50	@ryankurte	Alrightly, we'll work on getting that set up then.
+2018-10-02 20:42:01	@adamgreig	my reasoning was just that bookshelf is what the repo contains, it doesn't itself contain any docs
+2018-10-02 20:42:02	@ryankurte	There are a couple of problems with book. and em*. at the moment
+2018-10-02 20:42:06	@adamgreig	but the url leads to all the docs so i like it being docs
+2018-10-02 20:42:08	@adamgreig	shrug
+2018-10-02 20:43:17	@therealprof	Docs is such a overloaded term, I'd rather have something more distinct and obvious but shrug, too.
+2018-10-02 20:43:24	@therealprof	:-D
+2018-10-02 20:45:06	~japaric	let's revisit the rename issue next week and move on
+2018-10-02 20:45:26	~japaric	last issue is about the webpage
+2018-10-02 20:45:40	jamesmunns	I can share a screenshot, if its not considered secret :)
+2018-10-02 20:45:47	~japaric	jamesmunns has been working on it. Anything you'd like to share / say jamesmunns?
+2018-10-02 20:45:59	@korken89	Yes please!
+2018-10-02 20:46:12	~japaric	I think it's ok to share the screenshot on the GH team chat
+2018-10-02 20:46:18	~japaric	but not yet on public
+2018-10-02 20:46:36	jamesmunns	It's been going well! I'm blocked on a couple of final links once the book chapters are ready, but so far we have a few really good testimonials from the issue
+2018-10-02 20:47:01	~japaric	GH team chat == https://github.com/orgs/rust-embedded/teams/all
+2018-10-02 20:47:10	jamesmunns	if any of you work at a company and want to be listed as "friends of embedded rust", feel free to ping me (let me find the testimonials issue...)
+2018-10-02 20:47:40	hannobraun	It recently occured to me that I now qualify too as a commercial user of embedded Rust :)
+2018-10-02 20:47:50	jamesmunns	hannobraun: you need a logo
+2018-10-02 20:47:54	jamesmunns	;)
+2018-10-02 20:47:56	~japaric	hannobraun: :tada:
+2018-10-02 20:48:19	@korken89	Awesome, our company writes our bootloaders in Rust for now
+2018-10-02 20:48:20	jamesmunns	If anyone wants to be added, leave a comment here: https://github.com/rust-embedded/wg/issues/108
+2018-10-02 20:48:22	~japaric	I'm sure hannobraun can use their GH profile image as logo
+2018-10-02 20:48:28	@korken89	I should fix something small for that
+2018-10-02 20:48:50	jamesmunns	Important things (will add to the issue) if you want to be included:
+2018-10-02 20:48:51	thenewwazoo	korken89: OSS? I'm literally starting a bootloader project today heh
+2018-10-02 20:48:57	hannobraun	I have no budget for a logo, so I guess I have to brush up my inkscape skills.
+2018-10-02 20:49:12	jamesmunns	1. Your company's logo, round or square, transparent/white background
+2018-10-02 20:49:16	hannobraun	japaric: That's barely suitable for GitHub. Need something more serious for a more professional context :)
+2018-10-02 20:49:30	@korken89	thenewwazoo: As soon as I clean it up it will be OSS :)
+2018-10-02 20:49:34	jamesmunns	2. Your name, title, and company name
+2018-10-02 20:50:14	~japaric	hannobraun: a dolphin in a suit, then? ;-)
+2018-10-02 20:50:42	@theJPster	do we have anyone we can run this by, just to check a11y?
+2018-10-02 20:50:54	hannobraun	japaric: :)
+2018-10-02 20:51:03	@therealprof	a11y = ?
+2018-10-02 20:51:05	jamesmunns	3. A short quote about your company (2-3 sentences), what it does, and how it uses rust
+2018-10-02 20:51:08	@theJPster	accessibility
+2018-10-02 20:51:09	jamesmunns	Acessibility
+2018-10-02 20:51:14	@therealprof	ah
+2018-10-02 20:51:18	jamesmunns	^ but spelled rite
+2018-10-02 20:51:20	@theJPster	like, is white on yellow readable by everyone.
+2018-10-02 20:51:26	@theJPster	Do all the images have alt tags.
+2018-10-02 20:51:27	~japaric	in these last 10 mins the floor is open for small updates
+2018-10-02 20:51:53	jamesmunns	Misc: I bought 10 of these: https://www.seeedstudio.io/Air602-WiFi-Development-Board-p-3140.html
+2018-10-02 20:52:05	jamesmunns	3$ Cortex-M wifi chips
+2018-10-02 20:52:13	 *	theJPster is writing a half-day training workshop on Embedded Rust for his colleagues
+2018-10-02 20:52:21	jamesmunns	they have an SDK in C/chinese
+2018-10-02 20:52:35	@therealprof	Published: https://crates.io/crates/stm32f4xx-hal
+2018-10-02 20:52:49	jamesmunns	I would like to get it up and going in rust, if you are in Europe, and have more free time than me, I will send you the boards for free if you promise to develop on them :)
+2018-10-02 20:52:55	~japaric	theJPster: +1
+2018-10-02 20:52:56	thenewwazoo	I've been working on ADC traits for the STM32L0x1 and LPC177x/8x HALs, and am wondering whether the documented defn of "proven" for an embedded-hal trait applies
+2018-10-02 20:53:21	@korken89	I want to do a PSA for next week for me, I have eye surgery on Monday and is not expected to be able to read for 3-4 days. So I will not be attending the next meeting.
+2018-10-02 20:53:23	thenewwazoo	also, more generally, if some movement out of unproven in that crate is warranted
+2018-10-02 20:53:33	posborne	jamesmunns: https://www.pine64.org/?page_id=917 is worth checking out as well
+2018-10-02 20:53:48	@ryankurte	I think I've found all the pieces to get hw ci going without any new software, so hopefully gonna play with that this weekend ^_^
+2018-10-02 20:53:50	jamesmunns	theJPster: feel free to ping me out of band. I am planning to write a lesson plan for embedded rust, and hosting it on the Ferrous Systems github
+2018-10-02 20:54:02	@therealprof	Yeah, we should mark stuff proven. Please create a PR with some pointers and we'll make it happen.
+2018-10-02 20:54:10	thenewwazoo	can-do
+2018-10-02 20:54:11	jamesmunns	ETA: January though. would be ~1 day just embedded rust
+2018-10-02 20:54:26	@theJPster	jamesmunns, I think I'm basically going to go through bits of the book, and bits of Discovery. We're using Tiva-C Launchpads.
+2018-10-02 20:54:34	@theJPster	(Not my idea! It's what they had in the cupboard)
+2018-10-02 20:54:39	thenewwazoo	the ADC traits are still in-discussion, but I'll be able to show the traits I think make sense and some impls "soon"
+2018-10-02 20:54:52	jamesmunns	japaric: I wanted to ping you about stmf103xx-hal. Have you made a call for more maintainers there?
+2018-10-02 20:55:19	@theJPster	I got code running on the TM4C129 in about an hour, from a bare machine without a tm4c129-hal crate.
+2018-10-02 20:55:24	jamesmunns	posborne: nice! Know anyone working on it already?
+2018-10-02 20:55:33	~japaric	jamesmunns: nope, happy to transfer it over, though
+2018-10-02 20:55:38	thenewwazoo	theJPster: nice! that mirrors my experience w/ the Tiva-C discovery board too
+2018-10-02 20:55:49	thenewwazoo	svd and board to blinking light in ~hr
+2018-10-02 20:56:10	@therealprof	@japaric: I'd love to turn it into something similar to the stm32f4xx-hal crate.
+2018-10-02 20:56:14	posborne	jamesmunns: A couple coworkers were planning to play around with one, I think.  I haven't picked anything up.
+2018-10-02 20:56:24	jamesmunns	japaric: IMO its a pretty popular crate, and I think it would be worth having in the rust-embedded space (do we have any other chip/board crates)?
+2018-10-02 20:56:37	@therealprof	jamesmunns: +1
+2018-10-02 20:56:57	@therealprof	STM32F103 is a bestseller.
+2018-10-02 20:56:59	thenewwazoo	I am planning to write a basic "bsp" crate to separate chip-level and board-level concerns for some STM32L0 nucleo boards
+2018-10-02 20:57:25	thenewwazoo	i.e. a Board struct that gives you GPIOs and has methods for turning them into peripherals
+2018-10-02 20:57:33	posborne	Was wondering about formal process for moving code to the org
+2018-10-02 20:57:44	~japaric	jamesmunns: we don't have any board specific crates in the org but I can send a proposal to put it under the cortex-m team purview
+2018-10-02 20:57:55	@korken89	On another note, does anyone know how to set the FPU to double precision in Cortex-M7s that have the double precision FPU?
+2018-10-02 20:58:17	@korken89	The targets we have seem to only be generating the single precision instructions for me
+2018-10-02 20:58:28	jamesmunns	posborne: open up a PR in /wg or /cortex-m suggesting it, I think a big question to answer would be "who can maintain this", but I think we can also take new members who would want to handle it
+2018-10-02 20:58:30	~japaric	posborne: https://github.com/rust-embedded/wg/blob/master/rfcs/0136-teams.md#adopting-projects
+2018-10-02 20:58:32	@theJPster	japaric: I'd be wary of setting a precedent. We struggle to handle all the cores, never mind all the SoCs.
+2018-10-02 20:59:05	kellerkindt	jamesmunns: +1 putting stm32f103xx into the rust-embedded space
+2018-10-02 20:59:19	jamesmunns	theJPster: I do agree with you re: too many chips
+2018-10-02 20:59:21	posborne	japaric: Thanks, missed that.  Looks like I took the right appraoch with https://github.com/rust-embedded/wg/pull/222
+2018-10-02 20:59:31	thenewwazoo	I think it's useful to have a reference implementation of the emb-hal traits
+2018-10-02 20:59:46	posborne	I'll follow up on that with nastevens (probably looking for another maintainer on the Linux side)
+2018-10-02 20:59:50	thenewwazoo	even if it moves a bit slowly :)
+2018-10-02 21:00:07	@adamgreig	korken89: i suspect https://github.com/rust-lang/rust/blob/master/src/librustc_target/spec/thumbv7em_none_eabihf.rs#L41 might be an issue
+2018-10-02 21:00:19	@ryankurte	I was wondering whether there's some kind of middle ground, maybe another org that could take ownership of drivers and support packages and things so decrease the bus factor / help with trust?
+2018-10-02 21:00:30	jamesmunns	japaric: I just know you're super busy, and that chip is popular. de-bussing you is more important IMO than moving to rust-embedded
+2018-10-02 21:00:46	jamesmunns	ryankurte: rust-embedded/chip-nursery team?
+2018-10-02 21:00:51	kellerkindt	+1
+2018-10-02 21:00:56	@theJPster	+1
+2018-10-02 21:01:00	@ryankurte	Chips and drivers?
+2018-10-02 21:01:18	jamesmunns	ryankurte: yeah, ideally that too
+2018-10-02 21:01:41	jamesmunns	I don't have a good TLA for that though. BSP/SDK/HAL/WTF all have slightly different meanings
+2018-10-02 21:01:41	@theJPster	The *only* HAL I think might reach a high enough bar for inclusion as a reference design and be supported by the core team is the one for the SoC simulated by QEMU
+2018-10-02 21:01:43	@ryankurte	But nursery implies things would grow out, where I was thinking more they would be moved in.
+2018-10-02 21:01:56	@ryankurte	thejpster +1
+2018-10-02 21:02:03	@theJPster	simply because we need it for testing
+2018-10-02 21:02:12	hannobraun	ryankurte: We recently created nrf-rs on GitHub, an org for maintaining Nordic stuff. No reason not to do that for other manufacturers as well.
+2018-10-02 21:02:15	@theJPster	It's a Luminary Micro M3 I think
+2018-10-02 21:02:18	thenewwazoo	theJPster: that's a really interesting idea. does that simulated SoC have peripherals like uarts, gpios, etc?
+2018-10-02 21:02:21	@ryankurte	I guess idealistically, openrisk might be interesting too?
+2018-10-02 21:02:48	@korken89	adamgreig: Thanks! Did not know about the comment on line 19 stating how to enable the double FPU :)
+2018-10-02 21:02:59	jamesmunns	IMO, github orgas for silicon vendors/chip families seems to work well
+2018-10-02 21:03:01	@ryankurte	hannobraun: yeah, that's excellent for chip families. Sounds like a lot of orgs for drivers tho?
+2018-10-02 21:03:03	~japaric	thenewwazoo: apparently it emulates an OLED controlled via I2C
+2018-10-02 21:03:10	@therealprof	I don't see what's wrong with the STM32F103 as "reference".
+2018-10-02 21:03:33	@ryankurte	therealprof: +1
+2018-10-02 21:03:35	thenewwazoo	it's a lot easier to build testing scaffolding around a virtual chip
+2018-10-02 21:03:37	@adamgreig	the f103 is such a classic and popular and well-established chip
+2018-10-02 21:03:40	jamesmunns	I'd argue that either the STM32F103 is pretty much our hardware reference, atm
+2018-10-02 21:03:45	@theJPster	therealprof, because someone can point at it and say, "but why not my chip?"
+2018-10-02 21:03:55	hannobraun	ryankurte: Yeah, I don't think that model makes sense for drivers.
+2018-10-02 21:03:56	@therealprof	I've never tried the QEMU emulation but literally have hundreds of STM32F103 lying around here.
+2018-10-02 21:04:04	jamesmunns	(was going to say STM32F103 or F3, but I know that is more book-specific)
+2018-10-02 21:04:13	@adamgreig	whereas the qemu target is never going to be actually used in a hardware project
+2018-10-02 21:04:13	jamesmunns	Also, worth thinking about:
+2018-10-02 21:04:26	jamesmunns	People who want to try rust, are going to ask "okay, what board do I buy"?
+2018-10-02 21:04:41	jamesmunns	And we should have one, amazing, super well supported platform to point them at
+2018-10-02 21:04:42	@theJPster	Yeah, there's a lot about, but that's still actual stuff someone has to buy. And it's harder to test against.
+2018-10-02 21:05:23	thenewwazoo	if the qemu soc doesn't look like a real chip in the real world, though, it's of very limited use
+2018-10-02 21:05:36	thenewwazoo	like if you don't set pin modes, and then set up peripherals, and then set up DMA, etc
+2018-10-02 21:05:49	@therealprof	Can't connect real hardware to QEmu (easily that is) and nothing is more satisfying than blinking a read LED.
+2018-10-02 21:05:52	thenewwazoo	it'll be too abstract to be useful as a "what does this look like in Real Life?" answer
+2018-10-02 21:05:52	~japaric	we are well past the meeting end time. Thanks everyone for attending!
