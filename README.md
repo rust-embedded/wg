@@ -144,6 +144,7 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 
 Projects maintained by this team.
 
+- [`cortex-a`]
 - [`register-rs`]
 - To be updated soon.
 
@@ -393,6 +394,7 @@ https://mozilla.logbot.info/rust-embedded
 [The embedonomicon]: https://github.com/rust-embedded/embedonomicon
 [`alloc-cortex-m`]: https://github.com/rust-embedded/alloc-cortex-m
 [`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
+[`cortex-a`]: https://github.com/rust-embedded/cortex-a
 [`cortex-m-quickstart`]: https://github.com/rust-embedded/cortex-m-quickstart
 [`cortex-m-rt`]: https://github.com/rust-embedded/cortex-m-rt
 [`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m-semihosting
