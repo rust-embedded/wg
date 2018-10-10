@@ -146,7 +146,7 @@ Projects maintained by this team.
 
 - [`cortex-a`]
 - [`register-rs`]
-- To be updated soon.
+- [`rust-raspi3-tutorial`]
 
 ### The Cortex-M team
 
@@ -415,6 +415,7 @@ https://mozilla.logbot.info/rust-embedded
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/riscv-rust/riscv
 [`rust-embedded-provisioning`]: https://github.com/nastevens/rust-embedded-provisioning
+[`rust-raspi3-tutorial`]: https://github.com/rust-embedded/rust-raspi3-tutorial
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
 [`svd2rust`]: https://github.com/rust-embedded/svd2rust
 [`sysfs-gpio`]: https://github.com/rust-embedded/rust-sysfs-gpio
