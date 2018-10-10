@@ -144,6 +144,7 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 
 Projects maintained by this team.
 
+- [`register-rs`]
 - To be updated soon.
 
 ### The Cortex-M team
@@ -407,6 +408,7 @@ https://mozilla.logbot.info/rust-embedded
 [`msp430`]: https://github.com/pftbest/msp430
 [`panic-itm`]: https://github.com/rust-embedded/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/panic-semihosting
+[`register-rs`]: https://github.com/rust-embedded/register-rs
 [`riscv-rt`]: https://github.com/riscv-rust/riscv-rt
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/riscv-rust/riscv
