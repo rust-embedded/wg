@@ -1,0 +1,165 @@
+2018-10-09 20:00:15	~japaric	meeting agenda: https://paper.dropbox.com/doc/Embedded-WG--AO3FUbH62OMOdbN4jsAV9KvQAg-5pdv734N8KpxHFMJijuoL
+2018-10-09 20:00:22	@adamgreig	really i want cargo features with arguments :P
+2018-10-09 20:00:26	jamesmunns	the linker can't change the size of an array, afaik
+2018-10-09 20:00:36	jamesmunns	adamgreig: yeah, that would be mostly better
+2018-10-09 20:00:48	@adamgreig	assuming you can somehow use the argument as a const
+2018-10-09 20:00:49	jamesmunns	dylan-dpc was talking about submitting an RFC to address that
+2018-10-09 20:01:04	@adamgreig	dread to think how it would interoperate with the current additive-only model though
+2018-10-09 20:01:14	@adamgreig	what do you do when two crates depend on the same third crate but with different arguments?
+2018-10-09 20:01:15	jamesmunns	adamgreig: I was hoping it was possible to use a const in a cfg! block, but I don't think thats a thing at all
+2018-10-09 20:01:17	@adamgreig	nightmare
+2018-10-09 20:01:36	jamesmunns	adamgreig: yeah, I think thats why they went with the union of all features
+2018-10-09 20:01:39	hannobraun	Good evening
+2018-10-09 20:01:48	jamesmunns	you might need a separate interface than current cfg
+2018-10-09 20:01:54	@adamgreig	yea. still i'd love to have it.
+2018-10-09 20:04:32	~japaric	ok, let's start this meeting
+2018-10-09 20:04:50	~japaric	we are 8 weeks away from the edition release; let's check on the edition issues
+2018-10-09 20:05:18	~japaric	issue 1: book intro; anything to report?
+2018-10-09 20:05:32	@theJPster	sorry, is there a link? I'm on a different PC today.
+2018-10-09 20:05:45	jamesmunns	https://paper.dropbox.com/doc/Embedded-WG--AO30Ou0UvgAU8jWWKY7CN6QLAg-5pdv734N8KpxHFMJijuoL
+2018-10-09 20:06:34	~japaric	looks like there's a PR to update the intro https://github.com/rust-embedded/book/pull/40
+2018-10-09 20:07:01	~japaric	and looks like it was updated and it's waiting for re-review
+2018-10-09 20:07:29	jamesmunns	I can look at it tomorrow, if no-one has time before then
+2018-10-09 20:07:33	@therealprof	Looks good to me on first glance.
+2018-10-09 20:07:38	@therealprof	I'll check later.
+2018-10-09 20:08:09	~japaric	moving on, issue 2: the first step chapter
+2018-10-09 20:08:18	~japaric	steps*
+2018-10-09 20:08:28	~japaric	no news on this from my side
+2018-10-09 20:09:44	@theJPster	I find myself with some spare time this week
+2018-10-09 20:10:03	@theJPster	I need to get ready for RBR but if there's something it would be useful to spend, say, six hours on, just point me at it.
+2018-10-09 20:10:29	~japaric	chapter 2 is missing content on semihosting and register access
+2018-10-09 20:10:58	@theJPster	I can do that.
+2018-10-09 20:11:03	~japaric	theJPster: +1
+2018-10-09 20:12:07	~japaric	issue 3, collections chapter: no change since last week
+2018-10-09 20:12:30	~japaric	section 4, concurrency. any news adamgreig?
+2018-10-09 20:12:36	@adamgreig	hope to have a pr this evening
+2018-10-09 20:12:52	@adamgreig	hoped to have a pr for the meeting but not quite :p
+2018-10-09 20:13:10	~japaric	adamgreig: nice
+2018-10-09 20:13:57	~japaric	issues 5 and 6, portability and type state
+2018-10-09 20:14:03	~japaric	I think I saw some PRs
+2018-10-09 20:14:06	jamesmunns	PRs are open
+2018-10-09 20:14:21	jamesmunns	type state is on my plan this week, portability is likely not
+2018-10-09 20:14:31	jamesmunns	I think someone volunteered for portability last week though
+2018-10-09 20:14:56	 *	japaric tries to remember
+2018-10-09 20:16:41	jamesmunns	I'll skim through the logs in a bit
+2018-10-09 20:17:30	~japaric	I looked at the logs and didn't spot any volunteer for portability stuff
+2018-10-09 20:17:50	~japaric	issue 7, tips for C/C++. adamgreig?
+2018-10-09 20:17:53	@adamgreig	korken89 and i were going to work on tips but they're away this week; i plan to put some bits together this week after concurrency
+2018-10-09 20:18:14	@adamgreig	nothing actually written yet afaik
+2018-10-09 20:18:39	~japaric	ok, thanks for the update
+2018-10-09 20:19:28	~japaric	issue 8, C/Rust integration
+2018-10-09 20:19:38	@adamgreig	pr still waiting on author
+2018-10-09 20:19:56	@adamgreig	spacekookie: ^?
+2018-10-09 20:20:19	jamesmunns	I was hoping spacekookie would have had time this past week, but hasn't. I will follow up with her to see if I can close it out
+2018-10-09 20:20:30	jamesmunns	Feel free to assign to me
+2018-10-09 20:20:49	jamesmunns	(at least closing out that PR)
+2018-10-09 20:20:54	~japaric	jamesmunns: +1
+2018-10-09 20:21:53	~japaric	issue 9, outtline: no change
+2018-10-09 20:22:34	~japaric	issue 10, the other book
+2018-10-09 20:22:39	~japaric	I saw some PRs
+2018-10-09 20:23:27	~japaric	guess they are already merged
+2018-10-09 20:24:07	~japaric	I think ryankurte and korken89 are not around
+2018-10-09 20:25:25	~japaric	issue 11, the showcase
+2018-10-09 20:25:48	~japaric	I was hoping to take a stab at it during last weekend but ended having no time
+2018-10-09 20:26:04	~japaric	won't have time this week either ...
+2018-10-09 20:27:04	~japaric	issue 12, tests in rust-lang/rust
+2018-10-09 20:27:33	~japaric	there's an open PR but turns out we can't use the proc-macro crate in run-make tests for targets (that are not the host)
+2018-10-09 20:28:00	~japaric	so the PR will have to be updated to use cortex-m-rt v0.5.4 which uses the old macro_rules! macros (entry!)
+2018-10-09 20:28:27	@therealprof	:(
+2018-10-09 20:28:54	@therealprof	No fix in sight?
+2018-10-09 20:29:16	@theJPster	:(
+2018-10-09 20:29:37	~japaric	for the proc-macro stuff? there's a PR that should fix the issue and have been open for several weeks but it's complicated to land
+2018-10-09 20:30:34	~japaric	PR: https://github.com/rust-lang/rust/pull/49219
+2018-10-09 20:30:57	~japaric	s/several weeks/several months/
+2018-10-09 20:31:54	~japaric	using the older version of cortex-m-rt is the only way to do the job in time for 1.31
+2018-10-09 20:32:24	@theJPster	are there any downsides, apart from being a bit ugly?
+2018-10-09 20:32:46	~japaric	theJPster: no, the linker stuff is the same; only the UI is different
+2018-10-09 20:33:14	~japaric	in terms of what will be tested there's no different between that version and v0.6.x
+2018-10-09 20:33:34	@theJPster	ok
+2018-10-09 20:33:49	@theJPster	something is better than nothing
+2018-10-09 20:34:02	jamesmunns	Still covers the things we want to test
+2018-10-09 20:34:24	~japaric	next: issue 19, docs.rust-embedded.org
+2018-10-09 20:34:24	jamesmunns	As proc macro generation is probably not likely to specifically break embedded
+2018-10-09 20:34:51	~japaric	this is not blocked on decision making and can already happen
+2018-10-09 20:35:03	~japaric	I'll ping nastevens
+2018-10-09 20:36:29	~japaric	re: rename; given that there's majority we should go ahead with it. But we should it at the same time docs.r-e.o goes live to minimize breakage
+2018-10-09 20:37:41	jamesmunns	:+1:
+2018-10-09 20:38:16	~japaric	last: issue 20, webpage. I think we are on track
+2018-10-09 20:38:37	jamesmunns	oh. right. I think there were some review questions for me to close out
+2018-10-09 20:38:45	jamesmunns	should be quick, will add to this week's todo
+2018-10-09 20:38:53	~japaric	+1
+2018-10-09 20:39:22	~japaric	jamesmunns: perhaps you can update the screenshot on the internal team chat (after the PR is merged) so others can see the final state
+2018-10-09 20:40:15	jamesmunns	I need to un-set my system fonts, it makes the website look overly nice and monospace :)
+2018-10-09 20:40:29	jamesmunns	but will do, adding a note
+2018-10-09 20:40:58	~japaric	ok, that covers the triage
+2018-10-09 20:41:12	~japaric	this last part of the meeting can be used to share updates
+2018-10-09 20:41:37	~japaric	as of today we have a new team: the cortex-a team :tada:
+2018-10-09 20:41:52	@adamgreig	request for feedback or votes on the voting majority pr, https://github.com/rust-embedded/wg/pull/206
+2018-10-09 20:42:03	@adamgreig	and japaric i think we can go ahead and merge https://github.com/rust-embedded/cortex-m-rt/pull/122 ?
+2018-10-09 20:42:33	@therealprof	min_const_fn: PR for bare-metal now or as soon as next stable is out?
+2018-10-09 20:43:02	@therealprof	adamgreig: Yes, please.
+2018-10-09 20:43:33	~japaric	adamgreig: feel free to push that towards the finish line; for me it's lower priority than working on the book (which I'll resume once I'm done with my non-Rust tasks)
+2018-10-09 20:43:34	@therealprof	Needs conflict resolving, though.
+2018-10-09 20:44:10	~japaric	therealprof: technically, using min_const_fn is a breaking change because it bumps the minimum required version
+2018-10-09 20:44:51	@theJPster	PR #122 - is there a matching change to svd2rust, or am I supposed to implement the interrupt checks in a <chip>-hal crate? It feels like something that should be auto-generated.
+2018-10-09 20:45:07	~japaric	so a new minor release on both bare-metal and cortex-m will be needed
+2018-10-09 20:45:16	@adamgreig	theJPster: https://github.com/rust-embedded/svd2rust/pull/235
+2018-10-09 20:45:25	~japaric	theJPster: "The companion svd2rust PR is rust-embedded/svd2rust#235"
+2018-10-09 20:45:33	@theJPster	lol
+2018-10-09 20:45:37	@therealprof	japaric: Yes, I agree. And it would be d-n-m for now. Just a question of the right timing.
+2018-10-09 20:45:45	@theJPster	In my defence I'm on a 720p TV right now...
+2018-10-09 20:46:23	jamesmunns	It's better than a doubled 640x480 monotron display :D
+2018-10-09 20:46:39	jamesmunns	(or is that 800x600?)
+2018-10-09 20:47:06	@theJPster	It's 400x600. And actually, that might be more readable.
+2018-10-09 20:48:11	@therealprof	For me that is pretty much THE blocker at the moment so I'm very psyched to have that in ASAP.
+2018-10-09 20:48:46	@therealprof	I'm not sure it actually is a breaking change in bare-metal.
+2018-10-09 20:49:15	@therealprof	I'd keep the feature for now and just make it a no-op.
+2018-10-09 20:49:15	~japaric	you can make it non-breaking if you put it behing a feature gate
+2018-10-09 20:50:16	@theJPster	Sorry, what is min_const_fn?
+2018-10-09 20:50:40	~japaric	minimal subset of 'const fn' that's available on stable
+2018-10-09 20:50:40	@therealprof	I believe the only breakage would be to remove the feature gate.
+2018-10-09 20:51:04	~japaric	it's actually what was specced in the original const-fn RFC
+2018-10-09 20:51:23	@theJPster	oh nice. Monotron is stuck on nightly because of that.
+2018-10-09 20:51:26	~japaric	unstable const-fn includes stuff like panics, if-else, etc
+2018-10-09 20:51:56	@therealprof	Which allows to define static Mutexes which is pretty much a requirement to share peripherals and data with interrupt handlers….
+2018-10-09 20:51:58	~japaric	min-const-fn is pretty much only constructors and calling other min-const-fns
+2018-10-09 20:53:00	@theJPster	sounds great. Sorry, I'm slowly catching up here.
+2018-10-09 20:53:29	@theJPster	So this is this in stable and we're talking about whether to make use of it?
+2018-10-09 20:53:39	@therealprof	Future stable.
+2018-10-09 20:53:55	~japaric	it won't require a feature gate in 1.31{,-beta}
+2018-10-09 20:54:12	@theJPster	Which crates do we want to make use of this in?
+2018-10-09 20:54:19	@therealprof	bare-metal
+2018-10-09 20:54:44	@therealprof	There's a const-fn feature gate which does not work in beta or stable.
+2018-10-09 20:54:45	~japaric	heapless too
+2018-10-09 20:54:51	@theJPster	Oh, I forget that was a crate.
+2018-10-09 20:55:33	@therealprof	As I said I would keep the feature but turn it into a no-op to make it a non-breaking change.
+2018-10-09 20:55:50	@therealprof	If people feel strongly we can also completely remove it.
+2018-10-09 20:56:49	@theJPster	do you mean turn it into a no-op on a rustc where min_const_fn isn't supported?
+2018-10-09 20:56:52	jamesmunns	Wouldn't that break someone's build, if someone updated their crate but was still using the 1.31-beta, or earlier nightly?
+2018-10-09 20:57:31	jamesmunns	(oh, japaric already said exactly that, whoops)
+2018-10-09 20:57:46	@therealprof	Hm, I see what you're getting at.
+2018-10-09 20:57:53	~japaric	the only non-breaking change would be to remove #![feature(const_fn)] when the const-fn Cargo feature is enabled
+2018-10-09 20:58:08	@therealprof	I was kind of assuming ass
+2018-10-09 20:58:11	~japaric	users would still need to enable the const-fn Cargo feature to get Mutex::new in const context
+2018-10-09 20:58:29	@therealprof	…uming that people would use a newer rustc as soon as it is out.
+2018-10-09 20:58:42	~japaric	just that they'll be able to use the const-fn Cargo feature in 1.31{,-beta}
+2018-10-09 20:58:47	jamesmunns	will the crate still build pre-1.31 if a crate has a const fn that they don't use?
+2018-10-09 20:59:13	jamesmunns	oh
+2018-10-09 20:59:14	jamesmunns	right
+2018-10-09 20:59:16	@therealprof	Nope.
+2018-10-09 20:59:17	jamesmunns	the cfg is still there
+2018-10-09 20:59:22	jamesmunns	but the feature block isn
+2018-10-09 20:59:24	jamesmunns	*isnt
+2018-10-09 20:59:29	@therealprof	Can we version gate that? ;)
+2018-10-09 20:59:51	jamesmunns	#[cfg(version >= 1.31)]
+2018-10-09 21:00:03	~japaric	that doesn't work
+2018-10-09 21:00:07	jamesmunns	sorry
+2018-10-09 21:00:12	jamesmunns	tried to write "/s"
+2018-10-09 21:00:16	jamesmunns	IRC ate it
+2018-10-09 21:00:43	~japaric	I mean authors using 1.31 would write crates without cfg-ing on the version and then authors using 1.30 won't be able to compile the crates that depend on cortex-m
+2018-10-09 21:01:09	@therealprof	Hm?
+2018-10-09 21:01:18	jamesmunns	I'd say just rev the minor version. I don't think many people are going to care about slightly higher numbers
+2018-10-09 21:01:32	@therealprof	That's okay for me.
+2018-10-09 21:01:44	jamesmunns	(not sure if there is any additional overhead when releasing a minor update instead of trivial)
+2018-10-09 21:01:55	@therealprof	But I think we could make it backwards compatible if we wanted to.
+2018-10-09 21:02:31	~japaric	ok, meeting's over. I'll be busy until end of month and super busy until next Wednesday. If there's anything urgent send me an e-mail.
