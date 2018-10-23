@@ -1,0 +1,205 @@
+2018-10-16 20:04:57	~japaric	ok, let's start this meeting
+2018-10-16 20:05:03	@theJPster	Ah OK
+2018-10-16 20:05:09	~japaric	as usual we'll cover the milestone issues first
+2018-10-16 20:05:21	~japaric	issue 1: book intro
+2018-10-16 20:05:33	~japaric	PR 40 is waiting-on-author
+2018-10-16 20:05:40	~japaric	anything else to report on this chapter?
+2018-10-16 20:06:09	@jamesmunns	nope, author will be back this week, I expect changes by next week
+2018-10-16 20:06:25	~japaric	alright
+2018-10-16 20:06:39	~japaric	next issue #2 is the getting started (blinky) chapter
+2018-10-16 20:06:46	~japaric	I think I saw a PR
+2018-10-16 20:07:34	~japaric	https://github.com/rust-embedded/book/pull/42
+2018-10-16 20:08:09	@jamesmunns	theJPster: re that PR, issue https://github.com/rust-embedded/book/issues/46 is relevant
+2018-10-16 20:08:22	@jamesmunns	don't need to discuss now, though. Minor editing cleanup
+2018-10-16 20:09:10	@theJPster	ok
+2018-10-16 20:09:39	~japaric	ok, I'll assign theJPster and jamesmunns to issue 46
+2018-10-16 20:10:02	@jamesmunns	+1
+2018-10-16 20:10:30	~japaric	next issue #3 collections / dynamic data structures
+2018-10-16 20:10:51	~japaric	I suspect that there's been no movement on this one
+2018-10-16 20:11:26	 *	cr1901 is present in the background/listening, btw
+2018-10-16 20:11:30	~japaric	I'll put the &'static mut stuff on my todo list; I should have some time next week
+2018-10-16 20:11:37	 *	theJPster is afk
+2018-10-16 20:12:27	~japaric	next issue #4 is concurrency
+2018-10-16 20:12:32	@adamgreig	PR up https://github.com/rust-embedded/book/pull/49
+2018-10-16 20:12:40	~japaric	adamgreig: nice
+2018-10-16 20:12:41	@adamgreig	waiting for any other review, got one small comment to add
+2018-10-16 20:12:57	@adamgreig	and wanted to ask you a quick q about cortex_m mutex in multicore environment after this meeting
+2018-10-16 20:13:54	~japaric	adamgreig: ack
+2018-10-16 20:14:08	@therealprof	I'll check it out later.
+2018-10-16 20:14:34	~japaric	issue #5 is portability / HAL
+2018-10-16 20:14:37	@adamgreig	thanks therealprof
+2018-10-16 20:14:49	~japaric	jamesmunns: do you know what's the status of this one?
+2018-10-16 20:15:02	@jamesmunns	help still wanted, if there are no takers, I could possibly pick it up this week.
+2018-10-16 20:15:15	 *	theJPster is back
+2018-10-16 20:15:18	thenewwazoo	jamesmunns: I'm game to help out, let's connect after the meeting
+2018-10-16 20:15:24	@jamesmunns	thenewwazoo: sounds good
+2018-10-16 20:15:25	thenewwazoo	I've been writing hal after hal after hal
+2018-10-16 20:15:50	@jamesmunns	I have explained the theory to a lot of people, with very little actual coding :)
+2018-10-16 20:16:08	~japaric	thenewwazoo: +1
+2018-10-16 20:16:09	thenewwazoo	cool, I'm deep into the weeds right now so it's good timing
+2018-10-16 20:16:34	@therealprof	I can help with that one.
+2018-10-16 20:16:44	@jamesmunns	The more, the merrier
+2018-10-16 20:16:46	@therealprof	Also deep in HAL land. ;)
+2018-10-16 20:17:12	~japaric	therealprof: thenewwazoo thanks
+2018-10-16 20:17:28	~japaric	next issue, #6, static guarantees
+2018-10-16 20:17:42	@jamesmunns	https://github.com/rust-embedded/book/pull/35 is written (woo!) and waiting for reviews
+2018-10-16 20:17:51	@jamesmunns	that at least covers the type-state programming stuff
+2018-10-16 20:18:16	~japaric	\o/
+2018-10-16 20:18:20	thenewwazoo	I'll check that out too - I've been writing a bunch of that also
+2018-10-16 20:18:41	@jamesmunns	very open to PRs, either on theory, ways to refactor the sample code, soundness of examples, etc
+2018-10-16 20:18:53	thenewwazoo	+1
+2018-10-16 20:19:08	@jamesmunns	(PRs or just comments)
+2018-10-16 20:19:52	@theJPster	Can flag up that I'd like to return to issue #2 and PR 42 when we get to a good point. I have a clarifying question I'd like to ask.
+2018-10-16 20:21:14	~japaric	theJPster: sure, after we have gone through the milestone issues
+2018-10-16 20:21:26	~japaric	issue #7 is C/C++ tips
+2018-10-16 20:21:35	~japaric	adamgreig: any news on this one?
+2018-10-16 20:22:11	~japaric	iirc, korken89 was offline last week
+2018-10-16 20:22:17	@adamgreig	working on it, haven't chatted to korken89 yet
+2018-10-16 20:22:22	@adamgreig	open to tip suggestions from anyone
+2018-10-16 20:22:31	@adamgreig	suspect this will be more of a grab-bag chapter
+2018-10-16 20:22:34	thenewwazoo	got an issue or anything with notes?
+2018-10-16 20:22:42	thenewwazoo	yeah, somewhere to drop "one time I tried to ..."
+2018-10-16 20:22:48	@adamgreig	not up... will try and sort something after meeting
+2018-10-16 20:22:59	@adamgreig	( https://github.com/rust-embedded/book/issues/9 )
+2018-10-16 20:23:22	@therealprof	thenewwazoo: You mean the FAQ?
+2018-10-16 20:23:41	@adamgreig	therealprof: this is specifically tips for embedded c developers coming to rust
+2018-10-16 20:23:43	thenewwazoo	no, i think #9 is what I'm asking for
+2018-10-16 20:23:45	@jamesmunns	I think this chapter was "no, iterators are not expensive, we promise"
+2018-10-16 20:23:57	@adamgreig	"except.. sometimes... best check the assembler"
+2018-10-16 20:23:57	@jamesmunns	and the like
+2018-10-16 20:24:09	@therealprof	:-D
+2018-10-16 20:24:13	~japaric	thenewwazoo: requested topics so far are in this comment https://github.com/rust-embedded/book/issues/9#issuecomment-414668903
+2018-10-16 20:24:17	thenewwazoo	+1
+2018-10-16 20:25:18	~japaric	adamgreig: (and the disassembly shows 100+ instructions thanks to loop unrolling ...)
+2018-10-16 20:25:24	@adamgreig	haha yea...
+2018-10-16 20:25:26	@jamesmunns	putting this down now so I don't forget: after the issues I'd like to talk about the travisci situation
+2018-10-16 20:25:32	@adamgreig	"approximately-zero-cost"
+2018-10-16 20:25:35	@therealprof	Yeah.
+2018-10-16 20:25:47	@adamgreig	jamesmunns: +1
+2018-10-16 20:26:13	~japaric	moving on, issue #8 C / Rust interop
+2018-10-16 20:26:21	@adamgreig	https://github.com/rust-embedded/book/pull/23 was merged
+2018-10-16 20:26:28	@jamesmunns	PRs 23 and 45 have landed
+2018-10-16 20:26:34	@jamesmunns	51 is on its way
+2018-10-16 20:26:45	@jamesmunns	so we have a first pass at this chapter landed :)
+2018-10-16 20:26:55	~japaric	nice
+2018-10-16 20:27:47	hannobraun	(have to go, be right back)
+2018-10-16 20:27:49	~japaric	what's left to cover after this?
+2018-10-16 20:28:02	 *	japaric hasn't look at the diffs
+2018-10-16 20:28:08	@jamesmunns	for C/C++ interop? we initially talked about stuff like working with FreeRTOS
+2018-10-16 20:28:27	@jamesmunns	but this covers the "a little C with your rust" and "a little rust with your C" completely, if not minimally
+2018-10-16 20:28:57	@ryankurte	I still haven't PRd anything build system interop related, but iirc from last time we were not sure it'd go there.
+2018-10-16 20:28:59	@jamesmunns	always could be more verbose, open to PRs extending this
+2018-10-16 20:29:08	@ryankurte	👍
+2018-10-16 20:29:28	@jamesmunns	I think it makes sense there, not sure what the previous discussion was
+2018-10-16 20:30:40	~japaric	I saw https://github.com/rust-embedded/wg/issues/238 in my inbox is it related to this chapter?
+2018-10-16 20:31:14	@ryankurte	I think so, maybe we need examples of what works rn and what is in progress.
+2018-10-16 20:31:25	@jamesmunns	yes IMO
+2018-10-16 20:33:03	hannobraun	(I'm back)
+2018-10-16 20:33:23	~japaric	should we block the interop chapter issue on solving #238?
+2018-10-16 20:33:32	@jamesmunns	well, maybe. I need to see what exists in core::raw for thumb* targets
+2018-10-16 20:34:11	~japaric	there are no c types in core, iirc
+2018-10-16 20:34:37	@jamesmunns	huh.
+2018-10-16 20:34:48	@jamesmunns	Yeah, I'd say we need to revisit this
+2018-10-16 20:35:14	~japaric	jamesmunns: can you add a comment to the interop chapter issue?
+2018-10-16 20:35:23	@jamesmunns	will do
+2018-10-16 20:35:24	~japaric	I'll add looking at this issue to my todo list
+2018-10-16 20:35:55	@jamesmunns	looks like gbip possibly volunteered to address in https://github.com/rust-lang/libc/issues/375
+2018-10-16 20:36:59	~japaric	moving on, issue #9, outline
+2018-10-16 20:38:03	@therealprof	I'm wondering where we're going to link to the FAQ.
+2018-10-16 20:38:24	~japaric	jamesmunns: related to this and the webpage do you think we should freeze some chapter names / links in the book for the public beta of the website?
+2018-10-16 20:38:52	@jamesmunns	sgtm
+2018-10-16 20:39:13	@therealprof	We have a lot of feedback here on IRC the last week and I intend to turn it into FAQ items so we can just point to them. However the FAQ is not easy to find ATM.
+2018-10-16 20:39:13	@jamesmunns	Do you want me to make an issue listing the linked sections, and get a final approval from @resources?
+2018-10-16 20:39:32	~japaric	jamesmunns: yes, please
+2018-10-16 20:40:09	~japaric	therealprof: any suggestion on where to put the faq link?
+2018-10-16 20:40:14	@jamesmunns	japaric: will do
+2018-10-16 20:40:16	~japaric	I can add it to this channel topic
+2018-10-16 20:41:16	@therealprof	People where reading "the" book and the discovery book. I was hoping we could add further reading suggesting and FAQ as the last section in each of them.
+2018-10-16 20:41:41	@jamesmunns	I'd go so far and at least mention it on the landing/starting page of each too
+2018-10-16 20:42:06	@therealprof	The channel topic is very long already, it's already cropped on my client.
+2018-10-16 20:42:41	~japaric	linking the faq from the landing page of the books sgtm
+2018-10-16 20:42:53	~japaric	they could also link back to docs.r-e.o
+2018-10-16 20:43:15	@adamgreig	sounds good
+2018-10-16 20:43:37	@therealprof	+1
+2018-10-16 20:43:45	@adamgreig	the new intro chapter in the book already has links to the bookshelf (in #40)
+2018-10-16 20:43:49	cr1901	+1
+2018-10-16 20:44:00	~japaric	+1 to which option?
+2018-10-16 20:44:09	@adamgreig	so just include the faq there, and put something similar in the other landing pages
+2018-10-16 20:44:11	cr1901	"linking the faq from the landing page of the books"
+2018-10-16 20:44:37	@therealprof	That one.
+2018-10-16 20:45:32	~japaric	therealprof: adamgreig could one of you make issues about adding links to the bookshelf / faq on the book repos that don't have them?
+2018-10-16 20:46:04	~japaric	if you tag them with help-wanted / hacktoberfest they should get done relatively quickly
+2018-10-16 20:46:12	~japaric	or you directly make PRs
+2018-10-16 20:46:18	~japaric	you could directly**
+2018-10-16 20:46:26	@jamesmunns	re: chapter titles: https://github.com/rust-embedded/book/issues/52
+2018-10-16 20:46:40	@adamgreig	will do
+2018-10-16 20:46:42	~japaric	jamesmunns: thanks
+2018-10-16 20:47:15	~japaric	adamgreig: thanks
+2018-10-16 20:47:31	~japaric	ryankurte: any update on the other book
+2018-10-16 20:47:35	~japaric	moving on to issue #10
+2018-10-16 20:48:26	@ryankurte	A little more work but no more PRs yet
+2018-10-16 20:48:50	~japaric	ryankurte: ok, thanks for the update
+2018-10-16 20:48:59	@ryankurte	I've gotta find an example of all the tools I have and make sure the instructions are right / write the ones that aren't there yet.
+2018-10-16 20:49:37	~japaric	ryankurte: +1, thanks for working on this
+2018-10-16 20:50:10	~japaric	re issue #11, the showcase. I'll probably take a stab at it this weekend
+2018-10-16 20:50:18	cr1901	I'm tagged in the open issue for the embedded showcase; I'm still eager to add AT2XT to the showcase. The reason I haven't yet is, well... it still doesn't compile due to the LLVM atomics issue :)
+2018-10-16 20:50:26	~japaric	if no one is working on it
+2018-10-16 20:50:43	cr1901	Last I checked, awygle and I agreed on the fix, just hasn't been impl'd yet.
+2018-10-16 20:50:54	@therealprof	That'd be great. I'm so bad at starting such things. :/
+2018-10-16 20:51:19	~japaric	cr1901: I'll try to make a PR for that this weekend or next week
+2018-10-16 20:51:49	cr1901	japaric: Okay to remind you next week if I don't see anything and/or I haven't done it myself?
+2018-10-16 20:51:58	cr1901	Tyvm, btw
+2018-10-16 20:52:01	~japaric	cr1901: sure
+2018-10-16 20:52:25	~japaric	re issue #12, I need to check back on sekineh's PR; will likely do that during the weekend
+2018-10-16 20:52:47	~japaric	issue #19, ryankurte do you have access to the dns records?
+2018-10-16 20:53:41	~japaric	issue #20, webpage should be mostly done. any other updated on that jamesmunns?
+2018-10-16 20:53:44	@ryankurte	not at the moment, I can maybe get my aws account added for the interim where we don't have any automation tho.
+2018-10-16 20:54:03	@therealprof	NB: There were a lot of strange issues the last few days.
+2018-10-16 20:54:33	~japaric	ryankurte: could you contact nastevens to see if they can give you access?
+2018-10-16 20:54:39	@therealprof	Certificate mismatches, etc. and the images are partially broken (again).
+2018-10-16 20:54:46	@ryankurte	yep yep
+2018-10-16 20:55:03	~japaric	ryankurte: thanks
+2018-10-16 20:55:25	@ryankurte	therealprof: coercing github into hosting things is sometimes more wonky than I would hope, once we've got it right it should be stable.
+2018-10-16 20:55:31	~japaric	theJPster: jamesmunns you had some topics you wanted to discuss
+2018-10-16 20:55:40	~japaric	we have 5 mins left though
+2018-10-16 20:55:46	@theJPster	Last week I picked up an issue to write something on "registers and semihosting"
+2018-10-16 20:56:15	@theJPster	Can anyone remember what was meant by "registers"? I did a section on memory mapped peripheral registers, but that seems to duplicate text elsewhere.
+2018-10-16 20:56:45	@jamesmunns	re: travis ci, svd2rust and cross take a long time to build, and rust-embedded shares a single runner across all project. This is annoying as it blocks little PRs that take 5s to build for up to 12 hours, or causes bors timeouts
+2018-10-16 20:57:00	@theJPster	jamesmunns, can we add more runners?
+2018-10-16 20:57:15	@jamesmunns	theJPster: it costs money, probably. not sure what the pay scale is for open source
+2018-10-16 20:57:38	@adamgreig	we might be able to just ask for more runners
+2018-10-16 20:58:05	~japaric	theJPster: sorry, I probably wasn't clear. chapter 2 is more practical so "registers" was about the existing API in cortex-m / svd2rust
+2018-10-16 20:58:17	@jamesmunns	I wanted to volunteer to at least help pay for a second runner, if thats what we decide the best solution is (either as me, or as ferrous).
+2018-10-16 20:58:34	@jamesmunns	if we can just ask nicely, thats cool too though :)
+2018-10-16 20:59:55	@theJPster	japaric, hmm. We probably need to chat on https://github.com/rust-embedded/book/issues/46 because I'm a bit confused. Sorry.
+2018-10-16 21:00:17	~japaric	jamesmunns: we can probably shrink the build time of svd2rust by commenting out some device crates, but would be hard to do so for cross
+2018-10-16 21:00:37	@jamesmunns	theJPster: I think the page you wrote would fit really well in the Peripherals section, and theres basically a placeholder waiting for it already
+2018-10-16 21:00:52	@adamgreig	their commercial rates are $130/mo for 2 runners, so I definitely think asking nicely first is a worthwhile shot
+2018-10-16 21:01:35	@theJPster	 jamesmunns, which is fine. But I'm not sure what needs to go in the hole that leaves.
+2018-10-16 21:01:46	cr1901	Can someone add my name to the Attendance on my behalf (I give permission)? I keep forgetting to sort out Dropbox issues...
+2018-10-16 21:02:12	@theJPster	Oh, in other news. I'm at the Engineering Design Show in Coventry, UK tomorrow, then flying to Detroit for Rust Belt Rust.
+2018-10-16 21:02:13	@adamgreig	done
+2018-10-16 21:02:15	~japaric	idea: we could move cross to one of the WG members account (or to a new rust-embedded-nursery account) to not have it stall other repos
+2018-10-16 21:02:19	cr1901	adamgreig: tyvm
+2018-10-16 21:02:27	@theJPster	Then next week I am giving some Rust training to colleagues, so I won't be at the meeting.
+2018-10-16 21:02:45	@theJPster	I wrote an Embedded Rust workshop. It looks kind fun, if I do say so myself.
+2018-10-16 21:02:45	@jamesmunns	japaric: do you want to send an email to sales@travis-ci.com, and include my ferrous email on CC?
+2018-10-16 21:02:52	@jamesmunns	theJPster: nice!
+2018-10-16 21:03:19	@jamesmunns	(I can also send the email, but you are the owner of the account)
+2018-10-16 21:03:25	thenewwazoo	adamgreig (concurrency) and jamesmunns (HAL/portability) - I have to run but will be back in an ~hourish
+2018-10-16 21:03:34	@jamesmunns	s/account/organization
+2018-10-16 21:03:45	@jamesmunns	thenewwazoo: no problem, I have to go cook dinner too. Chat on the issue?
+2018-10-16 21:03:55	@theJPster	It's four hours of a) install the tools, b) clone the quickstart repo, c) blink an LED with an svd2rust generated chip crate, d) do some serial with a chip-hal crate.
+2018-10-16 21:04:22	thenewwazoo	jamesmunns: "chat on the issue"?
+2018-10-16 21:04:42	@jamesmunns	I just mean talk about this on the github issue, rather than IRC
+2018-10-16 21:04:43	@theJPster	Then I've got a Seeed studio grove starter kit full of random sensors and bits and bobs they can play with. Like an I2C LCD and a stepper motor.
+2018-10-16 21:04:49	@jamesmunns	I may not be available in 1 hour
+2018-10-16 21:05:01	@ryankurte	oh, is everyone ok with / anyone opposed to adding octobox.io as an app on the rust-embedded org? Means we'd get state information there. I can do it, just figured it'd be worth checking.
+2018-10-16 21:05:09	thenewwazoo	jamesmunns: works for me
+2018-10-16 21:05:13	@jamesmunns	+10 from me ryankurte
+2018-10-16 21:05:22	@adamgreig	yea +1 octobox
+2018-10-16 21:05:26	@jamesmunns	my poor inbox is so sad with github notifications
+2018-10-16 21:05:46	@ryankurte	jamesmunns: yeah I have just written off that tab in gmail
+2018-10-16 21:05:54	hannobraun	ryankurte: I don't mind
+2018-10-16 21:06:01	thenewwazoo	that tells me I should poke people in IRC about PRs :-p
+2018-10-16 21:06:08	~japaric	I'm going to officially end this meeting. Thanks everyone for attending!
