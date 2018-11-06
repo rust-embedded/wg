@@ -247,9 +247,9 @@ Projects maintained by this team
 - [`msp430-rt`]
 - [`msp430`]
 
-### The ops team
+### The infrastructure team
 
-The ops team manages our domains, DNS records, e-mail aliases, etc.
+The infrastructure team manages our domains, DNS records, e-mail aliases, etc.
 
 #### Members
 
