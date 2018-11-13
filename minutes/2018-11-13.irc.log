@@ -1,0 +1,238 @@
+2018-11-13 20:05:46	~japaric	hello everyone; let's start this meeting
+2018-11-13 20:05:57	jamesmunns	hello!
+2018-11-13 20:06:28	~japaric	first, I'd like to discuss the procedure for making a roadmap for next year
+2018-11-13 20:06:41	~japaric	I have a proposal that I have written in the dropbox paper
+2018-11-13 20:06:51	@therealprof	jamesmunns: I think it was Adam Green (the linkchecker)
+2018-11-13 20:06:54	~japaric	the idea is to get input from the community using an informal survey
+2018-11-13 20:07:37	~japaric	and then make a draft roadmap RFC by the end of January using that data and the input of all the teams
+2018-11-13 20:07:51	@therealprof	+1
+2018-11-13 20:08:02	~japaric	then we can discuss feasibility of the roadmap with the Rust teams during RAH
+2018-11-13 20:08:24	~japaric	at least for the parts that involve language / compiler work
+2018-11-13 20:08:24	jamesmunns	+1
+2018-11-13 20:08:44	@korken89	+1
+2018-11-13 20:09:54	~japaric	I expect that the Rust team will launch the call for 2019 blog posts later this year
+2018-11-13 20:10:01	~japaric	we should incorporate those in the roadmap as well
+2018-11-13 20:11:01	~japaric	ok, we don't have too many people today to vote but I think we start with the informal survey
+2018-11-13 20:11:15	~japaric	we can start**
+2018-11-13 20:11:56	jamesmunns	(thanks therealprof)
+2018-11-13 20:12:30	@adamgreig	right, sorry, I'm here
+2018-11-13 20:12:42	 *	cr1901 is present/listening as well
+2018-11-13 20:13:18	jamesmunns	japaric: are you asking for more informal wishlist items now?
+2018-11-13 20:13:27	jamesmunns	(making sure you aren't blocking on input)
+2018-11-13 20:13:44	~japaric	no, not right now
+2018-11-13 20:13:51	~japaric	we should also collect list of current TODO items from all the teams somewhere to have a high level view of the ongoing work
+2018-11-13 20:14:19	~japaric	but I can come up with some dropbox paper structure for that by next week
+2018-11-13 20:14:23	jamesmunns	Also you mentioned blog posts, if any embedded people dont have their own blog, but want to post, guest posts on the embedded blog are totally welcome IMO
+2018-11-13 20:14:33	jamesmunns	(for the year end call for posts)
+2018-11-13 20:14:37	@adamgreig	+1 on starting to get a 2019 wishlist together
+2018-11-13 20:14:39	jamesmunns	(or any time, really)
+2018-11-13 20:14:44	@adamgreig	I think it would be easy to lose momentum once 2018 lands
+2018-11-13 20:14:55	adamgr	therealprof: I think japaric added the linkchecker stuff to CI. I just recently told it to ignore the print.html that mdbook is corrupting.
+2018-11-13 20:14:57	~japaric	jamesmunns: guess posts sgtm
+2018-11-13 20:15:34	~japaric	jamesmunns: we should advertise that on the newletters, in general and make it more promimently once the call for 2019 blog posts is out
+2018-11-13 20:15:43	~japaric	that = guess posts are welcomed
+2018-11-13 20:16:09	jamesmunns	also welcome: posts from the "chip ecosystem islands", like stm32-rs, etc. I plan to add a post there talking about the re-release of the nrf52 ecosystem for 2018 edition (explaining all the crate renames, etc)
+2018-11-13 20:17:10	@adamgreig	on my stack is forming stm32-rs as an org rather than a repo and then it can have a nice introductory blog post
+2018-11-13 20:17:31	~japaric	ok, I'll create the 2019 wishlist issue after this meeting
+2018-11-13 20:17:35	@therealprof	adamgreig: Yay!
+2018-11-13 20:17:36	@adamgreig	+1
+2018-11-13 20:17:41	@korken89	that is really good, will show which are active as well
+2018-11-13 20:17:49	cr1901	^msp430 still needs some work before I'd be comfortable making blog posts
+2018-11-13 20:17:52	@korken89	adamgreig: Awesome!
+2018-11-13 20:18:18	jamesmunns	adamgreig: +11
+2018-11-13 20:18:21	@adamgreig	glad everyone is very enthusiastic about helping :P
+2018-11-13 20:18:55	~japaric	cr1901: (before I forget: I tested building rust-std (core & alloc) for msp430 with llvm-assertions enabled the other day and it worked so it may be possible to revive pftbest's old PR to enable builds of rust-std for msp430)
+2018-11-13 20:19:34	cr1901	Yell at me if I haven't taken a look within the week
+2018-11-13 20:20:07	cr1901	I've been juggling a number of things, fairly badly (what else is new?)
+2018-11-13 20:20:17	jamesmunns	cr1901: you're in good company, I feel
+2018-11-13 20:20:32	cr1901	Good to know
+2018-11-13 20:20:44	~japaric	ok, let's move to the next item in the agenda
+2018-11-13 20:20:50	~japaric	2018 edition finish line
+2018-11-13 20:21:00	~japaric	I made a PR with the blog post I mentioned last week
+2018-11-13 20:21:07	~japaric	https://github.com/rust-embedded/blog/pull/25
+2018-11-13 20:21:43	~japaric	if you haven't reviewed it yet please give it a look
+2018-11-13 20:21:56	~japaric	jamesmunns just opened a PR for the last blocker
+2018-11-13 20:21:56	jamesmunns	re: static guarantees, I moved type-state into static guarantees, but we need a paragraph or two explaining static guarantees in general for the "landing page"
+2018-11-13 20:22:03	jamesmunns	(it was already merged)
+2018-11-13 20:22:19	jamesmunns	and adamgreig opened a PR populating `tips for C/C++ developers`
+2018-11-13 20:22:26	jamesmunns	so that won't be empty for much longer
+2018-11-13 20:22:47	@korken89	I feel quite out of touch with current issues after being gone for a while, I will try to jump in wherever I can help for now
+2018-11-13 20:24:10	~japaric	@resources team: how do you feel about including the '"does this compile on stable?" community effort' in the blog post?
+2018-11-13 20:24:33	@adamgreig	is the question about doing it in the first place or including it in the blog post?
+2018-11-13 20:24:34	@therealprof	I mentioned my concern in the PR.
+2018-11-13 20:24:40	jamesmunns	japaric: maybe that can be a post-2018 goal?
+2018-11-13 20:24:41	~japaric	adamgreig: both, actually
+2018-11-13 20:24:55	@adamgreig	I like the idea of having it
+2018-11-13 20:24:57	~japaric	jamesmunns: yeah, we can start it by the next newsletter
+2018-11-13 20:25:10	@adamgreig	but could be convinced either way re blog post
+2018-11-13 20:26:32	~japaric	the other question is when do y'all want to put up this blog post?
+2018-11-13 20:26:57	~japaric	original ETA was tomorrow but I'm not sure if enough people have reviewed it yet
+2018-11-13 20:27:38	@therealprof	Quite a few people already chimed in, no?
+2018-11-13 20:27:39	@adamgreig	I don't think it's too controversial; maybe anotehr resources person could r+ it?
+2018-11-13 20:27:59	jamesmunns	will read shortly, was more focused on the checklist than the blog post
+2018-11-13 20:28:06	@adamgreig	well except for the issue on the stable awesome list thing
+2018-11-13 20:28:14	~japaric	and we should include the 2019 wishlist in this blog post so the last part of it will have to be updated
+2018-11-13 20:28:42	@adamgreig	i propose we include that 2019 wishlist issue but do not include the stable awesome list
+2018-11-13 20:28:47	@adamgreig	and instead announce that once 2018 is actually landed
+2018-11-13 20:29:00	~japaric	I can do that after this meeting (re 2019 wishlist modification)
+2018-11-13 20:29:03	~japaric	adamgreig: sgtm
+2018-11-13 20:29:05	@adamgreig	we cna open the issue on awesome-embedded-rust and maybe start a few crates or something
+2018-11-13 20:29:10	jamesmunns	adamgreig: +1
+2018-11-13 20:29:13	@korken89	+1
+2018-11-13 20:29:17	@adamgreig	but a lot of things just won't build on stable yet anyway
+2018-11-13 20:29:21	@adamgreig	on beta, maybe.. :p
+2018-11-13 20:29:32	@therealprof	Sounds great. Either way I r+d it.
+2018-11-13 20:29:38	@adamgreig	so this way we can make it a "rust stable is here! at last! embedded all the things! let's build a list of what now works on stable"
+2018-11-13 20:29:45	@adamgreig	and it will give us something to do immediately post 2018 :p
+2018-11-13 20:30:06	~japaric	adamgreig: I like how that sounds
+2018-11-13 20:30:10	@therealprof	adamgreig: I have the feeling a lot of stuff will compile on stable.
+2018-11-13 20:30:22	@adamgreig	therealprof: well volunteered ;)
+2018-11-13 20:30:27	@adamgreig	I mean stable right now, i.e. without const fn
+2018-11-13 20:30:43	~japaric	if something compiles on beta we can tag it as "compiles on 1.31"
+2018-11-13 20:30:48	@therealprof	Drivers don't usually need it.
+2018-11-13 20:30:57	@adamgreig	but even then a lot of things still have vestigial #[feature] things around
+2018-11-13 20:31:02	@therealprof	It's applications that suck without.
+2018-11-13 20:31:18	@therealprof	True.
+2018-11-13 20:31:38	~japaric	we are at the half hour mark; let's not go too off topic
+2018-11-13 20:31:49	@adamgreig	can we resolve to open the issue on awesome-embedded but not put it in the blog post, then?
+2018-11-13 20:31:54	~japaric	ok then let's include the wishlist in the blog post and release it tomorrow
+2018-11-13 20:31:56	@adamgreig	and we'll blog about it later, after 2018 lands
+2018-11-13 20:31:59	@adamgreig	great
+2018-11-13 20:32:19	~japaric	any volunteer to open the issue in the awesome list repo?
+2018-11-13 20:32:38	@adamgreig	will do
+2018-11-13 20:32:43	~japaric	adamgreig: thanks
+2018-11-13 20:32:54	@therealprof	… and make sure it happens, too? :-p
+2018-11-13 20:33:01	@adamgreig	I will open the issue :p
+2018-11-13 20:33:26	@therealprof	Always rooting for the easy stuff, eh? ;)
+2018-11-13 20:34:01	~japaric	ok, let's do a quick past over the remaining book issues
+2018-11-13 20:34:16	~japaric	issue #2: getting started chapter
+2018-11-13 20:34:21	~japaric	the semihosting section landed
+2018-11-13 20:34:27	~japaric	and the registers section was updated
+2018-11-13 20:34:33	~japaric	the only thing left to cover is the #[interrupt] macro
+2018-11-13 20:34:46	cr1901	There's an interrupt macro ._.?
+2018-11-13 20:34:50	@therealprof	Has it landed?
+2018-11-13 20:34:59	@adamgreig	lol
+2018-11-13 20:35:30	@adamgreig	https://github.com/rust-embedded/cortex-m-rt/blob/master/CHANGELOG.md#v065---2018-10-23
+2018-11-13 20:35:39	@therealprof	cr1901: There's always been one. But now it's shiny and new and useful.
+2018-11-13 20:35:52	@adamgreig	it's now an attribute instead of a macro-by-example
+2018-11-13 20:36:05	cr1901	I don't understand the distinction
+2018-11-13 20:36:07	@adamgreig	and it's in cortex-m-rt instead of being made by svd2rust
+2018-11-13 20:36:19	cr1901	actually, I'll ask later
+2018-11-13 20:36:19	@adamgreig	previously you wrote interrupt!(tim2, TIM2); fn tim2() { ... }
+2018-11-13 20:36:26	@adamgreig	now you write #[interrupt] fn TIM2() { ... }
+2018-11-13 20:36:40	@therealprof	Is there an issue for it?
+2018-11-13 20:36:42	@adamgreig	(and it does some lovely things with static muts)
+2018-11-13 20:36:43	cr1901	huh...
+2018-11-13 20:36:51	@therealprof	I can take it.
+2018-11-13 20:37:11	~japaric	re #[interrupt] macro we can add a section now using the hand written lm3s6965 crate, or add it after svd2rust is released and the stm32f30x crate is updated
+2018-11-13 20:37:34	~japaric	any preference? and any volunteer?
+2018-11-13 20:37:47	@therealprof	Yeah, I thought we need a new svd2rust version.
+2018-11-13 20:38:14	@therealprof	japaric: Didn't quite catch what you meant re lm3s6965, but I can take it.
+2018-11-13 20:38:33	~japaric	therealprof: https://github.com/japaric/lm3s6965
+2018-11-13 20:38:47	~japaric	"device crate" but only has interrupt stuff in it; no registers
+2018-11-13 20:39:00	~japaric	wrote it to test cortex-m-rtfm
+2018-11-13 20:39:00	jamesmunns	(I'd like to discuss svd2rust at the end of the meeting, re: https://github.com/rust-embedded/svd2rust/pull/254)
+2018-11-13 20:39:03	@therealprof	Hm…
+2018-11-13 20:39:11	@therealprof	Not my forte.
+2018-11-13 20:39:38	@therealprof	Prefer working with real hardware.
+2018-11-13 20:39:39	~japaric	therealprof: then you volunteer to write it after svd2rust v0.14 is out?
+2018-11-13 20:39:50	@adamgreig	no reason not to write it in advance of svd2rust
+2018-11-13 20:39:51	@therealprof	japaric: Yes.
+2018-11-13 20:39:54	@adamgreig	we know exactly what it'l look like
+2018-11-13 20:40:08	@therealprof	adamgreig: I agree.
+2018-11-13 20:40:12	~japaric	therealprof: thanks
+2018-11-13 20:40:41	~japaric	moving on, issue #5 HAL
+2018-11-13 20:40:46	~japaric	therealprof: jamesmunns any update?
+2018-11-13 20:41:10	jamesmunns	none from my side
+2018-11-13 20:41:21	@therealprof	Yeah, forgot about it.
+2018-11-13 20:41:29	@therealprof	Will do some writing tonight I guess.
+2018-11-13 20:42:13	jamesmunns	I probably wont have time in the upcoming week to write, but will gladly review
+2018-11-13 20:42:14	~japaric	therealprof: +1
+2018-11-13 20:42:22	~japaric	jamesmunns: +1
+2018-11-13 20:42:48	@adamgreig	https://github.com/rust-embedded/awesome-embedded-rust/issues/115 is open
+2018-11-13 20:42:52	~japaric	ok, next issue, #6, is static guarantees
+2018-11-13 20:43:04	~japaric	type state was moved under it
+2018-11-13 20:43:14	~japaric	we have to write some text for the static guarantees landing page
+2018-11-13 20:43:42	~japaric	(if I understood jamesmunns correctly)
+2018-11-13 20:43:48	jamesmunns	Really just 2-3 paragraphs intro'ing all the cool stuff that can be checked at compile time would be perfect
+2018-11-13 20:43:52	jamesmunns	help very much wanted
+2018-11-13 20:44:04	jamesmunns	japaric: yup exactly
+2018-11-13 20:44:35	~japaric	jamesmunns: I can give it a go, I guess
+2018-11-13 20:44:57	jamesmunns	japaric: +1
+2018-11-13 20:45:28	jamesmunns	Doesn't have to be comprehensive, just an intro. I think the intro will help others write larger subsections, like type-state-programming
+2018-11-13 20:45:49	~japaric	next issue #7 tips for C/C++ programmers
+2018-11-13 20:45:56	~japaric	adamgreig: I saw a PR
+2018-11-13 20:46:15	jamesmunns	https://github.com/rust-embedded/book/pull/81
+2018-11-13 20:47:15	@therealprof	I'll do a pass later.
+2018-11-13 20:47:23	@adamgreig	yep, it's up at last
+2018-11-13 20:47:46	@adamgreig	this is rougher than the concurrency pr was, it will need a bit more work
+2018-11-13 20:47:56	~japaric	adamgreig is looking for feedback so please give it a read and comment
+2018-11-13 20:47:58	@adamgreig	(and I already remembered the repr() stuff from last meeting needed to add on)
+2018-11-13 20:48:13	~japaric	adamgreig: thanks for working on this
+2018-11-13 20:49:03	~japaric	issue #9, book outline: done; the PR just landed
+2018-11-13 20:49:42	~japaric	issue #10, the debugonomicon; ryankurte is not around so we'll check next week
+2018-11-13 20:49:50	~japaric	but the book was renamed
+2018-11-13 20:50:35	~japaric	last 10 minutes is open floor for updates
+2018-11-13 20:50:42	~japaric	jamesmunns: you wanted to discuss a svd2rust PR
+2018-11-13 20:50:59	jamesmunns	Yup: https://github.com/rust-embedded/svd2rust/pull/254
+2018-11-13 20:51:19	jamesmunns	But this may tie in to the post-2018 discussion
+2018-11-13 20:51:25	jamesmunns	More abstractly:
+2018-11-13 20:51:43	jamesmunns	"How do we see ourselves developing and maintaining embedded crates in 2019"
+2018-11-13 20:51:44	cr1901	japaric: Now that msp430 is working again, I can looking into AT2XT for the showcase. However, panic_implementation was removed recently, so I need to fix that.
+2018-11-13 20:52:05	~japaric	cr1901: $ sed -i s/panic_implementation/panic_handler
+2018-11-13 20:52:08	jamesmunns	This PR introduces feature gates for each peripheral generated by svd2rust, which speeds compile time
+2018-11-13 20:52:13	cr1901	yes, sorry
+2018-11-13 20:52:21	@adamgreig	cr1901: no, that's the fix
+2018-11-13 20:52:37	jamesmunns	however, therealprof has pointed out that this can make it harder to abstract over -pac crates from higher levels
+2018-11-13 20:52:54	cr1901	adamgreig: Oh, whoops
+2018-11-13 20:53:22	jamesmunns	If anyone has feelings on that, feel free to comment on that PR
+2018-11-13 20:53:38	jamesmunns	This is a breaking change, so it either needs to go in now, or wait for 0.15.0.
+2018-11-13 20:53:50	jamesmunns	(or never)
+2018-11-13 20:54:15	cr1901	Yea, that would be the msp430-rt crate, and pftbest has been busy (and will continue to be busy) with meatspace AFAIK
+2018-11-13 20:54:42	jamesmunns	But in general, I think we should sit down as a WG/community, and come up with a more structured plan of how we /want/ the ecosystem to look. I should probably write a blog post about this
+2018-11-13 20:54:51	@adamgreig	yes please
+2018-11-13 20:55:01	@adamgreig	I think that's really what's underlying a lot of these issues
+2018-11-13 20:55:02	@therealprof	+1
+2018-11-13 20:55:10	jamesmunns	There are a couple really good efforts, stm32-rs in particular that are trying new things
+2018-11-13 20:55:28	jamesmunns	But I don't think we have a really good picture how things work "at scale"
+2018-11-13 20:55:30	@adamgreig	if you want "trying new things" I have a very different stm32 project coming soon ;)
+2018-11-13 20:55:45	@adamgreig	but yea
+2018-11-13 20:55:58	@adamgreig	we're starting to build up a picture of pacs -> hals -> bsps, embedded-hal, and drivers
+2018-11-13 20:56:21	@adamgreig	I think the features-per-periph in svd2rust is contentious because it's adding complexity to try and escape long compile times
+2018-11-13 20:56:32	@adamgreig	but in a way that's not necessarily what we want long-term
+2018-11-13 20:56:33	~japaric	jamesmunns: seems like this PR is going to require quite some discussion to make a decision so I'd like to propose to postpone it for v0.15 (or never depending on the outcome)
+2018-11-13 20:56:57	jamesmunns	japaric: yeah, I felt like that might be the decision.
+2018-11-13 20:57:18	@adamgreig	it's kind of a shame because reducing compile times would be really nice for a lot of users very quickly
+2018-11-13 20:57:33	@adamgreig	but we maybe need to resolve the philosophical argument around it first
+2018-11-13 20:57:50	@adamgreig	the svd2rust-generated crate is always by far the longest compile in any embedded apps i'm building
+2018-11-13 20:57:51	@therealprof	+1
+2018-11-13 20:58:02	jamesmunns	Yeah, its a big win for some people, myself in particular (takes my 8 minute build down to 30-40 seconds for one crate)
+2018-11-13 20:58:03	@therealprof	… and CI.
+2018-11-13 20:58:40	jamesmunns	but this might be a patch/hack, instead of a needed architectural change
+2018-11-13 20:58:40	@therealprof	However whether it's a win at all depends on whether you'd like to opt for specific peripherals.
+2018-11-13 20:58:50	cr1901	I thought the idea was SVD crates were meant to be fairly static
+2018-11-13 20:59:06	@therealprof	I think that a lot of people (me included) would be rather on the "give me all" side of things.
+2018-11-13 20:59:09	jamesmunns	cr1901: things like changing build profiles can force a rebuild
+2018-11-13 20:59:19	@adamgreig	and every ci run
+2018-11-13 20:59:21	jamesmunns	e.g. going from opt level 0 to 1 or back
+2018-11-13 20:59:27	jamesmunns	and CI runs, which are always clean builds
+2018-11-13 20:59:28	cr1901	hmmm
+2018-11-13 20:59:40	 *	cr1901 hasn't run into this problem yet
+2018-11-13 20:59:44	jamesmunns	its papercuts, for sure
+2018-11-13 20:59:47	@adamgreig	possibly smaller device crates?
+2018-11-13 20:59:52	@adamgreig	it scales poorly with large mcus
+2018-11-13 20:59:53	jamesmunns	yeah
+2018-11-13 21:00:01	@adamgreig	well I mean it scales linearly but is still annoying
+2018-11-13 21:00:02	jamesmunns	the fact that its a single compilation unit is really rough
+2018-11-13 21:00:10	@adamgreig	hah that too
+2018-11-13 21:00:13	~japaric	ok, we are almost out of time so I'll make a PR to release v0.14.0 (w/o jamesmunns PR) and we can vote on it using reviews
+2018-11-13 21:00:25	@adamgreig	17 other cpu threads sitting idle while one desperately reads megabytes of rust
+2018-11-13 21:00:28	@therealprof	There's a heavily discussed Rust RFC about introducing bitfields.
+2018-11-13 21:00:39	cr1901	adamgreig: I mean, msp430 micros aren't exactly large
+2018-11-13 21:00:44	jamesmunns	therealprof: oh really? link please?
+2018-11-13 21:00:48	@adamgreig	cr1901: yea, which is probably why you've not run into it so much
+2018-11-13 21:00:53	@adamgreig	on an stm32f4 crate it might take 1-2min to build
+2018-11-13 21:00:55	 *	cr1901 has a visceral reaction to bitfields
+2018-11-13 21:00:57	cr1901	hmmm
+2018-11-13 21:01:15	@therealprof	:-D
+2018-11-13 21:01:20	~japaric	ok, I'm going to oficially end this meeting. Thanks everyone for attending!
