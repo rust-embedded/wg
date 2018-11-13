@@ -1,104 +1,266 @@
-2018-10-30 20:05:05	~japaric	ok, let's start this meeting (agenda: https://paper.dropbox.com/doc/Embedded-WG--AQl4J8ppnsDri6QEKnJE9L8mAg-5pdv734N8KpxHFMJijuoL )
-2018-10-30 20:05:45	~japaric	(we don't seem to have too many people today; maybe they'll show up one hour late ...)
-2018-10-30 20:06:02	~japaric	as usual we'll go over the milestone issues
-2018-10-30 20:06:13	~japaric	issue 1: book intro
-2018-10-30 20:06:19	~japaric	PR 40 landed
-2018-10-30 20:06:35	@theJPster	yay
-2018-10-30 20:07:08	~japaric	I think there's not much to left to do in this chapter
-2018-10-30 20:07:16	~japaric	the version in the installation page should be updated to 1.31
-2018-10-30 20:07:49	@theJPster	is this all being aimed at 1.31-stable, with 2018 edition syntax?
-2018-10-30 20:08:08	@theJPster	I presumed there was no value in having an intermediate release which worked with 1.30 stable.
-2018-10-30 20:08:44	@therealprof	There're not too many differences anyway.
-2018-10-30 20:09:38	@theJPster	Yeah, just the extern crate stuff. I got excited and went to try the examples on 1.30-stable but nothing worked. I guess I was just six weeks early.
-2018-10-30 20:12:34	~japaric	We could have a 2015-quickstart template with the examples written for the 2015 edition
-2018-10-30 20:12:55	~japaric	but I don't think we should change the text which is already using the 2018 edition
-2018-10-30 20:13:42	@therealprof	Don't see the value in that.
-2018-10-30 20:15:07	~japaric	yeah, if you are using 1.31-beta you are not using unstable features and you'll be using stable in 5 weeks
-2018-10-30 20:15:27	~japaric	ok, next up: issue 2 - getting started chapter
-2018-10-30 20:15:37	~japaric	I think this is S-waiting-on-japaric
-2018-10-30 20:16:13	~japaric	any other update on this other than the bullets from last week?
-2018-10-30 20:16:46	@theJPster	is this #46?
-2018-10-30 20:17:09	@theJPster	if so, yes.
-2018-10-30 20:17:19	@theJPster	(yes, we're waiting on you :p )
-2018-10-30 20:17:21	~japaric	theJPster: yes, this includes 46
-2018-10-30 20:17:50	~japaric	ok, issue 3: collections is also S-waiting-on-japaric
-2018-10-30 20:18:33	~japaric	next, issue 4: concurrency
-2018-10-30 20:19:09	~japaric	adamgreig is not around but related to this issue: cortex-m-rtfm v0.4.x will be released Very Soon (TM)
-2018-10-30 20:19:24	@therealprof	+1
-2018-10-30 20:19:54	ryankurte	exciting!
-2018-10-30 20:20:09	~japaric	other than that this chapter is in good shape
-2018-10-30 20:20:22	~japaric	we might update the section on RTFM a bit after v0.4.x is out
-2018-10-30 20:21:05	~japaric	issue 5: portability - therealprof any updates?
-2018-10-30 20:21:15	~japaric	I think jamesmunns wrote some updates on the meeting issue
-2018-10-30 20:21:18	@therealprof	Yes. Wrote a draft yesterday.
-2018-10-30 20:21:35	@therealprof	jamesmunns: Instapproved it. ;)
-2018-10-30 20:22:01	@therealprof	I'll follow up with some code and possibly a diagram.
-2018-10-30 20:22:21	~japaric	therealprof: +1
-2018-10-30 20:22:46	~japaric	for the record, the draft that landed was https://github.com/rust-embedded/book/pull/64
-2018-10-30 20:22:55	@theJPster	how do we do diagrams in the book?
-2018-10-30 20:22:57	~japaric	there's a list of TODO items for this chapter in https://github.com/rust-embedded/book/issues/65
-2018-10-30 20:23:19	@theJPster	Can we embed SVG and expect it to be rendered? Do we simply upload a PNG? What resolution?
-2018-10-30 20:23:34	~japaric	theJPster: SVG works fine
-2018-10-30 20:23:40	@therealprof	NB: The new beta features "suggestions" is increadibly useful to suggest corrections.
-2018-10-30 20:24:06	@theJPster	japaric, good to know. Thanks.
-2018-10-30 20:24:48	~japaric	images will be 720 pixels in width when viewed on a 1920x1080 resolution
-2018-10-30 20:25:06	~japaric	therealprof: what feature is this?
-2018-10-30 20:25:25	~japaric	(cargo feature? rustc feature?)
-2018-10-30 20:25:33	@theJPster	github feature :)
-2018-10-30 20:25:34	@therealprof	GitHub feature.
-2018-10-30 20:26:05	@therealprof	Allows to make inline suggestions instead of remarks which the author can simply accept/reject or refine.
-2018-10-30 20:26:15	~japaric	ack
-2018-10-30 20:26:19	@therealprof	Very useful for tipos and such.
-2018-10-30 20:26:52	~japaric	next up, issue 6: static guarantees
-2018-10-30 20:27:09	~japaric	this is also waiting for me to put some notes on singletons / memory management
-2018-10-30 20:27:15	@therealprof	Only hard to find. Basically you click on the plus sign and then there's a new document icon with a +/- sign at the top in the middle of the comment box.
-2018-10-30 20:27:45	@theJPster	japaric, how do you feel about all these actions and the five weeks we have left?
-2018-10-30 20:31:48	~japaric	I think we should start collecting feedback on the book as it is and land additional stuff in some staging section first and not merge it with the rest until after the edition release, probably
-2018-10-30 20:32:12	@theJPster	ok
-2018-10-30 20:33:58	@therealprof	Hm, to what benefit?
-2018-10-30 20:34:59	~japaric	therealprof: to indicate that the section is not finalized but that you are looking for feedback. A PR works too but a staging section may have more visibility
-2018-10-30 20:36:10	@therealprof	Ah, okay, I understood that differently. As is: We shouldn't touch the book when 2018 lands and put changes after that point into a staging area.
-2018-10-30 20:36:18	@therealprof	*As in:
-2018-10-30 20:39:39	~japaric	we can do the staging for the content that gets added after 2018 is out as well
-2018-10-30 20:40:26	~japaric	issue 7: tips for C/C++. Anyone knows the status of this?
-2018-10-30 20:42:06	@theJPster	nope, sorry
-2018-10-30 20:42:16	@theJPster	it's quiet tonight, isn't it.
-2018-10-30 20:42:59	@therealprof	Sure is.
-2018-10-30 20:43:19	~japaric	alright, issue 8: C / Rust interop
-2018-10-30 20:43:38	~japaric	issues #61 and #62 have been linked from the book
-2018-10-30 20:44:50	~japaric	as per last week discussion that's all the content planned for this chapter for the edition release
-2018-10-30 20:47:03	@theJPster	I have a few comments about thumbv8
-2018-10-30 20:47:13	@theJPster	I have a thumbv8m board :)
-2018-10-30 20:47:40	~japaric	theJPster: we are not done triaging issues; please wait a bit
-2018-10-30 20:47:50	~japaric	issue 9: book outline, jamesmunns wrote about the URLs in https://github.com/rust-embedded/book/issues/52#issuecomment-434245974
-2018-10-30 20:51:40	~japaric	ryankurte: any update on the other book?
-2018-10-30 20:52:01	~japaric	ryankurte: also any update on updating the DNS stuff? i.e. docs.rust-embedded.org
-2018-10-30 20:52:16	ryankurte	on the book, not since last week (though I was afk then)
-2018-10-30 20:52:25	ryankurte	hopefully more this weekend
-2018-10-30 20:53:19	ryankurte	one the dns, I still don't have a working role to alter anything myself
-2018-10-30 20:53:20	ryankurte	https://github.com/nastevens/rust-embedded-provisioning/pull/5
-2018-10-30 20:54:31	~japaric	ok, I'll e-mail nastevens after this meeting
-2018-10-30 20:54:50	ryankurte	thanks ^_^
-2018-10-30 20:54:58	~japaric	theJPster: you were saying about armv8m?
-2018-10-30 20:55:29	@theJPster	er, I have a Cortex-M23 dev board on my desk
-2018-10-30 20:55:31	~japaric	(for the record, issue 12 is waiting-on-author and issue 20 is effectively done)
-2018-10-30 20:56:07	@theJPster	I raised an issue on cortex-m-rt about it failing to parse targets when they are a path to a JSON file as opposed to a built in
-2018-10-30 20:56:14	@theJPster	because my target starts "./" not "thumb"
-2018-10-30 20:56:49	@theJPster	https://github.com/rust-embedded/cortex-m-rt/issues/145
-2018-10-30 20:56:58	@theJPster	That's all I've got. Looking forward to evq's patches.
-2018-10-30 20:58:00	~japaric	I believe rustc (or Cargo) needs to be updated to support dots in target names before the thumbv8m target lands in rustc
-2018-10-30 20:58:29	@theJPster	Yes
-2018-10-30 20:58:29	@theJPster	https://github.com/rust-lang/rust/pull/55041#issuecomment-431367712
-2018-10-30 20:58:41	@therealprof	I think I might have fixed the svd2rust compilation troubles but now bors is acting up.
-2018-10-30 20:58:47	@therealprof	https://github.com/rust-embedded/svd2rust/pull/244
-2018-10-30 20:59:57	@therealprof	Any ideas what we can do? And can we somehow reduce the CI build time considerably?
-2018-10-30 21:00:07	~japaric	therealprof: hmm, it says  build failed even though the build succeeded, or?
-2018-10-30 21:00:14	 *	japaric is not really sure what's wrong
-2018-10-30 21:00:49	@therealprof	jamesmunns approved it earlier, by the time I was home it said "Cancelled".
-2018-10-30 21:01:00	ryankurte	therealprof: including the nightly macro change?
-2018-10-30 21:01:11	@therealprof	I just did a retry and now it's waiting for whatever…
-2018-10-30 21:01:35	ryankurte	it's a shame bors can't be prompted to re-check a previous build :-/
-2018-10-30 21:02:07	@therealprof	ryankurte: I think the problem fixed itself, now nightly was complaining about a removed allow flag.
-2018-10-30 21:02:44	@therealprof	ryankurte: And something else changed as well so msp430 wants to have pub use self::interrupt::Interrupt instead of without self.
-2018-10-30 21:03:12	@therealprof	Travis successfully built this 3 times now but bors doesn't merge it for some reason.
-2018-10-30 21:03:50	~japaric	meeting time is over. Thanks everyone for attending!
+2018-11-06 20:08:25	~japaric	let's start this meeting
+2018-11-06 20:09:06	~japaric	I have added a "finish line" item under the 2018 edition section
+2018-11-06 20:09:34	~japaric	I'd like to propose that we have people actively read the book and other docs starting next week
+2018-11-06 20:10:00	~japaric	it will be the "embedded Rust and the 2018 edition" blog post
+2018-11-06 20:10:20	@therealprof	+1
+2018-11-06 20:10:21	jamesmunns	+1
+2018-11-06 20:10:42	~japaric	there a few last minute TODOs listed there
+2018-11-06 20:10:55	~japaric	I want to get your thoughts on removing the currently empty chapters
+2018-11-06 20:11:20	~japaric	and the proposal to add their content under the "unsorted" chapter and keep them there until we feel they are "done"
+2018-11-06 20:11:36	~japaric	otherwise we can directly add the content to the main body of the book
+2018-11-06 20:12:58	~japaric	and there's a similar question regarding how will add content to the book after the 2018 edition release date (same idea: land in staging and them merge into the book when ready)
+2018-11-06 20:13:38	~japaric	opinions? ^
+2018-11-06 20:13:44	jamesmunns	SGTM
+2018-11-06 20:13:52	thenewwazoo	makes sense
+2018-11-06 20:14:21	@thejpster	+1
+2018-11-06 20:15:02	~japaric	alright, let's do that then
+2018-11-06 20:15:40	~japaric	I'm already working on the draft of the blog post; let's check the status of the other edition issues
+2018-11-06 20:16:03	~japaric	issue 2: getting started chapter
+2018-11-06 20:16:24	~japaric	I commented about 46 in https://github.com/rust-embedded/book/issues/46#issuecomment-436323400
+2018-11-06 20:16:27	~japaric	thejpster: jamesmunns ^
+2018-11-06 20:16:44	jamesmunns	*looking*
+2018-11-06 20:17:16	@thejpster	ah, I missed that in the flood of e-mails. Will take a look,.
+2018-11-06 20:17:19	jamesmunns	re: moving, looks good to me
+2018-11-06 20:17:49	@thejpster	how, not why. Got it. LGTM.
+2018-11-06 20:17:59	~japaric	I'll take care of adding the semihosting stuff to chapter 2 soon-ish
+2018-11-06 20:18:38	@thejpster	yes, the fiddly bit with the closures took some explaining at my embedded workshop.
+2018-11-06 20:18:59	~japaric	thejpster: jamesmunns do you think any of you will have time to move the content this week?
+2018-11-06 20:19:11	jamesmunns	Yup, will add to the list.
+2018-11-06 20:19:18	@thejpster	I should be able to look at that Friday, or on the plane to Berlin next week.
+2018-11-06 20:19:22	@adamgreig	hi all, sorry I'm late, got held up at work
+2018-11-06 20:19:54	~japaric	thejpster: want to write about start/registers ? otherwise I can take it
+2018-11-06 20:19:59	 *	japaric waves adamgreig
+2018-11-06 20:20:15	@adamgreig	o/
+2018-11-06 20:20:39	@thejpster	japaric, if you get there before me, feel free. Otherwise I will try and do it Friday.
+2018-11-06 20:20:54	@thejpster	whoever starts first should open a WIP PR
+2018-11-06 20:21:00	~japaric	ok, I'll see if I can do it before friday
+2018-11-06 20:21:01	~japaric	thejpster: +1
+2018-11-06 20:21:42	~japaric	ok, moving on
+2018-11-06 20:22:03	~japaric	portability chapter
+2018-11-06 20:22:30	~japaric	jamesmunns: therealprof any news? think you'll add more content in the near future?
+2018-11-06 20:23:18	jamesmunns	I have some content I can write up, wasn't sure if therealprof had something in progress
+2018-11-06 20:23:29	~japaric	one thing that should be easy to add to the existing text are links to embedded-hal and perhaps to examples of drivers / hal-impls, or even just point to awesome-embedded-rust
+2018-11-06 20:23:29	jamesmunns	I should have time in the next week or two
+2018-11-06 20:24:36	jamesmunns	makes sense, added it to my notes
+2018-11-06 20:24:44	~japaric	+1
+2018-11-06 20:24:46	@therealprof	Yeah, sorry, haven't had much time.
+2018-11-06 20:25:26	@therealprof	I'll add some more, already thought about some diagram.
+2018-11-06 20:26:02	jamesmunns	therealprof: feel free to ping me if you need ideas/review. You can tag me in whenever
+2018-11-06 20:26:42	@therealprof	Will do, but I'm not going do die from a lack of ideas any time soon. ;)
+2018-11-06 20:27:24	~japaric	ok, next issue: static guarantees
+2018-11-06 20:28:01	~japaric	the question here is that since we are removing the empty chapter should we have the webpage link to the type state chapter instead?
+2018-11-06 20:28:50	jamesmunns	probably not good for advertising
+2018-11-06 20:28:55	jamesmunns	looking at what we can link instead...
+2018-11-06 20:29:06	thenewwazoo	'the empty chapter'?
+2018-11-06 20:29:23	~japaric	or we can move type state under static guarantees, and continue to add subchapter under static guarantees
+2018-11-06 20:29:31	~japaric	subchapters**
+2018-11-06 20:29:31	@therealprof	"intentionally left blank" :-D
+2018-11-06 20:29:42	jamesmunns	(I mean: Type State Programming might be too niche to advertise with)
+2018-11-06 20:30:05	@therealprof	japaric: +1
+2018-11-06 20:30:28	jamesmunns	I'm okay with moving typestate under static guarantees
+2018-11-06 20:30:36	~japaric	the static guarantees landing page can point to the WIP content in the staging (last) section
+2018-11-06 20:31:51	~japaric	ok, let's move it. jamesmunns could you make a PR?
+2018-11-06 20:31:58	jamesmunns	will do
+2018-11-06 20:32:34	~japaric	jamesmunns: thanks
+2018-11-06 20:32:53	~japaric	next issue: C/C++ tips
+2018-11-06 20:33:10	~japaric	adamgreig: any news?
+2018-11-06 20:34:02	@adamgreig	ugh, sorry, nothing to report besides "should have been up already" and I got distracted by other PRs
+2018-11-06 20:34:06	@adamgreig	will prioritise that
+2018-11-06 20:34:40	~japaric	adamgreig: that's ok; thanks for the update
+2018-11-06 20:35:09	~japaric	on this topic: perhaps we should talk about repr(align) here?
+2018-11-06 20:35:20	@adamgreig	+1, I'll add it to the issue
+2018-11-06 20:35:34	~japaric	I'm not sure how C programmers get the alignment they want, though
+2018-11-06 20:35:46	@therealprof	Magic. :-D
+2018-11-06 20:35:48	@adamgreig	__attribute__((aligned(sizeof(stkalign_t)))))))))))))
+2018-11-06 20:35:53	thenewwazoo	with the linker?
+2018-11-06 20:36:01	thenewwazoo	or yeah, a stack of attributes :D
+2018-11-06 20:36:10	~japaric	:-)
+2018-11-06 20:36:23	@thejpster	looks like lisp :p
+2018-11-06 20:36:37	thenewwazoo	it's declarative and RPN, so... yeah
+2018-11-06 20:36:41	@adamgreig	I may have overstated the number of closing brackets required
+2018-11-06 20:36:55	@therealprof	Added extra for dramatic effect…
+2018-11-06 20:36:57	jamesmunns	adamgreig: extra, for good measure
+2018-11-06 20:37:28	~japaric	ok, next issue: book outline
+2018-11-06 20:37:30	@adamgreig	better safe than sorry
+2018-11-06 20:37:57	~japaric	jamesmunns: so re https://github.com/rust-embedded/book/issues/52 we can drop the .html from the URLs, right?
+2018-11-06 20:38:06	jamesmunns	yep
+2018-11-06 20:38:18	~japaric	and we can go ahead with the current names
+2018-11-06 20:38:40	jamesmunns	yep
+2018-11-06 20:38:48	jamesmunns	issue #8 should be renamed, but thats minor
+2018-11-06 20:38:54	~japaric	I had a comment about "/intro/introduction.html". could we make that just "/introduction"?
+2018-11-06 20:38:54	jamesmunns	(will do now)
+2018-11-06 20:39:03	~japaric	I think there are other occurrences throughout the book
+2018-11-06 20:39:16	jamesmunns	not without re-organizing the repo structure
+2018-11-06 20:39:19	jamesmunns	should be possible tho
+2018-11-06 20:39:53	~japaric	(maybe it's just that one)
+2018-11-06 20:40:17	jamesmunns	right now, the sections are each in a folder
+2018-11-06 20:40:23	jamesmunns	we can move all the intro pages up a level
+2018-11-06 20:40:42	ryankurte	or rename them to index.html?
+2018-11-06 20:41:01	ryankurte	and keep the folder structure, afaik either way should work it just means /intro/ or /intro
+2018-11-06 20:41:01	jamesmunns	not sure if renaming to index.md would work
+2018-11-06 20:41:03	jamesmunns	but it could
+2018-11-06 20:41:12	ryankurte	ooh, good point
+2018-11-06 20:41:15	jamesmunns	would need testing
+2018-11-06 20:41:47	jamesmunns	hmm
+2018-11-06 20:41:56	jamesmunns	I'm noticing "start.md" is an odd one out
+2018-11-06 20:42:06	jamesmunns	it /isn't/ in its folder
+2018-11-06 20:42:08	~japaric	jamesmunns: I wrote that one, I think :-)
+2018-11-06 20:42:16	jamesmunns	:)
+2018-11-06 20:42:26	jamesmunns	Any preference between these three options:
+2018-11-06 20:42:38	jamesmunns	1. move start.md to its folder, links stay ugly
+2018-11-06 20:43:00	jamesmunns	2. move all the chapter headers into top level, like start, links get prettier
+2018-11-06 20:43:15	jamesmunns	3. experiment with index.md / index.html inside each chapter
+2018-11-06 20:43:34	jamesmunns	(links may get prettier with #3)
+2018-11-06 20:44:08	~japaric	3 > 2 > 1 IMO
+2018-11-06 20:44:17	thenewwazoo	agreed
+2018-11-06 20:44:22	jamesmunns	k, will also add to the list.
+2018-11-06 20:44:46	jamesmunns	oh, and I'll move start.md while i'm at #3
+2018-11-06 20:44:58	jamesmunns	itll become start/index.md
+2018-11-06 20:45:03	jamesmunns	if that works
+2018-11-06 20:45:15	jamesmunns	otherwise, I'll do #2
+2018-11-06 20:45:15	ryankurte	it's slightly annoying but I like  NN-name.md so the files are in the same order as the book :-/
+2018-11-06 20:45:26	jamesmunns	ryankurte: what if we want to add a section :)
+2018-11-06 20:45:37	jamesmunns	GOTO 20
+2018-11-06 20:45:38	ryankurte	yeah, fair point
+2018-11-06 20:46:02	~japaric	ok, moving on
+2018-11-06 20:46:10	~japaric	ryankurte: the other book. I saw some movement
+2018-11-06 20:46:42	~japaric	also, I think we should pick a name for the other book before the blog post
+2018-11-06 20:46:46	ryankurte	yeah! I got some code working / tested some of the debuggers / documented some of the missing things. Still just an overview / needs more depth.
+2018-11-06 20:47:23	@therealprof	… and CI is broken, too.
+2018-11-06 20:47:25	~japaric	(*cough* debugonomicon)
+2018-11-06 20:47:26	@therealprof	Grr...
+2018-11-06 20:47:31	~japaric	ryankurte: \o/
+2018-11-06 20:47:42	~japaric	therealprof: you mean the new-book CI?
+2018-11-06 20:47:46	@therealprof	Yeah.
+2018-11-06 20:47:47	ryankurte	japaric: heh, seems fine to me
+2018-11-06 20:47:56	@adamgreig	hah, debugonomicon is fun
+2018-11-06 20:48:01	@therealprof	+1
+2018-11-06 20:48:04	ryankurte	therealprof: yeah, haven't had time to look at why :-/
+2018-11-06 20:48:38	@therealprof	Really annoying that CI breaks left and right.
+2018-11-06 20:48:51	~japaric	install.sh: Crate: mdbook
+2018-11-06 20:48:51	~japaric	install.sh: Tag: v0.2.2
+2018-11-06 20:48:56	~japaric	binary doesn't exist
+2018-11-06 20:49:00	~japaric	should be 0.2.1
+2018-11-06 20:49:04	~japaric	re: CI ^
+2018-11-06 20:49:19	@therealprof	Feeling bad already for summoning adamgreen the resident mdbook whisperer all the time. ;)
+2018-11-06 20:49:33	@therealprof	Yeah.
+2018-11-06 20:50:04	~japaric	ryankurte: if you are OK with "debugonomicon" could you make the rename this week?
+2018-11-06 20:50:27	ryankurte	yep!
+2018-11-06 20:50:28	~japaric	last 10 minutes is open floor for announcements
+2018-11-06 20:50:33	~japaric	ryankurte: r? https://github.com/nastevens/rust-embedded-provisioning/pull/5
+2018-11-06 20:51:07	~japaric	therealprof et al. how do you feel about making a new svd2rust release soon-ish?
+2018-11-06 20:51:11	ryankurte	just working through that now / getting my aws environment setup again
+2018-11-06 20:51:12	thenewwazoo	I published a whole bunch of crates on sunday night, in case anyone's interested: a couple of BSPs for the L011 and L031 nucleos, a greatly-expanded L0x1 HAL and LPC177x/8x HAL
+2018-11-06 20:51:31	jamesmunns	thenewwazoo: please post on the next blog issue!
+2018-11-06 20:51:40	jamesmunns	https://github.com/rust-embedded/blog
+2018-11-06 20:51:45	thenewwazoo	japaric: I still reeeeeally want that debug_assert issue discussed (and hopefully resolved... :D)
+2018-11-06 20:52:04	jamesmunns	Also, I am retooling nrf-rs to using the naming scheme of -pac/-hal/-bsp
+2018-11-06 20:52:17	thenewwazoo	jamesmunns: can-do. I'm not good at promotion anywhere but IRC heh
+2018-11-06 20:52:22	~japaric	re: news rtfm v0.4.0-beta has been released but don't tell anyone because right now you can only run the qemu examples; no hardware support until svd2rust v0.14.0 is out
+2018-11-06 20:52:30	@therealprof	japaric: Yes please, we still have the Windows problem. What's the point of the windows build anyway?
+2018-11-06 20:52:33	thenewwazoo	japaric: mum's the word
+2018-11-06 20:52:42	@adamgreig	jamesmunns: i sort of assume it's way too late to bikeshed 'pac'
+2018-11-06 20:52:49	@adamgreig	but i think it should have been 'register access' instead of peripheral :P
+2018-11-06 20:52:50	jamesmunns	Open to ideas
+2018-11-06 20:52:56	jamesmunns	-rac?
+2018-11-06 20:52:58	thenewwazoo	-rac?
+2018-11-06 20:53:02	~japaric	therealprof: windows binary releases, probably
+2018-11-06 20:53:22	thenewwazoo	I don't feel like -rac is quite as guessable but it's perhaps more true
+2018-11-06 20:53:31	~japaric	therealprof: I'm fine with taking down the windows CI for now
+2018-11-06 20:53:33	jamesmunns	okay, quick straw poll: respond with "-rac" if you like it, "-pac" if you like it
+2018-11-06 20:53:41	thenewwazoo	-rac
+2018-11-06 20:53:43	jamesmunns	for me: -pac
+2018-11-06 20:54:28	@therealprof	-pac
+2018-11-06 20:54:40	@adamgreig	uh, I prefer "register access" to peripheral but "pac" sounds better than "rac", so :/
+2018-11-06 20:54:51	jamesmunns	Seems that others don't have strong opinions :)
+2018-11-06 20:54:54	@therealprof	pac, man. :-D
+2018-11-06 20:54:55	thenewwazoo	looks like the pacs have it
+2018-11-06 20:55:01	jamesmunns	But, I actually would like to have some consensus
+2018-11-06 20:55:10	@adamgreig	register abstraction layer?
+2018-11-06 20:55:16	jamesmunns	because I think having $chip as the svd crate name can be misleading
+2018-11-06 20:55:32	thenewwazoo	it's not really just about registers, though, right? because cortex-m takes care of registers too, just the cmsis ones
+2018-11-06 20:55:36	@adamgreig	I agree that it's confusing but not sure it's confusing enough to warrant renaming all the things in crates.io already
+2018-11-06 20:55:51	jamesmunns	I was hoping to lead by example, since nrf-rs is due a refresh now that we have an organization
+2018-11-06 20:56:01	@therealprof	jamesmunns:
+2018-11-06 20:56:05	@therealprof	+1
+2018-11-06 20:56:19	@adamgreig	shame crates.io doesn't have aliases
+2018-11-06 20:56:24	jamesmunns	yeah
+2018-11-06 20:56:25	@adamgreig	well probably for the best given the squatting thing
+2018-11-06 20:56:36	@adamgreig	but it's a shame it doesn't have namespaces AND aliases :P
+2018-11-06 20:56:42	thenewwazoo	jamesmunns: what's the process for submitting content to the WG newsletter? PR? release issue comment?
+2018-11-06 20:56:46	~japaric	btw, I realized the other day that you can give a library a different name than the package. for example, the cortex-m-rtfm package provides the rtfm library so you write 'extern crate rtfm' instead of 'extern crate cortex_m_rtfm'.
+2018-11-06 20:56:48	jamesmunns	PR is best
+2018-11-06 20:56:55	jamesmunns	oh
+2018-11-06 20:56:56	jamesmunns	newsletter
+2018-11-06 20:56:59	thenewwazoo	yar
+2018-11-06 20:57:10	thenewwazoo	japaric: that sounds... surprising.
+2018-11-06 20:57:10	jamesmunns	https://github.com/rust-embedded/blog/issues/22
+2018-11-06 20:57:21	thenewwazoo	is #14 published?
+2018-11-06 20:57:27	jamesmunns	yeah, will close
+2018-11-06 20:57:29	thenewwazoo	kk
+2018-11-06 20:57:29	@therealprof	adamgreig: I was hoping we could drop some of the rac/pacs altogether at least in the STM32 area in favour of stm32-rs… But nomenclatur calls for a common expression...
+2018-11-06 20:57:38	~japaric	IDK if this helps with this pac / rac discussion. nrf51-pac and stm32f103-pac could both be 'extern crate pac' or 'use pac::Interrupt'
+2018-11-06 20:58:01	thenewwazoo	could crates collide?
+2018-11-06 20:58:03	@adamgreig	-1 on having all PACs have the same library name
+2018-11-06 20:58:07	@adamgreig	well
+2018-11-06 20:58:09	@adamgreig	interesting
+2018-11-06 20:58:13	jamesmunns	japaric: while we still have time, any thoughts on the proposal to change svd2rust (from hannobraun) ?
+2018-11-06 20:58:18	~japaric	thenewwazoo: haven't tried
+2018-11-06 20:58:23	@thejpster	I'm ok with `use tm4c123 as cpu`
+2018-11-06 20:58:46	thenewwazoo	decoupling crate names from lib names sounds like it would be tricky to diagnose and surprising
+2018-11-06 20:58:53	~japaric	jamesmunns: which one?
+2018-11-06 20:58:55	jamesmunns	japaric: trying to find the issue
+2018-11-06 20:59:03	thenewwazoo	yeah, the register decoupling thing
+2018-11-06 20:59:13	jamesmunns	https://github.com/rust-embedded/svd2rust/issues/213
+2018-11-06 20:59:35	jamesmunns	basically the ability to give ownership of registers away, instead of whole peripherals
+2018-11-06 20:59:39	@therealprof	japaric: Well, I'm already aliasing using "use … as"… Question is only what to alias the pac/rac to. ;)
+2018-11-06 20:59:57	thenewwazoo	peripheral register access crate? -prac?
+2018-11-06 20:59:58	jamesmunns	I also propose the ability to break up registers into subfields, but that should be done later, if ever :)
+2018-11-06 21:00:35	@adamgreig	breaking registers into subfields seems more useful than peripherals into registers imo
+2018-11-06 21:01:01	@adamgreig	i have the same worry with splitting peripheral into registers that we start compromising safety things in ways that are tricky to work out
+2018-11-06 21:01:02	thenewwazoo	jamesmunns: do you have an nrf-rs bsp example handy? I'm curious to see how you approached the problem
+2018-11-06 21:01:09	thenewwazoo	I wrote mine in isolation to scratch an itch
+2018-11-06 21:01:17	jamesmunns	adamgreig: useful in different ways/times
+2018-11-06 21:01:20	@adamgreig	but it's not like we already have a real guarantee that peripherals are atomic units
+2018-11-06 21:01:29	jamesmunns	thenewwazoo: which problem?
+2018-11-06 21:01:31	jamesmunns	https://github.com/braun-robotics/rust-dwm1001
+2018-11-06 21:01:47	thenewwazoo	the problem of how to design a general-purpose bsp
+2018-11-06 21:02:05	~japaric	jamesmunns: issues I see (think I may have mentioned before). (a) some registers are "entangled" changing one changes the state of the other. I believe this is not multi-core safe (volatile may not be enough) and it would be rather confusing to access these entangled registers from different threads / contexts
+2018-11-06 21:02:07	jamesmunns	hannobraun did a really good job IMO in that repo, I'm using that for some internal projects
+2018-11-06 21:02:27	jamesmunns	japaric: but that's already true, for many things like clocks
+2018-11-06 21:02:33	~japaric	(b) you can move out from arrays so this doesn't help with register arrays
+2018-11-06 21:02:37	~japaric	can not**
+2018-11-06 21:03:05	~japaric	unless you make them tuples: (T, T, T, T) instead of [T; 4]
+2018-11-06 21:03:07	jamesmunns	japaric: though for things like bit-banding, I definitely agree with you
+2018-11-06 21:03:37	@therealprof	Can someone ACK https://github.com/rust-embedded/new-book/pull/12
+2018-11-06 21:03:52	jamesmunns	I guess my biggest argument: -pac crates are not necessarily a safe abstraction by themselves
+2018-11-06 21:04:00	jamesmunns	and their primary audience is -hal writers
+2018-11-06 21:04:12	@therealprof	True.
+2018-11-06 21:04:22	jamesmunns	since IMO no -pac can really be considered truly safe, since there is so much hardware trickery
+2018-11-06 21:04:30	thenewwazoo	if the need to abstract out the peripherals lessens, they could leak up into higher levels
+2018-11-06 21:04:53	@adamgreig	jamesmunns: do you think you can cause UB with a PAC from svd2rust at the moment?
+2018-11-06 21:05:07	@adamgreig	one of the things i've wondered about is making the pacs entirely unsafe, more like a c header file
+2018-11-06 21:05:12	jamesmunns	adamgreig: depends on your definition of UB
+2018-11-06 21:05:15	@adamgreig	and put all the onus on the hal to provide safe access
+2018-11-06 21:05:18	@adamgreig	jamesmunns: rust's definition
+2018-11-06 21:05:31	@adamgreig	well
+2018-11-06 21:05:33	jamesmunns	I can definitely mess with something like RCC to cause weird data corruption
+2018-11-06 21:05:36	@adamgreig	things on this list https://doc.rust-lang.org/reference/behavior-considered-undefined.html
+2018-11-06 21:05:37	thenewwazoo	I can make a chip crash
+2018-11-06 21:05:39	~japaric	therealprof: re PR; lgtm but could you comment out the previous 'local tag'?
+2018-11-06 21:05:42	thenewwazoo	but not cause UB that I can think of
+2018-11-06 21:05:43	@adamgreig	chips crashing is not UB
+2018-11-06 21:05:54	jamesmunns	and if there are bitbanding registers, you can change data under the hood
+2018-11-06 21:06:00	thenewwazoo	bit banding is the only thing I can think of
+2018-11-06 21:06:06	thenewwazoo	but that's explicitly not supported in svd2rust, right?
+2018-11-06 21:06:08	@adamgreig	does svd2rust provide safe access to bitband regions?
+2018-11-06 21:06:09	jamesmunns	or even just the port-set alias registers some micros define
+2018-11-06 21:06:15	@therealprof	japaric: I believe we used the same change everywhere else.
+2018-11-06 21:06:40	@adamgreig	most port-set registers are inside the same peripheral as the ones they set
+2018-11-06 21:06:45	jamesmunns	adamgreig: true
+2018-11-06 21:06:53	@adamgreig	so in fact this is an easy example of potential UB when you split a periph into registers
+2018-11-06 21:07:00	@adamgreig	if you split BSRR and ODR on an STM32 GPIO
+2018-11-06 21:07:10	@adamgreig	an interrupt writing to BSRR safely will cause a data race against a modify on ODR
+2018-11-06 21:07:26	@adamgreig	so I don't think you could ever allow a 'safe' interface to split a peripheral into registers
+2018-11-06 21:07:35	@adamgreig	unsafe is another matter - but then why bother when you can just deref the pointer?
+2018-11-06 21:07:56	~japaric	I forgot; this meeting is over! Thanks everyone for attending! I'll put up the blog post draft soon and I'll remind you of any action item which is due for next week
