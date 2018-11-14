@@ -1,0 +1,104 @@
+2018-10-30 20:05:05	~japaric	ok, let's start this meeting (agenda: https://paper.dropbox.com/doc/Embedded-WG--AQl4J8ppnsDri6QEKnJE9L8mAg-5pdv734N8KpxHFMJijuoL )
+2018-10-30 20:05:45	~japaric	(we don't seem to have too many people today; maybe they'll show up one hour late ...)
+2018-10-30 20:06:02	~japaric	as usual we'll go over the milestone issues
+2018-10-30 20:06:13	~japaric	issue 1: book intro
+2018-10-30 20:06:19	~japaric	PR 40 landed
+2018-10-30 20:06:35	@theJPster	yay
+2018-10-30 20:07:08	~japaric	I think there's not much to left to do in this chapter
+2018-10-30 20:07:16	~japaric	the version in the installation page should be updated to 1.31
+2018-10-30 20:07:49	@theJPster	is this all being aimed at 1.31-stable, with 2018 edition syntax?
+2018-10-30 20:08:08	@theJPster	I presumed there was no value in having an intermediate release which worked with 1.30 stable.
+2018-10-30 20:08:44	@therealprof	There're not too many differences anyway.
+2018-10-30 20:09:38	@theJPster	Yeah, just the extern crate stuff. I got excited and went to try the examples on 1.30-stable but nothing worked. I guess I was just six weeks early.
+2018-10-30 20:12:34	~japaric	We could have a 2015-quickstart template with the examples written for the 2015 edition
+2018-10-30 20:12:55	~japaric	but I don't think we should change the text which is already using the 2018 edition
+2018-10-30 20:13:42	@therealprof	Don't see the value in that.
+2018-10-30 20:15:07	~japaric	yeah, if you are using 1.31-beta you are not using unstable features and you'll be using stable in 5 weeks
+2018-10-30 20:15:27	~japaric	ok, next up: issue 2 - getting started chapter
+2018-10-30 20:15:37	~japaric	I think this is S-waiting-on-japaric
+2018-10-30 20:16:13	~japaric	any other update on this other than the bullets from last week?
+2018-10-30 20:16:46	@theJPster	is this #46?
+2018-10-30 20:17:09	@theJPster	if so, yes.
+2018-10-30 20:17:19	@theJPster	(yes, we're waiting on you :p )
+2018-10-30 20:17:21	~japaric	theJPster: yes, this includes 46
+2018-10-30 20:17:50	~japaric	ok, issue 3: collections is also S-waiting-on-japaric
+2018-10-30 20:18:33	~japaric	next, issue 4: concurrency
+2018-10-30 20:19:09	~japaric	adamgreig is not around but related to this issue: cortex-m-rtfm v0.4.x will be released Very Soon (TM)
+2018-10-30 20:19:24	@therealprof	+1
+2018-10-30 20:19:54	ryankurte	exciting!
+2018-10-30 20:20:09	~japaric	other than that this chapter is in good shape
+2018-10-30 20:20:22	~japaric	we might update the section on RTFM a bit after v0.4.x is out
+2018-10-30 20:21:05	~japaric	issue 5: portability - therealprof any updates?
+2018-10-30 20:21:15	~japaric	I think jamesmunns wrote some updates on the meeting issue
+2018-10-30 20:21:18	@therealprof	Yes. Wrote a draft yesterday.
+2018-10-30 20:21:35	@therealprof	jamesmunns: Instapproved it. ;)
+2018-10-30 20:22:01	@therealprof	I'll follow up with some code and possibly a diagram.
+2018-10-30 20:22:21	~japaric	therealprof: +1
+2018-10-30 20:22:46	~japaric	for the record, the draft that landed was https://github.com/rust-embedded/book/pull/64
+2018-10-30 20:22:55	@theJPster	how do we do diagrams in the book?
+2018-10-30 20:22:57	~japaric	there's a list of TODO items for this chapter in https://github.com/rust-embedded/book/issues/65
+2018-10-30 20:23:19	@theJPster	Can we embed SVG and expect it to be rendered? Do we simply upload a PNG? What resolution?
+2018-10-30 20:23:34	~japaric	theJPster: SVG works fine
+2018-10-30 20:23:40	@therealprof	NB: The new beta features "suggestions" is increadibly useful to suggest corrections.
+2018-10-30 20:24:06	@theJPster	japaric, good to know. Thanks.
+2018-10-30 20:24:48	~japaric	images will be 720 pixels in width when viewed on a 1920x1080 resolution
+2018-10-30 20:25:06	~japaric	therealprof: what feature is this?
+2018-10-30 20:25:25	~japaric	(cargo feature? rustc feature?)
+2018-10-30 20:25:33	@theJPster	github feature :)
+2018-10-30 20:25:34	@therealprof	GitHub feature.
+2018-10-30 20:26:05	@therealprof	Allows to make inline suggestions instead of remarks which the author can simply accept/reject or refine.
+2018-10-30 20:26:15	~japaric	ack
+2018-10-30 20:26:19	@therealprof	Very useful for tipos and such.
+2018-10-30 20:26:52	~japaric	next up, issue 6: static guarantees
+2018-10-30 20:27:09	~japaric	this is also waiting for me to put some notes on singletons / memory management
+2018-10-30 20:27:15	@therealprof	Only hard to find. Basically you click on the plus sign and then there's a new document icon with a +/- sign at the top in the middle of the comment box.
+2018-10-30 20:27:45	@theJPster	japaric, how do you feel about all these actions and the five weeks we have left?
+2018-10-30 20:31:48	~japaric	I think we should start collecting feedback on the book as it is and land additional stuff in some staging section first and not merge it with the rest until after the edition release, probably
+2018-10-30 20:32:12	@theJPster	ok
+2018-10-30 20:33:58	@therealprof	Hm, to what benefit?
+2018-10-30 20:34:59	~japaric	therealprof: to indicate that the section is not finalized but that you are looking for feedback. A PR works too but a staging section may have more visibility
+2018-10-30 20:36:10	@therealprof	Ah, okay, I understood that differently. As is: We shouldn't touch the book when 2018 lands and put changes after that point into a staging area.
+2018-10-30 20:36:18	@therealprof	*As in:
+2018-10-30 20:39:39	~japaric	we can do the staging for the content that gets added after 2018 is out as well
+2018-10-30 20:40:26	~japaric	issue 7: tips for C/C++. Anyone knows the status of this?
+2018-10-30 20:42:06	@theJPster	nope, sorry
+2018-10-30 20:42:16	@theJPster	it's quiet tonight, isn't it.
+2018-10-30 20:42:59	@therealprof	Sure is.
+2018-10-30 20:43:19	~japaric	alright, issue 8: C / Rust interop
+2018-10-30 20:43:38	~japaric	issues #61 and #62 have been linked from the book
+2018-10-30 20:44:50	~japaric	as per last week discussion that's all the content planned for this chapter for the edition release
+2018-10-30 20:47:03	@theJPster	I have a few comments about thumbv8
+2018-10-30 20:47:13	@theJPster	I have a thumbv8m board :)
+2018-10-30 20:47:40	~japaric	theJPster: we are not done triaging issues; please wait a bit
+2018-10-30 20:47:50	~japaric	issue 9: book outline, jamesmunns wrote about the URLs in https://github.com/rust-embedded/book/issues/52#issuecomment-434245974
+2018-10-30 20:51:40	~japaric	ryankurte: any update on the other book?
+2018-10-30 20:52:01	~japaric	ryankurte: also any update on updating the DNS stuff? i.e. docs.rust-embedded.org
+2018-10-30 20:52:16	ryankurte	on the book, not since last week (though I was afk then)
+2018-10-30 20:52:25	ryankurte	hopefully more this weekend
+2018-10-30 20:53:19	ryankurte	one the dns, I still don't have a working role to alter anything myself
+2018-10-30 20:53:20	ryankurte	https://github.com/nastevens/rust-embedded-provisioning/pull/5
+2018-10-30 20:54:31	~japaric	ok, I'll e-mail nastevens after this meeting
+2018-10-30 20:54:50	ryankurte	thanks ^_^
+2018-10-30 20:54:58	~japaric	theJPster: you were saying about armv8m?
+2018-10-30 20:55:29	@theJPster	er, I have a Cortex-M23 dev board on my desk
+2018-10-30 20:55:31	~japaric	(for the record, issue 12 is waiting-on-author and issue 20 is effectively done)
+2018-10-30 20:56:07	@theJPster	I raised an issue on cortex-m-rt about it failing to parse targets when they are a path to a JSON file as opposed to a built in
+2018-10-30 20:56:14	@theJPster	because my target starts "./" not "thumb"
+2018-10-30 20:56:49	@theJPster	https://github.com/rust-embedded/cortex-m-rt/issues/145
+2018-10-30 20:56:58	@theJPster	That's all I've got. Looking forward to evq's patches.
+2018-10-30 20:58:00	~japaric	I believe rustc (or Cargo) needs to be updated to support dots in target names before the thumbv8m target lands in rustc
+2018-10-30 20:58:29	@theJPster	Yes
+2018-10-30 20:58:29	@theJPster	https://github.com/rust-lang/rust/pull/55041#issuecomment-431367712
+2018-10-30 20:58:41	@therealprof	I think I might have fixed the svd2rust compilation troubles but now bors is acting up.
+2018-10-30 20:58:47	@therealprof	https://github.com/rust-embedded/svd2rust/pull/244
+2018-10-30 20:59:57	@therealprof	Any ideas what we can do? And can we somehow reduce the CI build time considerably?
+2018-10-30 21:00:07	~japaric	therealprof: hmm, it says  build failed even though the build succeeded, or?
+2018-10-30 21:00:14	 *	japaric is not really sure what's wrong
+2018-10-30 21:00:49	@therealprof	jamesmunns approved it earlier, by the time I was home it said "Cancelled".
+2018-10-30 21:01:00	ryankurte	therealprof: including the nightly macro change?
+2018-10-30 21:01:11	@therealprof	I just did a retry and now it's waiting for whatever…
+2018-10-30 21:01:35	ryankurte	it's a shame bors can't be prompted to re-check a previous build :-/
+2018-10-30 21:02:07	@therealprof	ryankurte: I think the problem fixed itself, now nightly was complaining about a removed allow flag.
+2018-10-30 21:02:44	@therealprof	ryankurte: And something else changed as well so msp430 wants to have pub use self::interrupt::Interrupt instead of without self.
+2018-10-30 21:03:12	@therealprof	Travis successfully built this 3 times now but bors doesn't merge it for some reason.
+2018-10-30 21:03:50	~japaric	meeting time is over. Thanks everyone for attending!
