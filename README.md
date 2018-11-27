@@ -286,6 +286,7 @@ The resources team develops, maintains and curates resources on embedded Rust.
 
 #### Members
 
+- [@adamgreig]
 - [@andre-richter]
 - [@jamesmunns]
 - [@japaric]
