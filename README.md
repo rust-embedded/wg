@@ -201,6 +201,7 @@ The embedded Linux team develops and maintains the core of the embedded Linux cr
 
 Projects maintained by the embedded Linux team
 
+- [`gpio-cdev`]
 - [`gpio-utils`]
 - [`i2cdev`]
 - [`linux-embedded-hal`]
@@ -402,6 +403,7 @@ https://mozilla.logbot.info/rust-embedded
 [`cortex-m`]: https://github.com/rust-embedded/cortex-m
 [`cross`]: https://github.com/rust-embedded/cross
 [`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
+[`gpio-cdev`]: https://github.com/rust-embedded/gpio-cdev
 [`gpio-utils`]: https://github.com/rust-embedded/gpio-utils
 [`i2cdev`]: https://github.com/rust-embedded/rust-i2cdev
 [`itm`]: https://github.com/rust-embedded/itm
