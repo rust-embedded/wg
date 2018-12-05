@@ -1,0 +1,198 @@
+07:02:47 <adamgreig> o/
+07:02:58 <korken89> o/
+07:03:08 <korken89> Sorry all, I can only join for about 20 min today
+07:03:11 <jamesmunns> o/
+07:03:31 <hannobraun> Hello all
+07:03:36 <jamesmunns> I'm here, but totally jetlagged, so not super effective
+07:04:11 <hannobraun> I don't think I'm ever super effective. Normal effective at best.
+07:04:27 <therealprof> o/
+07:04:28 <jamesmunns> Japaric won't be here (and I wasn't expecting to be awake/functional) so some of the organization items are missing
+07:04:30 <adamgreig> last week's agenda is https://paper.dropbox.com/doc/Embedded-WG--ASqsIAP8IQfEPMExquiKuFh8Ag-5pdv734N8KpxHFMJijuoL
+07:04:39 * therealprof is distracted
+07:05:13 <jamesmunns> I'll do a quick rundown of the edition issues, feel free to add you name to the paper doc
+07:05:53 <jamesmunns> Okay, first off, we have book/getting-started - adding the #[interrupt] section
+07:05:59 <jamesmunns> Does anyone have anything to share on that?
+07:06:28 <jamesmunns> I don't see any PRs in the last week, so I am guessing not :)
+07:06:45 <korken89> Seems like all have had a lot to do :)
+07:06:58 <jamesmunns> :)
+07:07:11 <jamesmunns> Okay, moving on then, book/hal - adding some examples
+07:07:21 <jamesmunns> therealprof: have you had a chance to take a look at those yet?
+07:07:56 <therealprof> Uhm, I tried to test something but failed.
+07:08:04 <jamesmunns> :)
+07:08:07 <therealprof> To many moving pieces still.
+07:08:30 <therealprof> And I didn't want to start on a green field.
+07:08:44 <jamesmunns> Gotcha. Is it mostly blocked by the new svd2rust/cortex-m-rt?
+07:08:49 <jamesmunns> Or other blockers?
+07:08:54 <therealprof> Yes.
+07:09:15 <therealprof> And mixing/matching different versions causing problems.
+07:09:55 <jamesmunns> :+1: Okay, I'm not sure what the timeline is for that, we should probably check with japaric next week
+07:10:13 <therealprof> I'd say the theory is clear but the proof of the pudding is in the eating. ;)
+07:10:45 <jamesmunns> 3 book/static-guarantees seems to be wrapped up, I see japaric's PR landed
+07:10:52 <adamgreig> having #[interrupt] in getting started is probably also blocked on svd2rust 0.14 being released
+07:10:59 <adamgreig> since otherwise you can't use it
+07:11:07 <jamesmunns> :+1: I'll add a note to that too
+07:11:42 <jamesmunns> 4 book/c-tips
+07:12:02 <adamgreig> i've put a few new commits on it including repr and all outstanding comments
+07:12:02 <jamesmunns> adamgreig: https://github.com/rust-embedded/book/pull/81 is still marked as waiting on author, any help needed there?
+07:12:11 <adamgreig> I think the problem is deciding when it's done
+07:12:16 <adamgreig> probably the pr as-stands could be reviewed and merged
+07:12:20 <jamesmunns> Cool! Should I mark it back to waiting-on-reviewer?
+07:12:20 <adamgreig> and just add more tips in later PRs
+07:12:32 <jamesmunns> Yeah, we are super happy to land something initially first
+07:12:42 <jamesmunns> Okay, I'll update the tags and add a note
+07:12:43 <adamgreig> yea go for it, thanks
+07:12:54 <adamgreig> it's a hard chapter to call 'complete' but I think we address all the big ticket things
+07:13:11 <adamgreig> we have addressed*
+07:13:15 <korken89> Perfect, I will do some reviewing then :)
+07:13:20 <adamgreig> thanks :)
+07:13:21 <therealprof> I'll review it, too.
+07:13:28 <adamgreig> +1
+07:13:34 <adamgreig> the more tips the better
+07:13:43 <jamesmunns> 5 debugonomicon
+07:13:55 <jamesmunns> looks like https://github.com/rust-embedded/debugonomicon/pull/15 landed before the last meeting
+07:14:02 <jamesmunns> was there anything open/pending to get this closed out?
+07:14:42 <jamesmunns> (looking at milestone now)
+07:14:58 <korken89> Sorry I have to take a look on that
+07:15:02 <korken89> It's on my todo
+07:15:25 <jamesmunns> korken89: what is there to do (so I can put it in the status), is there an issue?
+07:15:52 * cr1901 almost forgot about the meeting
+07:16:23 <therealprof> Plenty of open topics still. Didn't have much time to write new content last week but will add some more, soon.
+07:16:30 <korken89> Not yet, it has a lot of open issues
+07:16:41 <jamesmunns> Ah, is this a general "get stuff ready" item?
+07:17:03 <korken89> Yea
+07:17:06 <korken89> It needs some work
+07:17:49 <jamesmunns> Cool, I called out a general "work on issues" note to the paper
+07:18:15 <korken89> Perfect
+07:18:33 <jamesmunns> 6 - Embedded Rust Showcase
+07:18:44 <jamesmunns> I know japaric made some progress here, and there was a preview to be reviewed
+07:18:47 <jamesmunns> looking for the link...
+07:18:54 <korken89> Sorry, I have to leave - have a nice day! o/
+07:19:02 <jamesmunns> korken89: see you later, thanks for the updates!
+07:19:12 <hannobraun> bye korken89
+07:20:03 <cr1901> jamesmunns: I'm trying to get AT2XT ready for the showcase, but I'm still blocked on a number of things (svd2rust 0.14, upgrading msp430-rtfm)
+07:20:19 <cr1901> there is finally some progress being made though. Enough that I bumped the minor version
+07:20:19 <jamesmunns> https://github.com/rust-embedded/showcase/issues/2 was the issue I meant
+07:20:34 <jamesmunns> cr1901: nice!
+07:21:48 <jamesmunns> So, others, please check out the showcase issue link I mentioned, there are some open questions and a preview of the showcase website there
+07:22:15 <cr1901> Other than that, I have nothing new to report lol. I need to work w/ japaric to get msp430 to feature-parity (where possible) to arm backend. But it's going well.
+07:22:59 <therealprof> jamesmunns: No open questions as far as I can see.
+07:24:08 <jamesmunns> Okay, that's all the milestone issues, I'd say first let's open up to any other wg-relevant questions/updates, then a free for all of any other project updates :)
+07:24:30 <jamesmunns> therealprof: there are a couple things, like feedback on the mockup, what the menu should contain
+07:24:38 <jamesmunns> nothing big though, you're right
+07:25:14 <adamgreig> only a little more than a week until 2018 o/
+07:25:38 <jamesmunns> From the docs side, I've proposed a plan for rehoming the book here: https://github.com/rust-embedded/wg/issues/257
+07:25:49 <jamesmunns> and opened a PR upstream here: https://github.com/rust-lang/rust/pull/56291
+07:26:00 <jamesmunns> Hopefully our book lands with the 1.31 release :)
+07:26:19 <adamgreig> nice work :)
+07:28:05 <jamesmunns> Also if any Resources folks are here, I have an open questions in the teams chat, and would appreciate feedback (https://github.com/orgs/rust-embedded/teams/resources)
+07:28:52 <adamgreig> talking of resources team, is there any thought on what to do about the few new [temporary] members?
+07:29:32 <jamesmunns> adamgreig: is there a list of temporary members somewhere?
+07:29:47 <adamgreig> it's the diff of the official team list on the wg readme and the github team members list
+07:30:18 <adamgreig> it's me and korken89 and ryankurte I think
+07:31:11 <therealprof> adamgreig: So you're a temp, huh? :-D
+07:31:21 <adamgreig> I'm in the cortex-m team full-time :p
+07:31:31 <adamgreig> i'd be happy to just become an actual resources team member but one way or another we should probably have the official list reflect the effective list eventually
+07:31:54 <therealprof> Shoot a PR and we'll approve I'll say.
+07:31:56 <jamesmunns> Yup, if any of the temp folks are interested in making it more official, just open up a PR to the main md
+07:32:10 <jamesmunns> I'd :+1: anyone you just listed :)
+07:32:19 <adamgreig> will do :)
+07:33:29 <jamesmunns> Any other big announcements/works in progress/blockers we should chat about?
+07:34:08 <hannobraun> I have a non-WG announcement. We (dbrgn, rnstlr and me) founded the lpc-rs organization today: https://github.com/lpc-rs
+07:34:23 <jamesmunns> :+1:
+07:34:34 * therealprof stares at the stm-rs placeholder org…
+07:34:36 <thenewwazoo> hannobraun: I've done some work on the lpc177x/8x HAL, I'll check it out
+07:34:41 <cr1901> +1... wish they didn't stop making the lpc810 :(
+07:35:11 <hannobraun> thenewwazoo: Contributions welcome :)
+07:35:11 <adamgreig> the rust 2018 survey results are out and a lot of people say they're targetting embedded platforms https://blog.rust-lang.org/images/2018-11-RustSurvey/16-Platforms_targeting.png
+07:35:34 <hannobraun> cr1901: They stopped making it? Damn. I should keep the ones I have as an investment then :)
+07:35:52 <cr1901> hannobraun: Indeed :(... I have an incomplete lpc810 crate
+07:35:53 <adamgreig> therealprof: oh yea! sorry, I haven't been ignoring that, just haven't gotten around to it.. should get that ball rolling
+07:35:53 <jamesmunns> Oh nice! I hadn't seen it posted yet
+07:35:54 <jamesmunns> https://blog.rust-lang.org/2018/11/27/Rust-survey-2018.html
+07:36:00 <therealprof> Nice. Rustbelt videos are up, too, including our own therealjpster…
+07:36:08 <adamgreig> more popular than android and ios :p
+07:36:12 <cr1901> hannobraun: But I don't plan on finishing it at the moment
+07:36:37 <cr1901> For one thing, the svd file NXP provides is crap
+07:36:43 <thenewwazoo> and how
+07:36:44 <therealprof> https://www.youtube.com/embed/videoseries?list=PLgC1L0fKd7UlpVTHVfLYVtudVx8CzbSxW
+07:36:51 <hannobraun> cr1901: I have some old code in a private repository somewhere. I started with LPC810, all hand-written, before I discovered svd2rust et al
+07:36:54 <thenewwazoo> the lpc177x/8x svd is total garbage
+07:37:15 <hannobraun> All NXP SVD files I've seen have been garbage.
+07:37:31 <adamgreig> I'm still interested in refactoring the svd file munging parts of stm32-rs out
+07:37:32 <hannobraun> But to be fair, they seem to fix them if you report the errors on their community site.
+07:37:42 <therealprof> Funny, all seemed to have made the same experience here.
+07:37:45 <adamgreig> I wonder if it's worth making it easy to just write the bloody things from scratch
+07:37:50 <cr1901> hannobraun: https://github.com/cr1901/lpc81x
+07:37:56 <therealprof> FWIW the KL26 and KW41Z SVD files are okaish.
+07:37:58 <cr1901> Should this be added under your org?
+07:38:01 <cr1901> PRs welcome :)
+07:38:08 <jamesmunns> adamgreig: yeah, I've considered the same
+07:38:18 <hannobraun> adamgreig: I think that would be a good thing. Any PAC crate I've been working on had some ad-hoc Bash script.
+07:38:19 <jamesmunns> I have a couple chips with no SVDs at all, only header files
+07:38:22 <adamgreig> there's a reason the device c headers are clearly not generated from the svds, heh
+07:38:23 <jamesmunns> (and data sheets)
+07:38:39 <adamgreig> as far as i can tell svd files were really just made to allow debuggers to show slightly more useful context
+07:39:00 <hannobraun> cr1901: You can move it to the org if you want. We also have a common repository for all PAC crates: https://github.com/lpc-rs/lpc-pac-rs
+07:39:00 <adamgreig> I wanted to see if I could automate checking the svd against a c header file to at least catch obvious errors
+07:39:03 <jamesmunns> I'm really suprised there is no pipeline from IP => SVD => Official header files
+07:39:05 <adamgreig> but I suspect there'd be so much noise
+07:39:13 <adamgreig> jamesmunns: I reckon it's like sausage factories
+07:39:17 <adamgreig> i.e. you don't want to know
+07:39:18 <jamesmunns> yep
+07:39:24 <adamgreig> probably there's an excel spreadsheet
+07:39:34 <jamesmunns> haven't worked for a silicon vendor, but that wouldn't surprise me
+07:39:51 <therealprof> adamgreig: ^ that. :-D
+07:39:51 <adamgreig> how do they generate the refernce manuals too
+07:39:55 <cr1901> hannobraun: Will look into it
+07:40:08 <therealprof> Copy and paste.
+07:40:13 <adamgreig> you'd like to imagine some design file generates the relevant IP and RM and SVD and .h
+07:40:15 <jamesmunns> They could do it all with XSLT!
+07:40:15 <adamgreig> but no
+07:40:24 <adamgreig> and then they'd have +1 problems :p
+07:40:47 <hannobraun> cr1901: If you need anything, probably best to participate in the forum discussion (https://users.rust-lang.org/t/handling-of-device-peripheral-access-crates/22663) or open an issue somewhere.
+07:41:25 <therealprof> jamesmunns: Ugh, yeah XSLT. Totally forgot that existed…
+07:41:56 <cr1901> hannobraun: My plan was to just to make a PR where I merge unrelated histories
+07:41:56 <jamesmunns> non-wg announcement, https://oxidizeconf.com/ has been announced now, and theres a link to a blog post for what we have currently planned
+07:42:16 <adamgreig> o/
+07:42:30 <jamesmunns> If you have feedback about what you would/wouldn't like to see, definitely let me know
+07:42:32 <adamgreig> i hope to come but my entire first half of next year is extremely hard to pin down right now
+07:42:41 <jamesmunns> It's early enough that nothing is set in stone
+07:43:40 <hannobraun> jamesmunns: I'd love to see some time dedicated to the "hallway track", as opposed to keeping us busy with talks and workshops. Not sure how that would look like though.
+07:44:34 <jamesmunns> hannobraun: sure, the primary goal for this whole thing is to get as many people together in the same room and talking as much as possible
+07:44:43 <jamesmunns> So hallway track totally makes sense :)
+07:45:14 <jamesmunns> I could also see project booths being a thing, I know we've talked about it for other conferences as well
+07:45:42 <hannobraun> I might be an outlier, but personally, I don't care much about talks and workshops. There are more effective ways to learn stuff. I go to conferences to meet people.
+07:45:52 <jamesmunns> Having a bunch of people from the WG there for Impl days would be awesome
+07:46:48 <hannobraun> I'll definitely come, if at all possible.
+07:47:09 <therealprof> I'll probably be there but also hard to pin without a date.
+07:47:13 <hannobraun> Already have all of April and May blocked out in my calendar ;)
+07:48:15 <jamesmunns> therealprof: totally understood. we wanted to announce early to get the word out
+07:49:09 <jamesmunns> So, we have 12 minutes or so left, I'd say feel free to share anything else awesome going on if you'd like, if not, thank you all for being here, and for all the help this week :)
+07:49:46 <adamgreig> thanks for coordinating this week!
+07:50:13 <jamesmunns> :+1:
+07:50:14 <cr1901> Okay I'll take a stab: msp430 has a patch waiting for assembler support in llvm. This should get rid of the binutils dependencys
+07:50:35 <jamesmunns> hannobraun: since we haven't heard from wez, I'm planning on landing all the nrf-rs changes to be there in time for 1.31
+07:50:53 <cr1901> would be interested (if I had time!) in seeing that accelerated, but I doubt it'll land before 2018
+07:51:09 <jamesmunns> I'll reping him today, and probably start the landing this week
+07:51:16 <jamesmunns> oh
+07:51:34 <jamesmunns> If anyone here has strong knowledge of compiler fences, I could totally use your help with a review
+07:52:16 <jamesmunns> the nrf hal got bit by some dma-ignoring compiler optimizations, and I've attempted a fix here: https://github.com/nrf-rs/nrf52-hal/pull/34
+07:52:43 <jamesmunns> cr1901: awesome! are you patching upstream, or in the rust version of llvm?
+07:53:17 <hannobraun> jamesmunns: Fine with me. If I recall correctly, I've approved everything except possibly the compiler fence stuff. I agree that we could use an expert opinion there.
+07:53:20 <jamesmunns> re: the fences, I'll admit I'm not confident in knowing what I am doing in that PR, but rather checked things experimentally
+07:53:22 <therealprof> jamesmunns: Re oxidize. Only 30 minute talks? Is there a possibility to do 2 slots? :-D
+07:53:49 <cr1901> jamesmunns: I'm not the one who submitted the patch :P. It was for upstream llvm.
+07:54:22 <jamesmunns> therealprof: I'm open to the idea, 30 minutes was chosen to match the other Rust* conferences
+07:56:14 <therealprof> jamesmunns: I might be interested in doing a hardware/software piece.
+07:57:04 <jamesmunns> therealprof: nice, I could definitely see that being interesting
+07:58:34 <Jacob_____> Ill jump in if the floor is open :) Current svd generation bash scripts are kinda problematic and not rusty, and I wanted to learn some rust, so Im playing around with programmatic solution.
+07:58:34 <Jacob_____> https://github.com/jacobrosenthal/efm32-rs/blob/upstream/tools/src/bin/gen.rs
+07:58:34 <Jacob_____> I got form to take a pr making it programmatic library. I would need svd2rust to expose at the very least create_directory_structure
+07:58:34 <Jacob_____> https://github.com/rust-embedded/svd2rust/pull/214
+07:58:59 <therealprof> I have a little secret santa project going which I'm going to release around Christmas and would love to tell the world how to design your own rusty hardware. ;)
+07:59:22 <jamesmunns> Jacob_____: Nice!
+08:00:21 <jamesmunns> hannobraun: re: conference talks, I think the thing they do best is not teaching, but really a "hey, this thing is possible, and you might not have known about it!"
+08:00:39 <jamesmunns> more inspiration, less education
+08:00:44 <therealprof> Exactly!
+08:01:07 <hannobraun> jamesmunns: Agreed. Still, I think it wouldn't hurt if the conference also focused on the social component.
+08:01:20 <jamesmunns> Okay, we're out of time (but we won't be kicking anyone out), thanks again for being here

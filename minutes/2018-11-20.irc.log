@@ -1,0 +1,240 @@
+2018-11-20 20:06:03	~japaric	ok, let's start this meeting
+2018-11-20 20:06:18	~japaric	first some announcements related to the 2019 wishlist survey
+2018-11-20 20:06:38	~japaric	I have collected the requests in this spreadsheet https://docs.google.com/spreadsheets/d/1HfVfSDTVD3Ao45_St1KkUyBe6M0vP6HjA2T-Xrc-E1Q/edit#gid=0&fvid=695003272
+2018-11-20 20:06:53	~japaric	you can sort the requests by votes using a filter view (instructions in the spreadsheet)
+2018-11-20 20:07:42	~japaric	I have also set up another paper doc where you can write down some notes related to the requests - https://paper.dropbox.com/doc/Embedded-WG-2019-wishlist--ASMPpvsBZL4FVZhjJiDCeT4ZAg-AyWJglP4auKZGDGqOhN0M
+2018-11-20 20:08:45	~japaric	and there's yet another paper doc where you share with the WG what you are working on and what you'll be interested in working on during 2019 -- this one is private to the WG
+2018-11-20 20:08:58	~japaric	the link is https://github.com/orgs/rust-embedded/teams/all/discussions/7
+2018-11-20 20:09:24	~japaric	we'll discuss the 2019 roadmap in a bit; first let's work through the remaining edition issues
+2018-11-20 20:09:57	~japaric	issue 1: book/getting-started
+2018-11-20 20:10:11	~japaric	only remaining todo item is a section about the #[interrupt] attribute
+2018-11-20 20:10:30	~japaric	iirc, therealprof will look into it
+2018-11-20 20:10:56	@therealprof	Yes.
+2018-11-20 20:11:18	~japaric	ok, let's move to the next issue
+2018-11-20 20:11:22	~japaric	2: book/hal
+2018-11-20 20:11:28	~japaric	jamesmunns: therealprof any updates you'd like to share?
+2018-11-20 20:11:41	@jamesmunns	We merged some of therealprof's PRs
+2018-11-20 20:11:43	@therealprof	There has been progress.
+2018-11-20 20:11:53	@therealprof	There's now a layering diagram.
+2018-11-20 20:12:22	@therealprof	adamgr made some nice corrections.
+2018-11-20 20:12:22	~japaric	https://github.com/rust-embedded/book/pull/84
+2018-11-20 20:12:26	@jamesmunns	I'll probably close https://github.com/rust-embedded/book/issues/65 - I think all the items I mentioned have been hit
+2018-11-20 20:13:30	@therealprof	Except for the examples maybe?
+2018-11-20 20:13:54	@therealprof	Also a item on the wishlist I think.
+2018-11-20 20:13:55	~japaric	"completes examples of embedded-hal" was mentioned in the wishlist
+2018-11-20 20:13:58	@jamesmunns	(my finger was hovering over the close button)
+2018-11-20 20:14:22	~japaric	you can close that one and one another, more targeted issue for the examples
+2018-11-20 20:14:26	@jamesmunns	Okay, not closed, added comments about examples
+2018-11-20 20:14:32	@jamesmunns	:|
+2018-11-20 20:14:38	@therealprof	Close it. We have a wish list item, gives a sense of progress if we can mark that off. ;)
+2018-11-20 20:14:45	@jamesmunns	o7
+2018-11-20 20:15:41	~japaric	thanks for working on this therealprof jamesmunns
+2018-11-20 20:15:52	~japaric	next issue (3) is book/static-guarantees
+2018-11-20 20:16:04	~japaric	intro text landed in PR#92
+2018-11-20 20:16:43	~japaric	I think there was no more content planned for that chapter in the near term
+2018-11-20 20:16:59	~japaric	if someone has more examples feel free to make a PR
+2018-11-20 20:17:15	~japaric	issue 4: tips for C/C++ programmers
+2018-11-20 20:17:21	~japaric	adamgreig: how is your PR coming along?
+2018-11-20 20:17:41	@adamgreig	i've addressed the comments so far and want to write a bit about repr and expand a section or two, in the next couple of days
+2018-11-20 20:18:58	@adamgreig	so probably go for another review by end of week and hopefully merge soon?
+2018-11-20 20:19:01	~japaric	adamgreig: nice, I'll tag the PR as waiting-on-author for now
+2018-11-20 20:19:08	@adamgreig	+1
+2018-11-20 20:19:47	@therealprof	adamgreig: Give me shout if you need a deep review.
+2018-11-20 20:20:04	@adamgreig	thanks
+2018-11-20 20:20:17	~japaric	issue 5: debugonomicon; ryankurte mentioned that therealprof landed a PR updating the binary section
+2018-11-20 20:20:26	@korken89	I will be following this chapter as well, I had a lot of pet-peeves with Rust when I first came :)
+2018-11-20 20:20:43	~japaric	I assume they meant this pr https://github.com/rust-embedded/debugonomicon/pull/15
+2018-11-20 20:21:08	@korken89	I will have a look at the debugnomicon as well, it fell off my radar after my eye surgery and I need to get up to speed with it again..
+2018-11-20 20:21:17	~japaric	korken89: +1
+2018-11-20 20:21:40	~japaric	ok, last issue 6: the project showcase
+2018-11-20 20:21:49	~japaric	I'm working on it right now
+2018-11-20 20:22:17	@therealprof	Reminds me, need to open an issue for cargo-binutils.
+2018-11-20 20:22:35	~japaric	I'll put up a PR, picture or test website soon then we can bikeshed the looks
+2018-11-20 20:23:04	@therealprof	+1
+2018-11-20 20:23:05	@korken89	japaric: +1
+2018-11-20 20:23:47	~japaric	ok, that covers the remaining edition issues
+2018-11-20 20:24:38	~japaric	if someone wants to talk about anything in particular, now it's a good time; otherwise I propose we talk a bit about the 2019 wishlist
+2018-11-20 20:24:46	@jamesmunns	real quick
+2018-11-20 20:24:51	@jamesmunns	publishing of the book:
+2018-11-20 20:25:21	~japaric	(nastevens: ryankurte just want to make sure you see this comment https://github.com/rust-embedded/wg/pull/189#issuecomment-440317015 )
+2018-11-20 20:25:26	@jamesmunns	Steve K offered to have any of our books published in the official bookshelf, so our books get distributed offline via rustup
+2018-11-20 20:25:46	@jamesmunns	So a couple questions:
+2018-11-20 20:25:59	@jamesmunns	1. What books would we like to go live in the main bookshelf, if any
+2018-11-20 20:26:03	@korken89	jamesmunns: \o/
+2018-11-20 20:26:31	@jamesmunns	2. Do we want to host the books in two places (I see the bookshelf as being a release that gets updated every 6 weeks, while ours is "nightly")
+2018-11-20 20:27:39	@korken89	2: I like this idea
+2018-11-20 20:27:53	@adamgreig	cool!
+2018-11-20 20:28:01	@jamesmunns	If there are no thoughts or feeling, I'd probably nominate just the book for now, maybe also discovery?
+2018-11-20 20:28:04	@theJPster	2. +1
+2018-11-20 20:28:19	@theJPster	I think just the book.
+2018-11-20 20:28:28	@adamgreig	I wonder how confusing it will be for readers to find it on docs.rust-embedded.org and docs.rust-lang.org
+2018-11-20 20:28:38	@jamesmunns	I'm not in the loop with embedonomicon or debugonomicon, would anyone nominate those to be promoted?
+2018-11-20 20:28:41	@theJPster	No reason you should get Embedded training material with your compiler, any more than Win32 training material, or OsDev training material.
+2018-11-20 20:28:41	@adamgreig	but given the content will be largely the same except for update schedule, I don't think it will be a gigantic problem?
+2018-11-20 20:28:51	@adamgreig	not sure about SEO for having the same stuff on two domains
+2018-11-20 20:28:55	@adamgreig	and what do people search for or link to and etc
+2018-11-20 20:29:23	@adamgreig	is one version 'canonical'? if the r-e.org one is nightly-only, what does that make the other r-e.org hosted books?
+2018-11-20 20:29:39	@nastevens	Would providing a link from the Rust bookshelf to r-e.org be a possibility? So we only have one source of truth?
+2018-11-20 20:30:00	@adamgreig	I think it would be neater to have that link - perhaps even a link to the r-e bookshelf instead of the embedded rust book itself
+2018-11-20 20:30:03	@theJPster	I think the point of the rust bookshelf is that users will have a copy on their disk.
+2018-11-20 20:30:09	@adamgreig	one doesn't preclude the other
+2018-11-20 20:30:21	~japaric	adamgreig: note that there are already three sets of docs on d.r-l.o docs.rust-lang/{,beta,nightl}/<book-name> :-)
+2018-11-20 20:30:31	@theJPster	but the set you deploy on disk should be the set you deploy onto the online bookshelf
+2018-11-20 20:30:39	~japaric	afaict only the stable set of docs appear on google; there maybe some robots.txt stuff involved
+2018-11-20 20:31:09	@nastevens	Was there any input on how books from other working groups are being handled? Like if the network WG published a book would that also get added
+2018-11-20 20:31:21	@jamesmunns	yup, the offer went out to all the WGs
+2018-11-20 20:31:51	@adamgreig	we could even go the other way and host the embedded book on r-l and link to it from r-e
+2018-11-20 20:31:59	@adamgreig	(plus continue hosting the other r-e books on r-e)
+2018-11-20 20:32:06	@korken89	I like the idea of having books in one place
+2018-11-20 20:32:13	@adamgreig	having two canonical sources seems prone to confusion
+2018-11-20 20:32:23	@adamgreig	at least r-l.org/{,beta,nightly/bla is clear what's going on
+2018-11-20 20:32:37	@nastevens	Yeah, I'm fine with either direction (r-l -> r-e or r-e -> r-l), but I think single source of truth is the way to go
+2018-11-20 20:32:49	@jamesmunns	We can move all the docs to the official bookshelf
+2018-11-20 20:32:50	@adamgreig	and if we can host a nightly/constantly-updated version of the embedded book on r-l.org/nightly/embedded-rust we don't really need another copy on r-e
+2018-11-20 20:33:18	@jamesmunns	The only snag is that updating the official bookshelf takes a PR, and isn't super easy to automate
+2018-11-20 20:33:34	@jamesmunns	(at least, that is the current state of things)
+2018-11-20 20:33:48	@adamgreig	that's definitely a downside while the books are in as much flux as they are now
+2018-11-20 20:33:52	~japaric	nastevens: the networking wg mentioned that they won't be shipping a book *with the edition* (unclear if they'll put their book in the main bookshelf in the future)
+2018-11-20 20:34:11	@jamesmunns	Yeah, I think we are the only WG who will be ready by the release
+2018-11-20 20:34:13	@nastevens	sorry, the networking wg was just an example
+2018-11-20 20:34:20	@adamgreig	go us, I suppose :P
+2018-11-20 20:34:26	@korken89	Is the offer open for the future as well? If so there is no hurry until the book is more stable
+2018-11-20 20:34:53	@jamesmunns	Offer is open, they just pinged now because the release, and all the promotion will be up around it
+2018-11-20 20:35:01	@adamgreig	maybe we could get a link to the r-e bookshelf on the r-l bookshelf for the time being, and once our book is more stable consider including it?
+2018-11-20 20:35:16	@jamesmunns	having embedded docs look more "official" makes embedded look good, IMO
+2018-11-20 20:35:21	@adamgreig	yea, agreed
+2018-11-20 20:35:28	@nastevens	+1: maybe we could get a link to the r-e bookshelf...
+2018-11-20 20:36:08	@jamesmunns	Okay, I don't want to take up too much meeting time, shall I open an issue to discuss?
+2018-11-20 20:36:15	~japaric	if we make r-l the canonical source of embedded books updates will be slower because a submodule has to manually be updated and clear through the bors queue first
+2018-11-20 20:36:23	@korken89	jamesmunns: Sounds good!
+2018-11-20 20:36:37	~japaric	jamesmunns: +1 for discussing in an issue
+2018-11-20 20:36:54	@therealprof	+1
+2018-11-20 20:37:19	@nastevens	(japaric: I did see that and it is the next item on my hit-list. Email aliases are a little tougher because I don't have a great way to do through AWS, and AWS is easy for me to finance)
+2018-11-20 20:38:14	~japaric	jamesmunns: if you, or anyone else, can include some of the points exchanged above in the issue that'd be awesome
+2018-11-20 20:38:24	@jamesmunns	yup, writing it up now
+2018-11-20 20:39:49	~japaric	ok, moving on to the next item on the agenda: the 2019 wishlist
+2018-11-20 20:40:09	@adamgreig	we've got some good engagement with the wishlist!
+2018-11-20 20:41:08	@korken89	A lot of interest indeed :D
+2018-11-20 20:41:26	~japaric	I'd like us to discuss anything that seems underspecified
+2018-11-20 20:41:30	~japaric	link to the wishlist: https://github.com/rust-embedded/wg/issues/256#issue-380475088
+2018-11-20 20:41:36	@therealprof	Note to self: Write down more items. ;)
+2018-11-20 20:41:54	~japaric	for example functional safety certification - https://github.com/rust-embedded/wg/issues/256#issuecomment-438889322
+2018-11-20 20:42:01	~japaric	it's not clear to me what the deliverable would be
+2018-11-20 20:42:19	~japaric	what should we do in cases like this? ask the author to elaborate more about the request?
+2018-11-20 20:42:22	@jamesmunns	Uh, it would be a lot of documentation, and a very expensive certification
+2018-11-20 20:42:38	@jamesmunns	I have done similar cert before, it is a many-person-year kind of venture.
+2018-11-20 20:42:48	@adamgreig	yea it seems a very big ask
+2018-11-20 20:43:00	@theJPster	What's the plan for this list? Are we going to come up with some criteria and then screen them and rank them?
+2018-11-20 20:43:01	@adamgreig	and what would you end up with - one blessed set of compiler and library versions?
+2018-11-20 20:43:02	~japaric	ok, but to me is not clear what would be certified. the compiler? the standard library?
+2018-11-20 20:43:24	@jamesmunns	it would probably be the compiler and libcore, to start
+2018-11-20 20:43:36	@jamesmunns	but, you were making a more general point :)
+2018-11-20 20:45:06	~japaric	theJPster: I also want to discuss that. Any suggestions for which one of these requests to include in the final roadmap?
+2018-11-20 20:45:46	~japaric	I don't have any specific in mind right now; other than we should consider who has to do the job, how much work has to be done and how benefitial it is for the community
+2018-11-20 20:46:01	@adamgreig	also what's in scope for embedded-rust wg
+2018-11-20 20:46:21	@theJPster	I would rank them against cost/effort, and benefit - both in terms of to the wider community and to the WG itself
+2018-11-20 20:46:29	@adamgreig	like, is a usb host library a wg project?
+2018-11-20 20:46:33	@theJPster	I think I might also score them against how much support they have from the community
+2018-11-20 20:46:34	@adamgreig	or just something we'd like to see exist?
+2018-11-20 20:47:04	hannobraun	Isn't the only relevant attribute in a ranking whether someone would be willing to do the work?
+2018-11-20 20:47:05	@theJPster	Then I'd put all the scores in a spreadsheet, weight them, and pick my top 5 for further discussion.
+2018-11-20 20:47:12	@theJPster	But then, I'm a consultant, and that's what I do.
+2018-11-20 20:47:20	@nastevens	posborne and I also got a request for the WG to take on a raspberry pi GPIO library, it'd be good to decide what the basic inclusion criteria for the WG are
+2018-11-20 20:47:40	@therealprof	hannobraun: +1
+2018-11-20 20:47:56	@theJPster	I maintain my position that the WG should point people to chip specific things done by people, but shouldn't pick a particular chip/arch/platform to handle itself.
+2018-11-20 20:48:14	@nastevens	theJPster: that is a very pragmatic way to separate, I like that
+2018-11-20 20:48:20	@adamgreig	theJPster: but we clearly already support specific platforms and archs, e.g. cortex-m
+2018-11-20 20:48:25	@theJPster	You don't want people to say "Oh, Rust is only for STM32 users" because that's the one magic chip we've anointed as special.
+2018-11-20 20:48:34	@jamesmunns	We have a cortex-a team already
+2018-11-20 20:48:42	@adamgreig	and msp430 and risc-v and linux
+2018-11-20 20:48:44	@nastevens	yeah gets a little bit more fuzzy with architectures and OS's
+2018-11-20 20:48:51	@jamesmunns	so seems we have drawn the line at arch, but not any specific vendor
+2018-11-20 20:48:57	@theJPster	yeah, scratch 'arch' from my statement above.
+2018-11-20 20:49:11	@theJPster	Vendor neutrality I think is important.
+2018-11-20 20:49:12	@jamesmunns	I guess msp430 is special in that regard, as there is only one vendor
+2018-11-20 20:49:13	@jamesmunns	but w/e
+2018-11-20 20:49:20	@adamgreig	arch makes a lot of sense since that's where you need rust compiler support
+2018-11-20 20:49:35	@adamgreig	so we are in a position to help the rust compiler support architectures we want to support
+2018-11-20 20:49:46	@adamgreig	but (hopefully) no rust-specific support is required for a particular vendor's chips
+2018-11-20 20:49:53	@nastevens	maybe easier to define what we don't want, which is having dozens of chip-specific libraries and compilers we're maintaining
+2018-11-20 20:50:01	@theJPster	Like armv8m.base-none-eabi, which caused a few problems.
+2018-11-20 20:50:07	@jamesmunns	Discussion about books: https://github.com/rust-embedded/wg/issues/257
+2018-11-20 20:50:37	@adamgreig	jamesmunns: +1
+2018-11-20 20:50:49	@theJPster	crate full of definitions for structures in the USB specification? I'm OK with the WG doing that. The Tiva-C USB device crate? Nope.
+2018-11-20 20:50:58	@therealprof	I couldn't care less about vendor neutrality. If a vendor is willing to help our cause I would say it makes a hell lot of sense to work together.
+2018-11-20 20:51:04	@theJPster	We're here to support the community.
+2018-11-20 20:51:12	~japaric	there are requests that require work in the compiler and standard library (e.g thumb instrinsics, compiler support for new architecture); those are in the scope of the WG
+2018-11-20 20:51:41	~japaric	should we start by classifying them by where the work needs to happen?
+2018-11-20 20:51:48	@adamgreig	I guess the thing is these requests span a huge range of effort and scope
+2018-11-20 20:52:00	@korken89	therealprof: I agree, especially this can put pressure on other vendors as well
+2018-11-20 20:52:13	@adamgreig	some are just "if you wait two weeks someone in rust-core will have done this" and others are "this will take multiple person-years of dedicated effort which wouldn't happen otherwise"
+2018-11-20 20:52:19	@adamgreig	and a lot in between
+2018-11-20 20:52:55	@therealprof	and of course most of the work relies on contributions.
+2018-11-20 20:52:57	@jamesmunns	As part of Ferrous, I'll probably be writing up a blog post that covers this list, especially the big/specialty items, and offer to do it as paid work (preferrably with the deliverable being open source)
+2018-11-20 20:53:17	@therealprof	jamesmunns: +1
+2018-11-20 20:53:36	@adamgreig	sure, but we don't want to just sit back and say "well we'll work on whatever we feel like..."
+2018-11-20 20:53:42	@jamesmunns	We should probably clarify that these are a list of items we think would help the community
+2018-11-20 20:53:55	@jamesmunns	But that we have no guaranteed delivery, as this is volunteer effort
+2018-11-20 20:54:03	@therealprof	adamgreig: We don't?
+2018-11-20 20:54:05	@adamgreig	2018 had a very specific and productive goal of "stable embedded rust" and a bunch of things that entailed
+2018-11-20 20:54:18	@jamesmunns	however, we are more willing to mentor/assist items, especially ones higher on our list
+2018-11-20 20:54:22	@adamgreig	therealprof: I think we have a good deal of volunteer effort and it would be useful to make sure it's directed usefully?
+2018-11-20 20:54:50	@jamesmunns	I think we should definitely make sure whatever we do, it isn't "the wg does it", it's "the wg is here to guide, assist, mentor, grow the community, etc"
+2018-11-20 20:54:51	@therealprof	adamgreig: Oh I agree that we can steer efforts a bit.
+2018-11-20 20:55:01	@adamgreig	yea +1 jamesmunns
+2018-11-20 20:55:06	@jamesmunns	We should generally take guidance from the rust project in general
+2018-11-20 20:55:17	@therealprof	adamgreig: But someone who's interested in USB is unlikely to be convinced to work on BLE instead.
+2018-11-20 20:55:28	@adamgreig	therealprof: sure, of course
+2018-11-20 20:55:36	@adamgreig	but a lot of these tasks are not so specific and a lot of people have broad interests
+2018-11-20 20:55:55	hannobraun	jamesmunns: Sounds good
+2018-11-20 20:56:14	@therealprof	Often it's just a matter of putting ideas out there to pique peoples interest.
+2018-11-20 20:56:27	@jamesmunns	Yeah, I think having a roadmap is a good thing
+2018-11-20 20:56:41	@jamesmunns	but I don't want people waiting around for a small group of people to do it, for free :)
+2018-11-20 20:56:47	@theJPster	When 2018 is out of the door, we should have a story for 2019.
+2018-11-20 20:56:53	Lumpio-	(I wouldn't mind some mentoring or design support to get my little USB library into actually usable condition someday!)
+2018-11-20 20:57:18	@adamgreig	theJPster: yes, that's what I wanted to say
+2018-11-20 20:57:39	@adamgreig	we want something compelling rather than "we have a shopping list of 5 bug fixes and some pet projects"
+2018-11-20 20:57:49	@adamgreig	in the same way "stable embedded rust" was
+2018-11-20 20:58:11	@jamesmunns	Pre 2018: It is possible to do embedded rust
+2018-11-20 20:58:12	@theJPster	Just to throw something out there, I propose the tag-line for 2019 is "building blocks". You can read that either way and it still makes sense.
+2018-11-20 20:58:18	@jamesmunns	2018: embedded rust is stable
+2018-11-20 20:58:21	@therealprof	adamgreig: Not sure there's such a concrete massive goal to work towards.
+2018-11-20 20:58:40	@theJPster	2019: I can grab a bunch of bits and pieces and quickly put them together to make a thing.
+2018-11-20 20:58:42	@jamesmunns	2018: Building with rust should be easier than other choices
+2018-11-20 20:59:00	@therealprof	theJPster: I used that phrase at least 50 times in my Webinar earlier today. :-D
+2018-11-20 20:59:09	@theJPster	ha
+2018-11-20 20:59:32	Lumpio-	2020: Arduino IDE now uses Rust by default
+2018-11-20 20:59:37	@adamgreig	so in general a focus on moving up the abstraction chain?
+2018-11-20 20:59:59	@adamgreig	from lots of PACs and -rt crate and so forth, to more polished high level things like usb stacks, network stacks, ble, SD cards, RTOS?
+2018-11-20 21:00:01	@theJPster	Lumpio-, I read that as "Rust uses the Arduino IDE" by default, and I was about to say something rude.
+2018-11-20 21:00:02	@jamesmunns	I think a focus on filling outward, and figuring out the patterns/abstractions that make sense at scale
+2018-11-20 21:00:07	Lumpio-	kek
+2018-11-20 21:00:54	hannobraun	I've decided not to comment on Arduino today :)
+2018-11-20 21:01:08	@korken89	jamesmunns: Yeah, finding the right abstractions is probably going to be a big part
+2018-11-20 21:02:19	@theJPster	And using Rust's safety features. We can't just do a line by line port of a C library.
+2018-11-20 21:02:32	@adamgreig	that's a quick way to a terrible abstraction anyway
+2018-11-20 21:02:38	@theJPster	"Here's how you register a callback for an interrupt that just grabs this global" isn't going to work.
+2018-11-20 21:03:34	@theJPster	Let's expand embedded-hal, finish having our arguments about busses and whatnot and then build on that.
+2018-11-20 21:03:55	@therealprof	:-D
+2018-11-20 21:04:01	@jamesmunns	Also, I have a crazy idea on how to beat arduino at it's own game
+2018-11-20 21:04:08	@theJPster	And I know I'm biased but USB and SD/MMC seem like good candidates to look at next.
+2018-11-20 21:04:14	@jamesmunns	We pick a set of embedded hal traits, and call them "the minimal hal impl"
+2018-11-20 21:04:16	 *	theJPster has his SD/MMC driver open right now actually
+2018-11-20 21:04:38	@jamesmunns	So, to call a platform "hal supported", it has impls for "the minimal hal traits"
+2018-11-20 21:04:53	@jamesmunns	Which, is basically how the Arduino ecosystem works anyway
+2018-11-20 21:04:54	 *	theJPster orders a rubber stamp
+2018-11-20 21:05:38	@therealprof	Here's to the crazy ones…
+2018-11-20 21:05:59	@adamgreig	so in terms of concrete actions for the wishlist...
+2018-11-20 21:06:10	@theJPster	as a total aside, seen as we're over time anyway, my colleague has this t-shirt.
+2018-11-20 21:06:11	@theJPster	https://www.threadless.com/product/5979/seal_of_approval
+2018-11-20 21:07:30	@adamgreig	I think ranking items' difficulty/effort/cost and worth/benefit would be useful: probably a lot are quite small papercuts we can just fix in the course of time, others are huge projects that will run outside the wg but we can help out with, and maybe something else will be in the middle
+2018-11-20 21:07:40	@adamgreig	so basically get your spreadsheet out theJPster :P
+2018-11-20 21:08:01	@jamesmunns	*changes my title from Chief Whiteboarding Engineer to Head of Spreadsheet Operations*
+2018-11-20 21:08:16	@therealprof	https://github.com/thepracticaldev/orly-full-res/blob/master/avoiddarkpatterns-big.png
+2018-11-20 21:08:34	~japaric	we are over time! the 2019 roadamp will need more discussion; there are quite a few opinions about what should be the focus and what the wg should or should not do
+2018-11-20 21:09:03	~japaric	in any case, we have a spreadsheet; if someone wants to add more columns to it let me know and I'll give you access ;-)
+2018-11-20 21:09:16	~japaric	but let's revisit this next week
+2018-11-20 21:09:21	@adamgreig	+1
+2018-11-20 21:09:22	@jamesmunns	I won't be here next week, have a great couple of weeks all :)
+2018-11-20 21:09:40	@adamgreig	as a quick post-meeting announcement, I released my stm32 pac experiment thing: https://github.com/adamgreig/stm32ral
+2018-11-20 21:09:47	 *	japaric declares meeting officially over
