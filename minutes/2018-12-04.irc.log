@@ -1,0 +1,167 @@
+2018-12-04 20:05:07	~japaric	let's start this meeting!
+2018-12-04 20:05:26	~japaric	the agenda is quite short today; let's start with the leftover edition items
+2018-12-04 20:05:52	~japaric	seems that book/{getting-started,hal} are both blocked on svd2rust
+2018-12-04 20:05:58	~japaric	that both**
+2018-12-04 20:06:07	~japaric	so let's talk about svd2rust later
+2018-12-04 20:06:34	~japaric	3 - static guarantees is marked as done
+2018-12-04 20:06:48	~japaric	4 is c-tips
+2018-12-04 20:06:58	~japaric	adamgreig: ^
+2018-12-04 20:06:59	@jamesmunns	got merged this week!
+2018-12-04 20:07:02	~japaric	\o/
+2018-12-04 20:07:14	@adamgreig	o/
+2018-12-04 20:07:21	@therealprof	\o/
+2018-12-04 20:08:02	~japaric	adamgreig: should we close #9?
+2018-12-04 20:08:06	~japaric	https://github.com/rust-embedded/book/issues/9
+2018-12-04 20:08:09	@korken89	Awesome!
+2018-12-04 20:09:22	~japaric	I think the chapter covers more than what was planned in #9
+2018-12-04 20:09:37	~japaric	so let's close #9
+2018-12-04 20:09:43	@jamesmunns	:+1:
+2018-12-04 20:09:46	@korken89	sgtm
+2018-12-04 20:10:23	~japaric	5 - debugonomicon; any updates there?
+2018-12-04 20:10:52	Hamilton2	May I jump in and ask japaric a couple of unrelated question to the meeting? :)
+2018-12-04 20:11:11	@therealprof	japaric: Not really IIRC.
+2018-12-04 20:11:28	~japaric	Hamilton2: could you wait until the meeting is over?
+2018-12-04 20:11:32	Hamilton2	ok :D
+2018-12-04 20:11:46	@korken89	Nothing new sadly, I have had little time since last meeting to work on it
+2018-12-04 20:12:16	@korken89	There are a lot of open issues if someone wants to take a stab as well, all help is welcome :)
+2018-12-04 20:12:44	@therealprof	Yeah, got plenty of ideas but had little time. Going to brighten up, though,
+2018-12-04 20:13:05	~japaric	korken89: perhaps the debugonomicon should be mentioned in the next newsletter
+2018-12-04 20:13:28	@korken89	This would be awesome, to help bring awareness and hopefully some extra contributions!
+2018-12-04 20:13:46	~japaric	+1
+2018-12-04 20:14:04	~japaric	korken89: there should be an issue for the next newsletter in the blog repo; you can comment over there
+2018-12-04 20:14:19	@korken89	+1, will put a comment there!
+2018-12-04 20:14:38	~japaric	moving on, issue 6 is the showcase site
+2018-12-04 20:15:01	@therealprof	\o/
+2018-12-04 20:15:07	~japaric	as mentioned last week a mockup was posted to https://github.com/rust-embedded/showcase/issues/2
+2018-12-04 20:15:39	@therealprof	Looks fantastic.
+2018-12-04 20:15:42	~japaric	there has mostly been positive feedback so I'm going to go ahead and set up CI to build the site
+2018-12-04 20:16:33	@korken89	Yeah, looks really good
+2018-12-04 20:17:01	~japaric	if someone wants to give me a hand with #3 (submission template) or #4 (grading rubric) that'd be awesome
+2018-12-04 20:18:12	~japaric	I think that's it for the leftover edition issues
+2018-12-04 20:18:42	~japaric	Rust 1.31 / 2018 edition should be out in 2 days
+2018-12-04 20:18:58	~japaric	we should update some of the book to recommend stable instead of beta by then
+2018-12-04 20:19:06	@korken89	\o/
+2018-12-04 20:19:07	 *	thejpster will be happy to not have start each workshop explaining how to `rustup install beta`
+2018-12-04 20:19:16	~japaric	:-)
+2018-12-04 20:19:48	~japaric	next issue is about the embedded webpage
+2018-12-04 20:20:00	~japaric	the new rust-lang.org was launched a few days ago: http://beta.rust-lang.org/what/embedded
+2018-12-04 20:20:02	@thejpster	I think we have some `extern crate` stanzas which aren't necessary. Or at least I wasn't sure they were neccessary, or that we did a good job of explaining why they were necessary. I'll follow up in the issue.
+2018-12-04 20:20:07	~japaric	err http://beta.rust-lang.org
+2018-12-04 20:20:53	@therealprof	Looks fantastic!
+2018-12-04 20:20:54	~japaric	thejpster: let's discuss that in the issue tracker (panic_handler crates are necessary; cortex-m-rt sometimes may be necessary)
+2018-12-04 20:21:22	~japaric	the embedded webpage is at http://beta.rust-lang.org/what/embedded
+2018-12-04 20:21:34	~japaric	we have the option of adding some code snippets to the page
+2018-12-04 20:21:51	~japaric	the CLI webpage has some code in it http://beta.rust-lang.org/what/cli
+2018-12-04 20:21:59	@korken89	The only thing I don't like is that the "Learn more" buttons do not align xD
+2018-12-04 20:22:36	~japaric	if you have suggestions about what snippets we should add, if any, please comment in https://github.com/rust-embedded/wg/issues/259
+2018-12-04 20:22:48	@jamesmunns	korken89: theres an issue open for that already :)
+2018-12-04 20:22:58	@jamesmunns	I did ask for it, but it was lower prio than content
+2018-12-04 20:23:03	@korken89	Awesome :D
+2018-12-04 20:23:07	@jamesmunns	And I don't know how CSS works.
+2018-12-04 20:23:14	@jamesmunns	:)
+2018-12-04 20:23:51	@ithinuel	((hello))
+2018-12-04 20:24:08	~japaric	ithinuel: hello
+2018-12-04 20:24:40	~japaric	re the snippets issue we should make a decision in like one or two weeks
+2018-12-04 20:24:58	~japaric	we can add the snippets before the year ends
+2018-12-04 20:26:03	~japaric	last item on the agenda: svd2rust
+2018-12-04 20:26:10	~japaric	there are a few things blocked on it
+2018-12-04 20:26:18	~japaric	on a new release of it**
+2018-12-04 20:26:36	@therealprof	Yeah. And CI is wonky again…
+2018-12-04 20:26:40	~japaric	jamesmunns: was there something you wanted to land before the release?
+2018-12-04 20:26:59	~japaric	we were going to postpone the Cargo features
+2018-12-04 20:27:05	@jamesmunns	japaric: I think the last decision was to "push" the cargo features
+2018-12-04 20:27:26	~japaric	therealprof: is it? got a link to failed build?
+2018-12-04 20:27:36	@jamesmunns	Yeah, I could strip out the other changes: making all targets generate code in the same way (some currently write to file, some write to stdout), and maybe the Cargo.toml generation
+2018-12-04 20:27:39	 *	therealprof is looking
+2018-12-04 20:27:46	@jamesmunns	But I don't know if anyone wants that by itself.
+2018-12-04 20:27:56	@jamesmunns	Let me know if you do, though.
+2018-12-04 20:28:32	~japaric	jamesmunns: it would be nice to make the code generation uniform
+2018-12-04 20:28:41	~japaric	do you have time to make a PR for that?
+2018-12-04 20:28:56	~japaric	otherwise I can a PR from #254, I think
+2018-12-04 20:29:03	@jamesmunns	I can do that this week, yeah. Maybe tonight or tomorrow
+2018-12-04 20:29:10	~japaric	jamesmunns: +1 thanks
+2018-12-04 20:29:24	~japaric	cr1901: around?
+2018-12-04 20:30:02	@therealprof	Weird. Is CI even running on svd2rust PRs at all?
+2018-12-04 20:30:15	@therealprof	https://github.com/rust-embedded/svd2rust/pull/263
+2018-12-04 20:30:16	~japaric	I have some local breaking changes for the msp430 codegen part of svd2rust that are required to make msp430-rt closer to cortex-m-rt v0.6.x
+2018-12-04 20:30:47	~japaric	if we don't want to block the v0.14.0 release on that we could disable the msp430 target for the v0.14.0 release
+2018-12-04 20:31:08	~japaric	and then enable it again with the required msp430-rt changes
+2018-12-04 20:31:21	~japaric	otherwise those changes would need to wait for v0.15.0
+2018-12-04 20:31:40	~japaric	thoughts?
+2018-12-04 20:32:30	~japaric	I can't land the msp430 stuff right now because it needs to be tested and I don't have a msp430 micro :-)
+2018-12-04 20:33:07	@therealprof	I'd prefer if we could unblock cortex-m-rt for now.
+2018-12-04 20:33:55	~japaric	oh yeah, definitively; I think we should release v0.14.0 asap
+2018-12-04 20:34:28	~japaric	the question is if we do what we proposed above for the msp430 or postpone the msp430-rt for v0.15.0
+2018-12-04 20:35:01	@therealprof	+1 for the latter
+2018-12-04 20:35:44	~japaric	ok, I'll check with cr1901; if we don't get an answer in time we postpone the msp430-rt for v0.15.0
+2018-12-04 20:36:18	~japaric	that covers all the items in the agenda
+2018-12-04 20:36:32	~japaric	anyone would like to discuss anything in particular?
+2018-12-04 20:37:17	Lumpio-	Anything anything?
+2018-12-04 20:37:30	@jamesmunns	Compiler fences are maddening.
+2018-12-04 20:37:34	@korken89	I have one thing, is anyone planning to go to embo++?
+2018-12-04 20:37:39	@jamesmunns	(or, trying to understand them)
+2018-12-04 20:37:51	@korken89	I talked to the organizers, they are looking for Rust talks in embedded
+2018-12-04 20:37:55	Lumpio-	stm32f103xx-hal (or at least some HAL) needs to be on crates.io!
+2018-12-04 20:37:57	~japaric	Lumpio-: anything that would benefit from being discussed during a meeting :-)
+2018-12-04 20:38:11	hannobraun	korken89: Me an Matthias Endler are planning to submit a proposal for a workshop.
+2018-12-04 20:38:42	hannobraun	I opened a GitHub issue a while back (I think you've seen it), but haven't heard about anything else.
+2018-12-04 20:38:47	@thejpster	korken89, I'm general unhappy about conferences that can't cover costs. It does limit speakers to those who are relatively well-off.
+2018-12-04 20:38:52	@jamesmunns	If anyone has feelings about when OxidizeConf should/shouldn't be, and aren't able to pre-purchase a ticket, feel free to DM/email me
+2018-12-04 20:39:11	@jamesmunns	(we also will be covering speaker costs)
+2018-12-04 20:39:24	@thejpster	jamesmunns, my boss wanted me to ping him a link to your conference. I think they're interested in supporting it.
+2018-12-04 20:39:26	@korken89	hannobraun: Perfect, I talked to the organizer and there should be no problems
+2018-12-04 20:39:27	Jacob_____	I wouldnt hold up svd2rust at all but Id like to see library/programmatic usage merged https://github.com/rust-embedded/svd2rust/pull/214
+2018-12-04 20:39:38	@korken89	thejpster: The ticket to the conference is covered
+2018-12-04 20:39:46	@korken89	However, not sure about the rest
+2018-12-04 20:40:15	@korken89	jamesmunns: That's really good
+2018-12-04 20:40:16	@jamesmunns	I would love to see you all there, at least for the Impl days, even if you have no interest in Talks/Workshops :)
+2018-12-04 20:40:22	~japaric	Jacob_____: I'll review your PR later today
+2018-12-04 20:40:41	@jamesmunns	thejpster: I'll send you a PM, but oxidize@ferrous-systems.com is the best place to reach out for sponsorship info
+2018-12-04 20:41:18	Jacob_____	@japaric I closed mine and Im aligned with tones111 older pr now. Though hes not exporting the build.rs which is something I can separately pr or whatever
+2018-12-04 20:41:31	hannobraun	jamesmunns: I'll be there if at all possible. Don't have anything non-optional in my calendar in April and May so far.
+2018-12-04 20:41:45	Jacob_____	I think this is covered in the conversation there just wanted to point out I am still interested in it
+2018-12-04 20:42:01	@korken89	jamesmunns: As long as it does not collide with embo++ I will most likely join :)
+2018-12-04 20:42:07	@jamesmunns	Jacob_____: I'll take a look at your PR too, and see if I can mesh my changes with what you have proposed
+2018-12-04 20:42:09	@therealprof	My calendar is already filling up for next year. If I can fit it in I'll be there.
+2018-12-04 20:42:30	@therealprof	Requires a date(ish) though…
+2018-12-04 20:42:31	@jamesmunns	Looks like embo++ is in March, so definitely shouldn't be a problem
+2018-12-04 20:43:03	@jamesmunns	Yup, still a WIP. hoping to have something concrete by end of year, hopefully before the 24th
+2018-12-04 20:43:12	@korken89	\o/
+2018-12-04 20:43:34	hannobraun	korken: Just do what I did and block out all of April and May in your calendar ;)
+2018-12-04 20:43:46	hannobraun	korken89, I mean
+2018-12-04 20:44:08	@korken89	:D
+2018-12-04 20:44:21	@korken89	I need to start saving money for all the travels ^^
+2018-12-04 20:45:34	 *	therealprof buys some time
+2018-12-04 20:47:09	~japaric	I'm sensing some radio silence so I think we can finish this meeting early today
+2018-12-04 20:47:30	@therealprof	Do we have a plan for svd2rust?
+2018-12-04 20:47:53	@therealprof	Anything we need to do when 2018 edition lands?
+2018-12-04 20:48:03	@thejpster	Party like it's ... 2018?
+2018-12-04 20:48:20	~japaric	therealprof: we can ship svd2rust after jamesmunns lands the PR cleaning up the file generation
+2018-12-04 20:48:30	@thejpster	Off topic - who wants to see Monotron do a directory listing from an SD card?
+2018-12-04 20:48:42	@jamesmunns	thejpster: I do, I do!
+2018-12-04 20:48:43	~japaric	therealprof: you can open some champagne when the 2018 edition is out ;-)
+2018-12-04 20:48:50	@therealprof	thejpster: Bring it on. :-D
+2018-12-04 20:48:53	@thejpster	https://twitter.com/therealjpster/status/1067892809473114112
+2018-12-04 20:49:16	@jamesmunns	oh, if resource team people are here, please check the github team chat
+2018-12-04 20:49:41	@therealprof	japaric: Champagne is checked but I meant do we need to immediately follow with some updates to website, org site, books, twitter?
+2018-12-04 20:49:48	@jamesmunns	https://github.com/orgs/rust-embedded/teams/resources/discussions/2
+2018-12-04 20:50:15	@jamesmunns	I am behind on newsletters, but let me know if anyone wants tweets
+2018-12-04 20:50:32	@jamesmunns	Or, let me know if you want access to the twitter account (must be a resources team member)
+2018-12-04 20:50:51	@therealprof	No time to learn how twitter works…
+2018-12-04 20:50:54	@therealprof	:-D
+2018-12-04 20:51:41	hannobraun	therealprof: Like most social media, it works best if you don't have an account and think very little about it.
+2018-12-04 20:52:04	@therealprof	hannobraun: That I can do. :-D
+2018-12-04 20:52:16	~japaric	therealprof: we can tweet the docs site when the edition is out and the embedded web page when the new r-l.o site is launched
+2018-12-04 20:52:22	hannobraun	therealprof: Always happy to help :)
+2018-12-04 20:52:51	@korken89	Is there an open issue for the next newsletter? I can't seem to find it
+2018-12-04 20:53:10	@jamesmunns	https://github.com/rust-embedded/blog/issues/22
+2018-12-04 20:53:13	@therealprof	japaric: The last few svd2rust PRs and updated didn't seem to get picked up by CI.
+2018-12-04 20:53:18	@jamesmunns	but uh... yeah, I'm a bit late.
+2018-12-04 20:53:44	@korken89	jamesmunns: Thanks!
+2018-12-04 20:55:49	~japaric	therealprof: also there will be a blog post about the 2018 edition on the Rust blog featuring the domain WGs, which I forgot to mention last week since I wasn't here ;-)
+2018-12-04 20:56:27	@jamesmunns	japaric: oh, did we need to approve anything about that? They pinged us to review the copy, but I don't think I ever responded
+2018-12-04 20:56:36	~japaric	jamesmunns and I provided the content
+2018-12-04 20:56:44	~japaric	jamesmunns: I reviewed the text
+2018-12-04 20:56:54	@jamesmunns	:+1: tyvm
+2018-12-04 20:57:37	@therealprof	Nice.
+2018-12-04 20:59:36	~japaric	that's it for this meeting; thanks everyone for attending; have a great week and see you next Tuesday!
