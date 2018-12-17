@@ -1,0 +1,213 @@
+2018-12-11 20:02:26	~japaric	ok, then let's start the meeting right away
+2018-12-11 20:02:39	~japaric	first a few reminders
+2018-12-11 20:02:43	~japaric	there's some PRs waiting for review
+2018-12-11 20:02:50	~japaric	T-resources: r? https://github.com/rust-embedded/showcase/pull/5
+2018-12-11 20:02:55	~japaric	T-tools: r? https://github.com/rust-embedded/cargo-binutils/pull/37
+2018-12-11 20:03:07	@therealprof	Sorry for being late.
+2018-12-11 20:03:10	~japaric	also, the infra team is setting up the team e-mails!
+2018-12-11 20:03:15	@therealprof	(and having to leave early)
+2018-12-11 20:03:29	~japaric	so please coordinate with your team and send the list of e-mails to the infra team
+2018-12-11 20:03:38	~japaric	more details at https://github.com/orgs/rust-embedded/teams/all/discussions/9
+2018-12-11 20:03:55	~japaric	adamgreig had an announcement about the stm32-rs org; want to do the announcement now or at the end?
+2018-12-11 20:04:02	@adamgreig	now is fine, thanks
+2018-12-11 20:04:04	@adamgreig	we have set up stm32-rs
+2018-12-11 20:04:12	~japaric	\o/
+2018-12-11 20:04:14	@adamgreig	to host various stm32 rust repos etc
+2018-12-11 20:04:17	ryankurte	awesome!
+2018-12-11 20:04:21	@adamgreig	if anyone is interested in beign involved please shout and i will invite you
+2018-12-11 20:04:21	@therealprof	\o/
+2018-12-11 20:04:28	@adamgreig	exact details of how the org will run etc are tbc
+2018-12-11 20:04:42	@adamgreig	for now we have a bunch of the stm32 hal crates and the stm32-rs device crate repo
+2018-12-11 20:04:51	@therealprof	Got a lot of stuff already and a lot more to more soon.
+2018-12-11 20:05:00	@therealprof	*come
+2018-12-11 20:05:04	~japaric	exciting!
+2018-12-11 20:05:10	@adamgreig	in related news stm32-rs 0.5 should be out soon with svd2rust 0.14 support
+2018-12-11 20:06:01	@jamesmunns	(I'm in a call so i'll be in and out, but nrf-rs 0.6 also released with 2018/0.14.0 :D )
+2018-12-11 20:06:16	~japaric	jamesmunns: awesome
+2018-12-11 20:06:20	@therealprof	adamgreig: With the f1 USB fixes? ;9
+2018-12-11 20:06:22	@therealprof	;)
+2018-12-11 20:06:31	@adamgreig	yea I'm going to try and get those and the other erported issues in first
+2018-12-11 20:06:41	~japaric	ok, I think that concludes the announcements and reminders section
+2018-12-11 20:06:46	@adamgreig	thanks
+2018-12-11 20:07:04	@therealprof	+1
+2018-12-11 20:07:14	~japaric	adamgreig: (might want to mention the stm32-rs org in the next newsletter)
+2018-12-11 20:07:30	~japaric	let's now triage the leftover edition items
+2018-12-11 20:07:33	@jamesmunns	japaric: he's added it, I hope to do a catch-up newsletter this week
+2018-12-11 20:07:45	~japaric	jamesmunns: +1
+2018-12-11 20:08:00	~japaric	svd2rust 0.14.0 has been released so I think issues 1 and 2 should now be unblocked
+2018-12-11 20:08:18	~japaric	iirc, issue 1 was about documenting #[interrupt]
+2018-12-11 20:08:22	~japaric	so I have created an issue
+2018-12-11 20:08:40	~japaric	https://github.com/rust-embedded/book/issues/98
+2018-12-11 20:08:58	~japaric	and I don't remember what the TODO was for issue 2
+2018-12-11 20:09:01	~japaric	examples?
+2018-12-11 20:09:16	@therealprof	Yeah.
+2018-12-11 20:09:23	@therealprof	Mind if I take #98?
+2018-12-11 20:09:37	~japaric	therealprof: sure, I already assigned it to you ;-)
+2018-12-11 20:09:43	@therealprof	Hah!
+2018-12-11 20:10:13	~japaric	I created an issue for the HAL examples https://github.com/rust-embedded/book/issues/99
+2018-12-11 20:10:39	@therealprof	Where would they go?
+2018-12-11 20:10:42	~japaric	jamesmunns: therealprof: if you can fill in what the examples should be about that'd be great
+2018-12-11 20:10:54	~japaric	fill in the issue**
+2018-12-11 20:11:05	~japaric	therealprof: "they" = HAL examples? or?
+2018-12-11 20:11:21	@therealprof	Do we want abstract or concrete examples?
+2018-12-11 20:12:04	@therealprof	Yes. they == HAL examples
+2018-12-11 20:12:34	~japaric	I think at some point we mentioned at least listing examples of PAC, HAL-impl crates, driver crates, i.e. names and links
+2018-12-11 20:12:46	~japaric	but I think we should also show some code using them
+2018-12-11 20:13:33	~japaric	re: where; they should go under the portability chapter https://rust-embedded.github.io/book/portability/index.html
+2018-12-11 20:14:06	@therealprof	Okay.
+2018-12-11 20:14:13	@therealprof	Will try to come up with something.
+2018-12-11 20:14:26	~japaric	therealprof: thanks!
+2018-12-11 20:15:34	~japaric	moving on, issues 3 and 4 are done
+2018-12-11 20:15:37	~japaric	I'll remove them
+2018-12-11 20:15:55	~japaric	ryankurte: any news regarding the debugonomicon?
+2018-12-11 20:16:15	ryankurte	no changes since last time I think
+2018-12-11 20:16:54	~japaric	ok, but there's plenty of help wanted issues
+2018-12-11 20:17:13	~japaric	hopefully the next newsletter will bring in some new contributors
+2018-12-11 20:18:09	~japaric	last issue is the showcase
+2018-12-11 20:18:16	~japaric	there's a PR up for review
+2018-12-11 20:19:00	~japaric	and two TODO issues before we can start taking project submissions
+2018-12-11 20:20:11	~japaric	not sure I will have the time for them this week though
+2018-12-11 20:20:46	~japaric	next item in the agenda is the code snippet for the embedded webpage
+2018-12-11 20:21:00	~japaric	there's been more suggestions since last week
+2018-12-11 20:21:13	~japaric	but I think they are too long
+2018-12-11 20:21:40	~japaric	the snippets on the other pages are a bit over 10 LoC
+2018-12-11 20:21:49	@therealprof	They could certainly be shortened, but I think it'll lose the message we're trying to convey.
+2018-12-11 20:22:04	@adamgreig	I am pro very short snippets
+2018-12-11 20:22:07	@adamgreig	we can link to longer examples
+2018-12-11 20:22:18	@adamgreig	but it looks bad on a nice webpage to have a full page height of code
+2018-12-11 20:22:21	@adamgreig	no one's going to read that
+2018-12-11 20:22:52	@adamgreig	a very short example that shows off some basic things, even if it omits some preamble and boilerplate, is better, I think
+2018-12-11 20:22:56	@therealprof	Yeah, but there's like at least 7 lines of boilerplate. And in three lines you're not going to get a lot done.
+2018-12-11 20:23:04	@adamgreig	so drop the boilerplate
+2018-12-11 20:23:10	@adamgreig	we don't need to see all the 'extern' and 'use' and etc
+2018-12-11 20:23:21	@therealprof	Then you don't have functional examples.
+2018-12-11 20:23:31	@adamgreig	fine
+2018-12-11 20:23:41	@adamgreig	you can't copy them into your text editor and click 'run' anyway, you need a cargo.toml and a memory.x and etc etc etc
+2018-12-11 20:23:57	@adamgreig	I'd rather there be a link to 'full example' or wahtever that has a full crate set up you can clone (a la stm32f4-demo)
+2018-12-11 20:23:59	@therealprof	I don't thing we should have snippets that are a good deal away from running.
+2018-12-11 20:24:04	@adamgreig	and the website snippet itself just highlights the interesting points
+2018-12-11 20:24:19	@thejpster	adamgreig: Yes, this.
+2018-12-11 20:24:21	@adamgreig	I think the point we want to make is 'check out these really nice things in embedded rust'
+2018-12-11 20:24:29	@adamgreig	rather than 'here's a long piece of code that you must dig through to find the golden nuggets'
+2018-12-11 20:24:37	@therealprof	Sure.
+2018-12-11 20:24:54	@adamgreig	I'm less sure what those nice things are though - static variables in a function scope are not going to blow a c programmer's mind
+2018-12-11 20:24:59	@adamgreig	that's just regular c
+2018-12-11 20:25:12	@therealprof	I think the abstractions are incredibly nice.
+2018-12-11 20:25:12	@adamgreig	likewise interrupt handlers in c are just functions with the right name, so again it's not a surprise (much as it's nice for us)
+2018-12-11 20:25:36	@adamgreig	yes I wonder if we want to just show off a hal or what
+2018-12-11 20:25:47	@therealprof	Not sure how to convey the safety and stuff.
+2018-12-11 20:25:56	@therealprof	Especially if we dumb it all down.
+2018-12-11 20:26:01	@adamgreig	some of that just has to be in prose I guess
+2018-12-11 20:26:03	ryankurte	i think the hal is a huge advantage / worth showing off
+2018-12-11 20:26:19	ryankurte	oh right, _just_, soz
+2018-12-11 20:26:22	@therealprof	If I were new to Rust I wouldn't be excited about basic register banging.
+2018-12-11 20:26:48	~japaric	how about a short example of creating a driver that shows move semantics?
+2018-12-11 20:27:00	@adamgreig	that could be cool
+2018-12-11 20:27:05	@therealprof	Not sure what you mean.
+2018-12-11 20:27:08	@adamgreig	I like the idea of a snippet that is short and shows off one neat thing well
+2018-12-11 20:27:12	ryankurte	creating = wiring up?
+2018-12-11 20:27:14	@therealprof	And I'm afraid I have to go. ;)
+2018-12-11 20:27:16	@adamgreig	even if it doesn't show off every nice thing in the infrastructure
+2018-12-11 20:27:30	~japaric	as in https://gist.github.com/japaric/34040a0be72cb3e67885253864295efb
+2018-12-11 20:27:34	@therealprof	bye everyone…
+2018-12-11 20:27:40	@adamgreig	seeya
+2018-12-11 20:27:45	ryankurte	byeee
+2018-12-11 20:27:53	hannobraun	bye
+2018-12-11 20:28:08	ryankurte	japaric: something like that seems good to me
+2018-12-11 20:28:15	@adamgreig	hmm
+2018-12-11 20:28:30	@adamgreig	sort of that but I'd want it to be clearer that nss is sort of a singleton
+2018-12-11 20:28:43	@adamgreig	like, show that you can get the pin objects _once_, and then _move_ them
+2018-12-11 20:28:48	@adamgreig	so you just can't write code that uses pins it shouldn't already own
+2018-12-11 20:28:49	ryankurte	especially if it can head off / explain some of the move semantic battles that anyone new to rust (or maybe anyone using rust ime) will have
+2018-12-11 20:29:01	@adamgreig	haha yes
+2018-12-11 20:29:06	@adamgreig	definitely not just people new to rust :p
+2018-12-11 20:29:22	@adamgreig	love moving pins back into my higher-scoped variables i just moved out of to return them to the previous type for the next iteration of my loop or wahtever
+2018-12-11 20:29:28	ryankurte	i swear some days i look forward to writing c
+2018-12-11 20:29:42	@adamgreig	only a fleeting feeling hopefully :p
+2018-12-11 20:29:47	~japaric	we are at the half hour mark
+2018-12-11 20:29:57	~japaric	let's continue the discussion of the snippets in the issue
+2018-12-11 20:30:05	ryankurte	+1
+2018-12-11 20:30:07	@adamgreig	+1
+2018-12-11 20:30:13	~japaric	but let's try to make a decision by next week
+2018-12-11 20:31:26	~japaric	ok, let's move to the next item on the agenda
+2018-12-11 20:31:34	~japaric	2019 roadmap planning
+2018-12-11 20:32:11	~japaric	here's the list of requests from the 2019 wishlist survey: https://docs.google.com/spreadsheets/d/1HfVfSDTVD3Ao45_St1KkUyBe6M0vP6HjA2T-Xrc-E1Q/edit#gid=0
+2018-12-11 20:32:25	~japaric	I noticed that most of them are actually stuff that needs to happen in one of the rust-lang/* repos
+2018-12-11 20:32:42	~japaric	so we should try to prioritize those requests
+2018-12-11 20:32:52	~japaric	I'm not sure all of them can be done in one year
+2018-12-11 20:33:12	@adamgreig	definitely a big variation in how much work they are too
+2018-12-11 20:33:46	~japaric	I think that at the very least we should identify "must be done in 2019" requests
+2018-12-11 20:34:09	@adamgreig	and make that the list of things to work on in 2019?
+2018-12-11 20:34:44	~japaric	not necessarily
+2018-12-11 20:35:07	~japaric	we should bring a list of prioritized requests to the rust teams during the all hands and then we can discuss what can be done in the span of a year
+2018-12-11 20:35:35	@adamgreig	ok
+2018-12-11 20:36:59	~japaric	any suggestion for how to prioritize the items on the list?
+2018-12-11 20:37:12	~japaric	one metric is the number of upvotes in the thread
+2018-12-11 20:37:38	@adamgreig	that's not a bad starting point
+2018-12-11 20:37:45	@thejpster	What resources do we have to commit? I mean, an issue someone cares about and will actually do is more likely to get done than one that we all love, but no-one wants to do.
+2018-12-11 20:37:46	@adamgreig	I worry we could spend an hour just bikeshedding priorities
+2018-12-11 20:38:07	@thejpster	I mean, I'm doing #9 already.
+2018-12-11 20:38:25	@adamgreig	whereas I'm sure we might enjoy 7 but no one is volunteering :p
+2018-12-11 20:38:30	@adamgreig	uh, 18
+2018-12-11 20:38:38	@adamgreig	7 is fine :p
+2018-12-11 20:39:29	@adamgreig	gosh, it really is mostly rust-lang issues
+2018-12-11 20:39:51	~japaric	I meant prioritization of stuff that needs to happen in rust-lang/*
+2018-12-11 20:40:21	@adamgreig	can't think of any way that's materially better than votes from the issue
+2018-12-11 20:40:43	@adamgreig	we could have votes from wg members or discuss each one a bit to see if any are silly or whatever but for most of them I just don't know how much work would be involved or who would do it etc
+2018-12-11 20:41:10	@adamgreig	japaric: fwiw I think the filtered view doesn't sort the Who column
+2018-12-11 20:41:28	@thejpster	I gotta run. I'll catch up in 40 minutes when I get home.
+2018-12-11 20:42:02	~japaric	adamgreig: it should now
+2018-12-11 20:42:09	@adamgreig	thanks
+2018-12-11 20:42:16	@adamgreig	other issue with votes is the earlier issues have more votes
+2018-12-11 20:42:30	@adamgreig	there's not really an overriding theme here either
+2018-12-11 20:42:34	@adamgreig	just a sort of grab bag of things we'd like
+2018-12-11 20:43:12	~japaric	in any case, we won't know how much work is needed or who has to do the work until we talk with the rust teams at the all hands so I think we should prioritize on perceived impact rather than on amount of work required
+2018-12-11 20:43:16	@adamgreig	for rust-lang do we maybe pick like 10 top issues, vaguely by votes but editorialised by us or something, and put them forward at the all hands?
+2018-12-11 20:43:24	@adamgreig	makes sense
+2018-12-11 20:44:10	~japaric	adamgreig: seems like a good starting point
+2018-12-11 20:44:24	~japaric	let's continue this discussion on a GH issue
+2018-12-11 20:44:27	@adamgreig	ok
+2018-12-11 20:44:31	~japaric	so other members can comment
+2018-12-11 20:44:47	~japaric	adamgreig: could I ask you to make an issue for it?
+2018-12-11 20:44:55	@adamgreig	sure
+2018-12-11 20:44:59	~japaric	adamgreig: thanks!
+2018-12-11 20:45:33	~japaric	next item is per team roadmap
+2018-12-11 20:46:16	~japaric	so apart from the rust-lang/* requests I think each team should make a roadmap or rather a list of things they want to get done this year
+2018-12-11 20:46:55	~japaric	the roadmap should take into account the wishlist survery; though there's not much for teams other than resources and the hypothetical libs team
+2018-12-11 20:47:41	@adamgreig	yea, I guess the things for other teams are usually less visible
+2018-12-11 20:47:53	@adamgreig	or are just good ideas that pop into your head and you implement in c-m-rt, japaric :p
+2018-12-11 20:48:11	~japaric	:-)
+2018-12-11 20:48:13	@adamgreig	an issue per-team to collate roadmaps?
+2018-12-11 20:48:31	~japaric	yes, I think we should do that
+2018-12-11 20:48:45	~japaric	the roadamp should include planned work for the repos under the team
+2018-12-11 20:49:02	~japaric	and leftover edition issues where applicable
+2018-12-11 20:49:09	~japaric	e.g. core::arch::arm for the cortex-m team
+2018-12-11 20:49:47	@adamgreig	yes, there's a bunch of c-m things we took shortcutes on for stable release that we can hopefully revisit or tidy up
+2018-12-11 20:50:01	@adamgreig	like the prebuilt object files and the code optimisation for bss and so forth
+2018-12-11 20:50:40	~japaric	yep, so I think we should start with brainstorming a list of things we could work on
+2018-12-11 20:50:51	@adamgreig	can I put the 2019 wishlist spreadsheet link on the gh issue?
+2018-12-11 20:50:52	~japaric	then we can make a decision and / or prioritize
+2018-12-11 20:51:16	~japaric	adamgreig: yes, that ok
+2018-12-11 20:51:28	~japaric	the link is view-only
+2018-12-11 20:52:43	~japaric	let's make one issue per team to start discussing the roadmap
+2018-12-11 20:53:09	@adamgreig	ok
+2018-12-11 20:53:13	@adamgreig	I'll make a cortex-m and resources issue
+2018-12-11 20:53:25	~japaric	adamgreig: thanks!
+2018-12-11 20:53:25	@adamgreig	or all of them, whatever
+2018-12-11 20:53:30	~japaric	adamgreig: <3
+2018-12-11 20:54:17	~japaric	last item on the agenda: end of year break
+2018-12-11 20:54:40	~japaric	I propose we skip the meetings on Dec 25 and Jan 1
+2018-12-11 20:54:45	@adamgreig	+1
+2018-12-11 20:54:51	@adamgreig	I'll also be away next week
+2018-12-11 20:54:58	~japaric	so next meeting would be the last on of the year; we meet next time on Jan 8
+2018-12-11 20:55:13	hannobraun	+1, wouldn't have made it anyway
+2018-12-11 20:55:26	ryankurte	+1
+2018-12-11 20:55:56	~japaric	I'll mention this break again during the next meeting
+2018-12-11 20:56:04	~japaric	5 mins left; anything else you'd like to share?
+2018-12-11 20:57:05	ryankurte	There are a couple of new issues on embedded-hal I'm not really sure how to respond to, might be worth a look by y'all
+2018-12-11 20:57:40	ryankurte	I closed one just before as off-topic / directed them to the right place.
+2018-12-11 20:57:59	hannobraun	I've seen them. Didn't respond either. Kinda would have taken more spare cycles than I have right now.
+2018-12-11 20:58:21	ryankurte	yeah fair, i can politely respond and close just didn't want to overstep.
+2018-12-11 20:59:07	hannobraun	Well, my opinion is, if you're handling it and noone else is, you're not overstepping :)
+2018-12-11 20:59:54	ryankurte	cool cool cool
+2018-12-11 21:01:30	~japaric	:bell: the meeting is officially over. Thanks everyone for attending! Have a great week and see some of you next week
