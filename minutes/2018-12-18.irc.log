@@ -1,0 +1,218 @@
+2018-12-18 20:01:14	~japaric	meeting agenda: https://paper.dropbox.com/doc/Embedded-WG--AT~Rz_eRWa6PXjtabkNBsfQxAg-5pdv734N8KpxHFMJijuoL
+2018-12-18 20:02:20	@jamesmunns	yo!
+2018-12-18 20:03:31	~japaric	ok, let's start this meeting
+2018-12-18 20:03:41	~japaric	first some announcement and reminders
+2018-12-18 20:03:58	~japaric	there will *not* be a meeting next week or the week after; next meeting is on January 8
+2018-12-18 20:04:41	~japaric	there's a bunch of new discussion on the GH issue tracker; they are listed on the dropbox paper
+2018-12-18 20:05:06	~japaric	so if you feel like doing WG stuff during the end of year break comment on those
+2018-12-18 20:05:52	~japaric	korken89: you wanted to get some input on #281; want to cover that now or at the end?
+2018-12-18 20:06:31	@korken89	Maybe at the end? I'm getting my notes on it
+2018-12-18 20:06:37	~japaric	korken89: sure
+2018-12-18 20:06:41	@korken89	Thanks
+2018-12-18 20:07:01	@theJPster	sorry I'm late
+2018-12-18 20:07:05	~japaric	theJPster: o/
+2018-12-18 20:07:47	~japaric	next up: leftover 2018 issues
+2018-12-18 20:07:58	~japaric	therealprof: I saw a pr for the #[interrupt] stuff. :+1:
+2018-12-18 20:08:26	@therealprof	Yes. Was able to rework a number of crates, too.
+2018-12-18 20:08:28	@korken89	It was a great start, only had some minor comments on it :)
+2018-12-18 20:09:01	@therealprof	korken89: That's a nice way of saying you didn't like japarics text copied from the exceptions section. :-D
+2018-12-18 20:09:08	@korken89	Hehe
+2018-12-18 20:09:09	@korken89	Shhh
+2018-12-18 20:09:50	@korken89	I have as an aim over a few evenings to make a full reread of the book
+2018-12-18 20:09:50	~japaric	:-)
+2018-12-18 20:10:18	@korken89	I think it is time to start looking at the whole a bit, starting to become a lot :)
+2018-12-18 20:10:33	~japaric	korken89: I agree
+2018-12-18 20:10:39	@jamesmunns	+1!
+2018-12-18 20:10:41	~japaric	I should give it a re-read too
+2018-12-18 20:11:11	~japaric	I think there are no other updates on the 2018 leftovers
+2018-12-18 20:11:30	~japaric	jamesmunns: how's the book in rust-lang/rust PR doing?
+2018-12-18 20:12:05	@jamesmunns	No progress from last week, current status is that I have multiple mdbook versions coexisting happily, but the print.html renders bad relative links
+2018-12-18 20:12:06	~japaric	iirc, I saw something interesting Cargo.toml hacks
+2018-12-18 20:12:22	@jamesmunns	in the embedded repo, we ignore print.html in the linkchecker
+2018-12-18 20:12:42	@jamesmunns	however they would like things to be right for the upstream docs
+2018-12-18 20:12:52	@jamesmunns	so I need to do one of the following:
+2018-12-18 20:13:04	@jamesmunns	1. find a new way to use links in the embedded book
+2018-12-18 20:13:17	@jamesmunns	2. teach mdbook the right way to render relative links in the print page
+2018-12-18 20:13:34	@jamesmunns	3. customize the build step to post-process the print.html file to correct things
+2018-12-18 20:14:02	@jamesmunns	Very open to other options, I plan to dig into the mdbook source a bit to see if I can fix-fix it, otherwise will probably go with 1 or 3.
+2018-12-18 20:14:28	~japaric	wasn't the problem in mdbook, itself? I think there was an issue about it (print.html)
+2018-12-18 20:14:41	 *	cr1901 is here in the background
+2018-12-18 20:14:44	@jamesmunns	the Cargo.toml hacks were interesting :) I didn't realize you could use the dependency rename feature to include two versions of the same crate in one project :D
+2018-12-18 20:14:44	cr1901	whoops
+2018-12-18 20:15:06	@jamesmunns	the problem is in mdbook.
+2018-12-18 20:15:19	@korken89	Sorry for not quite following, does different parts of the book need different versions of mdbook?
+2018-12-18 20:15:20	@jamesmunns	option 1 is a workaround
+2018-12-18 20:15:31	@therealprof	japaric: Speaking about the book, I noticed that there's some rendered crate docs stores somewhere.
+2018-12-18 20:15:36	@jamesmunns	korken89: the other rust books rely on behavior in mdbook 0.1.x
+2018-12-18 20:15:47	@jamesmunns	while the embedded book relies on behavior in mdbook 0.2.x
+2018-12-18 20:15:56	@therealprof	The interrupt section links to that but it's too old to use for the #[exception] attribute.
+2018-12-18 20:16:08	@korken89	Ah okey, thanks
+2018-12-18 20:16:09	@jamesmunns	so, my PR makes both of them exist, and you can set which version to use for each book
+2018-12-18 20:16:15	@therealprof	Is there any reason we don't link to docs.rs?
+2018-12-18 20:16:20	@jamesmunns	because updating all the other books would be a pretty big change
+2018-12-18 20:16:44	@jamesmunns	PR changes, if anyone is interested: https://github.com/rust-lang/rust/pull/56291/files
+2018-12-18 20:16:50	@jamesmunns	you can see my Cargo.toml hackery :D
+2018-12-18 20:17:54	~japaric	therealprof: you mean there are links to rust-embedded.github.io that could instead point to docs.rs?
+2018-12-18 20:17:57	@jamesmunns	I've been pulled off focusing on some (sadly non-embedded) work stuff, hoping again to get this worked on this week
+2018-12-18 20:18:03	@therealprof	Yes.
+2018-12-18 20:18:45	~japaric	docs.rs was kind of broken when we were working on the book so that may have been the reason; we should use docs.rs now that it has more maintainers
+2018-12-18 20:19:39	~japaric	therealprof: want to make an issue about updating the links? or you could directly make a pr if there aren't too many links
+2018-12-18 20:19:55	@therealprof	japaric: Will do.
+2018-12-18 20:20:00	~japaric	therealprof: thanks
+2018-12-18 20:20:26	~japaric	jamesmunns: thanks for the update on the book pr
+2018-12-18 20:20:44	~japaric	let's move onto the next issue: code snippets on the embedded webpage
+2018-12-18 20:21:35	~japaric	I think there's agreement for using short snippets that may not compile out of the box
+2018-12-18 20:21:49	@jamesmunns	+1
+2018-12-18 20:21:51	cr1901	+1
+2018-12-18 20:21:52	~japaric	but there's still no consensus on what to highlight
+2018-12-18 20:21:55	@jamesmunns	happy with "real-ish"
+2018-12-18 20:22:01	~japaric	the issue: https://github.com/rust-embedded/wg/issues/259
+2018-12-18 20:22:12	@korken89	+1
+2018-12-18 20:22:32	~japaric	the short examples are https://github.com/rust-embedded/wg/issues/259#issuecomment-446315435 (LED & exception)
+2018-12-18 20:22:42	~japaric	and https://github.com/rust-embedded/wg/issues/259#issuecomment-446331189 (HAL & move semantics)
+2018-12-18 20:23:22	@jamesmunns	something like the main body of https://github.com/rust-embedded/wg/issues/259#issuecomment-445155459 looks good to me
+2018-12-18 20:23:28	@theJPster	I like the HAL/move semantics one. I think it's best to avoid interrupts, as doing it right is complicated.
+2018-12-18 20:24:14	@jamesmunns	For a first visit, I don't think we have to focus on teaching
+2018-12-18 20:24:19	@theJPster	the snippet jamesmunns mentions is also good.
+2018-12-18 20:24:24	@jamesmunns	Just showing them what it looks like, and not scaring them off
+2018-12-18 20:24:35	@jamesmunns	I think it would be cool to have a "guided tour" section of the book
+2018-12-18 20:25:02	@jamesmunns	Where we have a bunch of snippets like this, which introduce the syntax, and how to handle stuff like interrupts or ownership
+2018-12-18 20:25:12	@jamesmunns	I guess that's really just all the examples in the book already
+2018-12-18 20:25:22	~japaric	"embedded Rust by example"?
+2018-12-18 20:25:28	@jamesmunns	yeah, pretty much that
+2018-12-18 20:25:44	@jamesmunns	Far be it from me to suggest another book :D
+2018-12-18 20:25:46	@therealprof	Getting tons of getting started questions from new contributors at the moment. Will try to extract some FAQ and general guidance out of that.
+2018-12-18 20:26:01	@jamesmunns	therealprof: awesome, from the stm-rs repos?
+2018-12-18 20:26:08	@therealprof	Yeah.
+2018-12-18 20:26:49	@therealprof	Folks are actually requesting another discovery like book but on a more entry level.
+2018-12-18 20:26:51	@theJPster	The feedback I had from my embedded training was that the HAL crate docs where great for telling you what stuff did, but useless for helping you work out which function you need on which object.
+2018-12-18 20:26:54	@korken89	Ah, I have not kept up to date with stm-rs - need to take a look at that
+2018-12-18 20:27:04	@therealprof	theJPster: Yeah, that.
+2018-12-18 20:27:45	@theJPster	Going from "set this GPIO pin high" to working out you need to call split, then into_push_pull, and then set_high (which is defined in another crate entirely).
+2018-12-18 20:28:00	@jamesmunns	therealprof: like the embeddonomicon?
+2018-12-18 20:28:03	~japaric	therealprof: I think it may be best to open an issue in /hal and have the hal team comment on it
+2018-12-18 20:28:11	~japaric	(re common questions)
+2018-12-18 20:29:18	~japaric	oops, I think we went too off topic
+2018-12-18 20:29:31	@therealprof	No worries, I'm trying to channel the momentum into appropriate lanes. :-D
+2018-12-18 20:30:12	~japaric	should we go ahead and use therealprof's led snippet?
+2018-12-18 20:30:25	@therealprof	I have a question about doctests whenever people feel like it.
+2018-12-18 20:30:26	~japaric	(just the main function probably)
+2018-12-18 20:30:44	@korken89	Blink a led is a must :)
+2018-12-18 20:31:09	@therealprof	Oh, there's an updated version of the LED blink with the delay function using toggle, it's a few lines shorter. ;)
+2018-12-18 20:31:39	@therealprof	(and compiles to a vastly smaller binary, too, for reasons unknown)
+2018-12-18 20:31:52	@korken89	Isn't toggle unsafe?
+2018-12-18 20:32:05	Lumpio-	Eh, what's an example without some unsafe code
+2018-12-18 20:32:49	@therealprof	korken89: Unsafe?
+2018-12-18 20:33:05	~japaric	therealprof: could you slim down the example to around 10 lines and post in the GH issue?
+2018-12-18 20:33:12	@korken89	Read-modify-write combination is not exception safe without interrupt::free
+2018-12-18 20:33:37	~japaric	I think we are happy with the blinky example; what should be the other snippet about?
+2018-12-18 20:33:48	@korken89	Just thinking if it's an issue, else I'm not against using toggle
+2018-12-18 20:33:57	@therealprof	japaric: Will do.
+2018-12-18 20:34:01	@korken89	Simple snippets are important
+2018-12-18 20:34:43	~japaric	therealprof: thanks
+2018-12-18 20:34:45	@therealprof	korken89: Depends on the implementation if it's "unsafe" or not.
+2018-12-18 20:35:24	~japaric	should the other snippet be about a hal driver? saying in a comment that we didn't write the driver; just the hal implementation or something like that
+2018-12-18 20:35:49	@korken89	therealprof: Indeed, just putting the thought out there
+2018-12-18 20:35:51	@jamesmunns	I've been using the DigitalOutput trait as an example in lots of places
+2018-12-18 20:36:19	@jamesmunns	Might tie into the demo, and act as a conversation piece towards what is possible with embedded hal abstractions?
+2018-12-18 20:36:43	@jamesmunns	s/demo/other example/
+2018-12-18 20:37:53	~japaric	jamesmunns: but there are no drivers (afaik) that only use DigitalOutput; what should the other example highlight?
+2018-12-18 20:38:04	@jamesmunns	Maybe https://github.com/rust-embedded/embedded-hal/blob/master/src/digital/v2.rs#L3-L19 - with slightly reduced/modified comments?
+2018-12-18 20:38:05	@therealprof	jamesmunns: Which kind of driver did you have in mind?
+2018-12-18 20:38:22	@jamesmunns	Sorry, I was proposing not having a driver as the other example
+2018-12-18 20:38:24	@therealprof	japaric: Hm? There're a few.
+2018-12-18 20:38:32	@jamesmunns	instead just the trait definition
+2018-12-18 20:38:41	@jamesmunns	to keep it silly-simple for the first introl
+2018-12-18 20:38:54	@jamesmunns	So the focus is less on the syntax of rust (though it shows that a little)
+2018-12-18 20:39:11	@jamesmunns	and more on what you can do with rust (write non-implementation-specific drivers)
+2018-12-18 20:40:53	@therealprof	jamesmunns: Hm, I'd have to sleep over it. I have plenty of ideas but nothing that I think would fit in that format.
+2018-12-18 20:42:26	~japaric	jamesmunns: I see what you mean but I don't think that DigitalOutput is a particularly good example -- something like I2C or SPI may make the idea easier to grasp, IMO
+2018-12-18 20:42:45	@jamesmunns	Open to that as well, as long as the trait bounds don't get too verbose
+2018-12-18 20:42:49	@therealprof	I agree.
+2018-12-18 20:42:56	ryankurte	+1
+2018-12-18 20:43:23	@jamesmunns	Oh sorry, it's usually the driver implementor that has crazy trait/generic items
+2018-12-18 20:43:33	~japaric	jamesmunns: could you post your idea on the GH issue? let's discuss it online
+2018-12-18 20:43:42	@jamesmunns	sounds good :)
+2018-12-18 20:44:02	@jamesmunns	https://ferrous-systems.github.io/rustconf-james-2018/#/61 is an example I've used that makes a lot of sense if you're familiar with Rust, but less if generics and traits are new to you
+2018-12-18 20:44:23	~japaric	next item on the agenda: 2019 roadmap
+2018-12-18 20:45:12	~japaric	just wanted to point out that there's an issue for prioritizing rust-lang/rust requests
+2018-12-18 20:45:20	~japaric	namely https://github.com/rust-embedded/wg/issues/269
+2018-12-18 20:45:24	@theJPster	what do you want us to do with that issue?
+2018-12-18 20:46:42	~japaric	if you have thoughts on how to prioritize the items you can comment there
+2018-12-18 20:47:40	~japaric	if someone can post the top voted items on the issue we can discuss there if you agree with the community perceived importance
+2018-12-18 20:47:45	@theJPster	Ah, it sounded like you wanted us to actually prioritise them in the comments somehow, and I wasn't sure what I was expected to say.
+2018-12-18 20:48:11	~japaric	and if there's something that's not in the top 10 items but you think it's important then you can also comment over there
+2018-12-18 20:50:30	~japaric	there's also one planning issue for each team; let's discuss the roadmap online and then try to summarize it by the next meeting (Jan 8)
+2018-12-18 20:51:04	~japaric	korken89: I think now it's a good time for the issue that you wanted input on
+2018-12-18 20:51:15	@korken89	Right
+2018-12-18 20:51:24	~japaric	(before we run out of time :P)
+2018-12-18 20:51:29	@korken89	If people have read it, most ideas are in
+2018-12-18 20:51:55	~japaric	issue in question is https://github.com/rust-embedded/wg/issues/281
+2018-12-18 20:52:01	@korken89	Since I come from the heavy metaprogramming of C++, and the embedded C++ community is heavily based there
+2018-12-18 20:52:15	@korken89	A lot don't like it as well, but do not see any alternative
+2018-12-18 20:52:28	@korken89	So I'd like to give them a talk to show that Rust can compete there
+2018-12-18 20:52:54	@jamesmunns	my macro/proc macro game is weak, but I am working on it :D
+2018-12-18 20:52:58	@korken89	But I am no expert on proc-macros
+2018-12-18 20:53:16	@korken89	I have learned enough to get attributes and derives
+2018-12-18 20:53:23	@korken89	But free syntax proc macros are a beast
+2018-12-18 20:53:25	~japaric	I don't know what C++ people use metaprogramming for
+2018-12-18 20:53:39	@korken89	I wrote all of RTFM in metaprogramming :)
+2018-12-18 20:53:48	@therealprof	You don't want to know. :-p
+2018-12-18 20:53:52	@jamesmunns	neither do I, especially in embedded use cases
+2018-12-18 20:54:05	@korken89	kvasir::register is a really good example
+2018-12-18 20:54:12	@korken89	How to optimize volatile register read/writes
+2018-12-18 20:54:16	@korken89	Safely
+2018-12-18 20:54:24	@korken89	boost::sml
+2018-12-18 20:54:32	@korken89	How to write statemachines using UML syntax
+2018-12-18 20:54:38	@korken89	With compile time error checking
+2018-12-18 20:54:54	@korken89	There is a lot in the library space :)
+2018-12-18 20:55:04	@korken89	The magic in the background
+2018-12-18 20:55:09	@korken89	Buut
+2018-12-18 20:55:33	@korken89	What I'm looking for is someone with a bit more proc-macro experience to talk with
+2018-12-18 20:55:39	@jamesmunns	Maybe focus on the cool stuff you can do with Spans to give better error messages when the macro doesn't like the input?
+2018-12-18 20:56:06	@korken89	Exactly
+2018-12-18 20:56:10	@jamesmunns	Might not be a whole talk, but might go on the list
+2018-12-18 20:56:14	@korken89	Indeed
+2018-12-18 20:56:26	@korken89	Especially to show that the code generated is very good as well
+2018-12-18 20:56:39	@korken89	One of the major usecases it to make DSLs in C++
+2018-12-18 20:56:51	@korken89	To give optimize what the optimizer can't understand
+2018-12-18 20:57:10	@korken89	/give/
+2018-12-18 20:57:39	@korken89	So if people that have worked with some proc macros have some good examples as well, please put a comment on it
+2018-12-18 20:57:49	@korken89	I can convert Rust code to metaprogramming as well
+2018-12-18 20:57:54	@korken89	To have comparisons
+2018-12-18 20:58:00	@jamesmunns	I'm a more C kind of background person, you're making me think of stuff like Xmacros in C
+2018-12-18 20:58:10	@korken89	Hehe
+2018-12-18 20:58:18	~japaric	I can't think of any proc-macro that aims for optimization; they usually aim for boilerplate reduction
+2018-12-18 20:58:18	@therealprof	I've come to start hating proc macros.
+2018-12-18 20:58:19	@jamesmunns	https://en.wikipedia.org/wiki/X_Macro
+2018-12-18 20:58:29	@korken89	Well, metaprogramming is used to give type-safe macros in a way :)
+2018-12-18 20:58:48	@jamesmunns	honestly, my best advice is to put out a nerd-snipe on twitter
+2018-12-18 20:59:07	@jamesmunns	just ask for the most insane use of proc macros for what you would use for C++
+2018-12-18 20:59:17	@korken89	In @rustlang?
+2018-12-18 20:59:28	@jamesmunns	there are probably a lot of servo/firefox developers out there who have horror stories to tell
+2018-12-18 20:59:33	@therealprof	I'd rather focus on what kind of metaprogramming one can do with traits and without relying on macros.
+2018-12-18 20:59:43	@jamesmunns	yeah, tag @rustlang, hope they retweet it :D
+2018-12-18 20:59:52	@korken89	Indeed, try to do static polymorphism in C++
+2018-12-18 20:59:58	@korken89	Enjoy the nightmare
+2018-12-18 20:59:59	@korken89	:D
+2018-12-18 21:00:13	@jamesmunns	I'll ask a contact of mine with more C++ experience, he might have some ideas
+2018-12-18 21:00:21	@korken89	Awesome, thanks!
+2018-12-18 21:00:38	@korken89	I will start putting some small ideas in the issue as well
+2018-12-18 21:00:48	@korken89	I am traveling like crazy now, so a lot of time on planes :)
+2018-12-18 21:00:52	@jamesmunns	Also, I may end up at embo++
+2018-12-18 21:00:56	Douman	traits are good when everything made with traits and not like svd generated bindings with tons of structs without traits
+2018-12-18 21:01:02	@korken89	jamesmunns: Yaaay
+2018-12-18 21:01:38	@korken89	But yeah
+2018-12-18 21:01:46	@korken89	I think I have rambled enough
+2018-12-18 21:02:08	@korken89	I simply want to give a broader view to the embedded C++ community
+2018-12-18 21:02:12	@jamesmunns	+1
+2018-12-18 21:02:13	@korken89	I come from there and don
+2018-12-18 21:02:20	@korken89	't think I can go back now :P
+2018-12-18 21:02:57	@korken89	So any ideas -> issue, that will be all :)
+2018-12-18 21:03:01	@jamesmunns	I feel totally the same about C :)
+2018-12-18 21:03:08	~japaric	korken89: thanks
+2018-12-18 21:03:25	@korken89	:)
+2018-12-18 21:03:49	@korken89	Also I hope that if the talk is ok, I can improve and resend it a bit as well to spread the word a bit more
+2018-12-18 21:03:58	@therealprof	Quick question: Are there any working examples of embedded crates successfully using doc tests?
+2018-12-18 21:04:07	@korken89	(quite common in the C++ community)
+2018-12-18 21:04:29	~japaric	and with that the last weekly meeting of the year is over. Everyone, have great holidays and see you in three weeks
