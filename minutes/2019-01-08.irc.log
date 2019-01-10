@@ -1,0 +1,266 @@
+2019-01-08 20:06:59	~japaric	I hope y'all had a nice long break from meetings / holidays; let's start this meeting
+2019-01-08 20:07:57	~japaric	first a reminder to check even now and then if there are PRs waiting on review: https://github.com/search?q=org%3Arust-embedded+is%3Apr+is%3Aopen+label%3As-waiting-on-review
+2019-01-08 20:08:13	~japaric	then another reminder about ongoing GH discussions; they are all linked from the dropbox paper
+2019-01-08 20:08:26	~japaric	the first item on the agenda is checking on the 2019 planning issues
+2019-01-08 20:09:12	~japaric	we have per team issues and the rust request issues
+2019-01-08 20:09:27	~japaric	most of them have been a bit quiet during the past few weeks
+2019-01-08 20:09:41	~japaric	but some of them have some suggestions for what to tackle this year
+2019-01-08 20:10:19	~japaric	I think we can continue collecting suggestions for one more week and then we should start deciding on what items to work on
+2019-01-08 20:10:34	@korken89	SGTM
+2019-01-08 20:10:52	@jamesmunns	:+1:
+2019-01-08 20:10:59	@adamgreig	i wouldn't object to starting that process now, the suggestions have really trailed off and i'd be surprised if much more comes in this week?
+2019-01-08 20:11:09	@adamgreig	tailed off*
+2019-01-08 20:11:13	~japaric	thejpster suggested a method for deciding which items to prioritize in https://github.com/rust-embedded/wg/issues/269#issuecomment-448349195
+2019-01-08 20:11:26	~japaric	perhaps we can use something like that for the per-team issues as well
+2019-01-08 20:11:49	@adamgreig	+1 on having a real time chat to just go through the issues
+2019-01-08 20:12:21	@adamgreig	scheduling such a thing, on the other hand...
+2019-01-08 20:13:12	~japaric	we can use the regular meeting time though not all teams are present
+2019-01-08 20:13:20	@korken89	Yeah, it would be great if we could
+2019-01-08 20:13:58	~japaric	at least I think we can discuss cortex-m and resources during meeting times
+2019-01-08 20:14:19	@korken89	Can
+2019-01-08 20:14:21	@jamesmunns	Also up for that
+2019-01-08 20:14:27	@adamgreig	+1
+2019-01-08 20:14:33	@korken89	we ask other teams to try and join as well if needed?
+2019-01-08 20:14:49	~japaric	adamgreig: btw, by real time chat did you mean a video meeting? think that would be better than irc in this case?
+2019-01-08 20:15:09	@adamgreig	I just meant irc
+2019-01-08 20:15:29	~japaric	any other thoughts on irc vs video meeting?
+2019-01-08 20:15:30	@therealprof	Just have to set adamgreig to realtime mode. :-D
+2019-01-08 20:15:31	@adamgreig	as opposed to github comment threads
+2019-01-08 20:15:49	@adamgreig	my preference is for irc, has the big advantage of being easy to log, search logs, etc
+2019-01-08 20:15:58	@jamesmunns	I'm pro real time, I prefer video, but IRC also works for me
+2019-01-08 20:16:33	@korken89	+1 on video
+2019-01-08 20:16:41	@jamesmunns	maybe on a team by team basis?
+2019-01-08 20:16:53	@jamesmunns	Schedule something this week, come back in a week or two with plans?
+2019-01-08 20:17:02	@jamesmunns	That way each team can decide how they want to do it
+2019-01-08 20:17:11	@jamesmunns	(I don't think we need global consensus)
+2019-01-08 20:17:17	~japaric	(if we do video someone has to take notes)
+2019-01-08 20:17:46	@adamgreig	leaving it up to each team probably makes sense, many might prefer github issues especially where coordination is harder
+2019-01-08 20:17:58	~japaric	we should schedule rust requests, cortex-m and resources for the next few meetings; I don't think we can cover all them in one meeting
+2019-01-08 20:18:24	@adamgreig	+1
+2019-01-08 20:18:27	@korken89	Indeed, will be tight
+2019-01-08 20:18:29	~japaric	the rust requests is more a T-all issue
+2019-01-08 20:19:04	~japaric	and should be prioritized since RAH is in <4 weeks
+2019-01-08 20:20:31	~japaric	ok, how about we do rust requests on irc next week and ask the teams on GH to schedule some time to discuss their roadmaps?
+2019-01-08 20:21:05	@jamesmunns	+1
+2019-01-08 20:21:09	@korken89	SGTM
+2019-01-08 20:21:24	@adamgreig	+1
+2019-01-08 20:22:06	~japaric	ok, let's do that
+2019-01-08 20:22:21	~japaric	moving onto the next issue
+2019-01-08 20:22:33	~japaric	korken89 - "Should we check style with stable rustfmt in Travis?"
+2019-01-08 20:22:45	~japaric	korken89: can you drive the discussion?
+2019-01-08 20:23:11	@korken89	Sure
+2019-01-08 20:23:33	@korken89	When I was working in C++ we often saw that libs diverged in style over time if not checked
+2019-01-08 20:23:43	@korken89	So I did a simple test and ran rustfmt on all our libs
+2019-01-08 20:24:02	@korken89	More or less all are starting to diverge as well (but nothing major ofc)
+2019-01-08 20:24:17	@korken89	So might have a check for it?
+2019-01-08 20:24:27	@korken89	Not sure if rustfmt is stable enough though
+2019-01-08 20:24:29	~japaric	since fine to me now that rustfmt is 1.0
+2019-01-08 20:24:30	@korken89	Nor what version to use
+2019-01-08 20:24:34	@adamgreig	as in, travis would fail a build if rustfmt complains?
+2019-01-08 20:24:39	@korken89	Yes
+2019-01-08 20:24:47	@korken89	^ adamgreig
+2019-01-08 20:24:59	~japaric	I would suggest a separate build job that just runs rustfmt
+2019-01-08 20:25:05	@korken89	Exactly
+2019-01-08 20:25:12	@korken89	A "format" target or whatever
+2019-01-08 20:25:18	@jamesmunns	I will say some stuff like -pac crates (and their users) aren't always wonderful with rustfmt
+2019-01-08 20:25:28	@adamgreig	aren't the pac crates usually generated _using_ rustfmt?
+2019-01-08 20:25:31	hannobraun	I know I'm in the minority, but I don't see the point of unified style. Readability is what's important, and unified style is not required for readability, nor does it guarantee it.
+2019-01-08 20:25:37	@therealprof	Bad idea IMHO. Is the format really stable? For me it seem as stuff is still shifting around every now and then.
+2019-01-08 20:25:42	@jamesmunns	especially with the normal `.register_name().set_value()` pattern
+2019-01-08 20:25:46	@adamgreig	rustfmt is 1.0 so it should be stable
+2019-01-08 20:25:48	@adamgreig	jamesmunns: ah yes
+2019-01-08 20:25:52	@adamgreig	pac users definitely
+2019-01-08 20:26:00	@jamesmunns	stable in terms of text formatting stability
+2019-01-08 20:26:01	@adamgreig	i really don't like rustfmt's approach to .register().value() thing
+2019-01-08 20:26:02	hannobraun	Plus, I've seen rustfmt make really bad decisions in code using svd2rust-generated libraries.
+2019-01-08 20:26:13	@jamesmunns	aka run it multiple times on the same text, and it doesn't change anything
+2019-01-08 20:26:17	@adamgreig	however
+2019-01-08 20:26:20	@jamesmunns	Not sure if it has gotten better about that lately
+2019-01-08 20:26:21	@adamgreig	rustfmt is very configurable aiui
+2019-01-08 20:26:22	~japaric	now that rustfmt is 1.0 breaking changes in style are opt-in; you have to enable them in config.toml ("format-version = 1.1" or something like that)
+2019-01-08 20:26:37	@adamgreig	we could conceivably come up with an embedded rust rustfmt config
+2019-01-08 20:26:43	~japaric	at least that's what I remember from the RFC about rustfmt 1.0
+2019-01-08 20:26:44	@adamgreig	which doesn't screw with pac use
+2019-01-08 20:26:48	@jamesmunns	not in terms of what rules are stable, just that we don't get PR noise
+2019-01-08 20:26:58	@jamesmunns	maybe we could just have bors always apply rustfmt on merge?
+2019-01-08 20:27:00	@therealprof	Interesting. Then I'm really not sure why I'm seeing slight style corrections every now and then.
+2019-01-08 20:27:08	@adamgreig	therealprof: it's only relatively recently gone 1.0
+2019-01-08 20:27:09	@jamesmunns	then we don't have to annoy people or waste CI time?
+2019-01-08 20:27:18	@korken89	jamesmunns: This I like
+2019-01-08 20:27:21	@adamgreig	not sure if bors can be configured to do that?
+2019-01-08 20:27:32	@jamesmunns	we have the source, we have the power!
+2019-01-08 20:27:35	@adamgreig	heh
+2019-01-08 20:27:47	@jamesmunns	(wait is bors a global instance, or do we run our own? I don't really know how that works)
+2019-01-08 20:27:48	~japaric	maybe a post-commit hook can apply rustfmt on bors merges -- not sure
+2019-01-08 20:27:57	@adamgreig	bors is global instance
+2019-01-08 20:28:07	@therealprof	That would be better IMHO.
+2019-01-08 20:28:25	@jamesmunns	Then it wouldn't show up in PRs, except when you have to rebase or merge from a distant commit
+2019-01-08 20:28:27	@adamgreig	having bors automatically rustfmt on merge beats having ci fail and users have to run it to pass their pr in terms of annoyance, definitely
+2019-01-08 20:28:46	@korken89	Indeed
+2019-01-08 20:28:57	@adamgreig	i'm ambivalent as to whether we have enforced rustfmt at all though, i think having an embedded rust house style that at least stopped the more egregious offences would help
+2019-01-08 20:29:05	@adamgreig	but it's annoying to not be using "standard rust formatting"
+2019-01-08 20:29:11	@adamgreig	but it really really makes a mess of pac access stuff
+2019-01-08 20:29:17	@jamesmunns	Can we just add a rustfmt.toml to every repo?
+2019-01-08 20:29:29	@jamesmunns	then users of the lib will do the right thing anyway?
+2019-01-08 20:29:41	@jamesmunns	even if we have funky rules? (hopefully we don't)
+2019-01-08 20:29:42	@adamgreig	well we can certainly put a rustfmt.toml in the repos where we're enforcing rustfmt
+2019-01-08 20:30:34	~japaric	(we are at half hour mark)
+2019-01-08 20:30:44	@adamgreig	i'm not going to die on the hill of standard rustfmt, the benefits of consistent and uniform style are huge, i just find a few bits of it annoying
+2019-01-08 20:30:58	@adamgreig	seems like this might want to turn into a long gh issue where we can put more concrete suggestions forward
+2019-01-08 20:31:07	@jamesmunns	Maybe put the default rustfmt.toml everywhere, and we can iterate on that?
+2019-01-08 20:31:07	@korken89	Indeed
+2019-01-08 20:31:18	@jamesmunns	Yeah, I think this has the danger of being a bike shed though :)
+2019-01-08 20:31:25	@adamgreig	iterating on it causes a lot of commit noise though
+2019-01-08 20:31:33	@jamesmunns	True
+2019-01-08 20:31:43	@jamesmunns	maybe start with one repo till we get it mostly right, then roll out?
+2019-01-08 20:31:46	@adamgreig	i'd rather iterate on a branch somewhere quietly then make a good decision before applying it to everything
+2019-01-08 20:31:48	@jamesmunns	test the waters?
+2019-01-08 20:31:49	@adamgreig	yea
+2019-01-08 20:32:36	@adamgreig	from memory i can't think of any rustfmt rules i objected to except its handling of method chaining, so it might be a very simple rustfmt.toml :p
+2019-01-08 20:33:13	@korken89	Should I make a WG issue where we can continue discussion of it to not use up all the time here?
+2019-01-08 20:33:19	@jamesmunns	Yes please!
+2019-01-08 20:33:20	@therealprof	I hate that it can't do macros.
+2019-01-08 20:33:26	~japaric	korken89: +1
+2019-01-08 20:33:31	@adamgreig	+1 on wg issue
+2019-01-08 20:33:49	@korken89	Cool, at least its not a hard no yet :) I'll make the issue
+2019-01-08 20:34:10	~japaric	korken89: once there's consensus on the issue I think we can directly make a PR to add this to the /ops docs
+2019-01-08 20:34:26	@korken89	Sounds good
+2019-01-08 20:34:41	@adamgreig	korken89: you could even do it as a rfc in wg instead of an issue
+2019-01-08 20:35:06	@korken89	Yeah, I can do that, no problem
+2019-01-08 20:35:20	~japaric	ok, let's move onto the next item
+2019-01-08 20:35:38	~japaric	> Update crate author information to say e.g. "The Cortex-M team <cortex-m@teams.rust-embedded.org>"?
+2019-01-08 20:35:56	@adamgreig	+1
+2019-01-08 20:35:56	~japaric	now that we have teams e-mails, what do you think of updating the author info to reflect team ownership?
+2019-01-08 20:35:59	@therealprof	Do the addresses work now?
+2019-01-08 20:36:02	@jamesmunns	sgtm!
+2019-01-08 20:36:08	@korken89	I have no issue with this, sounds good!
+2019-01-08 20:36:20	@therealprof	I haven't seen any testmails…
+2019-01-08 20:36:38	~japaric	therealprof: the ones in https://github.com/rust-embedded/wg#contact should work now
+2019-01-08 20:36:46	~japaric	want to give them a try?
+2019-01-08 20:37:00	hannobraun	I think this makes sense, but the original authors (japaric, mostly) also deserve some credit.
+2019-01-08 20:37:16	@jamesmunns	Also +1 on that, at japaric
+2019-01-08 20:37:19	denisvasilik	cortex-a has no mail address ?!?
+2019-01-08 20:37:22	@jamesmunns	*at japaric's discression
+2019-01-08 20:37:37	@jamesmunns	**discretion
+2019-01-08 20:37:43	@therealprof	We should definitely try them before using. ;)
+2019-01-08 20:37:48	@korken89	In the embedded C++ world we usually have a "List of contributors in alphabetical order", where attribution is given
+2019-01-08 20:38:10	@adamgreig	rust crates have a list of authors
+2019-01-08 20:38:11	@korken89	While the owner is someone else
+2019-01-08 20:38:38	~japaric	I'm fine with keeping my name in the authors lists
+2019-01-08 20:38:59	@adamgreig	the 'owner' is pretty clearly the embedded rust wg now i would say
+2019-01-08 20:39:12	~japaric	denisvasilik: probably because the team has not yet send their list of e-mails to the infra team
+2019-01-08 20:39:32	@adamgreig	i guess the alternative is to put team members individually into the authors list
+2019-01-08 20:40:12	@korken89	Going with authors is a good way IMO
+2019-01-08 20:40:17	denisvasilik	@japaric thanks for the hint, just wanted to get in touch with the team
+2019-01-08 20:40:18	~japaric	listing all members seems like it may be annoying to keep up to date
+2019-01-08 20:40:37	@therealprof	Very tedious indeed.
+2019-01-08 20:40:41	@adamgreig	it wouldn't be "a current list of team members"
+2019-01-08 20:40:52	@adamgreig	i imagine more like "when you make a pr you add yourself to the authors list in cargo.toml"
+2019-01-08 20:41:20	@korken89	adamgreig: +1 Adding oneself is what I had in mind as well
+2019-01-08 20:41:38	@adamgreig	which there is some precedent for, heh, https://github.com/rust-embedded/cortex-m-rt/commit/03eff63876197670e533d9b7c7dcd152b3af9c89
+2019-01-08 20:42:39	@korken89	Nice, proper attribution is important is the OSS world
+2019-01-08 20:43:01	 *	therealprof shrugs
+2019-01-08 20:43:09	~japaric	my concern with that is that we may end with a long list of authors (team members and contributors) rendered on crates.io
+2019-01-08 20:43:25	@korken89	Which is how it should be IMO
+2019-01-08 20:43:43	~japaric	if we want to list contributors I would suggest having a script to generate a CONTRIBUTORS.md file from .git
+2019-01-08 20:43:47	@adamgreig	personally i don't mind, github already tracks contributors to a repo
+2019-01-08 20:44:08	@adamgreig	the cargo.toml authors is mainly used for crates.io right? which could reasonably point to the team email
+2019-01-08 20:44:28	@korken89	japaric: That would be a good way
+2019-01-08 20:44:31	~japaric	adamgreig: yes, the 'authors' field is displayed on crates.io
+2019-01-08 20:44:34	@therealprof	Yeah, also I don't care to have my name in every repository I've ever committed to. Would be hundreds…
+2019-01-08 20:45:10	@jamesmunns	Also no strong feelings here
+2019-01-08 20:45:36	@adamgreig	so back to being in favour of team emails on the crates?
+2019-01-08 20:45:46	~japaric	ok, should we start with adding the team (e-mail) as first author to each crate?
+2019-01-08 20:45:54	@therealprof	Yeah.
+2019-01-08 20:45:58	@adamgreig	+1
+2019-01-08 20:46:04	hannobraun	+1
+2019-01-08 20:46:05	@korken89	+1
+2019-01-08 20:46:13	@therealprof	There should be some useful point of contact.
+2019-01-08 20:46:16	~japaric	we can discuss keeping (moving) a list of contributors to a separate file at another time
+2019-01-08 20:46:18	@therealprof	+1
+2019-01-08 20:46:21	@korken89	Yes
+2019-01-08 20:47:29	~japaric	ok, then I'll send e-mails to each team asking them to send PRs to update the author info
+2019-01-08 20:47:39	@therealprof	+1
+2019-01-08 20:47:45	~japaric	that should also verify that the e-mails work :P
+2019-01-08 20:48:15	~japaric	next item: addressing rust-embedded/cortex-m-rt#139
+2019-01-08 20:48:25	~japaric	korken89: could you take over while I write down some notes?
+2019-01-08 20:48:31	@korken89	Yeah
+2019-01-08 20:48:53	@korken89	So the issue is that if you hit a panic (not sure if all -> ! functions) you can't debug anymore
+2019-01-08 20:49:06	@korken89	Which makes panics be only print debuggable
+2019-01-08 20:49:14	@korken89	And postmortem debugging is broken
+2019-01-08 20:49:20	@korken89	Quite serious IMO
+2019-01-08 20:49:44	@korken89	There is quite some discussion in the issue, the question is how to give it some traction higher up
+2019-01-08 20:49:45	@therealprof	Does that depend on the panic impl used?
+2019-01-08 20:50:06	@korken89	unwind does not seem to suffer from this issue
+2019-01-08 20:50:08	@jamesmunns	Also is panic required to have a divergent signature?
+2019-01-08 20:50:56	@korken89	jamesmunns: fn(&PanicInfo) -> !
+2019-01-08 20:51:02	@korken89	https://doc.rust-lang.org/nomicon/panic-handler.html
+2019-01-08 20:51:08	@jamesmunns	yeah
+2019-01-08 20:51:14	@jamesmunns	just found that. :/
+2019-01-08 20:51:18	@korken89	Indeed
+2019-01-08 20:51:29	@korken89	If it was not divergent in implementation, all would be fine
+2019-01-08 20:51:51	@korken89	As the issue it that stack is not generated an a branch-and-link instruction breaks the link register
+2019-01-08 20:52:01	~japaric	(returning from a #[panic_handler] is UB)
+2019-01-08 20:52:37	~japaric	korken89: routines are free to use lr as a scratch register in divergent functions (when panic=abort)
+2019-01-08 20:52:58	~japaric	e.g. see the disassembly of the panic_* function
+2019-01-08 20:53:01	~japaric	functions**
+2019-01-08 20:53:09	@korken89	Yeah, this is the issue (for us in embedded)
+2019-01-08 20:53:48	@adamgreig	do we have a handle on when this started? i feel sure i've had panics with correct backtraces in the past
+2019-01-08 20:54:26	~japaric	adamgreig: IMO, this is entirely an LLVM codegen issue; it could be a regression, yes
+2019-01-08 20:54:41	~japaric	regression in LLVM**
+2019-01-08 20:54:48	@jamesmunns	Maybe we bisect from released rust versions, and file an issue upstream?
+2019-01-08 20:55:10	@jamesmunns	Embedded rust is stable, so we don't necessarily have to just deal with regressions, and someone else might have an idea
+2019-01-08 20:55:17	@jamesmunns	even if it's an opt-in flag
+2019-01-08 20:55:52	~japaric	or they (llvm) could have decided that using lr as a scratch register was worth it
+2019-01-08 20:56:06	@korken89	Indeed
+2019-01-08 20:56:12	@jamesmunns	True, but they (rustc team) opts-in to new LLVM versions
+2019-01-08 20:56:33	~japaric	less than five minutes left
+2019-01-08 20:56:47	@jamesmunns	My issues are low prio, happy to wait until next meeting
+2019-01-08 20:57:01	@korken89	Should it perhaps directly be an upstream issue then?
+2019-01-08 20:57:13	@jamesmunns	I would say we should at least make them aware
+2019-01-08 20:57:21	@korken89	I would say that debugablility of panics are very important for embedded Rust
+2019-01-08 20:57:23	@jamesmunns	this may show up affecting something else later
+2019-01-08 20:58:05	Albru	We don't have any proof of working backtraces working for previous versions of rustc/LLVM, do we?
+2019-01-08 20:58:24	@korken89	Could someone with a little bit more upstream-experience make an issue?
+2019-01-08 20:58:47	@korken89	I can help follow/fill it if needed
+2019-01-08 20:58:55	@jamesmunns	Do we want to make a wg issue first, collect info, then report upstream?
+2019-01-08 20:59:11	@korken89	I would say #139 has quite a lot of info
+2019-01-08 20:59:14	@jamesmunns	collect info => find out when it worked, show different IR/ASM output for two given versions?
+2019-01-08 20:59:25	@korken89	Ah right, this we can do
+2019-01-08 20:59:38	@jamesmunns	(I forgot 139 was already a thing, sorry)
+2019-01-08 20:59:52	@korken89	If it worked :) I can't remember debuging of a panic ever working, but I am quite new
+2019-01-08 21:00:12	@jamesmunns	I thought I'd done that before, but if not, at least we can suggest a new feature :D
+2019-01-08 21:00:24	@adamgreig	i'm... 80% sure i've had that working :p
+2019-01-08 21:00:26	@korken89	+1 :D
+2019-01-08 21:00:49	@korken89	Also, it will work if LR is not used in the panic
+2019-01-08 21:01:05	@korken89	For example under heavy optimization it might work of panic does nothing
+2019-01-08 21:01:11	@korken89	if*
+2019-01-08 21:01:36	@adamgreig	will it?
+2019-01-08 21:01:39	@korken89	Not sure is that ever happens though, so don't quote me on that :)
+2019-01-08 21:01:42	@adamgreig	doesn't bx cause lr to get written/
+2019-01-08 21:01:48	@adamgreig	what's writing lr?
+2019-01-08 21:01:59	@korken89	For example a bl to panic_fmt
+2019-01-08 21:02:38	~japaric	I don't think bl is the issue; the problem is not pushing the lr onto the stack before the bl
+2019-01-08 21:02:43	@korken89	Yes
+2019-01-08 21:02:48	@korken89	^ japaric
+2019-01-08 21:02:53	@korken89	This is the main issue
+2019-01-08 21:03:24	@adamgreig	yea
+2019-01-08 21:03:26	@adamgreig	that precisely
+2019-01-08 21:03:56	@adamgreig	i can see why you might omit to push lr before branching to a divergent function, i guess?
+2019-01-08 21:04:03	@korken89	It makes sense
+2019-01-08 21:04:07	@korken89	Just not if you want to debug
+2019-01-08 21:04:10	@korken89	:)
+2019-01-08 21:04:13	@adamgreig	yea
+2019-01-08 21:04:18	@adamgreig	for the sake of a few bytes of stack
+2019-01-08 21:04:27	@korken89	Indeed
+2019-01-08 21:04:28	~japaric	`ldmia.w r0, {r1, r2, ip, lr}` (in core::panicking::panic) rewrites lr
+2019-01-08 21:04:29	@therealprof	Heh, a bytes matter.
+2019-01-08 21:04:42	@adamgreig	four bytes in the case of your message therealprof :P
+2019-01-08 21:04:46	~japaric	r0 is &PanicInfo I think
+2019-01-08 21:05:14	@therealprof	likely
+2019-01-08 21:06:02	~japaric	we are out of time; korken89 can you draft a report in #139? we can check it next week
+2019-01-08 21:06:12	@korken89	Yeah, I can add that as well
+2019-01-08 21:06:13	@theJPster	Sorry!
+2019-01-08 21:06:15	@jamesmunns	Hey theJPster :)
+2019-01-08 21:06:35	@korken89	Main issue and what is needed to be fixed, then we can send an issue to upstream
+2019-01-08 21:06:46	~japaric	thanks everyone for attending! See you next week
