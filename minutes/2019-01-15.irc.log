@@ -1,0 +1,370 @@
+2019-01-15 20:05:31	~japaric	ok, let's start this meeting!
+2019-01-15 20:05:48	~japaric	today we are going to look at the rust-lang/* requests that we have collected from the 2019 wishlist survey
+2019-01-15 20:06:05	~japaric	and prioritize them
+2019-01-15 20:06:23	~japaric	the 15 most voted requests are on the dropbox paper
+2019-01-15 20:06:32	~japaric	let's go through each of them
+2019-01-15 20:06:49	~japaric	we'll use theJPster sugestion of insertion sort them as we go
+2019-01-15 20:07:14	~japaric	first request is std-aware Cargo
+2019-01-15 20:07:21	@theJPster	It goes it at number 1 ;)
+2019-01-15 20:07:36	@theJPster	Do you have the links to the JIRAs for these?
+2019-01-15 20:07:41	~japaric	we should add some notes about how we think we'll impact the ecosystem so then we can compare each other
+2019-01-15 20:07:43	@theJPster	lol, sorry. github issues
+2019-01-15 20:07:59	~japaric	you mean a rust-lang/* issue for these?
+2019-01-15 20:08:20	@theJPster	any link to something with more than this one line description
+2019-01-15 20:08:37	@theJPster	sweet
+2019-01-15 20:08:42	~japaric	added to the cargo one
+2019-01-15 20:09:10	~japaric	this feature is used to cross compile to custom targets (see target specification files)
+2019-01-15 20:09:40	~japaric	afais those are mainly consoles
+2019-01-15 20:10:01	~japaric	other use case is recompiling core / std with different codegen options
+2019-01-15 20:10:02	@theJPster	Yeah, this would be useful when I'm doing armv8m stuff. But, relatively speaking, I'm OK with a slightly higher barrier to entry when going off-piste target-wise.
+2019-01-15 20:10:10	@jamesmunns	This also helps with optimizing std items, right?
+2019-01-15 20:10:12	~japaric	e.g. opt-level=size
+2019-01-15 20:10:22	@jamesmunns	:+1:
+2019-01-15 20:10:47	@jamesmunns	Would this also make it easier to opt-in to sub-components of std?
+2019-01-15 20:10:54	@jamesmunns	or is that separate to this issue?
+2019-01-15 20:10:59	@therealprof	Seems a bit niche to me but interest seems immense.
+2019-01-15 20:11:27	@theJPster	Although, @philopp's blog is really good and aimed at a fairly new-to-Rust level, so I might want to retract my last statement.
+2019-01-15 20:11:31	~japaric	jamesmunns: if you mean enabling / disabling Cargo features of core / std crates then yes; that's other of the use cases
+2019-01-15 20:12:04	@korken89	I have no strong opinions here, I have not yet run into the limits and felt the issues this solves
+2019-01-15 20:12:29	~japaric	something that may be interest to the general community is that there's a core feature to turn panic! into abort so you don't get the extra function calls that you get with e.g. panic-abort
+2019-01-15 20:12:54	@korken89	This sounds quite interesting
+2019-01-15 20:13:28	~japaric	I think that's about it for this one
+2019-01-15 20:13:47	~japaric	next issue is 'math in core'
+2019-01-15 20:13:48	 *	cr1901 is here, whoops
+2019-01-15 20:13:54	@adamgreig	o/ cr1901
+2019-01-15 20:14:20	~japaric	the idea is having the inherent f32 / f64 methods like .sin, .cos in no_std code
+2019-01-15 20:14:26	@theJPster	I think this is pretty important
+2019-01-15 20:14:32	~japaric	how would you prioritize this one?
+2019-01-15 20:14:33	@adamgreig	you can already use libm though
+2019-01-15 20:14:38	 *	japaric will go get an issue link for this one
+2019-01-15 20:14:43	@adamgreig	so i'd have put it below std-aware cargo
+2019-01-15 20:14:53	@adamgreig	important, but std aware cargo probably has more impact
+2019-01-15 20:14:59	@jamesmunns	agreed with adamgreig
+2019-01-15 20:15:03	@therealprof	Yeah.
+2019-01-15 20:15:08	@theJPster	What does using libm look like in terms of pain? Easier to harder than waiting for `cargo install cargo-cross`?
+2019-01-15 20:15:16	@theJPster	s/to/or
+2019-01-15 20:15:28	@jamesmunns	It's just another crate dependency
+2019-01-15 20:15:29	~japaric	theJPster: 'cargo add libm'; 'use libm::FloatExt'
+2019-01-15 20:15:30	@adamgreig	use libm::F32Ext; y = x.sqrt();
+2019-01-15 20:15:44	@therealprof	Pretty trivial.
+2019-01-15 20:15:57	@korken89	Math support is very close to me as I write mostly numerical algorithms
+2019-01-15 20:15:57	@adamgreig	hopefully also quite easy to get into core as a consequence
+2019-01-15 20:16:02	@therealprof	I'd be more interested in learned whether there're any real benefits.
+2019-01-15 20:16:08	@adamgreig	korken89: floating point numerical algorithms?
+2019-01-15 20:16:11	@therealprof	Like improved code.
+2019-01-15 20:16:12	@korken89	Yes
+2019-01-15 20:16:18	@korken89	adamgreig ^
+2019-01-15 20:16:38	@jamesmunns	But would core::math provide any value, other than one less external dependency?
+2019-01-15 20:16:50	@therealprof	Heh, that's my question. :-p
+2019-01-15 20:16:52	@adamgreig	yea, as far as I can see the sole difference is removing the dependency, the code would presumably be the same
+2019-01-15 20:16:53	@korken89	I'd say to use libm is works well
+2019-01-15 20:17:06	~japaric	if you want to use math on stable then libm must compile on stable; this means you can't use e.g. asm! to optimize the code
+2019-01-15 20:17:08	@korken89	But if I could choose I'd like to not have the dep
+2019-01-15 20:17:09	~japaric	jamesmunns: ^
+2019-01-15 20:17:18	@adamgreig	any objections to "below std-aware cargo" then?
+2019-01-15 20:17:25	@korken89	Not from me
+2019-01-15 20:17:33	@theJPster	fine by me
+2019-01-15 20:17:34	~japaric	if it's in core then you can use all the unstable features you need to optimize the routines (inc. simd and what not)
+2019-01-15 20:17:46	@therealprof	+1
+2019-01-15 20:18:27	~japaric	ok, then next one is 'std::io in liballoc / libcore'
+2019-01-15 20:18:37	 *	japaric will write down some notes
+2019-01-15 20:19:07	@adamgreig	ok, std::io in libcore/liballoc?
+2019-01-15 20:19:15	~japaric	yes, thoughts?
+2019-01-15 20:19:23	@therealprof	Heh, now you're adding the interesting stuff...
+2019-01-15 20:19:28	~japaric	basically this is io::{Read,Write,Error?} in no_std
+2019-01-15 20:19:57	@therealprof	+1
+2019-01-15 20:20:02	@korken89	+1
+2019-01-15 20:20:22	@therealprof	That would be *very* useful.
+2019-01-15 20:20:22	@jamesmunns	+1, though aren't a bunch of those non-failable?
+2019-01-15 20:20:41	@jamesmunns	oh nvm
+2019-01-15 20:20:44	@jamesmunns	I remembered wrong
+2019-01-15 20:20:51	@theJPster	Yeah, I would really like these on Monotron
+2019-01-15 20:21:03	@jamesmunns	in that case, I would say those are higher prio than anything else so far
+2019-01-15 20:21:06	@theJPster	People end up with a bunch of different traits that do the same thing
+2019-01-15 20:21:27	@therealprof	jamesmunns: For me definitely.
+2019-01-15 20:21:32	@theJPster	Shutting down crate-creep seems more important than making tooling setup a bit easier
+2019-01-15 20:21:44	cr1901	I can't really use those functions in no_std
+2019-01-15 20:22:00	@therealprof	cr1901: Why's that?
+2019-01-15 20:22:12	@jamesmunns	I could see myself wiring up Read/Write traits to a SPSC queue, so you can transparently read or write to a buffer
+2019-01-15 20:22:14	cr1901	msp430 targets are rather small/constrained
+2019-01-15 20:22:39	~japaric	ok, sounds like this should go first?
+2019-01-15 20:22:39	@theJPster	But the traits would still be useful, right?
+2019-01-15 20:22:53	@adamgreig	+1
+2019-01-15 20:22:55	cr1901	I don't know if they would be useful if I can't fit them :)
+2019-01-15 20:23:09	@korken89	Yeah, +1 on going first
+2019-01-15 20:23:10	@therealprof	cr1901: Traits themselves don't add any overhead. Depends on whether is a useful implementation.
+2019-01-15 20:23:26	@theJPster	I vote first place for this one.
+2019-01-15 20:23:39	~japaric	ok, I put it first
+2019-01-15 20:23:48	cr1901	therealprof: That's the flip side, I discussed this in #rust-portability before, but I'd like to avoid scope creep in libcore because then >>
+2019-01-15 20:23:50	~japaric	moving on: next issue is avr support
+2019-01-15 20:23:56	cr1901	ehhh nevermind
+2019-01-15 20:23:58	cr1901	it can wait
+2019-01-15 20:24:01	nezza	How stable is LLVM AVR support nowadays?
+2019-01-15 20:24:06	@korken89	Do they still exist? ;)
+2019-01-15 20:24:15	@adamgreig	cr1901: it might need to end up in liballoc anyway
+2019-01-15 20:24:30	@adamgreig	avrs are still popularly asked for
+2019-01-15 20:24:44	 *	therealprof shrugs
+2019-01-15 20:24:49	@adamgreig	but not sure how much even rust team can do about the request if it's blocked on llvm
+2019-01-15 20:25:09	~japaric	await!(avr)
+2019-01-15 20:25:13	cr1901	I think the LLVM requirement should be relaxed, tbh. But that's _also_ not a topic for now
+2019-01-15 20:25:19	@therealprof	There seems to be little progress. Did the crater run happen? What were the results?
+2019-01-15 20:25:33	@therealprof	japaric: +1
+2019-01-15 20:25:36	@theJPster	korken89, if you want 5V I/O, you basically can't use ARM. So yeah, they're pretty handy.
+2019-01-15 20:25:45	@theJPster	(Monotron has one to run the keyboard/mouse/LPT port)
+2019-01-15 20:26:10	@therealprof	theJPster: There're ARM chips with 5V I/O.
+2019-01-15 20:26:12	@jamesmunns	Aren't a bunch of ARMs 5v tolerant? I know some NXP and STM parts are, but that's off topic.
+2019-01-15 20:26:13	jrozner	there's also a LOT of avr hardware that's cheaply available to people
+2019-01-15 20:26:23	@adamgreig	5v input tolerant doesn't mean it can output 5v without level shifters
+2019-01-15 20:26:45	@theJPster	therealprof, yeah the Freescale Kinetis KEZ something. I have one. I never got very far with it.
+2019-01-15 20:26:46	@jamesmunns	I am pro AVR support, but the real question is do we have the skills/time to really support it, which requires support at the LLVM level
+2019-01-15 20:27:14	@theJPster	And it's not DIP.
+2019-01-15 20:27:17	cr1901	Rust will not be portable as long as its tethered to llvm
+2019-01-15 20:28:06	@adamgreig	i am pro avr support and also unsure what we or rust can do about its state in llvm, it presumably won't be a supported rust target until llvm settles?
+2019-01-15 20:28:10	~japaric	jamesmunns: avr support also means ecosystem support; we can't do much / anything while it's blocked on llvm support though
+2019-01-15 20:28:32	cr1901	japaric: Why not? Rust can generate code for AVR
+2019-01-15 20:28:43	cr1901	why is "first class LLVM support" such a dealbreaker
+2019-01-15 20:29:00	@theJPster	We have the patches in our tree, right?
+2019-01-15 20:29:45	Hark	Does the current setup still rely on mrustc?
+2019-01-15 20:29:54	@therealprof	I'm ambivalent about AVR support.
+2019-01-15 20:29:56	@adamgreig	getting off topic for this
+2019-01-15 20:30:09	@adamgreig	i propose inserting after std-aware cargo?
+2019-01-15 20:30:13	jrozner	theJPster: from my loose following along it seems like most of the patches have been upstreamed or are waiting to be upstreamed
+2019-01-15 20:30:46	@therealprof	It would be nice to have (also to pick up the Arduino crowd) but on the other hand I'm certainly not spending any of my time on this.
+2019-01-15 20:30:54	cr1901	I have no attachment to AVR. I just want Rust to be more portable.
+2019-01-15 20:31:01	@theJPster	I agree, after std-aware cargo, if only because std-aware cargo makes avr dev easier
+2019-01-15 20:31:27	@therealprof	+1
+2019-01-15 20:31:46	~japaric	alright, inserting at spot #3
+2019-01-15 20:32:00	@theJPster	time check - 30 minutes down
+2019-01-15 20:32:22	~japaric	next issue is stable const fn with bounds
+2019-01-15 20:32:23	@adamgreig	let's hope the next 11 are quicker than the first 4 :P
+2019-01-15 20:32:40	~japaric	required to create e.g. GenericArray in const context
+2019-01-15 20:32:42	@adamgreig	yes better const fns would be great, i would put above std::io
+2019-01-15 20:32:53	@korken89	No 1 so far IMO
+2019-01-15 20:32:59	@jamesmunns	Yes, also #1 for m
+2019-01-15 20:33:01	@jamesmunns	me
+2019-01-15 20:33:03	@therealprof	+1
+2019-01-15 20:33:10	@theJPster	Yeah I don't disagree
+2019-01-15 20:33:22	@korken89	(Why can't we get const generics sooner as well?)
+2019-01-15 20:33:36	@adamgreig	that's coming :P
+2019-01-15 20:33:44	~japaric	ok, next one is "Features of dependencies are enabled if they're enabled in build-dependencies; breaks no_std libs"
+2019-01-15 20:33:50	nezza	+1 imho, it breaks a ton of bindgen stuff. I stumbled over this issue today again.
+2019-01-15 20:34:00	~japaric	(const generics #2019)
+2019-01-15 20:34:02	@jamesmunns	Does this include split profiles as well?
+2019-01-15 20:34:17	@jamesmunns	e.g. build-deps in release, actual code in debug?
+2019-01-15 20:34:19	 *	emilio non-member +1000
+2019-01-15 20:34:24	emilio	:)
+2019-01-15 20:34:27	@jamesmunns	(relevant in bindgen case as well)
+2019-01-15 20:34:48	@therealprof	Very annoying but work-aroundable.
+2019-01-15 20:34:52	~japaric	jamesmunns: I'm not aware of any additional issues with profiles
+2019-01-15 20:35:10	~japaric	jamesmunns: "build-deps in release, actual code in debug' sounds like "profile overrides" that's another item in the list
+2019-01-15 20:35:14	nezza	therealprof: but not really easy to find the workaround - maybe we can spit out a warning or so that makes you aware of the workaround?
+2019-01-15 20:35:18	@jamesmunns	Ah, thanks japaric
+2019-01-15 20:35:27	cr1901	const fn is +2 from me
+2019-01-15 20:35:28	@therealprof	For me it would go above std-aware Cargo.
+2019-01-15 20:35:44	@therealprof	nezza: I know, had to work around it already…
+2019-01-15 20:35:44	@jamesmunns	Yeah, I'd put it at 2 or 3 personally
+2019-01-15 20:36:05	nezza	this one is very high for me, as i stumble upon it every time I do a project that calls to C code (for example crypto)
+2019-01-15 20:36:25	jrozner	had tons of problems with that with cbindgen on non-embedded work. Having a fix for that in general for rust would be nice
+2019-01-15 20:36:26	@therealprof	jamesmunns: +1
+2019-01-15 20:36:42	~japaric	just to make sure we are on the same page this is about having both no-std code and build script depend on e.g. rand breaking because the build script has rand with the 'std' feature enable
+2019-01-15 20:37:05	@korken89	Yeah, 2 or 3
+2019-01-15 20:37:06	@jamesmunns	oh, sorry, now with correct numbers, 3 or 4
+2019-01-15 20:37:22	 *	nezza thinks 2 or 3, just cause it happens so often
+2019-01-15 20:37:26	@therealprof	japaric: I'm on the same page. :-p
+2019-01-15 20:37:27	@theJPster	Does this only apply if the host and the target are the same architecture? Or regardless?
+2019-01-15 20:37:30	nezza	if not even 1
+2019-01-15 20:37:37	@korken89	japaric: Same here
+2019-01-15 20:37:41	@jamesmunns	(1: const-fn trait bound, 2: std:io in core, 3: std-aware cargo, 4: AVR currently)
+2019-01-15 20:37:46	nezza	theJPster: happens with different architectures
+2019-01-15 20:37:52	@adamgreig	let's just say what it should go above or below instead of numbers :p
+2019-01-15 20:37:53	nezza	theJPster: (host x64, target arm)
+2019-01-15 20:37:54	@theJPster	Ouch. I'd put it in at 3.
+2019-01-15 20:38:14	@theJPster	below std::io, above xargo
+2019-01-15 20:38:14	~japaric	sounds like 3 then?
+2019-01-15 20:38:21	@jamesmunns	sgtm
+2019-01-15 20:38:23	@korken89	3 SGTM
+2019-01-15 20:38:24	@adamgreig	no objection
+2019-01-15 20:38:35	cr1901	okay w/ me
+2019-01-15 20:38:38	@therealprof	I don't want to do the rand stunt again. ;)
+2019-01-15 20:38:46	~japaric	moving on: next is stable MaybeUninit
+2019-01-15 20:38:57	@jamesmunns	Isn't that already proposed to stabilize?
+2019-01-15 20:38:59	@therealprof	That would be #2 for me.
+2019-01-15 20:39:02	@jamesmunns	If not, I'd put it very high
+2019-01-15 20:39:13	@therealprof	Yeah, curious what we would have to do here.
+2019-01-15 20:39:16	~japaric	jamesmunns: they are going to rename it to MaybeInit ...
+2019-01-15 20:39:30	~japaric	they are still bikeshedding the API
+2019-01-15 20:39:31	@jamesmunns	yeah, 1-2 for me. I think it would help with lots of the "sharing data between context" items
+2019-01-15 20:39:42	@jamesmunns	I know I could have used it for BBQueue already
+2019-01-15 20:39:48	cr1901	Idk what it does, so I have no opinion :)
+2019-01-15 20:39:54	@therealprof	Yeah, but const fns are slightly more important to me. ;)
+2019-01-15 20:39:54	@korken89	2 for me
+2019-01-15 20:39:58	~japaric	I want to propose fast tracking (sstabilizing) the uninitialized constructor, as_ptr and as_mut_ptr
+2019-01-15 20:40:00	@theJPster	I have no opinion on this one. I've not come across it before and can't immediately think of a use-case.
+2019-01-15 20:40:09	@jamesmunns	You can make an uninitialized variable/static
+2019-01-15 20:40:10	~japaric	so it can be usable on stable ASAP
+2019-01-15 20:40:15	@adamgreig	yea, 2 would be good
+2019-01-15 20:40:16	@jamesmunns	which is otherwise impossible with stable
+2019-01-15 20:40:24	@therealprof	But it's very important. also to get rid of unsafe {} array initialisation.#
+2019-01-15 20:40:27	@korken89	japaric: +1
+2019-01-15 20:40:28	@adamgreig	uninit statics would help a lot with the stupid mutex dance we spent all day talking about
+2019-01-15 20:40:39	@adamgreig	(maybe :P)
+2019-01-15 20:40:45	cr1901	I don't have a use case for it. Just rely on .bss zeroing?
+2019-01-15 20:40:47	@jamesmunns	it would help with generic size array inits, as well as the mutex dance imo
+2019-01-15 20:41:00	@jamesmunns	cr1901: but you can't tell rust to zero non-trivial structs
+2019-01-15 20:41:08	~japaric	sounds like 2 then
+2019-01-15 20:41:15	@therealprof	Please.
+2019-01-15 20:41:18	cr1901	hmmm
+2019-01-15 20:41:34	@theJPster	Oh. Right, Monotron has a really grim code like `static FRAMEBUFFER = Framebuffer { .. lots of stuff .. }`.
+2019-01-15 20:41:36	@jamesmunns	this is essentially `static some_struct = {};` in modernish C
+2019-01-15 20:41:47	cr1901	well, I guess priority of 3 for me then
+2019-01-15 20:41:58	~japaric	ok, next up is "Generic associated consts can't currently be used to parameterize fixed array lengths"
+2019-01-15 20:42:15	@therealprof	theJPster: Yeah. If you want to initialise with code in a loop you'll have to use mem::uninitialzed().
+2019-01-15 20:42:26	@therealprof	That's also pretty important.
+2019-01-15 20:42:29	~japaric	AKA `trait Array { const LENGTH: usize; type Array = [u8; Self::LENGTH] }`
+2019-01-15 20:42:42	@jamesmunns	That seems useful
+2019-01-15 20:42:47	@theJPster	Oh yes please. This would be really useful.
+2019-01-15 20:42:49	@adamgreig	yea this would be ace for plenty of embedded libraries
+2019-01-15 20:42:51	@therealprof	I guess prio 1-3 are going to be a very hot race.
+2019-01-15 20:42:58	jschievink	should naturally fall out of the const generics impl
+2019-01-15 20:43:08	@jamesmunns	Does this get us the trait stuff for N >= 32, or is that a different issue?
+2019-01-15 20:43:08	@adamgreig	perhaps below std::io?
+2019-01-15 20:43:12	~japaric	jschievink: or rather it needs const generics to be implemented first :P
+2019-01-15 20:43:23	~japaric	jamesmunns: that's const generics
+2019-01-15 20:43:33	@theJPster	In general, is "nice to have for the many" more important than "unbreaks things for the few"?
+2019-01-15 20:43:34	@korken89	I'd put it at 2-3
+2019-01-15 20:44:02	@jamesmunns	4-5 for me then, I'm not sure I understand the use case entirely though
+2019-01-15 20:44:04	@theJPster	I'd go after xargo
+2019-01-15 20:44:21	@theJPster	wait, above xargo
+2019-01-15 20:44:23	@therealprof	jamesmunns: Parametrized buffer sizes.
+2019-01-15 20:44:31	@theJPster	after build dependencies.
+2019-01-15 20:44:33	@jamesmunns	oh hello
+2019-01-15 20:44:37	~japaric	(interesting that we don't have 'const generics' proper in the list)
+2019-01-15 20:44:43	@therealprof	jamesmunns: You were asking about it the other day. ;)
+2019-01-15 20:44:49	@adamgreig	japaric: since this one requires const generics, i guess it sorta counts :P
+2019-01-15 20:44:51	@korken89	japaric: Sneak it in there
+2019-01-15 20:44:54	@korken89	:)
+2019-01-15 20:45:02	~japaric	this one is the same as const generics
+2019-01-15 20:45:04	@jamesmunns	Then now that I understand, I'd put it up higher, maybe 3-4
+2019-01-15 20:45:21	~japaric	so ask yourself where would you put const generics in the list
+2019-01-15 20:45:29	@korken89	japaric: 1
+2019-01-15 20:45:30	@adamgreig	lol hello #1
+2019-01-15 20:45:42	@jamesmunns	Honestly 1-2 for const generics
+2019-01-15 20:45:46	@jamesmunns	IMO
+2019-01-15 20:45:53	@korken89	If there was -1 I'd even put it there
+2019-01-15 20:46:14	~japaric	let's put 'const generics' / this item first then
+2019-01-15 20:46:17	@therealprof	Told you it's going to be a hot race for 1-3. ;)
+2019-01-15 20:46:28	cr1901	const generics is 3 for me now lol
+2019-01-15 20:46:29	@adamgreig	yea, bad luck the things that came earlier on the list and are getting insertion-pushed down
+2019-01-15 20:46:46	@therealprof	I really can't decide which one is more important for me.
+2019-01-15 20:46:58	@jamesmunns	Let's have a cooldown after this meeting, then maybe finalize next week?
+2019-01-15 20:47:19	@jamesmunns	Allow someone to propose a re-insertion if they have strong opinions, if not, then we go as-is?
+2019-01-15 20:47:29	@adamgreig	sgtm
+2019-01-15 20:47:33	@therealprof	+1
+2019-01-15 20:47:39	cr1901	jamesmunns: Well I have strong opinions. But I know how to read the mood. :P
+2019-01-15 20:47:46	nezza	-1
+2019-01-15 20:47:49	@jamesmunns	You have a week to prepare your case :D
+2019-01-15 20:48:01	~japaric	next is 'Improve crates.io or create separate site for no_std crates'
+2019-01-15 20:48:06	@jamesmunns	blog posts, incite riots, etc.
+2019-01-15 20:48:14	@adamgreig	bottom of the list for me
+2019-01-15 20:48:18	@jamesmunns	Honestly, I think this is low
+2019-01-15 20:48:28	@theJPster	yeah, at the bottom
+2019-01-15 20:48:30	nezza	jamesmunns: blocks on std aware cargo imho (and not high prio)
+2019-01-15 20:48:31	cr1901	no urgent need
+2019-01-15 20:48:32	@adamgreig	crates.io is not the most discoverable but we have the awesome embedded list, the showcase, we don't have that many libraries yet anyway, and it already has embedded category
+2019-01-15 20:48:47	@therealprof	Yeah. But we need to do something here.
+2019-01-15 20:48:53	@jamesmunns	I think what would be better is `cargo`/`cargo publish` is actually checking "no-std" tags
+2019-01-15 20:49:01	nezza	jamesmunns: yea
+2019-01-15 20:49:12	@therealprof	For me this is more important than std-aware cargo. YMMV.
+2019-01-15 20:49:18	~japaric	I'm not sure what 'improves crates.io' meant there but I think that searching within the no-std category on crates.io would help
+2019-01-15 20:49:20	@korken89	I'd put this quite low, probably 6-7
+2019-01-15 20:49:32	@therealprof	japaric: Yeah that.
+2019-01-15 20:49:43	@jamesmunns	Also a solid 7 for me.
+2019-01-15 20:49:50	@therealprof	It's a shame we can't properly filter on crates.io.
+2019-01-15 20:50:04	@therealprof	And search is still hit or miss.
+2019-01-15 20:50:14	~japaric	jamesmunns: just fixed the numbers; you meant above avr?
+2019-01-15 20:50:57	@therealprof	I do think we still have a discoverability issue.
+2019-01-15 20:51:00	@jamesmunns	Yes, above AVR for me, but below is good too.
+2019-01-15 20:51:23	~japaric	ok, let's go with 7
+2019-01-15 20:51:45	@therealprof	+1
+2019-01-15 20:51:57	~japaric	next is "Stabilize async/await"
+2019-01-15 20:52:02	@theJPster	Full disclosure: async/await confuses the hell out of me.
+2019-01-15 20:52:07	@therealprof	Ooh.
+2019-01-15 20:52:10	cr1901	max priority for me
+2019-01-15 20:52:22	cr1901	err, the opposite of max*
+2019-01-15 20:52:22	@adamgreig	cr1901: wow, how come?
+2019-01-15 20:52:24	@adamgreig	oh lol
+2019-01-15 20:52:26	cr1901	minimum priority
+2019-01-15 20:52:29	@therealprof	Above std::io for me.
+2019-01-15 20:52:30	~japaric	theJPster: : async! doesn't even work in no_std ...
+2019-01-15 20:52:31	cr1901	the highest number possible
+2019-01-15 20:52:49	@adamgreig	i mean, i want async in rust, but not for embedded
+2019-01-15 20:53:10	@adamgreig	not sure how strong the embedded use-case is for it though
+2019-01-15 20:53:12	@therealprof	I would like it in embedded but I'm not sure it'll really work out.
+2019-01-15 20:53:15	@jamesmunns	Yeah, I'd say low prio, though we should probably have a "stay more in the loop to constrain async/await design to eventually work in embedded"
+2019-01-15 20:53:18	@korken89	I have not quite seen the use of this in the embedded realm
+2019-01-15 20:53:28	cr1901	adamgreig: I'm just being abrasive :P. I don't really use async/await
+2019-01-15 20:53:37	@therealprof	korken89: Where have you seen it?
+2019-01-15 20:53:39	@jamesmunns	I have had customers interested in supporting futures or async/await as a design mechanism
+2019-01-15 20:53:40	@adamgreig	cr1901: no i was only surprised because i thought you meant it was the most important thing
+2019-01-15 20:53:50	@jamesmunns	there is also embrio-rs, if people here haven't seen that
+2019-01-15 20:54:00	@jamesmunns	https://github.com/Nemo157/embrio-rs
+2019-01-15 20:54:03	cr1901	I think it's important in the context of HAL, but that's about it
+2019-01-15 20:54:07	@korken89	therealprof: Not at all so far
+2019-01-15 20:54:09	@jamesmunns	^ this is a PoC impl
+2019-01-15 20:54:23	@jamesmunns	^^ therealprof
+2019-01-15 20:54:25	@therealprof	korken89: I've used it extensively in Python and I quite like it.
+2019-01-15 20:54:35	~japaric	5 mins left
+2019-01-15 20:54:43	@adamgreig	propose below avr
+2019-01-15 20:54:43	~japaric	sounds low prio for most people
+2019-01-15 20:54:52	@jamesmunns	below avr
+2019-01-15 20:54:56	@therealprof	Would simplify a lot of stuff. Not sure it'll ever fully work in embedded though.
+2019-01-15 20:54:59	@adamgreig	suspect what we say won't matter because it's important for rust server stuff
+2019-01-15 20:55:04	@therealprof	For me it's above AVR.
+2019-01-15 20:55:12	@korken89	Yeah, bellow avr for me
+2019-01-15 20:55:41	~japaric	putting it at 8 then
+2019-01-15 20:55:46	~japaric	let's stop here
+2019-01-15 20:55:55	@adamgreig	japaric: putting it above or below avr sorry?
+2019-01-15 20:56:03	~japaric	if you'd like to share something now's the time
+2019-01-15 20:56:13	@jamesmunns	https://oxidizeconf.com/ dates are published!
+2019-01-15 20:56:15	~japaric	adamgreig: below
+2019-01-15 20:56:19	@adamgreig	+1
+2019-01-15 20:56:28	@jamesmunns	I would love to see CFPs from lots of people here!
+2019-01-15 20:56:30	@korken89	jamesmunns: Awesome!
+2019-01-15 20:56:50	@therealprof	jamesmunns: Working on it.
+2019-01-15 20:56:55	@korken89	jamesmunns: Are there any spots for workshops as well or only talks?
+2019-01-15 20:57:18	hannobraun	Nice, looking forward to it!
+2019-01-15 20:57:24	@jamesmunns	Right now, the only workshops will be ones provided by Ferrous Systems, I'm open to suggestions though
+2019-01-15 20:57:31	@korken89	Cool
+2019-01-15 20:57:41	@jamesmunns	Also, unrelated to oxidize, I have thoughts about meeting format: https://github.com/rust-embedded/wg/issues/291#issuecomment-452696854
+2019-01-15 20:57:53	@theJPster	As discussed, I'm not entering the CFP, but can I have a table in the hallway track?
+2019-01-15 20:58:06	@jamesmunns	e.g., I would like to have a less formal meeting, more show and tell, more often.
+2019-01-15 20:58:07	@korken89	I was talking to Per a bit since I'm holding an RTFM workshop (in C++) at embo++ I was thinking of proposing a RTFM workshop at Oxidize
+2019-01-15 20:58:19	@korken89	(Rust version)
+2019-01-15 20:58:30	@jamesmunns	Hah, how about that split brain :)
+2019-01-15 20:58:46	@korken89	:)
+2019-01-15 20:58:56	@jamesmunns	send me an email, we can figure something out (james.munns [at] ferrous-systems.com)
+2019-01-15 20:59:06	@korken89	I struggle with the duality of my being everyday
+2019-01-15 20:59:22	@korken89	Cool! I will whip together a small proposal for it and mail you
+2019-01-15 20:59:22	@jamesmunns	Sounds about right for every passionate C++ dev i've met :)
+2019-01-15 20:59:42	~japaric	jamesmunns: I'd suggest a separate time slot for the show and tell stuff since we usually use all the meeting time for wg stuff
+2019-01-15 20:59:47	@theJPster	Also, if anyone knows their way around a schematic, I'd love someone to review my Monotron PCBs before I spend real money getting them made
+2019-01-15 20:59:48	@adamgreig	i am keen on your meeting idea japaric
+2019-01-15 21:00:01	@adamgreig	i like the idea of having it be the hour or two after the regular meeting
+2019-01-15 21:00:01	@theJPster	https://github.com/thejpster/monotron/tree/jgp_pcb_launchpad/pcb
+2019-01-15 21:00:09	@jamesmunns	japaric: I was actually thinking about replacing some of the WG meetings. Maybe the first meeting every month?
+2019-01-15 21:00:14	@jamesmunns	*thinking about proposing
+2019-01-15 21:00:43	@theJPster	I would get confused by that. I can barely handle 7pm every Tuesday.
+2019-01-15 21:00:44	@korken89	I'm also ok with extra after the normal meetings
+2019-01-15 21:00:58	@theJPster	Open-house after the meeting seems good.
+2019-01-15 21:01:21	@therealprof	theJPster: I'll have a look.
+2019-01-15 21:01:25	cr1901	+1 from me
+2019-01-15 21:01:25	 *	theJPster would also love suggestions for cheap but not too crap PCB houses
+2019-01-15 21:01:38	@therealprof	theJPster: Elecrow.
+2019-01-15 21:01:42	@jamesmunns	I'm okay with after-meeting, I'll put together some thoughts, and maybe get it going for after next meeting
+2019-01-15 21:01:50	~japaric	jamesmunns: +1
+2019-01-15 21:01:58	nezza	theJPster: I recently tried JLCPCB and was ahppy
+2019-01-15 21:02:00	@adamgreig	therealprof: jlcpcb.com
+2019-01-15 21:02:07	@korken89	jamesmunns: +1
+2019-01-15 21:02:08	Albru	same,
+2019-01-15 21:02:09	@adamgreig	sorry, theJPster rather
+2019-01-15 21:02:12	~japaric	the meeting is officially over! Thanks everyone for attending and see you next week
