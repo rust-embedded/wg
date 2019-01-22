@@ -185,8 +185,9 @@ The Cortex-R team develops and maintains the core of the Cortex-R crate ecosyste
 
 #### Projects
 
-It's early days for this team. They don't maintain projects within this
-organization at the moment.
+- [`arm-dcc`]
+- [`cortex-r`]
+- [`panic-dcc`]
 
 ### The embedded Linux team
 
@@ -407,12 +408,14 @@ https://mozilla.logbot.info/rust-embedded
 [The embedded Rust book]: https://book.rust-embedded.org/
 [The embedonomicon]: https://github.com/rust-embedded/embedonomicon
 [`alloc-cortex-m`]: https://github.com/rust-embedded/alloc-cortex-m
+[`arm-dcc`]: https://github.com/rust-embedded/arm-dcc
 [`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
 [`cortex-a`]: https://github.com/rust-embedded/cortex-a
 [`cortex-m-quickstart`]: https://github.com/rust-embedded/cortex-m-quickstart
 [`cortex-m-rt`]: https://github.com/rust-embedded/cortex-m-rt
 [`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m-semihosting
 [`cortex-m`]: https://github.com/rust-embedded/cortex-m
+[`cortex-r`]: https://github.com/rust-embedded/cortex-r
 [`cross`]: https://github.com/rust-embedded/cross
 [`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
 [`gpio-cdev`]: https://github.com/rust-embedded/gpio-cdev
@@ -423,6 +426,7 @@ https://mozilla.logbot.info/rust-embedded
 [`msp430-quickstart`]: https://github.com/pftbest/msp430-quickstart
 [`msp430-rt`]: https://github.com/pftbest/msp430-rt
 [`msp430`]: https://github.com/pftbest/msp430
+[`panic-dcc`]: https://github.com/rust-embedded/dcc/tree/master/panic
 [`panic-itm`]: https://github.com/rust-embedded/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/panic-semihosting
 [`register-rs`]: https://github.com/rust-embedded/register-rs
