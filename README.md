@@ -426,7 +426,7 @@ https://mozilla.logbot.info/rust-embedded
 [`msp430-quickstart`]: https://github.com/pftbest/msp430-quickstart
 [`msp430-rt`]: https://github.com/pftbest/msp430-rt
 [`msp430`]: https://github.com/pftbest/msp430
-[`panic-dcc`]: https://github.com/rust-embedded/dcc/tree/master/panic
+[`panic-dcc`]: https://github.com/rust-embedded/arm-dcc/tree/master/panic
 [`panic-itm`]: https://github.com/rust-embedded/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/panic-semihosting
 [`register-rs`]: https://github.com/rust-embedded/register-rs
