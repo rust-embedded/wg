@@ -185,8 +185,8 @@ The Cortex-R team develops and maintains the core of the Cortex-R crate ecosyste
 
 #### Projects
 
+- [`arm-dcc`]
 - [`cortex-r`]
-- [`dcc`]
 - [`panic-dcc`]
 
 ### The embedded Linux team
@@ -408,6 +408,7 @@ https://mozilla.logbot.info/rust-embedded
 [The embedded Rust book]: https://book.rust-embedded.org/
 [The embedonomicon]: https://github.com/rust-embedded/embedonomicon
 [`alloc-cortex-m`]: https://github.com/rust-embedded/alloc-cortex-m
+[`arm-dcc`]: https://github.com/rust-embedded/arm-dcc
 [`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
 [`cortex-a`]: https://github.com/rust-embedded/cortex-a
 [`cortex-m-quickstart`]: https://github.com/rust-embedded/cortex-m-quickstart
@@ -416,7 +417,6 @@ https://mozilla.logbot.info/rust-embedded
 [`cortex-m`]: https://github.com/rust-embedded/cortex-m
 [`cortex-r`]: https://github.com/rust-embedded/cortex-r
 [`cross`]: https://github.com/rust-embedded/cross
-[`dcc`]: https://github.com/rust-embedded/dcc
 [`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
 [`gpio-cdev`]: https://github.com/rust-embedded/gpio-cdev
 [`gpio-utils`]: https://github.com/rust-embedded/gpio-utils
