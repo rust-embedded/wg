@@ -1,0 +1,235 @@
+2019-01-22 20:03:44	~japaric	ok, let's start this meeting
+2019-01-22 20:03:46	Yatekii	o/
+2019-01-22 20:03:54	~japaric	let's resume prioritization of rust requests
+2019-01-22 20:04:15	nezza	o/
+2019-01-22 20:04:20	~japaric	first, is there any objection to the current prioritized list?
+2019-01-22 20:04:36	~japaric	do you think something's priority should be increased?
+2019-01-22 20:05:05	@jamesmunns	10 maybe a bit
+2019-01-22 20:05:24	@korken89	Yeah, I agree there
+2019-01-22 20:05:28	@jamesmunns	I think the last bullet point wasn't brought up until after we decided
+2019-01-22 20:05:34	@jamesmunns	and I didn't realize that until afterwards
+2019-01-22 20:05:53	@jamesmunns	I would personally move it up to 7
+2019-01-22 20:06:07	@jamesmunns	(replacing "crates.io" item)
+2019-01-22 20:06:16	@korken89	I would say, 7-8
+2019-01-22 20:06:22	@therealprof	For me not really.
+2019-01-22 20:06:50	@therealprof	It's more a convenience thing than anything else.
+2019-01-22 20:07:20	@jamesmunns	Do we have a feel for how much "better" libm would get if you could use assembly?
+2019-01-22 20:07:25	@jamesmunns	speed, code size, etc?
+2019-01-22 20:07:56	@jamesmunns	(looking mostly at japaric here)
+2019-01-22 20:08:42	~japaric	jamesmunns: no idea how good the musl impl is vs how good say ARM DSP library is, so my answer is IDK
+2019-01-22 20:09:29	@jamesmunns	I don't really have a personal need for the math libraries much, so I'd have to lean on someone like korken89 to fight for it then :)
+2019-01-22 20:09:46	@jamesmunns	That was just the big one that I remember from last week where the lede was a little buried
+2019-01-22 20:10:01	@korken89	Well, the thing is that it's mostly convenience to not have to make special stuff to get a lib work with embedded
+2019-01-22 20:10:18	~japaric	I think writing a no_std library that does floating point stuff would be easier with this as you wouldn't need #[cfg(not(feature = "std"))] use libm::FloatExt::*;
+2019-01-22 20:10:56	@korken89	Yeah, it's only convenience
+2019-01-22 20:11:05	@korken89	Then it comes to read DSP stuff for the MCUs
+2019-01-22 20:11:18	@korken89	But there a port of CMSIS DSP would be nice to start with
+2019-01-22 20:11:28	@korken89	However that is out of scope for now I'd say
+2019-01-22 20:11:43	@jamesmunns	:+1:
+2019-01-22 20:11:48	@korken89	Maybe leave the math support for now though
+2019-01-22 20:11:58	~japaric	ok
+2019-01-22 20:12:00	@korken89	As long as it is in the pile of thorns :)
+2019-01-22 20:12:11	~japaric	then let's move onto the remaining items
+2019-01-22 20:12:25	~japaric	Stabilize RFC 2282 - "Cargo profile dependencies" AKA profile-overrides
+2019-01-22 20:12:36	~japaric	AKA optimize dependencies but not the top crate
+2019-01-22 20:12:43	~japaric	so that my program will fit in the microcontroller
+2019-01-22 20:12:48	~japaric	w/o losing all debuginfo
+2019-01-22 20:13:10	@korken89	Yes please
+2019-01-22 20:13:16	@korken89	About 5 in my view
+2019-01-22 20:13:23	@jamesmunns	6-7 for me
+2019-01-22 20:13:42	@jamesmunns	unless this includes "custom profiles", e.g. more than debug and release
+2019-01-22 20:13:52	@therealprof	6
+2019-01-22 20:13:53	nezza	it's not higher than 5. imho
+2019-01-22 20:14:00	nezza	five is pretty important
+2019-01-22 20:14:16	@korken89	I can go down to 6 :)
+2019-01-22 20:14:18	@jamesmunns	Yeah, 5 is a breakage of a reasonable thing
+2019-01-22 20:14:28	@jamesmunns	this is an improvement/convenience
+2019-01-22 20:14:53	~japaric	sounds like 6 then
+2019-01-22 20:15:11	~japaric	jamesmunns: (is there an RFC for custom profiles? haven't heard of anything like it)
+2019-01-22 20:15:31	@jamesmunns	I'm not sure, I would like them, maybe I should submit an RFC :)
+2019-01-22 20:15:51	@jamesmunns	skimming through 2282 now to see if they are mentioned, they're not at the top of the RFC
+2019-01-22 20:16:34	~japaric	ok, next item is 'Fix so infinite loops (loop {}) does not need an atomic compiler fence to not be optimized into an abort instruction'
+2019-01-22 20:16:55	@jamesmunns	Isn't this one a tricky LLVM bug?
+2019-01-22 20:17:19	@jamesmunns	does anyone know the rust issue? (looking now)
+2019-01-22 20:17:31	@korken89	It seems to do with the combination of loop {} and a divergent functions
+2019-01-22 20:17:31	~japaric	several years old issue
+2019-01-22 20:17:53	@korken89	Quite annoying issue for us
+2019-01-22 20:17:54	~japaric	https://github.com/rust-lang/rust/issues/28728
+2019-01-22 20:17:57	~japaric	jamesmunns: ^
+2019-01-22 20:18:00	@jamesmunns	japaric: tyvm
+2019-01-22 20:18:53	~japaric	(see second to last comment by  rkruppe for current status)
+2019-01-22 20:20:10	~japaric	we can fix it on the rustc side but a naive fix would likely regress performance across the board; it would be best to fix this in llvm proper
+2019-01-22 20:20:19	@therealprof	Has no priority for me.
+2019-01-22 20:20:35	@korken89	Yeah
+2019-01-22 20:20:45	@korken89	I mean, if you are aware about this it's easy to work around
+2019-01-22 20:20:55	@korken89	The problem is that it quickly bites you as a beginner
+2019-01-22 20:20:58	@jamesmunns	It's definitely a papercut
+2019-01-22 20:21:10	@jamesmunns	could we maybe add a clippy/rustc lint?
+2019-01-22 20:21:19	@jamesmunns	to detect empty loops?
+2019-01-22 20:21:31	@korken89	Empty loop in divergent function I think
+2019-01-22 20:21:44	@therealprof	jamesmunns: Clippy already warns about empty loops.
+2019-01-22 20:21:50	@korken89	Maybe that is a good middleground?
+2019-01-22 20:22:00	@therealprof	(which annoys the heck out of me)
+2019-01-22 20:22:13	@jamesmunns	it would be nice if it was a rustc warn instead of clippy, I know I don't always use clippy
+2019-01-22 20:22:16	~japaric	or we could emit llvm.sideeffect when rustc sees 'loop {}'
+2019-01-22 20:22:31	@jamesmunns	japaric: yeah, rkruppe mentions that as a possible option
+2019-01-22 20:23:02	@therealprof	I'm always putting a pointless continue statement in to get rid of the clippy lint. :-D
+2019-01-22 20:23:29	@korken89	But, since this is only a papercut, maybe low on the list?
+2019-01-22 20:23:30	@therealprof	I have no idea whether that addresses the code generation problem, though.
+2019-01-22 20:23:38	@korken89	9-10?
+2019-01-22 20:23:42	@jamesmunns	I'd say 8, for suggesting llvm.sideeffect on empty loops
+2019-01-22 20:23:50	@jamesmunns	(could go lower though IMO)
+2019-01-22 20:23:55	@korken89	Sounds reasonable
+2019-01-22 20:24:21	@therealprof	I'd definitely rather have better crates.io support than this fix.
+2019-01-22 20:24:29	@korken89	I'd agree there
+2019-01-22 20:24:52	@korken89	Maybe 9?
+2019-01-22 20:25:02	~japaric	9 then
+2019-01-22 20:25:06	@therealprof	WFM
+2019-01-22 20:25:15	@jamesmunns	+1
+2019-01-22 20:25:40	@korken89	wfm = wait for me / works for me? xD
+2019-01-22 20:25:46	~japaric	next item is 'ability to assert within a const fn context, with a compilation error if the assertion fails at compile time and a panic if the assertion fails at runtime.'
+2019-01-22 20:25:57	@korken89	YES PLEASE
+2019-01-22 20:26:11	@korken89	Finally compilation error when setting up a clock tree or peripheral wrong
+2019-01-22 20:26:20	~japaric	this already works in miri, iirc, but would need an RFC to be enabled in rustc
+2019-01-22 20:26:33	@jamesmunns	devils advocate, does that add any value over use of https://github.com/nvzqz/static-assertions-rs ?
+2019-01-22 20:26:34	@therealprof	Is this static_assert done right?
+2019-01-22 20:26:34	~japaric	korken89: this is for const fn / const context
+2019-01-22 20:26:54	@jamesmunns	https://docs.rs/static_assertions/0.3.1/static_assertions/macro.const_assert.html
+2019-01-22 20:26:58	@korken89	But a function with only const inputs should be const context right?
+2019-01-22 20:27:16	@therealprof	Nope.
+2019-01-22 20:27:24	~japaric	korken89: not the same thing; that may get const eval-ed by llvm but it's not const context from rustc PoV
+2019-01-22 20:27:33	@korken89	Blergh
+2019-01-22 20:27:38	@therealprof	:-D
+2019-01-22 20:28:09	@korken89	I was thinking, finally constexpr (from C++) in Rust
+2019-01-22 20:28:17	@therealprof	I'd love to have a proper static_assert.
+2019-01-22 20:28:19	~japaric	jamesmunns: I think people want this with 'if' expressions in const fn
+2019-01-22 20:28:34	~japaric	as in 'else { panic!("blah") }'
+2019-01-22 20:28:39	@jamesmunns	Gotcha
+2019-01-22 20:29:16	@therealprof	For me this is a 7.
+2019-01-22 20:29:41	@jamesmunns	Agreed, unless anyone else has a really nice use case
+2019-01-22 20:29:49	@korken89	I am a strong proponent for anything that catches stuff at compile time
+2019-01-22 20:29:51	@korken89	So I agree
+2019-01-22 20:30:19	@therealprof	jamesmunns: I do have many nice use cases but the other stuff is more important. ;)
+2019-01-22 20:30:20	~japaric	this needs support for 'if' expressions in const fn to be useful, afaict
+2019-01-22 20:30:31	~japaric	and that doesn't seem to be allowed right now
+2019-01-22 20:30:47	~japaric	'error: `if`, `match`, `&&` and `||` are not stable in const fn'
+2019-01-22 20:30:52	~japaric	but it doesn't suggest a feature gate
+2019-01-22 20:31:18	@therealprof	Hm, I thought this is being worked on.
+2019-01-22 20:31:36	~japaric	we are at the half hour mark
+2019-01-22 20:31:57	~japaric	like I said all this works in miri
+2019-01-22 20:32:09	~japaric	but needs each piece neends an RFC to be enabled in rustc proper
+2019-01-22 20:32:23	~japaric	but each piece needs**
+2019-01-22 20:32:34	@korken89	Maybe add both as a co-feature?
+2019-01-22 20:33:14	@korken89	As both together makes something quite good
+2019-01-22 20:34:10	@jamesmunns	Put it at 7, and we can rescope later?
+2019-01-22 20:34:17	@korken89	SGTM
+2019-01-22 20:34:52	@therealprof	+1
+2019-01-22 20:34:59	~japaric	inserting it at #7
+2019-01-22 20:35:44	~japaric	next: 'Language support for types with storage size of less than 1 byte'
+2019-01-22 20:36:00	~japaric	didn't the rfc for this get postponed?
+2019-01-22 20:36:07	@korken89	Isn't there libs for this?
+2019-01-22 20:36:34	~japaric	https://github.com/rust-lang/rfcs/pull/2581
+2019-01-22 20:37:12	~japaric	korken89: it should be possible to implement the desired semantics using proc-macro (#[derive]); there should be crates for this around
+2019-01-22 20:37:47	nezza	It's quite a thing to implement, at least for arbitrary bitsizes, cause it also means math for >128 bit
+2019-01-22 20:37:53	@korken89	japaric: Found one https://github.com/dzamlo/rust-bitfield
+2019-01-22 20:37:57	~japaric	e.g. https://github.com/hashmismatch/packed_struct.rs#example-of-a-single-byte-structure-with-a-3-bit-integer-primitive-enum-and-a-bool-field
+2019-01-22 20:37:59	@jamesmunns	No priority from me
+2019-01-22 20:38:17	@korken89	No priority for me either
+2019-01-22 20:38:25	nezza	same
+2019-01-22 20:38:27	@therealprof	Hm, priority for me. ;)
+2019-01-22 20:38:38	@korken89	Hehe
+2019-01-22 20:38:45	@jamesmunns	95% of when I would want this is at the -pac layer, and it's usually handled for me :)
+2019-01-22 20:38:50	@korken89	Could you explain the painpoint?
+2019-01-22 20:39:24	@therealprof	I'm a big fan of storing state in bitfields but at the moment this is really a weak spot.
+2019-01-22 20:39:47	@korken89	For storage optimization?
+2019-01-22 20:39:51	@therealprof	If you use an array of booleans then it's one byte per boolean.
+2019-01-22 20:39:53	@therealprof	Yes.
+2019-01-22 20:40:13	@therealprof	I know those crates exist but they're painful to use.
+2019-01-22 20:40:23	@korken89	Okey, I see the use-case
+2019-01-22 20:40:38	@therealprof	Having a native type would allow all the usual niceties rust has to offer.
+2019-01-22 20:40:43	@jamesmunns	therealprof: where would you like this to be?
+2019-01-22 20:40:55	@jamesmunns	(rank wise)
+2019-01-22 20:41:02	@therealprof	10 or 11
+2019-01-22 20:41:14	@jamesmunns	I agree with that
+2019-01-22 20:41:21	@korken89	Same here
+2019-01-22 20:41:36	@therealprof	(It's not that much of an issue, can be worked around and I'm not that tight in space for my toy applications)
+2019-01-22 20:41:37	@korken89	11?
+2019-01-22 20:41:54	@therealprof	+1
+2019-01-22 20:42:00	nezza	+1
+2019-01-22 20:42:07	~japaric	+11
+2019-01-22 20:42:27	@korken89	:)
+2019-01-22 20:42:31	~japaric	last item is 'thumb intrinsics'
+2019-01-22 20:43:05	@therealprof	Example?
+2019-01-22 20:43:16	~japaric	core::arch::arm::wfi
+2019-01-22 20:43:21	@korken89	Finally get rid of the precomiled intrinsics
+2019-01-22 20:43:37	@jamesmunns	Yeah, this has code size/speed impacts
+2019-01-22 20:43:58	@jamesmunns	(probably not a lot though, to be hones)
+2019-01-22 20:44:00	@therealprof	Ah, I was somehow thinking of esoteric ones. :-D
+2019-01-22 20:44:02	@jamesmunns	*honest
+2019-01-22 20:44:18	~japaric	this one needs an rfc from our side, in any case
+2019-01-22 20:44:20	@therealprof	Dunno. Would be nice to get rid of the precompiled stuff.
+2019-01-22 20:44:23	~japaric	for stabilization
+2019-01-22 20:44:39	@jamesmunns	I'd say somewhere in 4-10
+2019-01-22 20:44:51	@korken89	I would put this at 6 probably
+2019-01-22 20:45:08	@therealprof	7 for me
+2019-01-22 20:45:20	nezza	yea, 6 for me
+2019-01-22 20:45:21	nezza	6-7
+2019-01-22 20:45:30	nezza	7
+2019-01-22 20:45:40	@korken89	7 works for me
+2019-01-22 20:45:42	~japaric	inserting at #7
+2019-01-22 20:46:01	@therealprof	profile overrides allow for debugging code on lowly CM0s, that's far more important than saving a few jumps.
+2019-01-22 20:46:27	@korken89	Good point
+2019-01-22 20:46:30	 *	cr1901 forgot it was Tuesday
+2019-01-22 20:46:50	cr1901	Well, I'm here lol, but not much I have to contribute atm :)
+2019-01-22 20:47:05	~japaric	jamesmunns: next two items on the agenda are yours
+2019-01-22 20:47:28	@jamesmunns	*scrambling for notes*
+2019-01-22 20:47:31	~japaric	newsletter and free form discussions
+2019-01-22 20:48:09	@jamesmunns	Argh, okay the easy one
+2019-01-22 20:48:11	@jamesmunns	newsletter
+2019-01-22 20:48:23	@jamesmunns	It hasn't been updated for a while, but I think it is still valuable
+2019-01-22 20:48:23	~japaric	( free form discussions: https://github.com/rust-embedded/wg/issues/291#issuecomment-452696854 )
+2019-01-22 20:48:38	@jamesmunns	If someone would be interested in helping, I would be happy to mentor
+2019-01-22 20:48:46	@jamesmunns	The big items are one or both of:
+2019-01-22 20:49:04	@jamesmunns	1. finding and curating interesting things going on, on a biweekly basis
+2019-01-22 20:49:16	@jamesmunns	2. writing a bit of the summary to make it more than just a bullet point list
+2019-01-22 20:49:33	@jamesmunns	I am open to people not currently on the WG, and could be a path to join the resources team on the WG
+2019-01-22 20:49:52	@jamesmunns	I am just very unreliable with my free time right now, due to other commitments
+2019-01-22 20:49:52	~japaric	we could use the twir format for the newsletters: start with empty template and people add their stuff as prs
+2019-01-22 20:49:56	@korken89	Just a crazy idea, can this be combined with the "This week in rust" newsletter?
+2019-01-22 20:50:11	@korken89	Or is that only for general rust?
+2019-01-22 20:50:31	@jamesmunns	japaric: I agree, but we would still need to find people to submit stuff, so we would need a lot more "go add this to this PR"
+2019-01-22 20:50:37	~japaric	korken89: I mean you can submit your stuff to twir (this week in rust) but you get less visibility there because there's more stuff
+2019-01-22 20:50:59	@jamesmunns	Most of the stuff I talk about in the newsletters werent added to the issue, it was a lot of me looking on IRC, twitter, etc
+2019-01-22 20:51:10	@korken89	japaric: Ah, I see - not optimal
+2019-01-22 20:51:32	@jamesmunns	If we get more people bullying others to add their cool stuff to the newsletter, I think PR based flow could work
+2019-01-22 20:51:43	@jamesmunns	Lots of people are shy to submit though :)
+2019-01-22 20:51:55	Yatekii	well I'm not shy, my stuff is just not werking :D
+2019-01-22 20:51:59	@jamesmunns	(bullying in a good way, in this context)
+2019-01-22 20:52:19	~japaric	I mean the prs can also be not by the author and more like 'I saw this cool thing on twitter; here's a bullet' (hopefully)
+2019-01-22 20:52:22	@korken89	But that's fine as well, the post does not need to be huge :)
+2019-01-22 20:52:43	@korken89	Else we start by squeezing the WG members for cool stuff
+2019-01-22 20:53:09	@jamesmunns	K, unless I get a volunteer, I'll aim for that, and try and remind people as often as possible to submit things they see that are cool :)
+2019-01-22 20:53:24	@therealprof	We have various orgs now. ;)
+2019-01-22 20:53:40	@therealprof	Introduce them.
+2019-01-22 20:53:54	@jamesmunns	therealprof: yep, that would be a great thing to write about, if I had time to write :)
+2019-01-22 20:54:40	@jamesmunns	Okay, the other item is free form discussion, see https://github.com/rust-embedded/wg/issues/291#issuecomment-452696854 for details
+2019-01-22 20:54:42	~japaric	jamesmunns: maybe when you commit the empty template you can cc the *-rs orgs to remind them that they can share their cool stuff in the newsletter
+2019-01-22 20:54:53	@jamesmunns	japaric: Will do
+2019-01-22 20:55:20	@jamesmunns	The for free-form is to have an informal, non-agenda-based time to meet up and discuss fun stuff
+2019-01-22 20:55:44	@jamesmunns	mostly as a way to welcome new people, share what we've been working on, and discuss pain points in a sync kind of manner
+2019-01-22 20:55:50	~japaric	I liked jp's idea of doing this after the meetings (1-hour slot)
+2019-01-22 20:56:04	@jamesmunns	I think we decided to do it after this meeting, but I haven't prepared anything
+2019-01-22 20:56:31	@jamesmunns	(also I may not be available next week, but please have it without me!)
+2019-01-22 20:57:07	Yatekii	WHOOO my debugger is finally not stuck on the bss clear (i don't know why tho ..)! (sorry had to tell this :P)
+2019-01-22 20:57:14	~japaric	we should advertise this, e.g. on twitter
+2019-01-22 20:57:16	@jamesmunns	I'll make some tweets about it for next week
+2019-01-22 20:57:24	cr1901	jamesmunns: I also like the idea of being able to vent (in a nice way) without disrupting the meeting
+2019-01-22 20:57:36	@jamesmunns	cr1901: yup, we'll kick that off in 2.5 minutes :)
+2019-01-22 20:57:40	cr1901	re: pain points
+2019-01-22 20:57:58	@jamesmunns	So, trial run this week starting soon, then I'll put up some PR for next week to try and get a crowd
+2019-01-22 20:58:16	~japaric	+1
+2019-01-22 20:58:32	cr1901	Because I do have one, it's not appropriate to discuss during the meeting. I can't promise other ppl will understand. But worth a shot :).
+2019-01-22 20:59:08	@jamesmunns	japaric: thats all from me
+2019-01-22 20:59:13	~japaric	jamesmunns: thanks!
+2019-01-22 20:59:51	@korken89	Perfect on time :)
+2019-01-22 20:59:53	~japaric	and we are out of time as well. I now officially conclude this meeting. Thanks all for attending and see you next week!
