@@ -1,0 +1,188 @@
+2019-01-29 20:05:31	~japaric	ok, let's start this meeting
+2019-01-29 20:05:40	 *	therealprof feels the sudden desire to add releases to the agenda
+2019-01-29 20:05:53	~japaric	therealprof: releases?
+2019-01-29 20:06:22	@therealprof	For some of the crates releases are long overdue IMHO.
+2019-01-29 20:06:42	@therealprof	svd2rust, cortex-m, embedded-hal are the first coming to mind
+2019-01-29 20:06:44	ryankurte	svd2rust and embedded-hal?
+2019-01-29 20:06:49	~japaric	therealprof: we don't have many items on the agenda so you can add a bullet
+2019-01-29 20:07:07	~japaric	ok, first some announcements
+2019-01-29 20:07:33	Jacob_____	(lurking as usual)
+2019-01-29 20:07:39	@adamgreig	o/ sorry was wrapping up some work stuff
+2019-01-29 20:08:11	~japaric	next week is Rust All Hands, in Berlin. jamesmunns, therealprof and I will be attending, presenting the list of prioritized of rust requests, and discussing wg crates issues
+2019-01-29 20:08:59	theJPster_	Which days?
+2019-01-29 20:09:20	~japaric	theJPster_: the event is Mon->Fri next week
+2019-01-29 20:10:02	theJPster_	Oh, wow.
+2019-01-29 20:10:46	@therealprof	My thought exactly. :-D
+2019-01-29 20:10:57	~japaric	ok, the other announcement is related to MaybeUninit
+2019-01-29 20:11:16	~japaric	I suggested stabilizing the uninitialized, as_ptr and as_mut_ptr API ahead of the rest of the API
+2019-01-29 20:11:31	~japaric	since that would unblock several use cases on stable
+2019-01-29 20:11:39	@therealprof	+1
+2019-01-29 20:11:46	~japaric	it seems to have received good reception from the people in charge of the stabilization issue
+2019-01-29 20:11:53	 *	japaric trying to find a link to his comment
+2019-01-29 20:12:36	~japaric	https://github.com/rust-lang/rust/issues/53491#issuecomment-456348827
+2019-01-29 20:12:40	~japaric	you can read from there
+2019-01-29 20:12:55	~japaric	there are still a few issues that need to be addressed first
+2019-01-29 20:13:10	~japaric	mainly these two: https://github.com/rust-lang/rust/issues/53491#issuecomment-456787477
+2019-01-29 20:13:39	~japaric	then we might see MaybeUninit on stable in a few months
+2019-01-29 20:13:44	@therealprof	There's a lot of stuff happening at the moment towards stabilation like using it in libstd/libcore/liballoc.
+2019-01-29 20:14:27	~japaric	using MaybeUninit internally in in libstd/libcore/liballoc, you mean?
+2019-01-29 20:15:09	@therealprof	Yes.
+2019-01-29 20:15:59	~japaric	I don't think that's a blocker for stabilizing a minimal subset of the API though
+2019-01-29 20:16:26	~japaric	ok, moving onto the agenda
+2019-01-29 20:16:26	@therealprof	Certainly not. Just saying there's a good drive at the moment.
+2019-01-29 20:16:31	~japaric	ack
+2019-01-29 20:16:40	~japaric	first item is rust-embedded/cortex-m-rt#139
+2019-01-29 20:16:48	~japaric	I think korken89 is not around today
+2019-01-29 20:17:05	@therealprof	Nope.
+2019-01-29 20:17:19	~japaric	anyone got around to drafting a bug report for this?
+2019-01-29 20:17:41	@adamgreig	i thought i saw something upstream for it but can't find it now
+2019-01-29 20:18:04	@therealprof	Yeah, I thought there's an older issue lying around.
+2019-01-29 20:18:08	@adamgreig	it's causing a lot of woe though
+2019-01-29 20:18:13	@therealprof	nagisa might know
+2019-01-29 20:19:10	Yatekii	we just need to get rid of GDB and issue solved :P
+2019-01-29 20:19:43	~japaric	adamgreig: if you find the upstream issue could you post in on the cortex-m-rt issue?
+2019-01-29 20:20:09	~japaric	if there isn't one we should open a new issue
+2019-01-29 20:20:09	@adamgreig	will do; I note korken89's comment from the 8th says we will open an upstream issue once we have enough data
+2019-01-29 20:20:17	@adamgreig	https://github.com/rust-embedded/cortex-m-rt/issues/139#issuecomment-452436495
+2019-01-29 20:20:32	@adamgreig	not sure if korken89 had any update since then
+2019-01-29 20:20:40	nagisa	wazzup
+2019-01-29 20:21:17	~japaric	nagisa: hello. do you want if there's a rust-lang/rust issue for lr being used / overwritten in noreturn functions?
+2019-01-29 20:21:28	~japaric	do you know if**
+2019-01-29 20:21:58	nagisa	no
+2019-01-29 20:22:21	nagisa	I do not expect that to be fixed even if filled
+2019-01-29 20:22:46	nagisa	the best that could possibly happen is an attribute that would override the noreturn annotation for `-> !` functions.
+2019-01-29 20:23:26	~japaric	nagisa: do you think an llvm codegen option to preserve lr in these functions would be an option?
+2019-01-29 20:23:27	@adamgreig	the problem function is in libcore though
+2019-01-29 20:23:35	@adamgreig	so a user attribute wouldn't help much
+2019-01-29 20:23:53	~japaric	(though that would be llvm work and not rustc work)
+2019-01-29 20:24:41	theJPster_	Can we at least put a finite backtrace limit in the default .gdbinit file / the documentation?
+2019-01-29 20:24:58	~japaric	theJPster_: we can do that in the cortex-m-quickstart template
+2019-01-29 20:26:58	~japaric	maybe we could add an unstable flag to not add the noreturn attribute to divergent functions
+2019-01-29 20:27:03	theJPster_	Should I open another issue for that?
+2019-01-29 20:27:09	~japaric	kind of just for debugging
+2019-01-29 20:27:23	~japaric	theJPster_: please do (in the quickstart issue tracker)
+2019-01-29 20:27:28	nagisa	a flag is something that could happen, but it would still not affect pre-compiled code.
+2019-01-29 20:27:42	~japaric	you are right
+2019-01-29 20:28:00	@adamgreig	I think the problem is exclusively core::panicking::panic?
+2019-01-29 20:28:01	~japaric	(unless pure-mir rlibs)
+2019-01-29 20:28:23	~japaric	adamgreig: you will also see this in #[entry]
+2019-01-29 20:28:46	@adamgreig	hm
+2019-01-29 20:28:51	@adamgreig	yea, I see, annoying
+2019-01-29 20:29:14	@adamgreig	shame we don't have a better handle on when this stopped working, if it ever did
+2019-01-29 20:29:55	@adamgreig	does this not manifest for non-embedded use cases?
+2019-01-29 20:29:58	~japaric	nagisa: you mentioned the other day something about using debuginfo (cfi?) to get the backtrace; do you think that could help here?
+2019-01-29 20:30:25	~japaric	adamgreig: not in panic=unwind code, which is what most std targets use
+2019-01-29 20:30:38	~japaric	you only get noreturn+nounwind attributes with panic=abort
+2019-01-29 20:31:19	~japaric	we are at the half hour mark
+2019-01-29 20:31:43	theJPster_	Opened https://github.com/rust-embedded/cortex-m-quickstart/issues/65
+2019-01-29 20:31:53	~japaric	theJPster_: +1
+2019-01-29 20:33:13	~japaric	in any case I think we should still open a rust issue and try to see if adding codegen flags is an option (and if it helps at all)
+2019-01-29 20:33:32	~japaric	maybe there are some alternatives that involve debuginfo tweaks
+2019-01-29 20:33:35	@adamgreig	maybe we could not have noreturn when we have nounwind
+2019-01-29 20:33:43	@adamgreig	mm
+2019-01-29 20:35:46	~japaric	let's check with korken89 next week; I can also ask around about this in the RAH
+2019-01-29 20:36:06	~japaric	Hark: around?
+2019-01-29 20:36:16	Hark	o7
+2019-01-29 20:36:30	Hark	What do you need?
+2019-01-29 20:36:40	~japaric	Hark: you had an item on the agenda from a few weeks ago; want to cover it now?
+2019-01-29 20:36:45	Hark	Sure
+2019-01-29 20:37:18	Hark	I may be slightly distracted as I'm in a meeting atm, but I can interact
+2019-01-29 20:37:35	nagisa	japaric: yes.
+2019-01-29 20:38:02	Hark	japaric: Should I drive the discussion, or do you want to continue to lead
+2019-01-29 20:38:37	nagisa	japaric: not sure what exactly the problem is, but if you’re looking to deal with backtrace looking infinite, `.cfi` annotations could easily allow making `-> !` appear as if they were "_start" and there ain’t nothing to unwind past it.
+2019-01-29 20:38:54	~japaric	Hark: please drive (if you can't then I can take over)
+2019-01-29 20:39:13	Hark	I can start, but I'm not sure I can hold court for the full discussion
+2019-01-29 20:39:13	nagisa	(like not actual _start, but the behaviour that gdb does not unwind past the deepest valid stack frame)
+2019-01-29 20:39:22	Hark	The shtick basically is the content of https://github.com/rust-embedded/wg/issues/294
+2019-01-29 20:39:59	Hark	Trying to gather thoughts for simple primitives for moving or sharing data with interrupt handlers
+2019-01-29 20:40:24	Hark	As currently this is a distinctly non-ideal system involving static mut variables and the bare-metal Mutex
+2019-01-29 20:40:56	Hark	RTFM does provide a good solution to this, but I'm not totally convinced that it should be required for all applications that want to use interrupts
+2019-01-29 20:41:17	Hark	There may be use in a very simple primitive that can be used for situations where data does not need to be shared, only moved
+2019-01-29 20:42:05	Hark	Also thoughts on how to handle driver libraries that may want to encapsualte interrupt handling inside their code, essentially allowing the user application to hand over control of the intterupt to the driver to handle internally
+2019-01-29 20:43:43	~japaric	I've seen a few ideas tossed around in the thread; I would like to see some prototypes (outside of cortex-m-*) that people can test out and give feedback on
+2019-01-29 20:43:44	theJPster_	I am very keen on finding solutions to this. I feel dirty whenever I use `static mut` variables.
+2019-01-29 20:43:47	@adamgreig	i haven't had any time to think about this since the github discussion but it remains a really important direction to work in imo, will try and find more time to play with things
+2019-01-29 20:44:39	@adamgreig	a better-scoped solution is nice but i'd happily settle for concurrently-safe global statics or something in preference to some of the heavier-weight suggestions
+2019-01-29 20:45:20	ryankurte	yeah v pertinent, the other problem i have found with Mutex based sharing is if you have an os managing them, and no nested-interrupts (-cough- mbedos -cough-) you can't do _anything_ from an interrupt context.
+2019-01-29 20:45:21	theJPster_	Or at least something that people haven't previously said "We'd really like that to go away"
+2019-01-29 20:46:02	@therealprof	I don't think I'm at the right level of Rust mastery yet to tackle such a problem but as a user and promoter I'm very much interested in a solution that feels rusty but is easy to use.
+2019-01-29 20:46:09	ryankurte	+1
+2019-01-29 20:46:15	@adamgreig	i'll try to find time to prototype some more ideas
+2019-01-29 20:46:27	@adamgreig	the discussion on the wg issue is good i think
+2019-01-29 20:47:24	@therealprof	I don't share the opinion that squeezing out the optimum in performance and guaranteed WCET should be the primary goal for the "light" solution.
+2019-01-29 20:47:44	disasm	ryankurte: maybe "bottom half" approach can help?
+2019-01-29 20:47:48	ryankurte	i think it needs to be as _easy_ as c?
+2019-01-29 20:48:01	@adamgreig	yes: as easy as c, and perfectly safe, please
+2019-01-29 20:48:09	@therealprof	ryankurte: C is easy? O_O
+2019-01-29 20:48:19	@adamgreig	sharing data between interrupts and main in c is easy
+2019-01-29 20:48:22	@adamgreig	not necessarily safe
+2019-01-29 20:48:46	@therealprof	Yeah, maybe more messy. ;)
+2019-01-29 20:48:54	ryankurte	therealprof: i've written a lot of c
+2019-01-29 20:49:08	@therealprof	ryankurte: I do it every day. ;)
+2019-01-29 20:49:18	ryankurte	^_^
+2019-01-29 20:49:28	@adamgreig	with an rtos it's usually both, e.g. signalling a thread with a semaphore from an isr: you can scope the static to your translation unit, functions accessing it are thread-safe (usually via locks or atomics), and your isr just calls like "signal_semaphore(&some_static);" while your main thread is "wait_for_semaphore(&some_static)"
+2019-01-29 20:49:33	@adamgreig	but i think that's basically what rtfm gives you too
+2019-01-29 20:49:46	@therealprof	For embedded things Rust is already much easier to use than C.
+2019-01-29 20:49:51	@adamgreig	what we're looking for is something simple and generally-applicable enough to build in to c-m-rt
+2019-01-29 20:50:15	Yatekii	therealprof: you think so? oO :P
+2019-01-29 20:50:29	~japaric	10 mins left
+2019-01-29 20:50:39	ryankurte	adamgreig: the nvic module is a neat idea?
+2019-01-29 20:50:46	@therealprof	Yatekii: Yes.
+2019-01-29 20:50:52	~japaric	let's check back on this issue in a few weeks
+2019-01-29 20:50:59	@adamgreig	ryankurte: i was about to say i'm specifically unsure about that :P since it requires knowing about nvic which is a cortex-m thing and 'higher level' than c-m-rt imo
+2019-01-29 20:51:03	~japaric	hopefully there should be some prototypes up by then
+2019-01-29 20:51:14	@adamgreig	yea
+2019-01-29 20:51:18	 *	therealprof hopes
+2019-01-29 20:51:24	Lokathor	Open hour?
+2019-01-29 20:51:32	~japaric	therealprof: you got the last item on the agenda
+2019-01-29 20:51:40	@therealprof	Okay.
+2019-01-29 20:51:41	@adamgreig	Lokathor: not yet :P
+2019-01-29 20:52:00	~japaric	are we talking about minor releases or patch releases?
+2019-01-29 20:52:08	@adamgreig	that is my question too
+2019-01-29 20:52:18	@adamgreig	how badly does a minor c-m release break the ecosystem?
+2019-01-29 20:52:25	~japaric	patch releases shouldn't need a discussion
+2019-01-29 20:52:26	@therealprof	We've had a lot of discussions and issues tackled in the last months but for some reason we're not quite release happy.
+2019-01-29 20:52:29	@adamgreig	because we have three or four PRs waiting for the minor release
+2019-01-29 20:52:33	@adamgreig	and one thing on a patch
+2019-01-29 20:52:36	@therealprof	minor releases
+2019-01-29 20:52:52	@adamgreig	but i can't remember how badly minor c-m releases ruin everything
+2019-01-29 20:52:57	@adamgreig	because of singletons and stuff
+2019-01-29 20:52:59	~japaric	adamgreig: you can use semver hack on c-m -- as long as you don't increase MSRV -- so not much of a problem
+2019-01-29 20:53:04	@adamgreig	ok
+2019-01-29 20:53:11	~japaric	(iirc)
+2019-01-29 20:53:14	Lokathor	I don't have a lot to say for open hour except that I want +thumb and -thumb because it helps me personally :P
+2019-01-29 20:53:18	@therealprof	I think we should make a decision and effort of coordination to create those releases.
+2019-01-29 20:54:27	@therealprof	svd2rust has changed quite a bit and I think there's a lot of good stuff in it already. Is there anything people would definitely want to have in a minor release?
+2019-01-29 20:54:45	~japaric	does it *need* a minor release?
+2019-01-29 20:55:06	@therealprof	I think so, yes.
+2019-01-29 20:55:19	ryankurte	therealprof: it'd be nice to close out some of the open / completed PRs first, but in principle agreed
+2019-01-29 20:55:36	~japaric	(svd2rust unreleased changelog is empty :sadface:)
+2019-01-29 20:56:38	@therealprof	Can we maybe set an action point for every one to check the open and closed PR to form an opinion until next week?
+2019-01-29 20:56:41	ryankurte	japaric: iirc this will be the release that integrates the fairly major svd rewrite
+2019-01-29 20:57:06	ryankurte	therealprof: sounds excellent, shall we create a release issue?
+2019-01-29 20:57:28	ryankurte	s/rewrite/refactor/
+2019-01-29 20:58:09	~japaric	ryankurte: but did it change the generated api? or is there a fear of bugs introduced by the refactor? if the later we can do a .alpha / .beta pre-release
+2019-01-29 20:58:53	~japaric	*patch* pre-release, if there are no breaking changes
+2019-01-29 20:59:46	Lokathor	adamgreig, whoops gotta go. Good luck with open hour
+2019-01-29 21:00:08	@therealprof	japaric: +1
+2019-01-29 21:00:37	SEGFAULT	this is my first time lurking in this IRC. What's open hour?
+2019-01-29 21:01:24	@adamgreig	therealprof: we should probably do some more general triage of open issues/prs across wg repos...
+2019-01-29 21:01:42	@adamgreig	SEGFAULT: we've been trying out having an hour after the official meeting for general chat/show-and-tell/etc
+2019-01-29 21:01:47	@therealprof	ryankurte: What do we do about embedded-hal? Release is long overdue…
+2019-01-29 21:01:51	@therealprof	adamgreig: +ü1
+2019-01-29 21:01:55	@therealprof	+1, even
+2019-01-29 21:02:02	ryankurte	mostly the latter, but i'd have to check. iirc wez has been running svd2rust with a patch up
+2019-01-29 21:02:14	ryankurte	therealprof: yeah, totes is
+2019-01-29 21:02:40	ryankurte	we haven't resolved the v1/v2 compat thing yet though
+2019-01-29 21:02:51	@therealprof	ryankurte: I thought we have?
+2019-01-29 21:02:55	ryankurte	(for the digital traits)
+2019-01-29 21:03:05	@therealprof	Yeah, I know. ;)
+2019-01-29 21:03:19	ryankurte	(for other readers just in case, soz)
+2019-01-29 21:03:38	ryankurte	it's not merged, and i made an attempt at implementing the approach i proposed and got stuck in recursive trait nightmares.
+2019-01-29 21:03:40	~japaric	we are over time. can we get a volunteer(s) to open release discussion issues for c-m, svd2rust, etc?
+2019-01-29 21:03:56	SEGFAULT	adamgreig: should I stay quiet then?
+2019-01-29 21:03:58	~japaric	questions to answer: does this need a minor release? what could be included in a minor release?
+2019-01-29 21:04:28	@therealprof	japaric: Will do.
+2019-01-29 21:04:32	ryankurte	+1
+2019-01-29 21:04:37	~japaric	therealprof: thanks
+2019-01-29 21:04:52	~japaric	ok, that concludes the meeting. Thanks everyone for attending!
