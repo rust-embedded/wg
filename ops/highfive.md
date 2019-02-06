@@ -14,3 +14,7 @@ Reference: https://github.com/rust-lang-nursery/highfive
 
 - If you use `r? @ghost` in the PR description no one will get assigned to
   review the PR.
+
+- If you run into what appears to be a bug in highfive please notify the
+  rust-lang/infra team (#infra channel on discord) ASAP -- the highfive logs are
+  kind of short lived.
