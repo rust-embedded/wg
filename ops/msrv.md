@@ -2,10 +2,10 @@
 
 This text documents the MSRV policy used in the crates maintained by the WG.
 
-- The MSRV shall never be greater than the second latest minor stable release at
-  the moment the crate is published. For example, if the latest stable Rust
-  version was 1.32.1 a new minor release of the `cortex-m` crate can't bump the
-  MSRV higher than 1.31.0.
+- The MSRV shall always be strictly smaller than the latest available minor
+  stable release. For example, if the latest stable Rust version was 1.32.1 a
+  new minor release of the `cortex-m` crate can't bump the MSRV higher than
+  1.31.0.
 
 - Changing the MSRV of a crate is a breaking change and requires a semver bump:
   minor version bump if the crate is pre-1.0 and a major version bump if the
