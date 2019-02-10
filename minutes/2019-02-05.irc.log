@@ -1,0 +1,200 @@
+2019-02-05 20:04:53	~japaric	ok, let's start this meeting
+2019-02-05 20:04:56	@hannobraun	Still some left, up in the hills.
+2019-02-05 20:05:29	~japaric	I think the agenda is still last week's
+2019-02-05 20:06:01	~japaric	jamesmunns: you can start with the CI item
+2019-02-05 20:06:12	@jamesmunns	Sure, we had some comments about how to run CI
+2019-02-05 20:06:26	@jamesmunns	And it probably makes sense to have a "standard" for how we do CI for our projects
+2019-02-05 20:06:33	@jamesmunns	details are in https://github.com/rust-embedded/wg/issues/301
+2019-02-05 20:07:02	@jamesmunns	If you have any comments, please add them, and I will write up an RFC or PR to add these details, and make some tracking issues on all of our repos to make this happen
+2019-02-05 20:07:28	@jamesmunns	Hopefully nothing controversial, just a process tidy-up.
+2019-02-05 20:07:41	@korken89	I think that what you say in the post makes sense, LGTM
+2019-02-05 20:07:53	@korken89	Good to have a standard way to do it
+2019-02-05 20:08:20	~japaric	I agree with the issue description
+2019-02-05 20:08:31	~japaric	wonder if we should specify 'having bors' in the ops document
+2019-02-05 20:08:39	@jamesmunns	Oh, thats a good point
+2019-02-05 20:08:51	@korken89	I think bors is a great tool, I would add it
+2019-02-05 20:08:57	@jamesmunns	I always `bors r+` in repos that don't actually have bors, then forget to merge later :D
+2019-02-05 20:09:27	@korken89	Haha same here, there should be warnings for that ;)
+2019-02-05 20:09:43	~japaric	https://github.com/rust-embedded/wg/blob/master/ops/post-transfer.md has some CI stuff in it
+2019-02-05 20:10:12	@jamesmunns	japaric: Could you please add that as a comment? That way I will remember it when I write it up :)
+2019-02-05 20:10:17	disasm	I think it will be useful to have a simple but complete example on how to do properly all this CI things. Maybe a separate repository.
+2019-02-05 20:10:45	@jamesmunns	Yeah, a CI template would probably be nice, with a checklist on anything to do outside the repo (enable travis? enable bors?)
+2019-02-05 20:11:22	@theJPster	Lowering the barrier to entry for this stuff is definitely the way to go
+2019-02-05 20:11:24	~japaric	+1 to CI template
+2019-02-05 20:12:01	@therealprof	+1
+2019-02-05 20:12:10	@theJPster	Better than just copy-paste-edit time and time again. Go back to the central repo and get a fresh copy with latest best practice.
+2019-02-05 20:12:16	@jamesmunns	K, this seems uncontroversial, so I will:
+2019-02-05 20:12:25	@jamesmunns	1. make an ops PR stating what the plan is
+2019-02-05 20:12:31	@jamesmunns	2. Make a CI template repo
+2019-02-05 20:12:44	disasm	(Also I have the same idea for the list of "best practices" or just good ideas on how to make embedded code better or more readable)
+2019-02-05 20:12:54	@jamesmunns	3. Make tickets in every repo with a check-up checklist for all the items listed there
+2019-02-05 20:13:08	@korken89	Quick divergent question, why is Travis mainly used? It kind of is super slow and randomly crashes in my experience, but it seems to be the standard in the Rust community
+2019-02-05 20:13:26	~japaric	the reason may be that rust-lang/rust uses it
+2019-02-05 20:13:28	@jamesmunns	then for step 4: fix any outstanding issues (I could use help with this)
+2019-02-05 20:13:32	@theJPster	I think because it integrates with Github.com well
+2019-02-05 20:13:43	@theJPster	(and Gitlab and Bitbucket have their own CI)
+2019-02-05 20:13:53	@jamesmunns	korken89: Yeah, rust-lang/rust uses it, we have tooling like bors already, etc.
+2019-02-05 20:13:55	~japaric	(by the way, rust-lang is looking into moving to other CI solution)
+2019-02-05 20:13:56	@therealprof	korken89: What are the alternatives? Circle-CI?
+2019-02-05 20:14:09	@jamesmunns	Also, it's free for open source projects.
+2019-02-05 20:14:10	@therealprof	japaric: Yeah, maybe… ;)
+2019-02-05 20:14:28	@korken89	Ah okey, just wondering in C++ land we switch manly to Circle CI - but I was not sure about the history here
+2019-02-05 20:14:33	@korken89	These things run deep :)
+2019-02-05 20:14:44	@jamesmunns	Mostly implicit decision
+2019-02-05 20:14:47	@korken89	Just a curiosity for me
+2019-02-05 20:15:02	@korken89	Let's continue, sorry for the interruption
+2019-02-05 20:15:05	@jamesmunns	I'd say I'd be open to other choices, but that would take an RFC on rust-embedded/wg.
+2019-02-05 20:15:37	@jamesmunns	Any other CI comments?
+2019-02-05 20:15:43	~japaric	+1 to jamesmunns plan
+2019-02-05 20:15:49	~japaric	we should document what we do now
+2019-02-05 20:16:02	~japaric	and maybe do an rfc if we want to use something else
+2019-02-05 20:16:04	@therealprof	Basically they set up the rules/criteria to change to a different CI today.
+2019-02-05 20:16:12	@therealprof	japaric: +1
+2019-02-05 20:16:16	@korken89	+1
+2019-02-05 20:16:31	@jamesmunns	(rust-lang/rust has a ton more momentum than we do for CI, and we don't /have/ to use what they use)
+2019-02-05 20:17:01	~japaric	ok, we can move to the next item
+2019-02-05 20:17:12	@jamesmunns	My next item is really just a quick plug
+2019-02-05 20:17:14	@jamesmunns	https://github.com/rust-lang/rust/pull/56291 landed
+2019-02-05 20:17:25	@jamesmunns	which means tomorrow's nightly will include the embedded rust book :)
+2019-02-05 20:17:31	~japaric	\o/
+2019-02-05 20:17:46	@hannobraun	nice
+2019-02-05 20:17:53	~japaric	here: https://doc.rust-lang.org/
+2019-02-05 20:17:53	@korken89	o//
+2019-02-05 20:17:55	@jamesmunns	I think that means 1.33 stable will have the embedded rust book too
+2019-02-05 20:18:12	@theJPster	yay
+2019-02-05 20:18:12	~japaric	or actually https://doc.rust-lang.org/nightly/
+2019-02-05 20:18:33	@theJPster	Does this technically make all the contributors into published authors?
+2019-02-05 20:18:36	@jamesmunns	which means everyone with rust installed will have the embedded book offline, too :)
+2019-02-05 20:18:36	@theJPster	(just say yes)
+2019-02-05 20:18:41	@jamesmunns	theJPster: yes.
+2019-02-05 20:18:48	@theJPster	wohoo!
+2019-02-05 20:19:16	@jamesmunns	"Author of a book downloaded millions of times*!" (*: mostly by CI bots)
+2019-02-05 20:19:16	@therealprof	LOL
+2019-02-05 20:20:13	~japaric	ok, moving onto the next item
+2019-02-05 20:21:01	~japaric	I got some updates from rust all hands even though the EWG has *not* had its scheduled meetings
+2019-02-05 20:21:37	@hannobraun	How many of us are there right now?
+2019-02-05 20:21:47	~japaric	hannobraun: 3
+2019-02-05 20:22:08	@hannobraun	japaric, therealprof, jamesmunns?
+2019-02-05 20:22:18	@jamesmunns	Genau
+2019-02-05 20:22:46	@therealprof	Sitting next to japaric and feeling weird talking over IRC. :-D
+2019-02-05 20:22:57	@jamesmunns	(I went home already to give my dog a bath)
+2019-02-05 20:23:07	~japaric	I asked the infra team if it was possible to set up an irc <-> discord bridge
+2019-02-05 20:23:16	@therealprof	Oooh.
+2019-02-05 20:23:28	~japaric	since our (not) presence on discord has been been brought up before
+2019-02-05 20:23:49	~japaric	the answer was that's unlikely that a bridge will be set up because of moderation
+2019-02-05 20:23:52	@theJPster	I'd like to slide a conversation about e-mail, discord and such if we have time at the end. E-mail has ceased to be usable for me.
+2019-02-05 20:24:02	@jamesmunns	Is Discord official now?
+2019-02-05 20:24:07	~japaric	on discord mods can moderate; on irc not really
+2019-02-05 20:24:24	~japaric	and the bridge will bypass discord moderation abilities
+2019-02-05 20:25:05	@korken89	Can we (Rust) choose one and stick with it? It seems almost like a religious fight on which chat to use
+2019-02-05 20:25:08	~japaric	but the person that I talked to said that, if we desire, we can take down the discord channel (if it's not being used)
+2019-02-05 20:25:28	~japaric	one of the Rust team is IRC only; they don't have a discord channel
+2019-02-05 20:25:38	@jamesmunns	I'd prefer to pin a post pointing to IRC, and disable chat
+2019-02-05 20:25:44	@jamesmunns	(on discord)
+2019-02-05 20:25:56	@jamesmunns	since we do have momentum on IRC
+2019-02-05 20:25:59	~japaric	so that's an option; I don't think we have to decide right now
+2019-02-05 20:26:31	~japaric	we could discuss this on GH for a bit and then discuss on a future meeting
+2019-02-05 20:26:43	@therealprof	I kinda like Discord. IRC is pretty unusable on mobile and I'll loose all history on IRC.
+2019-02-05 20:26:54	@korken89	SGTM
+2019-02-05 20:27:16	~japaric	but I think we should do something about discord soon-is because people pop up there and there are no EWG members to respond
+2019-02-05 20:27:30	@jamesmunns	I'm not against discord, I am against switching often though :D
+2019-02-05 20:27:39	~japaric	but yeah, I 'll create an issue to discuss this on GH
+2019-02-05 20:27:44	@therealprof	+1
+2019-02-05 20:27:50	@korken89	+1
+2019-02-05 20:28:16	@jamesmunns	+1
+2019-02-05 20:28:27	~japaric	ok, next update is about some of our Rust requests
+2019-02-05 20:28:52	~japaric	(we'll have a proper meeting about these requests tomorrow)
+2019-02-05 20:29:23	~japaric	about request #1 fix https://github.com/rust-lang/rust/issues/42863
+2019-02-05 20:29:38	~japaric	this *is* semantically equivalent to const generics
+2019-02-05 20:29:47	~japaric	so it won't be fixed until const generics lands in nightly
+2019-02-05 20:30:03	~japaric	however, it's likely to be fixed before const generics is available on stable
+2019-02-05 20:30:08	@hannobraun	Tell them to get on with it, then ;)
+2019-02-05 20:30:33	@jamesmunns	hannobraun: PRs welcome, I'm sure :)
+2019-02-05 20:31:03	@korken89	*all chanting* const generics!
+2019-02-05 20:31:18	~japaric	I can't give you any timeline on const generics; I can tell only you that's being discussed this week
+2019-02-05 20:31:20	@hannobraun	jamesmunns: I feared as much :-)
+2019-02-05 20:31:29	~japaric	if I get any more updates on const generics proper I'll let you know
+2019-02-05 20:31:41	@korken89	Thanks!
+2019-02-05 20:31:47	@therealprof	We have the support on our side. They're discussing it even right now across the desk. ;)
+2019-02-05 20:32:01	~japaric	ok, next is request #2 stabilize: const fns that have trait bounds, e.g. const fn new() -> Mutex where T: Send
+2019-02-05 20:32:35	~japaric	there's an RFC about this that has just been opened: https://github.com/rust-lang/rfcs/pull/2632
+2019-02-05 20:32:56	~japaric	this idea has a long pre-discussion in https://github.com/rust-rfcs/const-eval/pull/8
+2019-02-05 20:33:09	~japaric	and most of the people that have to approve the rfc were in favor of the pre-rfc
+2019-02-05 20:33:22	~japaric	so it should be approved relatively fast
+2019-02-05 20:34:27	@therealprof	posborne: o/
+2019-02-05 20:35:01	~japaric	next is request #3 stabilize: core::mem::MaybeUninit - https://github.com/rust-lang/rust/issues/53491
+2019-02-05 20:35:14	@jamesmunns	\o/
+2019-02-05 20:35:27	~japaric	tl;dr is https://github.com/rust-lang/rust/issues/53491#issuecomment-460089423
+2019-02-05 20:35:42	~japaric	they'll stabilize a minimal subset of the API
+2019-02-05 20:35:52	~japaric	including 'const fn uninitialized'
+2019-02-05 20:36:04	~japaric	so this subset will be usable in const context
+2019-02-05 20:36:07	@jamesmunns	woooooo!
+2019-02-05 20:36:40	@korken89	Aww yis
+2019-02-05 20:36:54	~japaric	the PR / FCP to stabilize this should happen soon-ish
+2019-02-05 20:37:19	~japaric	since the PR to (not) rename MaybeUninit has entered FCP-close
+2019-02-05 20:38:32	~japaric	the final request I have updates on is #8 feature: assert in const fn produces a compiler error
+2019-02-05 20:38:57	~japaric	so the compiler had a 'const qualification' meeting related to this
+2019-02-05 20:39:07	posborne	therealprof: o/ (sorry, wasn't able to catch the whole meeting today as I had another conflicting meeting)
+2019-02-05 20:39:46	~japaric	so I can tell you that they are actively working on the design questions related to this
+2019-02-05 20:40:32	~japaric	can't give you any timeline on this one
+2019-02-05 20:41:12	~japaric	but there's supposed to be a PR to add an unstable flag (-Z) to rustc that lets you use all sort of miri features in const context, including if / match
+2019-02-05 20:41:54	~japaric	https://github.com/rust-lang/rust/pull/56123
+2019-02-05 20:42:37	~japaric	so you can use it to experiments with weird things in const fn
+2019-02-05 20:42:47	~japaric	just don't rely on it for libraries because it will never be stabilized
+2019-02-05 20:42:57	@therealprof	aptly named: unleash_the_miri_inside_of_you
+2019-02-05 20:43:03	@jamesmunns	lololol
+2019-02-05 20:43:08	@korken89	haha
+2019-02-05 20:44:30	~japaric	last thing related to rust requests I have briefly discussed with some libs / compiler members about how to report (nominate) issues important to the embedded community
+2019-02-05 20:44:36	~japaric	we'll have a meeting about this tomorrow
+2019-02-05 20:45:08	@korken89	:+1:
+2019-02-05 20:45:30	@therealprof	I've discussed a few papercuts related to crates.io today.
+2019-02-05 20:45:52	~japaric	once we have defined a process for this inter-team communication I'll make a PR to add this info to the ops directory
+2019-02-05 20:46:27	~japaric	that's it for my updates
+2019-02-05 20:46:39	@korken89	Perfect, that will help improve awareness between us
+2019-02-05 20:46:50	@therealprof	Things like a search for "stm32f1" showing up 3 crates, 1 very related and 2 midly related despite of much more existing are a known bug and they'll speed up the fix for it.
+2019-02-05 20:47:26	@therealprof	Also they'll look into providing a UI to allow for searching in categories.
+2019-02-05 20:47:51	@therealprof	(it's already available today but there's no UI for it)
+2019-02-05 20:48:39	@jamesmunns	Last note from me: I did a bit of triage work, and tried to tag everything that looked out of date with the label `feb-2019-cleanup`. See here: https://github.com/rust-embedded/wg/labels/feb-2019-cleanup
+2019-02-05 20:48:47	~japaric	jamesmunns++
+2019-02-05 20:49:01	@jamesmunns	If you see an issue that should have that tag, but doesn't, please add it!
+2019-02-05 20:49:06	@korken89	That was great work
+2019-02-05 20:49:18	@therealprof	Also talked to the docs guys about improving the documentation of PAC crates and there might some ways to dramatically improve it. Need to play around with that.
+2019-02-05 20:49:32	@jamesmunns	The plan is to wait a week or two to see if anyone provides a comment, and if not, close the issues
+2019-02-05 20:49:46	@jamesmunns	I'm happy to keep an issue or PR open if anyone cares about it
+2019-02-05 20:50:00	@jamesmunns	but we have some issues that haven't been updated since 2016.
+2019-02-05 20:50:20	@jamesmunns	Which is... a while, in embedded rust time.
+2019-02-05 20:50:31	@therealprof	Hahah, yeah.
+2019-02-05 20:50:58	~japaric	we got 10 mins left for (short) announcements
+2019-02-05 20:51:09	@jamesmunns	Also theJPster had things to say!
+2019-02-05 20:51:24	@theJPster	So, e-mail notifications from github don't work
+2019-02-05 20:51:31	@theJPster	As in, there are so many, I never read them
+2019-02-05 20:51:46	@theJPster	and when I feel bad and finally read a few, I click through and log in to github to find out it was merged anyway
+2019-02-05 20:52:06	@jamesmunns	+1 from me too.
+2019-02-05 20:52:10	@theJPster	So, I feel like I'm not helping out as much as I should with reviewing and merging, but my workflow is hell.
+2019-02-05 20:52:19	 *	therealprof shrugs
+2019-02-05 20:52:49	@korken89	We all love to check and have 90 new emails from GH :)
+2019-02-05 20:53:01	@jamesmunns	I had filters, then I broke them
+2019-02-05 20:53:09	@therealprof	90 mails is a good day. ;)
+2019-02-05 20:53:19	@jamesmunns	But I agree this is not super sustainable.
+2019-02-05 20:54:07	@therealprof	Anyone looked at their homework re: new versions of some wg crates?
+2019-02-05 20:54:18	@jamesmunns	I feel like we should (be free to) unsub from repos outside our "teams", and for it to be okay to @ someone if help is needed
+2019-02-05 20:54:36	@jamesmunns	(maybe it is, but maybe we can make that more clear that is our SOP)
+2019-02-05 20:54:50	~japaric	therealprof: I left a comment on the svd2rust one
+2019-02-05 20:57:05	~japaric	I originally was cc'ing a random member of the designed team on PRs I made but then got lazy
+2019-02-05 20:57:26	~japaric	rust-lang has the highfive bot for this; some reviewer gets randomly selected to review new PRs
+2019-02-05 20:57:40	@jamesmunns	How can we get one of those?
+2019-02-05 20:57:46	@therealprof	Can we have highfive?
+2019-02-05 20:57:47	@jamesmunns	Also I'd probably like that for nrf-rs, as well
+2019-02-05 20:57:50	~japaric	I can ask the infra people
+2019-02-05 20:57:58	@therealprof	+1
+2019-02-05 20:58:08	@jamesmunns	(nrf-rs isn't super high traffic, but I still like the idea)
+2019-02-05 20:58:17	@theJPster	Yeah, a lottery sounds better than repeatedly paging every one to come and help, and tell 90% of people "too late, sucks to be you"
+2019-02-05 20:58:21	@korken89	That sounds like an awesome bot
+2019-02-05 20:58:27	@therealprof	It's a nice touch.
+2019-02-05 20:58:36	@theJPster	jamesmunns, can I grab you for a few moments after to talk nrf stuff?
+2019-02-05 20:58:46	@jamesmunns	I can also provide hosting, if it needs to be deployed somewhere.
+2019-02-05 20:59:04	@jamesmunns	theJPster: sure! on IRC, or ping me on whatsapp if you'd rather talk.
+2019-02-05 20:59:05	~japaric	I'll ask and report next week
+2019-02-05 20:59:35	@korken89	thanks japaric!
+2019-02-05 20:59:53	disasm	+1
+2019-02-05 20:59:54	~japaric	and with that I conclude this meeting. Thanks everyone for attending and see you next week!
