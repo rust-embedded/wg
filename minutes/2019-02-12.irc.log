@@ -1,0 +1,152 @@
+2019-02-12 20:04:41	~japaric	ok, let's start this meeting
+2019-02-12 20:05:07	~japaric	first some reminders about on-going RFC / discussions: MSRV policy and about the discord channel -- the links are in the dropbox paper
+2019-02-12 20:05:30	~japaric	also last week with the help of the infra team we set up highfive for one of the cortex-m repos
+2019-02-12 20:05:40	~japaric	the plans is to enable highfive for teams that want to use
+2019-02-12 20:05:50	cr1901	o/
+2019-02-12 20:05:58	~japaric	please let us know if you want to use highfive by checking your box in this comment: https://github.com/rust-embedded/wg/pull/307#issuecomment-461757411
+2019-02-12 20:06:24	~japaric	ok, now onto the agenda items
+2019-02-12 20:06:38	~japaric	I mainly wanted to cover what happened during the Rust All Hands last week
+2019-02-12 20:06:52	~japaric	I have copied all the notes in the dropbox paper; you can read them later
+2019-02-12 20:07:02	@theJPster	oh, that's the reviewer-picking-bot isn't it
+2019-02-12 20:07:13	~japaric	I'll briefly cover our discussions, specially the ones that require action from our side
+2019-02-12 20:07:15	~japaric	theJPster: yes
+2019-02-12 20:07:33	~japaric	( https://github.com/rust-highfive )
+2019-02-12 20:07:55	~japaric	therealprof: feel free to chime in if I forget to mention something about the all hands
+2019-02-12 20:08:33	~japaric	we had three meetings lead by the EWG last week and the members that attend the all hands participated in various other meetings
+2019-02-12 20:08:50	~japaric	I'll summarize the three meetings; let's start with 'embedded rust in 2019'
+2019-02-12 20:09:26	~japaric	we discussed a bit about what should be the 'goal' of the EWG during 2019; in particular we were looking for a unifying theme for our work
+2019-02-12 20:09:46	~japaric	we settled for 'productivity' as the theme
+2019-02-12 20:10:09	~japaric	other teams did something similar and came up with related themes like confidence, maturity, practicality and stability
+2019-02-12 20:10:32	cr1901	Getting msp430 stable would be a good goal for 2019
+2019-02-12 20:10:49	~japaric	we also discussed about what kind of work we could do this year that was related to this theme
+2019-02-12 20:10:55	~japaric	cr1901: 'stability' ;-)
+2019-02-12 20:11:31	cr1901	sorry, getting msp430 into stable*. I think it's pretty "stable" already :P
+2019-02-12 20:11:44	cr1901	(emph quotes)
+2019-02-12 20:11:56	~japaric	we reached the conclusion that we should focus on filling missing gaps in the tooling and ecosystem, intermediate level documentation and making things easier for HAL / driver authors
+2019-02-12 20:12:37	~japaric	re: gaps we thought that a not-yet-awesome-embedded-rust list could be used to collect information about what people's pain points and what they want to see in terms of tooling and ecosystem
+2019-02-12 20:13:38	~japaric	that list could also serve as a notice board for people / new contributors looking into stuff to work on
+2019-02-12 20:14:23	~japaric	to fill gaps in the ecosystem we could adopt something like the lib blitz to help authors improve their crates
+2019-02-12 20:15:00	cr1901	lib blitz?
+2019-02-12 20:15:17	~japaric	cr1901: look for rust lib blitz on the web
+2019-02-12 20:15:46	~japaric	intermediate level documentation would be covered by a patterns book that covers stuff like 'how do I do error handling', 'how do I use share between main and interrupts', 'how do I do logging', etc.
+2019-02-12 20:16:25	~japaric	and the last point about making life easier for HAL / drivers authors could be covered by improving svd2rust, which we discussed in more detail in another meeting
+2019-02-12 20:16:49	~japaric	I'd like to hear your thoughts about the work items that we have identified
+2019-02-12 20:17:10	cr1901	Well, this isn't intermediate docs, but it's something I would like to see
+2019-02-12 20:17:12	~japaric	if you agree that these are key for this year we can continue discussion on GH to crafts RFC
+2019-02-12 20:17:18	cr1901	Is there an RTFM theory of operation document anywhere?
+2019-02-12 20:17:24	cr1901	or does that need to be written
+2019-02-12 20:17:31	~japaric	cr1901: in my head; it needs to be written
+2019-02-12 20:17:57	~japaric	RTFM is not under the rust-embedded umbrella though
+2019-02-12 20:18:03	cr1901	Oh it's not?
+2019-02-12 20:18:09	cr1901	nevermind for now then
+2019-02-12 20:18:24	@korken89	cr1901: You can find a youtube on it by me, https://www.youtube.com/watch?v=SBij9W9GfBw
+2019-02-12 20:18:33	cr1901	korken89: Ack.
+2019-02-12 20:18:35	@korken89	It's for the C++ version, but the core idea is the same
+2019-02-12 20:19:02	~japaric	so, thoughts on not-yet-awesome-embedded-rust, patterns book and "lib blitz"
+2019-02-12 20:19:09	@theJPster	sounds good to me
+2019-02-12 20:19:23	cr1901	fine w/ me
+2019-02-12 20:19:27	~japaric	(link to Rust lib blitz: https://blog.rust-lang.org/2017/05/05/libz-blitz.html )
+2019-02-12 20:19:57	@theJPster	I could do with some help pushing embedded-sdmmc over the line to 1.0
+2019-02-12 20:20:01	 *	disasm twice supports the idea with patterns book
+2019-02-12 20:20:18	@theJPster	(gratuitous plug - we now have a pure Rust SD card / FAT16 / FAT32 library)
+2019-02-12 20:20:41	~japaric	ok, I'll create issues in the wg repo to hash out the details about these three items
+2019-02-12 20:20:57	cr1901	theJPster: Excellent
+2019-02-12 20:21:01	@theJPster	and the console-traits I wrote for 2-dimensional text consoles. And my USB host crate. And a whole bunch of other stuff that fell out of Monotron.
+2019-02-12 20:21:02	~japaric	the first two are kind of t-resources stuff and the last one is t-libs (which doesn't exist yet)
+2019-02-12 20:21:06	cr1901	I'll be sure to break it when I try to use it on msp430 ;)
+2019-02-12 20:21:55	~japaric	ok, moving on
+2019-02-12 20:21:58	@theJPster	So, yeah, I'm all for ways to help non-completer-finishers like me drag my crap up to some acceptable level for quality
+2019-02-12 20:22:21	~japaric	the other meeting we had was with the compiler / libs / cargo teams about the requests we prioritized a few weeks ago
+2019-02-12 20:22:28	@adamgreig	Sorry I'm late, in mountain time for a few weeks and not used to it
+2019-02-12 20:24:12	~japaric	ok, I have copied the list of request into the corresponding section in the agenda
+2019-02-12 20:24:23	~japaric	I reported updates about some of these requests last week
+2019-02-12 20:24:48	~japaric	I'll go in the order of the dropbox paper
+2019-02-12 20:24:54	@theJPster	Are the --strikethrough-- items closed?
+2019-02-12 20:25:06	~japaric	theJPster: means 'discussed with the corresponding team'
+2019-02-12 20:25:22	@theJPster	Ok, thanks.
+2019-02-12 20:25:46	~japaric	(1) has seen no change since last week; no timeline for it but the bug is likely to be fixed before const-generics is stabilized
+2019-02-12 20:26:07	~japaric	(2) there's a rust-lang/rfc open for it
+2019-02-12 20:27:05	~japaric	(8) 'const qualification' needs to be designed; there was some discussion last week but there are still details to hash out
+2019-02-12 20:27:20	~japaric	in the mean time you can use a -Z flag to use all of miri in const context
+2019-02-12 20:27:57	@therealprof	:-D
+2019-02-12 20:28:17	~japaric	oh, yeah. I forgot. I actually wanted to cover the request process we'll have with these three teams before covering the actual requests
+2019-02-12 20:28:39	~japaric	so "how we'll report requests to these teams in the future"
+2019-02-12 20:28:52	~japaric	we'll use the 'nomination' process that these teams already have in place
+2019-02-12 20:29:29	~japaric	in the case of compiler and cargo we can mark an issue (bug) as 'I-nominated' (that's the label name) in the corresponding repo
+2019-02-12 20:29:51	~japaric	nominated issues will be discussed during those teams (bi)weekly triage meeting
+2019-02-12 20:30:26	~japaric	after being triaged t-compiler will assign a priority to the issue; p-high if it blocks the next release, or p-medium. in both cases someone will get assigned to the issue
+2019-02-12 20:30:51	@jamesmunns	(sorry, just passing through, just got off a call and need to head home, I'll pass through the logs later and try to follow up on anything if you tag me)
+2019-02-12 20:31:13	~japaric	if for p-med stuff there's no progress after say 2+ weeks we can ping the assigned person
+2019-02-12 20:31:14	@jamesmunns	(I have started an rfc for "std-aware-cargo" here: https://github.com/jamesmunns/rfcs/pull/1 - I would appreciate any reviews)
+2019-02-12 20:31:57	~japaric	for libs stuff, which mainly covers stabilization of std API, we can directly comment on 'tracking issues' in rust-lang/rust indicating that we'd like to see something stabilized
+2019-02-12 20:32:26	~japaric	I'll write a doc about these processes and send a PR to the wg/ops dir
+2019-02-12 20:32:50	~japaric	resuming the list of requests
+2019-02-12 20:33:59	~japaric	for (11) oli_obk_ will follow up with two -Z flags to apply llvm.sideffect to infinite loops that right now become abort. That should fix the problem; the idea is to measure the impact on perf before hard-enabling any of those flag
+2019-02-12 20:34:32	~japaric	iirc, one flag was to add llvm.sideffect to all loops, and the other just for loops that appear in the return position (last expression) of divergent functions
+2019-02-12 20:35:45	~japaric	regarding (12) the existing RFC has been postponed and the feature will be re-evaluated after const generics are available on nightly and people had the chance to implement arbitrary size integers with them
+2019-02-12 20:37:32	 *	thenewwazoo salivates at const generics
+2019-02-12 20:37:38	~japaric	about (13) this is less of a t-compiler issue and more of a (llvm and) t-infra issue. if t-infra is happy with new targets not increasing CI time by too much and not breaking the CI often (e.g. llvm bugs) they'll accept enabling it
+2019-02-12 20:38:03	~japaric	moving onto t-libs issues
+2019-02-12 20:38:33	~japaric	(3) has seen no change since last week; the plan is to stabilize a subset of the API ahead of the rest to let people use it on stable asap
+2019-02-12 20:40:30	~japaric	(4) in our first meeting the libs representative said they were ok with moving std::io into alloc but in the follow-up libs meeting with the rest of the team we found issues that prevent doing that
+2019-02-12 20:40:50	~japaric	namely std::io has os-specific bits that can't be implemented in alloc (e.g. last_os_error)
+2019-02-12 20:41:51	~japaric	we briefly discussed alternatives like a second set of core::{Read,Write} traits and solving the issue with std-aware Cargo (somehow) and none seemed like a clear path forward so we tabled the discussion
+2019-02-12 20:43:43	~japaric	(7) one of the members of the libs team is interested in helping out with this one (Amanieu) so they'll help reviewing the existing API in core::arch::arm. We also concluded that no RFC is required to stabilize this; just a FCP process in rust-lang/rust (given precedent with wasm intrinsics)
+2019-02-12 20:44:40	~japaric	(15) needs a champion to research what would be the best way to make math available in core given that
+2019-02-12 20:44:56	~japaric	we want f32.sin() to just work in core without regressing the performance of f32.sin() in std
+2019-02-12 20:45:28	~japaric	that means in core we want to use the existing libm implementation, but in std we want to use libc's libm since that's optimized
+2019-02-12 20:45:28	@therealprof	Amanieu might be that champion as he's interested in doing all kinds of SIMD stuff.
+2019-02-12 20:45:44	~japaric	korken89 was also interested, iirc :-)
+2019-02-12 20:45:50	@korken89	:)
+2019-02-12 20:46:09	@korken89	Sorry, I have to leave early! I will go through the logs later
+2019-02-12 20:46:22	~japaric	finally, t-cargo requests
+2019-02-12 20:46:27	@therealprof	Amanieu is mostly interested in core::arch:arm for SIMD
+2019-02-12 20:46:46	@therealprof	For other intrinsics the plan is to move assembly forward.
+2019-02-12 20:47:18	~japaric	re: (5) the cargo team is aware of this issue (it has been reported over 5 times :-). The fix is hard so likely it will be rolled slowly behind some sort of feature flag
+2019-02-12 20:47:54	@therealprof	japaric: Do you have the assembly plan somewhere else on the agenda?
+2019-02-12 20:48:14	~japaric	you mean the plan about stabilizing inline assembly?
+2019-02-12 20:48:21	@therealprof	Yes.
+2019-02-12 20:48:46	~japaric	no, I have not copied the notes; I'm not sure if I have permissions to do so
+2019-02-12 20:49:02	@therealprof	Ah, but we might still mention here?
+2019-02-12 20:49:14	~japaric	I can give a tl;dr here
+2019-02-12 20:49:31	@therealprof	I think there's some interest in that topic.
+2019-02-12 20:49:54	~japaric	the ffi WG discussed a way towards stabilizing asm!. The plan is to propose a new, Rustic syntax for asm! and moving existing syntax into a asm_llvm! macro
+2019-02-12 20:50:28	@theJPster	Ouch. For which instruction sets? All of them?
+2019-02-12 20:50:43	~japaric	theJPster: all of them; the new asm! will still do string interpolation
+2019-02-12 20:50:55	~japaric	the rustic syntax is about constraints and passing registers
+2019-02-12 20:50:57	@therealprof	It'll be a limited subset of what people are used to with inline assembly.
+2019-02-12 20:51:11	~japaric	the idea is that new syntax should result in less footguns
+2019-02-12 20:51:16	cr1901	hmmm
+2019-02-12 20:51:18	~japaric	e.g. volatile by default
+2019-02-12 20:51:47	 *	theJPster remembers finding all his peripheral wait no-nops carefully gathered at the end of his setup routine
+2019-02-12 20:51:50	~japaric	there's an old pre-rfc on the internals forum; that syntax will be the one that will be proposed
+2019-02-12 20:52:47	~japaric	I should note that this is going to be an RFC proposed by the community and that not many t-compiler / t-lang members participated in the meeting
+2019-02-12 20:53:13	~japaric	so no timeline or guarantee that this will actually happen
+2019-02-12 20:53:27	~japaric	let's quicktly wrap up the cargo stuff
+2019-02-12 20:53:34	~japaric	(6) should be stabilized soon-ish
+2019-02-12 20:53:35	@therealprof	Sorry. ;)
+2019-02-12 20:54:03	~japaric	there will likely be a new profile that means 'all things compile on host' like proc-macros and build scripts
+2019-02-12 20:54:43	~japaric	regarding (9) std-aware Cargo; this one needs a champion that drives the design and implementation work
+2019-02-12 20:55:03	~japaric	IDK if jamesmunns has signed up to be champion but he has written a pre-rfc on the topic
+2019-02-12 20:55:25	~japaric	the pre-rfc has been based on a bunch of input from the cargo and libs teams
+2019-02-12 20:55:37	~japaric	and the plan is to roll the feature in stages
+2019-02-12 20:55:59	~japaric	therealprof: want to cover (10) about no-std and crates.io?
+2019-02-12 20:56:16	@therealprof	japaric: Sure.
+2019-02-12 20:56:21	~japaric	( the pre-rfc for the std-aware Cargo stuff: https://github.com/jamesmunns/rfcs/pull/1 )
+2019-02-12 20:56:30	@therealprof	So I was talking to
+2019-02-12 20:56:53	@therealprof	docs.io team and we agreed that the interface could be improved a bit.
+2019-02-12 20:57:21	@therealprof	The main problem is that the searches and catagories can't be mixed and matched.
+2019-02-12 20:57:40	@therealprof	But that's actually "just" a UI issue. The backend is actually capable of it.
+2019-02-12 20:58:07	@therealprof	Another thing is the weird matching with substrings which happen to be a crate name.
+2019-02-12 20:58:28	@therealprof	That's a bug for which a fix exists which needs cleanup but the author is slow to respond.
+2019-02-12 20:58:51	@therealprof	Might need to be reimplemented but priority was bumped a bit. Sorry, no issue number at hand.
+2019-02-12 20:59:15	~japaric	therealprof: thanks
+2019-02-12 20:59:19	~japaric	last two bullet points
+2019-02-12 20:59:42	@therealprof	Another thing which will likely materialise soon is the ability to select the number of displayed items per page. There might be a selection box soon allowing to select up to 100 items.
+2019-02-12 20:59:47	~japaric	we didn't get a chance to talk about async / await; the wg-net and compiler had a closed meeting about it, though
+2019-02-12 21:00:26	~japaric	we briefly discussed how to solve the core::fmt bloat and the best way forward may be std-aware Cargo plus a Cargo feature in core that replaces the implementation with one that's fully inline-able
+2019-02-12 21:00:41	@therealprof	Ooh.
+2019-02-12 21:01:48	~japaric	and that covers most of what happened during the all hands; there are  few bits about svd2rust which I didn't touch but I'll probably open an issue to discuss them in the svd2rust repo
+2019-02-12 21:02:07	~japaric	(prioritization of svd2rust stuff)
+2019-02-12 21:02:58	~japaric	that covers today's meeting. I hope you didn't get too bored / overwhelmed by my infodump :-)
+2019-02-12 21:03:19	~japaric	thanks for attending and see you next week
