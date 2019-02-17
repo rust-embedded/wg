@@ -375,6 +375,7 @@ https://mozilla.logbot.info/rust-embedded
 
 [logbot]: https://mozilla.logbot.info
 
+[@Disasm]: https://github.com/Disasm
 [@Emilgardis]: https://github.com/Emilgardis
 [@adamgreig]: https://github.com/adamgreig
 [@andre-richter]: https://github.com/andre-richter
@@ -431,9 +432,9 @@ https://mozilla.logbot.info/rust-embedded
 [`panic-itm`]: https://github.com/rust-embedded/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/panic-semihosting
 [`register-rs`]: https://github.com/rust-embedded/register-rs
-[`riscv-rt`]: https://github.com/riscv-rust/riscv-rt
+[`riscv-rt`]: https://github.com/rust-embedded/riscv-rt
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
-[`riscv`]: https://github.com/riscv-rust/riscv
+[`riscv`]: https://github.com/rust-embedded/riscv
 [`rust-embedded-provisioning`]: https://github.com/rust-embedded/rust-embedded-provisioning
 [`rust-raspi3-tutorial`]: https://github.com/rust-embedded/rust-raspi3-tutorial
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
