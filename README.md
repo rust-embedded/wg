@@ -306,6 +306,18 @@ Projects maintained by the resources team
 - [The embedonomicon]
 - [@rustembedded twitter]
 
+### The ecosystem team
+
+A team dedicated to growing the embedded crate ecosystem.
+
+#### Members
+
+- [@japaric]
+
+#### Projects
+
+Nothing to see here yet. Stay tuned!
+
 ### The tools team
 
 The tools team maintains and develops core embedded tools.
