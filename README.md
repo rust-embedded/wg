@@ -295,6 +295,7 @@ The resources team develops, maintains and curates resources on embedded Rust.
 - [@japaric]
 - [@thejpster]
 - [@therealprof]
+- [@vertexclique]
 
 #### Projects
 
