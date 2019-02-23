@@ -7,7 +7,7 @@
 This repository [issue tracker] is used by the embedded WG to coordinate efforts towards making Rust
 a great choice for embedded development.
 
-[issue tracker]: https://github.com/rust-lang-nursery/embedded-wg/issues
+[issue tracker]: https://github.com/rust-embedded/wg/issues
 
 **Want to get started with embedded development with Rust?** Check out our
 [embedded Rust book][book] and the rest of our [bookshelf].
