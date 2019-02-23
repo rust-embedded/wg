@@ -1,0 +1,155 @@
+2019-02-19 20:05:00	<japaric>	ok, let's start this meeting!
+2019-02-19 20:05:13	<japaric>	first some reminders / announcements
+2019-02-19 20:05:31	<japaric>	1. Highfive has been enabled for a bunch of repos and teams!
+2019-02-19 20:05:53	<japaric>	if you would like to make changes to the current configuration please directly send a PR to rust-lang-nursery/highfive
+2019-02-19 20:06:02	<japaric>	more details in https://github.com/rust-embedded/wg/pull/307#issuecomment-464482952
+2019-02-19 20:06:11	<therealprof>	Woohoo!
+2019-02-19 20:06:12	<mathk-M>	\o
+2019-02-19 20:07:09	<japaric>	2. jamesmunns is looking for people to be on on the selection committee for Oxidize conf! For more details see his previous messages @ https://mozilla.logbot.info/rust-embedded/20190219#c15985066
+2019-02-19 20:08:07	<japaric>	3. if you haven't yet please review the MSRV policy RFC; we need 2 more votes to approve the RFC -- https://github.com/rust-embedded/wg/pull/304 
+2019-02-19 20:09:24	<japaric>	4. The embedded showcase is almost ready to accept submissions; we just need to land the initial evaluation guidelines
+2019-02-19 20:09:38	<japaric>	if you are on the resources team please review https://github.com/rust-embedded/showcase/pull/6 
+2019-02-19 20:10:33	<japaric>	5. I have started some GH discussions about the ideas we discussed during the all hands: the not yet awesome embedded Rust list, an embedded Rust "libs blitz", etc.
+2019-02-19 20:10:41	<japaric>	the links to the discussions are in the dropbox paper
+2019-02-19 20:11:11	<japaric>	now onto the agenda items
+2019-02-19 20:12:01	<japaric>	jamesmunns nominated the triage team PR for discussion a few weeks ago since it has no movement for a while
+2019-02-19 20:12:06	<japaric>	the PR is https://github.com/rust-embedded/wg/pull/144
+2019-02-19 20:12:32	<japaric>	but Disasm recently commented that they would like to join the triage team
+2019-02-19 20:12:51	<japaric>	if there are no concerns I would like to bootstrap the triage team with just disasm in it
+2019-02-19 20:12:58	<disasm>	Yeah. Sorry for being late
+2019-02-19 20:13:00	<japaric>	but ideally we should have more people in it
+2019-02-19 20:13:08	<japaric>	disasm: o/
+2019-02-19 20:13:29	<disasm>	Hi all!
+2019-02-19 20:13:46	<japaric>	we were just discussing the triage team PR
+2019-02-19 20:14:01	<mathk-M>	So what repo it will concern ? all repo under embedded-rust ?
+2019-02-19 20:14:16	<japaric>	mathk-M: yes, all repos under rust-embedded
+2019-02-19 20:14:52	<japaric>	there are currently 87 open PRs: https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+org%3Arust-embedded+archived%3Afalse+
+2019-02-19 20:15:35	<mathk-M>	How dedicated that would require. I could give some help if needed. But I am not as skilled as I would.
+2019-02-19 20:15:36	<japaric>	so clearly some triaging would help
+2019-02-19 20:15:59	<mathk-M>	I am quite a rust beginner
+2019-02-19 20:16:15	<disasm>	I'm not sure about my abilities also, but I should try
+2019-02-19 20:16:40	<japaric>	mathk-M: the triaging process is described in https://forge.rust-lang.org/triage-procedure.html
+2019-02-19 20:17:29	<japaric>	it's mostly about labeling PRs, pinging people and making sure someone is assigned to each PR (highfive will help with the last part but only for new prs)
+2019-02-19 20:17:52	<mathk-M>	sure I can give a help there.
+2019-02-19 20:18:51	<japaric>	also, don't feel like you have to go through the whole list in one sitting; just work on it (from oldest pr to newest) whenever you have the time
+2019-02-19 20:19:38	<mathk-M>	ok sure I could give some help.
+2019-02-19 20:19:42	<japaric>	mathk-M: that would be a great help! could you comment in https://github.com/rust-embedded/wg/pull/144?
+2019-02-19 20:21:45	<japaric>	ok then; I have heard no concerns so we can start the triage team with 2 people and see how that works out
+2019-02-19 20:21:48	<mathk-M>	done!
+2019-02-19 20:21:53	<japaric>	mathk-M: thanks!
+2019-02-19 20:22:38	<therealprof>	+1
+2019-02-19 20:22:43	<japaric>	moving on: the next item on the agenda is the embedded showcase
+2019-02-19 20:23:36	<japaric>	I put it there because I'd like to advertise it on the next newsletter (or the one after) to start getting submissions
+2019-02-19 20:23:56	<japaric>	thoughts from T-resources people?
+2019-02-19 20:25:09	<therealprof>	Which parts about it are in question?
+2019-02-19 20:26:35	<japaric>	I mean the showcase webpage itself is ready; the evaluation guidelines have not been reviewed by everyone in T-resources
+2019-02-19 20:27:17	<japaric>	but I think we can start accepting submissions while we finish reviewing the guidelines, which are only a draft and will likely change once we start reviewing code
+2019-02-19 20:27:29	<therealprof>	I agree.
+2019-02-19 20:28:11	<korken89>	From having a look at the guidelines I think they look good for a first go
+2019-02-19 20:29:52	<japaric>	would you both be OK with starting a call for submissions in the next newsletter (due this week)?
+2019-02-19 20:30:02	<japaric>	or would you prefer to wait two more weeks before doing so
+2019-02-19 20:30:23	<therealprof>	No, let's go.
+2019-02-19 20:30:24	<korken89>	I think it's ok with starting in the next newsletter 
+2019-02-19 20:30:55	<japaric>	ok, then let's include it in newsletter 15
+2019-02-19 20:30:59	<therealprof>	+1
+2019-02-19 20:31:20	<therealprof>	I'm curious to see the first submissions so I can tailgate. ;)
+2019-02-19 20:31:23	<korken89>	Sweet!
+2019-02-19 20:31:42	<korken89>	Yeah, also looking forward to it
+2019-02-19 20:32:15	<japaric>	ok, then let's move onto the last item on the agenda: the biweekly newsletters
+2019-02-19 20:32:17	<mathk-M>	could we submit half finish project ?
+2019-02-19 20:34:33	<japaric>	mathk-M: I would say you should; even if it's not "complete enough" to appear in the showcase you would still get feedback on your code
+2019-02-19 20:35:10	<mathk-M>	great ! 
+2019-02-19 20:35:15	<japaric>	I have written newsletter 15; the PR is https://github.com/rust-embedded/blog/pull/27
+2019-02-19 20:35:29	<japaric>	I have mainly focused on what happened during the all hands
+2019-02-19 20:35:57	<japaric>	I wasn't sure how much of what was reported in https://github.com/rust-embedded/blog/issues/22 to include since it's been a while since the last newsletter
+2019-02-19 20:36:42	<japaric>	but if you are aware of cool embedded stuff that happened recently feel free to commit it to that branch
+2019-02-19 20:36:55	<japaric>	and if you can't commit you can leave a comment
+2019-02-19 20:37:21	<therealprof>	LGTM
+2019-02-19 20:37:36	<japaric>	in that PR I'm also proposing that we change the submission format from comments to PRs
+2019-02-19 20:37:44	<japaric>	this is the model that this week in Rust uses
+2019-02-19 20:37:56	<japaric>	and it should lighten the editorial load
+2019-02-19 20:38:06	<therealprof>	+1
+2019-02-19 20:38:43	<japaric>	I would also like to check how the next newsletter is shaping up during our weekly meetings
+2019-02-19 20:38:46	<therealprof>	NB: Re core::fmt, a PR we discussed at the RaH has landed to make number formatting quite a bit slimmer.
+2019-02-19 20:39:25	<japaric>	therealprof: do you know the pr number?
+2019-02-19 20:40:01	<therealprof>	Let me check.
+2019-02-19 20:40:39	<japaric>	therealprof: "small perf improvement for fmt" https://github.com/rust-lang/rust/pull/57537 ? (maybe not)
+2019-02-19 20:41:04	<therealprof>	https://github.com/rust-lang/rust/pull/58272
+2019-02-19 20:41:33	<korken89>	Sweet
+2019-02-19 20:41:49	<korken89>	Are there any comparison on size?
+2019-02-19 20:41:55	<korken89>	How much is saved?
+2019-02-19 20:41:56	<japaric>	is-core-fmt-slim-yet.com
+2019-02-19 20:42:01	<japaric>	korken89: says 10% reduction
+2019-02-19 20:42:09	<korken89>	Ah cool
+2019-02-19 20:42:18	<therealprof>	Depends on the use case.
+2019-02-19 20:42:36	<korken89>	20k of code to format numbers?
+2019-02-19 20:42:51	<korken89>	That's something :)
+2019-02-19 20:43:03	<therealprof>	A simple application on armv6m shrunk by 28% for me.
+2019-02-19 20:43:29	<hannobraun>	japaric: Your link doesn't work for me. Could you double-check?
+2019-02-19 20:43:42	<japaric>	hannobraun: which one?
+2019-02-19 20:43:45	<therealprof>	(or 800B)
+2019-02-19 20:43:51	<hannobraun>	is-core-fmt-slim-yet.com
+2019-02-19 20:44:05	<japaric>	hannobraun: ah, it doesn't exist ;-)
+2019-02-19 20:44:16	<japaric>	we should make one
+2019-02-19 20:44:23	<jschievink>	I also clicked, good one :D
+2019-02-19 20:44:31	<therealprof>	:-D
+2019-02-19 20:44:47	<hannobraun>	Haha, I thought that was a real site :)
+2019-02-19 20:45:06	<hannobraun>	Assumed it was one of the million or so "Are we X yet?" :-)
+2019-02-19 20:45:47	<therealprof>	For panic-ramdump it's quite significant. :-D
+2019-02-19 20:46:06	<eeeeeta>	ooh, can we maybe discuss ADC impls in embedded-hal?
+2019-02-19 20:46:21	<japaric>	any other cool embedded stuff you have seen that we could add to the newsletter?
+2019-02-19 20:46:23	<eeeeeta>	currently there isn't one in stm32f1xx-hal, although there's a PR
+2019-02-19 20:46:41	<eeeeeta>	(oh whoops, sorry, ignore me; there's an agenda)
+2019-02-19 20:46:54	<therealprof>	Probably, it's been a long time. ;)
+2019-02-19 20:47:20	<japaric>	recent-ish stuff :-)
+2019-02-19 20:47:39	<therealprof>	I'll check my open browser tabs. ;)
+2019-02-19 20:47:48	<korken89>	japaric: I am working on solving large-scale optimization problems in embedded, but it's not quite ready yet so I will keep it for a later newsletter :) 
+2019-02-19 20:48:10	<japaric>	therealprof: from what I've seen that might take a while
+2019-02-19 20:48:16	<mathk-M>	I have start the mfx device crate. for current measurment
+2019-02-19 20:48:17	<japaric>	korken89: nice
+2019-02-19 20:48:18	<therealprof>	Hehe...
+2019-02-19 20:48:27	<mathk-M>	can that be in the newsleatter ?
+2019-02-19 20:48:55	<korken89>	Also, I would almost like a call-to-arms for porting/reimplementing CMSIS-DSP
+2019-02-19 20:49:06	<mathk-M>	Also my i2c-hal-tool ?
+2019-02-19 20:49:12	<korken89>	I have been needing the FFT implementations among other things but pushing it forward for a long time now :P
+2019-02-19 20:49:51	<japaric>	mathk-M: if you feel that they are ready for people to look at them then go for it! (leave a comment in the pr)
+2019-02-19 20:49:55	<adamgreig>	korken89: could you use bindings yo
+2019-02-19 20:50:00	<adamgreig>	To it*
+2019-02-19 20:50:09	<korken89>	Yeah, I could
+2019-02-19 20:50:19	<therealprof>	mathk-M: You could also submit it to the awesome list for review.
+2019-02-19 20:50:46	<japaric>	korken89: do you need simd intrinsics for porting cmsis-dsp?
+2019-02-19 20:50:47	<mathk-M>	yeap guess that would be more appropriate for now.
+2019-02-19 20:50:55	<korken89>	But I would like to see how well a Rust implementation would come
+2019-02-19 20:51:05	<korken89>	japaric: Not for the most of it, only very specific functions
+2019-02-19 20:51:17	<korken89>	But these could be added later I guess
+2019-02-19 20:51:31	<adamgreig>	Or use inline asm for them for now or something
+2019-02-19 20:51:32	<therealprof>	mathk-M: We'll add outstanding stuff to the newsletter by default.
+2019-02-19 20:51:39	<adamgreig>	Or our precompiler asm
+2019-02-19 20:51:49	<adamgreig>	Most of cmsis dsp was inline asm iirc?
+2019-02-19 20:52:01	<adamgreig>	At least a chunk of it
+2019-02-19 20:52:08	<korken89>	Not the algorithms, only the low-level helpers
+2019-02-19 20:52:33	<korken89>	But I did not audit the entire CMSIS-DSP
+2019-02-19 20:52:39	<korken89>	So take that with a grain of salt
+2019-02-19 20:52:42	<adamgreig>	Ah okay, I was mostly looking at the low level vector bits
+2019-02-19 20:52:59	<therealprof>	japaric: Speaking of which… https://github.com/copterust/ has submitted a lot of updated crates.
+2019-02-19 20:53:59	<therealprof>	And thejpster has submitted a SDMMC crate.
+2019-02-19 20:54:08	<japaric>	therealprof: if you have a list of them we can include them in the newsletter
+2019-02-19 20:54:16	<korken89>	I think I will give CMSIS-DSP another look for what can be easily Rust ported, maybe make a tracking issue for it
+2019-02-19 20:54:54	<therealprof>	https://www.reddit.com/r/rust/comments/ascvls/introducing_embeddedsdmmc_a_purerust_no_std_sd/
+2019-02-19 20:55:03	<japaric>	korken89: my experience porting musl's libm is that is not too hard, mostly copy pasing and then fixing the syntax
+2019-02-19 20:55:35	<japaric>	we ported most of musl's libm in like a week; the community did a bunch of prs
+2019-02-19 20:55:57	<korken89>	japaric: Cool! Gives some hope :) Plus, most of CMSIS-DSP is just tables
+2019-02-19 20:56:09	<japaric>	but it was easy to review because the repo had a mostly automated test suite
+2019-02-19 20:56:18	<japaric>	review the prs**
+2019-02-19 20:56:26	<korken89>	Ah, that is missing in CMSIS-DSP
+2019-02-19 20:56:48	<jamesmunns>	I'm here just in time :)
+2019-02-19 20:57:09	<japaric>	korken89: the test suite was mostly checking rust_function($random, $random) against c_function($same_inputs)
+2019-02-19 20:57:12	<jamesmunns>	Thank you japaric for pushing the newsletter forward :)
+2019-02-19 20:57:31	<korken89>	japaric: Ah, that was simple - should be no problem to do as well
+2019-02-19 20:57:54	<disasm>	therealprof: BTW, floppy drive is readable with just code and wires. Raw format is pretty simple.
+2019-02-19 20:58:04	<mathk-M>	jamesmunns I have made some poc with clock and instant.
+2019-02-19 20:58:27	<japaric>	ok then I plan to publish the newsletter tomorrow; if you want to add more stuff commit to the branch or leave a comment in the pr
+2019-02-19 20:58:34	<japaric>	(if you just comment here I'll forget)
+2019-02-19 20:58:34	<mathk-M>	Will be happy to show you for a review.
+2019-02-19 20:59:04	<jamesmunns>	mathk-M: feel free to share, but I am on a business trip this week, so I may not have much time to review
+2019-02-19 21:00:16	<japaric>	meeting time is now over; thanks everyone for attending! See you next week
