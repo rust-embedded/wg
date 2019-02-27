@@ -1,0 +1,187 @@
+2019-02-26 20:05:44	<japaric>	ok, let's start this meeting
+2019-02-26 20:06:07	<Yatekii>	i do too but imagine handing an enum to the read functions instead of generics -> always matching ALL variants even when you know what it is you get. well, anyways, let's discuss that later, have a good meeting!
+2019-02-26 20:06:07	<japaric>	first, some reminders
+2019-02-26 20:06:21	<japaric>	the msrv rfc needs 2 more votes to be approved: https://github.com/rust-embedded/wg/pull/304 
+2019-02-26 20:06:31	<japaric>	to be approved this week**
+2019-02-26 20:06:58	<japaric>	if there are no concerns within this week it will be automatically be approved next week due to how the reduced majority mechanism works
+2019-02-26 20:07:20	<japaric>	so if you have concerns this week's your last chance
+2019-02-26 20:07:44	<japaric>	the other bullet is related to core::arch::arm
+2019-02-26 20:08:07	<japaric>	a PR recently landed in stdsimd adding the ACLE API to coresimd
+2019-02-26 20:08:28	<japaric>	I'm not sure if it's already made its way into core::arch::arm on nightly
+2019-02-26 20:09:01	<japaric>	but we need someone to drive the stabilization process of this API
+2019-02-26 20:09:19	<japaric>	if you are interested please comment in https://github.com/rust-embedded/wg/issues/63
+2019-02-26 20:09:28	<japaric>	I'll post a summary comment in that thread soon-ish
+2019-02-26 20:10:15	<japaric>	also it's not clear if or how much of an RFC we need given the precedent of core::arch::wasm being stabilized without an RFC; I'll ask the libs team in the summary comment
+2019-02-26 20:11:10	<japaric>	if there are no volunteers from the WG we may want to ask for help on one of the next newsletters
+2019-02-26 20:11:42	* japaric	waits a bit to see if someone volunteers :-)
+2019-02-26 20:12:31	* therealprof	pauses for dramatic moment
+2019-02-26 20:12:53	<japaric>	ok then let's move on the agenda items
+2019-02-26 20:13:17	<japaric>	first item is @vertexclique RTOS team
+2019-02-26 20:13:23	<japaric>	are they around?
+2019-02-26 20:13:33	<theJPster>	sorry I'm late
+2019-02-26 20:13:54	<therealprof>	I think they said they wouldn't be…
+2019-02-26 20:14:07	<japaric>	hmm
+2019-02-26 20:14:21	<japaric>	disasm: do you know if there's some proposal for this rtos team?
+2019-02-26 20:14:54	<disasm>	> I am looking forward to work on `RTOS integration` and `Pure Rust RTOS` topics. Want to contribute to the WG in these working groups. My main interest is over task scheduling.
+2019-02-26 20:15:22	<disasm>	https://github.com/rust-embedded/wg/pull/320
+2019-02-26 20:15:43	<disasm>	I think the resources team is not about RTOS so proposed to create RTOS team for that
+2019-02-26 20:16:19	<disasm>	So the question is simple: do we need an RTOS team?
+2019-02-26 20:16:26	<korken89>	The question that comes to mind for me, is this something for the WG? What is the motivation to have it in the WG?
+2019-02-26 20:16:35	<disasm>	If so, we can create it with @vertexclique as member
+2019-02-26 20:16:54	<theJPster>	I think it would be a good thing for the WG to oversee and steer any groups looking to write an RTOS in Rust, or port an RTOS.
+2019-02-26 20:17:06	<theJPster>	A central point of contact and knowledge. Because these things will overlap to a large extent.
+2019-02-26 20:17:13	<disasm>	korken89: dunno. However RTOS is about embedded
+2019-02-26 20:17:22	<japaric>	to me this sound a bit like maintaining vendor specific HAL under the EWG; we discussed this before and the decision was not to maintain any of those
+2019-02-26 20:17:26	<korken89>	For example RTFM is outside, and IMO it should be outside - it is not a common core part of the embedded ecosystem
+2019-02-26 20:17:38	<theJPster>	Yes, I agree.
+2019-02-26 20:17:51	<disasm>	+ here
+2019-02-26 20:18:08	<theJPster>	But it would be nice if there was a crate for grabbing thread context and de/serialising it.
+2019-02-26 20:18:10	<disasm>	Maybe we need a separate section under awesome-embedded-rust
+2019-02-26 20:18:25	<cr1901>	+1 to disasm
+2019-02-26 20:18:46	<therealprof>	disasm: Yeah, that could use some refactoring, too.
+2019-02-26 20:18:47	<japaric>	and a section under not-yet-awesome-embedded-rust
+2019-02-26 20:18:53	<therealprof>	:-D
+2019-02-26 20:18:57	<korken89>	I see the idea, maybe towards RTOS traits? But not sure how it should gestate. Maybe somewhere where these discussions can be made to better understand what common areas are and can be put into the WG
+2019-02-26 20:19:07	<therealprof>	Depends on the PoV…
+2019-02-26 20:19:22	<disasm>	We need something to start with
+2019-02-26 20:19:41	<japaric>	having rtos bindings and pure rtos implementations sound like a pre-requesite for rtos traits, imo
+2019-02-26 20:20:01	<mathk-M>	o/
+2019-02-26 20:20:02	<disasm>	Exactly
+2019-02-26 20:20:03	<korken89>	Indeed
+2019-02-26 20:20:11	<theJPster>	Sounds like something for an RTOS team to discuss separately and report back
+2019-02-26 20:20:28	<korken89>	RTOS study group ~ish?
+2019-02-26 20:20:36	<therealprof>	I could not care any less about a "classical" RTOS, tbh.
+2019-02-26 20:20:40	<disasm>	Or rust-rtos org
+2019-02-26 20:21:10	<disasm>	vertexclique: any thoughts?
+2019-02-26 20:21:41	<japaric>	I agree that this should start as a separate org / community effort
+2019-02-26 20:21:45	<disasm>	(https://mozilla.logbot.info/rust-embedded/20190226)
+2019-02-26 20:22:52	<korken89>	A separate org or community effort does seem like the appropriate start
+2019-02-26 20:23:01	<korken89>	To start collecting the ideas and see where it leads
+2019-02-26 20:23:08	<disasm>	+
+2019-02-26 20:23:14	<japaric>	the EWG current scope is core / arch-specific things, things tied to the compiler or std, and resources; experimenting with rtoses itself is out of scope; pointing people to those efforts is in scope however
+2019-02-26 20:24:09	<korken89>	+1
+2019-02-26 20:24:35	<hannobraun>	+1
+2019-02-26 20:24:46	<disasm>	We have avr-rust as an example
+2019-02-26 20:25:43	<disasm>	Let's move on?
+2019-02-26 20:26:12	<japaric>	I think we are in agreement that we should not create an rtos team right now; let's have the community experiment and link to the experiments from our resources
+2019-02-26 20:26:33	<japaric>	I'll leave a comment on GH with the conclusion
+2019-02-26 20:26:54	<korken89>	Sounds good!
+2019-02-26 20:26:58	<mathk-M>	sounds good
+2019-02-26 20:27:01	<japaric>	ok, then let's move on
+2019-02-26 20:27:08	<japaric>	next is @mathk *-hal deduplication 
+2019-02-26 20:27:26	<japaric>	mathk-M is around so let's have them present the topic and drive the discussion
+2019-02-26 20:29:07	<mathk-M>	Yup so this is simply that I have hit some issue one some hal that was soved in other hal. And having a look at the soution shows a lot of common code that could be reused
+2019-02-26 20:29:37	<mathk-M>	this is particulary true for stmXXX-hal
+2019-02-26 20:29:59	<korken89>	Maybe try and move hals into the mcu-rs orgs to consolidate?
+2019-02-26 20:30:05	<mathk-M>	So it boild down on how could we avoid such suplcation ..
+2019-02-26 20:30:19	<mathk-M>	duplication*
+2019-02-26 20:30:20	<korken89>	Can be tricky to pull of, with a lot of people involved?
+2019-02-26 20:30:41	<therealprof>	mathk-M: So what is your suggestion here?
+2019-02-26 20:31:21	<japaric>	mathk-M: was this the case for hals within the stm32-rs org? or hals outside that org?
+2019-02-26 20:31:23	<mathk-M>	An other stufff I notice is that there is differernt hal that have choose to solve some common problem slightly differently.
+2019-02-26 20:31:43	<mathk-M>	mostly stm32-rs org actually
+2019-02-26 20:31:47	<hannobraun>	We share common code between HAL crates in https://github.com/nrf-rs/nrf52-hal/
+2019-02-26 20:31:57	<korken89>	Ah
+2019-02-26 20:32:00	<mathk-M>	but looking at nordic hal I can see some duplication out there too
+2019-02-26 20:32:09	<hannobraun>	Not sure how well that approach works for STM32. I think Nordic is easier to handle in that regard.
+2019-02-26 20:32:30	<therealprof>	Nordic has a *slightly* smaller lineup than STM.
+2019-02-26 20:32:58	<cr1901>	trying to consolidate seems like there will be a lot of pain wrt versioning, since dependencies will change (and doesn't that require a minor ver bump?)
+2019-02-26 20:33:06	<mathk-M>	one suggestion would be to add not only trait but common code to trait in embedded-hal maybe ?
+2019-02-26 20:33:18	<cr1901>	dependencies on projects already using the existing crates*
+2019-02-26 20:33:29	<korken89>	A good reference for seeing how many different hal drivers are needed is ChibiOS, it has made great work there
+2019-02-26 20:33:40	<korken89>	For STM32 that is
+2019-02-26 20:35:26	<japaric>	I imagine that unformity could be achieved by having a single stm32-hal instead of several stm32X-hals? I expect that chibiOS hal looks like that.
+2019-02-26 20:35:50	<korken89>	Yeah
+2019-02-26 20:35:52	<therealprof>	:-D
+2019-02-26 20:36:00	<korken89>	It
+2019-02-26 20:36:05	<japaric>	(bunch of ifdefs)
+2019-02-26 20:36:13	<therealprof>	That would be the total horror.
+2019-02-26 20:36:22	<korken89>	It's quite a work of art, if someone wants some inspiration
+2019-02-26 20:36:40	<korken89>	For being in C :)
+2019-02-26 20:36:53	<mathk-M>	Maybe the first step would be to identify common code and see if that can be address in an uniform lib.
+2019-02-26 20:37:16	<mathk-M>	a step by step process
+2019-02-26 20:37:19	<korken89>	I would say that it's a good first step
+2019-02-26 20:37:48	<therealprof>	mathk-M: Sure. PRs welcome!
+2019-02-26 20:37:49	<japaric>	in any case this sounds like something for the stm32-rs org to think (hard) about how to solve
+2019-02-26 20:37:52	<mathk-M>	I have already identify that Timer /Systick clock could be refactor a bit.
+2019-02-26 20:38:07	<japaric>	if there are improvements that need to be done in svd2rust or embedded-hal then the EWG can take action
+2019-02-26 20:38:13	<mathk-M>	I am trying to work on it.
+2019-02-26 20:38:19	<therealprof>	japaric: +1
+2019-02-26 20:38:28	<cr1901>	mathk-M: That's a reasonable idea. It also allows for multiple HAL impls to exist (impl diversity is good!)
+2019-02-26 20:38:31	<korken89>	I agree with @japaric here, and give existing solutions a look 
+2019-02-26 20:39:46	<mathk-M>	For svd2rust a issue that could prevent refactoring is that for example derive  register should be the same structure but IIUC it is not.
+2019-02-26 20:40:36	<japaric>	ok then I think we can table this one until there's more input from the $vendor-rs orgs
+2019-02-26 20:41:14	<mathk-M>	as an example there is gpioa::MODER and gpiob::MODER and I don't see why this should be different structure.
+2019-02-26 20:42:00	<david-sawatzke>	That's because they have different reset values
+2019-02-26 20:42:12	<mathk-M>	so we need to have a macro to do common studd.
+2019-02-26 20:42:21	<therealprof>	Blech.
+2019-02-26 20:42:31	<cr1901>	+1 to therealprof :P
+2019-02-26 20:42:43	<disasm>	mathk-M: And also you shouldn't be able to write gpiob::MODER bits into gpioa
+2019-02-26 20:43:08	<japaric>	mathk-M: in that case svd2rust could check for structural equality but that doesn't necessarily imply that all the registers / bitfields have the same semantics
+2019-02-26 20:43:52	<japaric>	we should move onto the next item
+2019-02-26 20:43:57	<mathk-M>	yes but sould we decide the one that could make sens to be merge ?
+2019-02-26 20:44:02	<mathk-M>	ok
+2019-02-26 20:44:06	<korken89>	Yeah, this is check and manually optimized in ChibiOS for example - the SVDs do not have the info sadly
+2019-02-26 20:44:07	<japaric>	if there's more svd2rust feedback please open an issue
+2019-02-26 20:44:29	<mathk-M>	ok
+2019-02-26 20:44:36	<japaric>	next is 
+2019-02-26 20:44:38	<japaric>	- @Disasm Proper handling of write-only SPI channels 
+2019-02-26 20:44:53	<japaric>	disasm: please present the topic
+2019-02-26 20:44:58	<disasm>	Eah
+2019-02-26 20:45:13	<mathk-M>	(power mode ?)
+2019-02-26 20:45:13	<disasm>	We have two PRs with one man trying to solve his problems
+2019-02-26 20:45:33	<disasm>	Hmm, we missed it
+2019-02-26 20:46:47	<mathk-M>	disasm: sorry go ahead
+2019-02-26 20:47:01	<disasm>	The first problem is write-only mode in SPI. It's easy to use it in sync manner, but we need a proper example for an async. The solution proposed is to add flush() that will clear the FIFO, but it seems strange to me.
+2019-02-26 20:47:21	<disasm>	Another way is write & dummy read
+2019-02-26 20:47:59	<disasm>	But I don't know how to implement it efficiently. Something like in tokio: write().and_then(|| read())
+2019-02-26 20:48:06	<disasm>	We don't have this and_then()
+2019-02-26 20:48:32	<disasm>	So we need to suggest some solution
+2019-02-26 20:48:47	<mathk-M>	a lambda ?
+2019-02-26 20:48:59	<japaric>	disasm: you mean a solution for the async case?
+2019-02-26 20:49:07	<disasm>	japaric: Yes
+2019-02-26 20:49:43	<japaric>	by 'solution' do you mean a default impl in embedded-hal?
+2019-02-26 20:49:50	<japaric>	or an implementation pattern?
+2019-02-26 20:49:57	<disasm>	Implementation pattern
+2019-02-26 20:50:29	<theJPster>	Do we have a good async story for any peripheral type in embedded-hal yet?
+2019-02-26 20:50:41	<japaric>	not that I'm aware of
+2019-02-26 20:50:41	<mathk-M>	could that pattern emerge once async/await is in rust? (providing we can make it work in no_std env.)
+2019-02-26 20:51:05	<theJPster>	The problem is, you need an OS to be able to tell you when things are done.
+2019-02-26 20:51:23	<disasm>	And another problem. This man wants something like WriteOnlySPI trait to mark that his library needs only writes, but "never" reads. What is the proper way to enforce this?
+2019-02-26 20:52:18	<theJPster>	Do we do the same for UART RX and TX?
+2019-02-26 20:52:34	<disasm>	The idea is to convert your good SPI into WriteOnlySPI if you do not have MOSI wires attached
+2019-02-26 20:52:42	<cr1901>	>you need an OS to be able to tell you when things are done.
+2019-02-26 20:52:42	<cr1901>	I've heard conflicting info about whether async implies an OS is required.
+2019-02-26 20:52:47	<disasm>	Yes, but not. In SPI you still need to read fake data
+2019-02-26 20:53:07	<japaric>	disasm: is this for generic code? if so then it sounds like a marker trait (SpiNeverReads) could solve this
+2019-02-26 20:53:19	<therealprof>	UART is different.
+2019-02-26 20:53:48	<disasm>	japaric: seems like so. Do we need to add such marker to embedded-hal?
+2019-02-26 20:54:12	<japaric>	cr1901: (off-topic: Rust's async! needs TLS atm; it doesn't need an OS)
+2019-02-26 20:54:13	<david-sawatzke>	Sorry for being afk, I'm the one that opened the issues
+2019-02-26 20:54:20	<mathk-M>	UART is not  clock like SPI ? TX and RX are independent
+2019-02-26 20:54:28	<korken89>	The async case is quite application (and OS) dependent, are there any proposed generic solutions? Or will we need a battery of different solutions depending on the background? 
+2019-02-26 20:54:31	<therealprof>	disasm: What is the problem with fake reading again?
+2019-02-26 20:54:41	<david-sawatzke>	The issue is that when you never read, hals usually overflow the rx fifo and return an error
+2019-02-26 20:54:45	<cr1901>	japaric: ack thanks
+2019-02-26 20:55:00	<disasm>	therealprof: there is no problem, but we need to mark such SPI somehow
+2019-02-26 20:55:02	<david-sawatzke>	So you can't just have a marker
+2019-02-26 20:55:05	<japaric>	disasm: if it's something that a *driver* (not the impl) wants to rely on (not that I'm aware of such use case)
+2019-02-26 20:55:20	<japaric>	then it would make sense to put the marker trait in embedded-hal
+2019-02-26 20:55:30	<david-sawatzke>	And you also need a way to mark that an spi byte was send, to control cs
+2019-02-26 20:55:48	<disasm>	Ok
+2019-02-26 20:56:43	<disasm>	flip111?
+2019-02-26 20:57:09	<therealprof>	david-sawatzke: Huh? You deassert CS after you clocked in the read not after clocking out the write.
+2019-02-26 20:57:25	<japaric>	in any case I'm not seeing how optimizing 'write only' mode has to be exposed as a bound
+2019-02-26 20:57:35	<nraynaud>	in STM32 you can mark the peripheral as read disabled, or you can ignore the read overflow flag, it's not propagated to a "general error flag"
+2019-02-26 20:58:17	<david-sawatzke>	therealprof: Then you need a matching amount of dummy reads
+2019-02-26 20:58:30	<therealprof>	nraynaud: True, but that's something the HAL impl needs to support.
+2019-02-26 20:58:30	<disasm>	japaric: It's not optimizing, it's just a way to express that you should not treat incoming data as valid. Compile-time checked.
+2019-02-26 20:59:07	<therealprof>	david-sawatzke: Uhm, that's not how SPI works.
+2019-02-26 20:59:08	<nraynaud>	therealprof I did it in my clone, but I can't send a PR because DMA is not there.
+2019-02-26 21:00:35	<david-sawatzke>	therealprof: Your spi rx fifo could otherwise still contain old data that you'd `read` to check that everything was clocked out
+2019-02-26 21:01:57	<japaric>	:bell: unfortunately we have run out of time
+2019-02-26 21:02:34	<therealprof>	david-sawatzke: TX is independent from RX. You can turn off the RX buffer (and signalling) in most cases as nraynaud suggested in case you're not interested in the clocked in data.
+2019-02-26 21:02:35	<japaric>	just a final note: if you have done or seen cool embedded stuff this past week please add it to the next newsletter via PR
+2019-02-26 21:02:43	<nraynaud>	david-sawatzke what device are you using? I think we can handle the situation by the function signature, a read can't happen asynchronously, so something form the software side has to start it.
+2019-02-26 21:02:46	<japaric>	https://github.com/rust-embedded/blog/blob/master/content/2019-03-06-newsletter-16.md newsletter link
+2019-02-26 21:03:44	<japaric>	thanks everyone for attending and see you next week!
