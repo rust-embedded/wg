@@ -155,7 +155,6 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 #### Members
 
 - [@adamgreig]
-- [@japaric]
 - [@korken89]
 - [@thejpster]
 - [@therealprof]
@@ -218,7 +217,6 @@ Board Support Crates and drivers.
 #### Members
 
 - [@hannobraun]
-- [@japaric]
 - [@thejpster]
 - [@therealprof]
 - [@ithinuel]
@@ -292,7 +290,6 @@ The resources team develops, maintains and curates resources on embedded Rust.
 - [@adamgreig]
 - [@andre-richter]
 - [@jamesmunns]
-- [@japaric]
 - [@thejpster]
 - [@therealprof]
 
@@ -313,7 +310,6 @@ The tools team maintains and develops core embedded tools.
 #### Members
 
 - [@Emilgardis]
-- [@japaric]
 - [@ryankurte]
 - [@therealprof]
 
