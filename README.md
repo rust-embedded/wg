@@ -109,25 +109,31 @@ Everyone can contribute to the embedded WG efforts! There are several ways to he
 
 ## Organization
 
-The WG is composed of a lead and several teams whose functions are defined in [RFC
-#136](./rfcs/0136-teams.md). The embedded WG develops and maintains a large set of projects under
-the [rust-embedded] organization. This section lists all the teams and all the projects owned by the
-WG.
+The WG is composed of several teams whose functions are defined in [RFC
+#136](./rfcs/0136-teams.md). The embedded WG develops and maintains a large set
+of projects under the [rust-embedded] organization. This section lists all the
+teams and all the projects owned by the WG.
 
 [rust-embedded]: https://github.com/rust-embedded
 
-### The WG lead
+### The core team
 
-[@japaric] is the current lead of the embedded WG. His functions are:
+The functions of the core team are:
 
-- Representing the WG in meetings where other [Rust teams] participate.
+- Representing the WG in meetings with other [Rust teams].
 - Communicating the needs of the embedded Rust community (e.g. language features, `core` API
   stabilization) to the Rust teams.
 - Giving the casting vote on intra-WG decisions where no [voting majority] can be achieved.
+- Driving and moderating the weekly meetings.
 
 [Rust teams]: https://www.rust-lang.org/en-US/team.html
 [voting majority]: https://github.com/rust-lang-nursery/embedded-wg/blob/master/rfcs/0136-teams.md#voting-majority
 
+#### Members
+
+- [@jamesmunns]
+- [@japaric]
+- [@therealprof]
 
 ### The Cortex-A team
 
