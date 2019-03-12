@@ -1,0 +1,227 @@
+2019-03-05 20:04:14	<japaric>	ok, let's start this meeting
+2019-03-05 20:04:18	<jamesmunns>	o/
+2019-03-05 20:04:18	<adamgreig>	o/
+2019-03-05 20:04:34	<japaric>	we have a bunch of reminders / announcements first
+2019-03-05 20:04:43	<adamgreig>	Could someone stick me on the attendance please?
+2019-03-05 20:04:55	<japaric>	mostly RFCs waiting for input / votes
+2019-03-05 20:05:27	<japaric>	I'll briefly go over the open RCFs
+2019-03-05 20:05:30	<jamesmunns>	adamgreig: you've been got
+2019-03-05 20:06:21	<japaric>	first one is a T-all proposal to create the "ecosystem" team; a team focused on reviewing crates (for the showcase), working with library authors (libs blitz) and eventually coding guidelines
+2019-03-05 20:07:03	<japaric>	(feel free to comment while I go over the RFCs)
+2019-03-05 20:07:39	<japaric>	next is another T-all proposal to add a self-hibernation mechanism for people that'll be busy / absent and won't be able to participate in the WG for a while
+2019-03-05 20:08:08	<therealprof>	Do we have any volunteers for the ecosystem team?
+2019-03-05 20:08:26	<japaric>	people in hibernation state will be removed from highfive rotation, list of voters and the cc @r-e/$team list
+2019-03-05 20:08:32	<japaric>	therealprof: just me right now
+2019-03-05 20:09:20	<japaric>	was thinking of inviting a new member to join this specific team
+2019-03-05 20:09:27	<jamesmunns>	can we make a r-e/hibernate list?
+2019-03-05 20:09:43	<jamesmunns>	so they are still part of all, but not voting or high five?
+2019-03-05 20:10:01	<adamgreig>	Won't they remain part of all even if not in a specific team?
+2019-03-05 20:10:12	<therealprof>	japaric: I thought you wanted less work rather than more for the next months? ;)
+2019-03-05 20:10:15	<jamesmunns>	(is /all automatic or manually maintained?)
+2019-03-05 20:10:30	<japaric>	 /all is just another team, not a special thing
+2019-03-05 20:10:34	<disasm>	adamgreig: /all is a separate team
+2019-03-05 20:10:37	<theJPster>	Question: Is hibernation on a team by team basis, or across the whole WG
+2019-03-05 20:10:48	<jamesmunns>	I'd assume hibernation would be across all wg
+2019-03-05 20:10:54	<jamesmunns>	you would be removed from current teams
+2019-03-05 20:11:10	<jamesmunns>	if you just need to leave a single team, you can always PR yourself off of it
+2019-03-05 20:11:17	<japaric>	theJPster: as currently proposed the whole wg
+2019-03-05 20:11:24	<ryankurte>	What is the management overhead like of adding / removing people from teams? The mailing lists would require one of us to log in and remove them from each / re-add later. Fine for infrequent occurrences, a bit of a pain if it’s regular.
+2019-03-05 20:11:27	<japaric>	also what jamesmunns said
+2019-03-05 20:11:59	<japaric>	in the current proposal the mailing lists won't be modified
+2019-03-05 20:12:02	<adamgreig>	Do we have any sort of suggestion on what time period counts as extended? A month? Three? A year?
+2019-03-05 20:12:32	<japaric>	adamgreig: "use your own criterion"
+2019-03-05 20:13:05	<adamgreig>	Okay
+2019-03-05 20:14:03	<japaric>	if there are no more comments we can move on
+2019-03-05 20:14:15	<japaric>	(you can comment on the GH thread)
+2019-03-05 20:14:55	<japaric>	next is a proposal to replace the position of the lead to a core team
+2019-03-05 20:15:04	<japaric>	same functions, just more people
+2019-03-05 20:15:28	<japaric>	motivation is that I'll be busier and busier with my thesis as time goes by
+2019-03-05 20:15:51	<japaric>	so it's good to have other people active / available to communicate with the Rust teams
+2019-03-05 20:16:44	<japaric>	I have proposed therealprof and jamesmunns (plus me) for the initial members of the core team
+2019-03-05 20:16:54	<korken89>	SGTM
+2019-03-05 20:17:10	<therealprof>	I already ticked the box
+2019-03-05 20:17:20	<japaric>	therealprof: +1
+2019-03-05 20:17:26	<jamesmunns>	Yup, box ticked.
+2019-03-05 20:18:28	<japaric>	ok, next RFC is creating the 'not yet awesome embedded rust' list
+2019-03-05 20:18:35	<jamesmunns>	Is there an RFC for that?
+2019-03-05 20:18:56	<japaric>	jamesmunns suggested a process for adding / removing things to the list
+2019-03-05 20:19:06	<japaric>	jamesmunns: not a full fledged one but there are check boxes :-)
+2019-03-05 20:19:06	<jamesmunns>	ah right, thats in issues
+2019-03-05 20:19:24	<jamesmunns>	https://github.com/rust-embedded/wg/issues/315
+2019-03-05 20:19:27	<japaric>	this is a T-resources RFC
+2019-03-05 20:20:17	* japaric	waits a bit to see if there are comment on this RFC
+2019-03-05 20:20:34	<jamesmunns>	I'm very very for this RFC, and a "patterns book"
+2019-03-05 20:21:02	<jamesmunns>	where a "patterns book" would be where we try to capture ways to solve problems in embedded rust
+2019-03-05 20:21:09	<jamesmunns>	e.g., this is how you can write a GPIO HAL
+2019-03-05 20:21:21	<jamesmunns>	(way 1: using macros, way 2: ...)
+2019-03-05 20:21:33	<jamesmunns>	discussing what is good and bad about each approach
+2019-03-05 20:22:00	<jamesmunns>	the idea is that stuff on the not-yet-awesome-list becomes either a library on the awesome list, or a pattern in the patterns book
+2019-03-05 20:22:09	<japaric>	jamesmunns: we should an empty repo to start discussing patterns spotted in the wild
+2019-03-05 20:22:35	<jamesmunns>	japaric: regular repo, or mdbook repo?
+2019-03-05 20:22:50	<japaric>	empty book with discussions in the issue tracker
+2019-03-05 20:23:01	<japaric>	maybe we can use the process that the UCG WG uses https://github.com/rust-lang/unsafe-code-guidelines
+2019-03-05 20:23:11	<jamesmunns>	k, I'll try and get that hammered out tonight
+2019-03-05 20:23:30	<japaric>	I don't know what their process is in detail but they are building an mdbook and they do their discussion in the issue tracker
+2019-03-05 20:23:57	<jamesmunns>	https://github.com/rust-lang/unsafe-code-guidelines/blob/master/process.md
+2019-03-05 20:23:58	<japaric>	"The process" https://github.com/rust-lang/unsafe-code-guidelines/blob/master/process.md
+2019-03-05 20:24:01	<jamesmunns>	:+1:
+2019-03-05 20:24:27	<jamesmunns>	this miiiiight be a little bit towards the ecosystem team
+2019-03-05 20:24:35	<jamesmunns>	but I'm happy to kick it off, and hand it over if needed
+2019-03-05 20:24:45	<therealprof>	+1
+2019-03-05 20:25:00	<japaric>	jamesmunns: yes, this is T-eco stuff
+2019-03-05 20:25:18	<japaric>	jamesmunns: would be great if you can set up the repo
+2019-03-05 20:25:18	<jamesmunns>	I just want it to exist :)
+2019-03-05 20:26:02	<jamesmunns>	Yup, I'll do that.
+2019-03-05 20:26:17	<disasm>	*a humble reminder about the template repo*
+2019-03-05 20:26:19	<japaric>	I'll braindump some patterns I've seen and open an issue with a gist link or something
+2019-03-05 20:26:48	<jamesmunns>	adamgreig: could you please tick the box for the NYAER list?
+2019-03-05 20:26:55	<jamesmunns>	or
+2019-03-05 20:27:08	<jamesmunns>	I guess we have majority already :p
+2019-03-05 20:27:17	<japaric>	:shipit:
+2019-03-05 20:27:19	<adamgreig>	I'm +1 on it but not logged in to gh atm
+2019-03-05 20:27:29	<jamesmunns>	k, I'll set that up tonight too
+2019-03-05 20:27:38	<adamgreig>	(still in the US for work til tomorrow, then back again in a week)
+2019-03-05 20:27:38	<japaric>	jamesmunns++
+2019-03-05 20:27:59	<japaric>	ok, then moving on
+2019-03-05 20:28:15	<adamgreig>	(feel free to tick it for me)
+2019-03-05 20:28:18	<japaric>	we had our first project submission for the showcase
+2019-03-05 20:28:24	<japaric>	https://github.com/rust-embedded/showcase/pull/8
+2019-03-05 20:28:42	<japaric>	as there's no eco team T-resources has to review
+2019-03-05 20:28:42	<jamesmunns>	(how was the monotron not the first submission?!?)
+2019-03-05 20:28:48	<japaric>	theJPster: ^
+2019-03-05 20:28:59	* theJPster	is really really busy
+2019-03-05 20:29:33	<theJPster>	I can either do the paperwork, or make it more awesome for Oxidize ;)
+2019-03-05 20:29:49	<japaric>	also related to the showcase: I made a PR / RFC to rotate the projects in the list https://github.com/rust-embedded/showcase/pull/12
+2019-03-05 20:29:54	<theJPster>	Besides it's unsafe as hell
+2019-03-05 20:30:02	<therealprof>	:-D
+2019-03-05 20:30:02	<japaric>	so that all projects get to be at the top of the page at some point
+2019-03-05 20:30:48	<therealprof>	Also lacking the time to make my projects really awesome and shiny here. ;)
+2019-03-05 20:31:07	<japaric>	alright, last item in this section
+2019-03-05 20:31:27	<japaric>	https://github.com/rust-embedded/itm/pull/24 is waiting for review / comments from the tools team
+2019-03-05 20:32:16	<japaric>	the PR makes the itm library / parser better but it's a breaking change; it also proposes not shipping itmdump with the itm crate (we can put it in another crate)
+2019-03-05 20:32:37	<therealprof>	LGTM but I really haven't had time to try it myself.
+2019-03-05 20:32:47	<japaric>	T-tools can comment over there
+2019-03-05 20:32:53	<therealprof>	I don't like approving stuff based on gut feeling.
+2019-03-05 20:32:56	<japaric>	we are past the half hour mark so let's move onto the agenda
+2019-03-05 20:33:16	<japaric>	I think flip111 is not around?
+2019-03-05 20:33:24	<japaric>	or do they have a different nick on irc?
+2019-03-05 20:33:53	<japaric>	in any case first item is https://github.com/rust-embedded/wg/issues/22#issuecomment-464929863
+2019-03-05 20:34:47	<japaric>	svd2rust-like code generator but for the registers of I2C / SPI devices
+2019-03-05 20:34:52	<theJPster>	I've expressed this need in the past too
+2019-03-05 20:34:52	<ryankurte>	ahh that is a super interesting idea
+2019-03-05 20:35:04	<theJPster>	As has davidwood
+2019-03-05 20:35:13	<jamesmunns>	(I very much like the idea of being able to feed non-svd data into svd2rust and get the same kind of codegen)
+2019-03-05 20:35:36	<jamesmunns>	It would make it possible to at least have an end goal for parsing a C header and making it into Rust code reasonably
+2019-03-05 20:35:47	<therealprof>	I wouldn't know where to start…
+2019-03-05 20:36:07	<hannobraun>	Are there any widely used file formats for this? (except C header files)
+2019-03-05 20:36:09	<therealprof>	jamesmunns: Where would you get a C header?
+2019-03-05 20:36:18	<theJPster>	hannobraun, PDF?
+2019-03-05 20:36:19	<japaric>	getting the register information into some format that's not pdf would be the start
+2019-03-05 20:36:20	<jamesmunns>	For example, I have some Air602 chips
+2019-03-05 20:36:22	<therealprof>	hannobraun: Not that I'd seen any.
+2019-03-05 20:36:25	<jamesmunns>	they provide a C header
+2019-03-05 20:36:28	<disasm>	I think we need a different approach here since the register map could be based on some bus (eq i2c), not memory-mapped
+2019-03-05 20:36:37	<hannobraun>	theJPster: That's what I feared :-)
+2019-03-05 20:36:47	<jamesmunns>	oh
+2019-03-05 20:36:51	<jamesmunns>	I totally misread
+2019-03-05 20:37:02	<theJPster>	I2C isn't memory mapped, but it is addressable
+2019-03-05 20:37:19	<jamesmunns>	this is for "not memory mapped peripherals", not "uC devices without an SVD"
+2019-03-05 20:37:29	<ryankurte>	It seems like some kind of map -> rust definitions for types / bitfields would work alright for both?
+2019-03-05 20:37:36	<japaric>	this would be an API for modifying bitfields
+2019-03-05 20:37:40	<therealprof>	theJPster: How the addressing works is totally up to the vendor.
+2019-03-05 20:37:52	<japaric>	couldn't you use some macro like the one in the register crate?
+2019-03-05 20:38:13	<theJPster>	I'd suggest there's a bunch of input formats, some intermediate representation, and the Rust source as an output
+2019-03-05 20:38:18	<hannobraun>	For what it's worth, there's some prior art in the dw1000 crate.  I used a macro to generate Rust code there.
+2019-03-05 20:38:27	<theJPster>	Whether SVD works as an intermediate format is up for debat
+2019-03-05 20:38:59	<hannobraun>	https://github.com/braun-robotics/rust-dw1000/blob/master/src/ll.rs#L597
+2019-03-05 20:39:06	<therealprof>	I have serious doubts that this would work universally.
+2019-03-05 20:39:13	<jamesmunns>	Yeah, having a couple easy ones, like common SPI and I2C addressing methods, and being able to turn some data into embedded-hal-consuming-code would be interesting
+2019-03-05 20:39:21	<ryankurte>	^
+2019-03-05 20:39:37	<theJPster>	See also https://github.com/dtwood/tm4c-hal/blob/ethernet-draft/tm4c129x-hal/src/edes.rs
+2019-03-05 20:40:09	<japaric>	also https://github.com/rust-embedded/register-rs#defining-mmio-registers
+2019-03-05 20:40:23	<ryankurte>	it's a real stretch but i'd love some kind of protocol / register spec that you could feed a logic analyser as well
+2019-03-05 20:40:29	<japaric>	but if you are using a macro then you have to enter the data yourself to accommodate the macro syntax
+2019-03-05 20:40:45	<jamesmunns>	Sounds like we need to capture all this in the NYAER list :D
+2019-03-05 20:40:46	<theJPster>	It feels like there's a solution here, but we probably aren't going to find it tonight
+2019-03-05 20:41:02	<theJPster>	Hell there's probably a PhD in it
+2019-03-05 20:41:14	<ryankurte>	new project for discussion, and some prototypes to play with the idea perhaps?
+2019-03-05 20:41:18	<jamesmunns>	I hear japaric has time to start a PhD soon :D
+2019-03-05 20:41:23	<therealprof>	theJPster: :-D
+2019-03-05 20:41:40	<japaric>	let's put this in the NYAER list
+2019-03-05 20:42:24	<japaric>	and let the community experiment; there seem to be many options
+2019-03-05 20:42:52	<therealprof>	If anyone is interested in I2C communication which will definitely not fall into such a pattern: try uBlox GPS modules. ;)
+2019-03-05 20:43:11	<jamesmunns>	therealprof: it's embedded, someone always does something their own special way :D
+2019-03-05 20:43:38	<jamesmunns>	https://twitter.com/whitequark/status/1103007905983418368
+2019-03-05 20:43:39	<japaric>	we have ~15 mins left let's move on
+2019-03-05 20:44:06	<japaric>	next is: bindings for lvgl
+2019-03-05 20:44:22	<therealprof>	jamesmunns: :-D
+2019-03-05 20:44:24	<disasm>	(Also I have an Ethernet PHY access over the custom memory-mapped peripheral over SPI and that's all accessible from external machine)
+2019-03-05 20:44:39	<japaric>	https://github.com/littlevgl/lvgl
+2019-03-05 20:44:42	<jamesmunns>	oh that looks nifty
+2019-03-05 20:45:23	<japaric>	I agree but I don't think the WG is going to develop bindings for something like this
+2019-03-05 20:45:50	<therealprof>	Same.
+2019-03-05 20:45:53	<jamesmunns>	agreed.
+2019-03-05 20:46:04	<jamesmunns>	We can add it to NYAER though, under display libraries
+2019-03-05 20:46:10	<japaric>	jamesmunns:+1
+2019-03-05 20:46:13	<disasm>	+1
+2019-03-05 20:46:18	<ryankurte>	+1
+2019-03-05 20:46:20	<jamesmunns>	where bindings to an existing lib can be at least one possible approach
+2019-03-05 20:46:38	<japaric>	(riir)
+2019-03-05 20:46:53	<jamesmunns>	I'm still waiting for the first good desktop UI library
+2019-03-05 20:47:07	<jamesmunns>	so I can make dumb win-forms esque UIs for my CLI apps
+2019-03-05 20:47:15	<ryankurte>	^ same but also mobile
+2019-03-05 20:47:17	<jamesmunns>	(in rust)
+2019-03-05 20:47:19	<japaric>	ok, moving on: newsletter 16
+2019-03-05 20:47:24	<therealprof>	jamesmunns: I thought there was something.
+2019-03-05 20:47:37	<jamesmunns>	therealprof: there are a couple somethings, with various levels of success
+2019-03-05 20:47:44	<japaric>	https://github.com/rust-embedded/blog/blob/master/content/2019-03-06-newsletter-16.md
+2019-03-05 20:47:57	<japaric>	if you have cool stuff to share you have few hours left
+2019-03-05 20:48:08	<japaric>	tomorrow we'll release newsletter #16
+2019-03-05 20:48:28	<jamesmunns>	can someone please write a script that parses the awesome list and gets a count of each section?
+2019-03-05 20:48:58	<jamesmunns>	that would save like... 3 minutes of time for whoever is updating the newsletter each week :D
+2019-03-05 20:49:09	<therealprof>	japaric: I love cargo-call-stack. Fantastic tool.
+2019-03-05 20:49:21	<jamesmunns>	yep, that is really awesome
+2019-03-05 20:49:26	<disasm>	jamesmunns: will do it
+2019-03-05 20:49:29	<ryankurte>	+ >> 1
+2019-03-05 20:49:32	<korken89>	Sorry I have to leave early today! I will be back later and read the last of the discussions :)
+2019-03-05 20:49:45	<jamesmunns>	korken89: I got your HW btw!
+2019-03-05 20:49:47	<theJPster>	I have the LTE stack running on the nRF9160 from pure-Rust. But I can't get it to register on the network.
+2019-03-05 20:49:47	<japaric>	jamesmunns: (https://xkcd.com/1205/)
+2019-03-05 20:49:56	<theJPster>	Don't quote me on that. I'll try and get something official out soon.
+2019-03-05 20:50:10	<korken89>	jamesmunns: Yay :D
+2019-03-05 20:50:21	<korken89>	Give some feedback if/when you have time :)
+2019-03-05 20:50:22	<jamesmunns>	thank you!
+2019-03-05 20:50:25	<jamesmunns>	will do
+2019-03-05 20:50:30	<jamesmunns>	...when I have time
+2019-03-05 20:50:49	<japaric>	last item: template repo. disasm?
+2019-03-05 20:51:31	<therealprof>	I think if we could get the first showcase item approved we should also put that in the newsletter.
+2019-03-05 20:51:36	<jamesmunns>	(if we have extra time, I want to bug japaric about RTFM, and stealing the Core Peripherals, and whether we can at least lend them back for Init)
+2019-03-05 20:51:49	<ryankurte>	japaric: can i add a plug to review / discuss https://github.com/rust-embedded/embedded-hal/pull/127 and https://github.com/rust-embedded/embedded-hal/issues/95 if we have time?
+2019-03-05 20:52:38	<disasm>	We need a "perfect" repo that can be used in new embedded projects. CI/Bors included. I started one recently and I hope that I get time to fill it. PRs welcome :)
+2019-03-05 20:52:55	<ryankurte>	disasm: isn't this different for different projects?
+2019-03-05 20:53:02	<disasm>	Thats mostly for the EWG
+2019-03-05 20:53:15	<japaric>	disasm: one template that works for RISCV, Cortex-M, AVR, etc.?
+2019-03-05 20:53:22	<disasm>	No-no
+2019-03-05 20:53:39	<disasm>	This is mostly an example of correct READMEs and CI rules
+2019-03-05 20:53:43	<japaric>	for no-std libraries?
+2019-03-05 20:53:44	<disasm>	And CoC
+2019-03-05 20:53:57	<japaric>	ah, for new repos under rust-embedded
+2019-03-05 20:54:03	<disasm>	Yes
+2019-03-05 20:54:04	<jamesmunns>	japaric: +1
+2019-03-05 20:54:07	<ryankurte>	ahhh, +1
+2019-03-05 20:54:26	<japaric>	we usually take them from someone else though
+2019-03-05 20:54:41	<disasm>	Yes, but it seems wrong
+2019-03-05 20:54:54	<disasm>	For example, I notices that CI matrix is not a matrix at all
+2019-03-05 20:55:46	<japaric>	so a tool maybe? that checks that the repo looks like the existing ones
+2019-03-05 20:55:55	<disasm>	Here is a much simple way to create a matrix: https://github.com/Disasm/travis-test/blob/master/.travis.yml
+2019-03-05 20:56:14	<therealprof>	disasm: A matrix can be really expensive, in many cases it's cheaper to reuse a setup.
+2019-03-05 20:56:15	<disasm>	Sounds good, but I have no idea how to check this
+2019-03-05 20:57:30	<japaric>	maybe a python script that checks if CODE_OF_CONDUCT.md, .github, etc. exist
+2019-03-05 20:57:31	<disasm>	This can be achieved with better ways than just listing all the triples
+2019-03-05 20:58:50	<disasm>	japaric: added to my TODOs
+2019-03-05 20:59:07	<japaric>	disasm: +1
+2019-03-05 20:59:20	<japaric>	it seems to me that we probably want the tool and the template
+2019-03-05 20:59:44	<disasm>	Yep
+2019-03-05 21:00:19	<japaric>	:bell: aaaand we are out of time
+2019-03-05 21:00:33	<jamesmunns>	japaric: escaped again!
+2019-03-05 21:00:43	<japaric>	thanks everyone for attending and see you next week!
