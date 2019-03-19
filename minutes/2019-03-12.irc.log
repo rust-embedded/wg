@@ -1,0 +1,212 @@
+2019-03-12 20:05:47	<japaric>	ok, let's start this meeting
+2019-03-12 20:06:10	<japaric>	a bunch of RFCs have been approved since the last meeting
+2019-03-12 20:06:32	<sajattack>	I can't get into dropbox because of two-factor, can someone add me to attendance?
+2019-03-12 20:06:44	<japaric>	the ecosystem team RFC has been approved but we need more members before merging it
+2019-03-12 20:06:52	<cr1901>	sajattack:  Done
+2019-03-12 20:06:55	<sajattack>	thanks
+2019-03-12 20:07:16	<japaric>	the hibernating RFC has *not* been merged; it has 6 of the required 10 votes -- if you haven't reviewed it yet please do so
+2019-03-12 20:07:44	<jamesmunns>	https://github.com/rust-embedded/wg/pull/324
+2019-03-12 20:07:50	<japaric>	the lead -> core RFC has been merged and the /core team has been created; we still need to create the mailing list
+2019-03-12 20:08:03	<japaric>	jamesmunns: thanks for the link
+2019-03-12 20:08:24	<japaric>	the NYAR RFC has been merged and the repo is now live
+2019-03-12 20:08:37	<japaric>	https://github.com/rust-embedded/not-yet-awesome-embedded-rust
+2019-03-12 20:08:41	<jamesmunns>	Contributions very welcome :)
+2019-03-12 20:09:05	<sajattack>	I got into dropbox :)
+2019-03-12 20:09:07	<japaric>	rusty-clock is the first entry in the embedded showcase :tada:
+2019-03-12 20:09:25	<japaric>	we should highlight that in the next newsletter
+2019-03-12 20:10:05	<japaric>	the RFC for rotating projects in the showcase has been accepted and merged
+2019-03-12 20:10:24	<japaric>	and I did not have time to check on the ITM PR
+2019-03-12 20:10:43	<japaric>	now onto the agenda items
+2019-03-12 20:10:54	<japaric>	first one is by jamesmunns about the resources team membership
+2019-03-12 20:11:53	<jamesmunns>	I noticed that the github membership didn't match the teams membership
+2019-03-12 20:12:08	<adamgreig>	this goes back to when we were writing the book the first time and needed more people on resources (me included)
+2019-03-12 20:12:22	<adamgreig>	so a few of us were provisional/temporary members
+2019-03-12 20:13:01	<japaric>	yes, I think that around end of last year we checked if the provisional members wanted to be full-fledged members but I may be misremembering
+2019-03-12 20:13:25	<adamgreig>	i opened a pr to become a full resources member but i don't think anyone else did
+2019-03-12 20:13:52	<japaric>	oh, ok
+2019-03-12 20:14:03	<japaric>	then we should double check with korken89 and ryankurte 
+2019-03-12 20:14:36	<korken89>	From my side, it's a crazy period with work so I don't feel that I have time to contribute well in resources (I wrote about it in the issue as well)
+2019-03-12 20:14:55	<japaric>	I think we can solve this one asynchronously in the GH thread
+2019-03-12 20:15:02	<therealprof>	+1
+2019-03-12 20:15:06	<adamgreig>	sure
+2019-03-12 20:15:08	<ryankurte>	👍
+2019-03-12 20:15:19	<cr1901>	+1
+2019-03-12 20:15:34	<korken89>	SGTM
+2019-03-12 20:15:36	<japaric>	korken89: if you are busy you can leave the team for now and re-evaluate your membership later
+2019-03-12 20:16:16	<japaric>	ok then moving on therealprof wanted to talk about cortex-m* releases
+2019-03-12 20:16:29	<therealprof>	Yes.
+2019-03-12 20:16:33	<adamgreig>	i think basically we all want a release asap
+2019-03-12 20:16:47	<adamgreig>	( https://github.com/rust-embedded/cortex-m/issues/131 )
+2019-03-12 20:17:11	<korken89>	Indeed, I was supposed to test the issue with mixing 0.5.8 with 0.6.0, but have been held up with work
+2019-03-12 20:17:15	<theJPster>	oh yes please. This is a real blocker for me.
+2019-03-12 20:17:17	<therealprof>	Our Cortex-M crates have been lying around for a while with a some issues waiting for a minor release.
+2019-03-12 20:17:23	<korken89>	If anyone else has some time to give it a test it would be great
+2019-03-12 20:17:37	<jamesmunns>	korken89: are the test steps written up anywhere?
+2019-03-12 20:17:40	<theJPster>	I am currently vendoring four upstream crates with patches for armv8m.main support
+2019-03-12 20:17:52	<thenewwazoo>	I agree: ship please :)
+2019-03-12 20:18:12	<thenewwazoo>	I was vendoring it for ... uh, something or other... back when I was getting paid to do that :)
+2019-03-12 20:18:14	<adamgreig>	so yes the outstanding issue is whether we can do the semver trick to not split the ecosystem, and if so, doing it
+2019-03-12 20:18:16	<korken89>	jamesmunns: No, but simply making a project which has both 0.5.8 and 0.6.0 should suffice
+2019-03-12 20:18:31	<therealprof>	From my perspective it would be fine if we simply bumped all the crates at the same time.
+2019-03-12 20:18:48	<adamgreig>	thenewwazoo: is https://github.com/rust-embedded/cortex-m/pull/106 ready? maybe we could get that in there
+2019-03-12 20:19:12	<adamgreig>	therealprof: if we _can_ do semver to prevent a split, so much the better for other users
+2019-03-12 20:20:03	<adamgreig>	e.g. stm32f1 0.6.0 (out now) depends on cortex-m 0.5.8, and stm32f1xx-hal on that, and other applications and drivers on the hal.. people are going to have split dependencies for a while
+2019-03-12 20:20:04	<thenewwazoo>	adamgreig: I thiiiiiiiink so but I'd have to check. I wouldn't gate the release on that PR
+2019-03-12 20:20:31	<sajattack>	svd2rust might be due for a release as well?
+2019-03-12 20:20:44	<therealprof>	adamgreig: Fair. But if we can't do that I'd rather split earlier than later.
+2019-03-12 20:21:01	<adamgreig>	agreed.. the hope is we can avoid splitting at all
+2019-03-12 20:21:03	<japaric>	in theory it's not necessary to minor bump all cortex-m crates; cortex-m-rt should work fine with either 0.5 or 0.6
+2019-03-12 20:21:18	<adamgreig>	yea afaik there's nothing special waiting for a c-m-rt minor release
+2019-03-12 20:21:24	<japaric>	so something like '>0.5&<0.7' in the version string ought to work
+2019-03-12 20:21:36	<adamgreig>	it's just c-m that has a few good things (armv8 and three PRs waiting for a minor bump, at least)
+2019-03-12 20:21:36	<jamesmunns>	TIL you can do that
+2019-03-12 20:21:47	<therealprof>	Okay, but I thought we also have some tickets in -rt waiting for a minor release.
+2019-03-12 20:21:49	<theJPster>	cortex-m-rt also needs armv8m support adding
+2019-03-12 20:21:58	<adamgreig>	I think that can go in a patch release of c-m-rt
+2019-03-12 20:22:06	<theJPster>	It currently doesn't set the feature flags correctly, so SecureFault is missing
+2019-03-12 20:22:32	<adamgreig>	there was a third c-m crate that needed armv8 adding and was blocked on c-m getting it iirc
+2019-03-12 20:22:40	<mathk-M>	sems that many PR on cortex-m-rt need a new release of cortex-m.
+2019-03-12 20:22:43	<cr1901>	adamgreig: I thought semver mandated a minor bump any time a feature was added
+2019-03-12 20:22:46	<theJPster>	cortex-m-semihosting ?
+2019-03-12 20:22:57	<adamgreig>	yea might have been
+2019-03-12 20:23:12	<theJPster>	cr1901, we're at 0.x.y. So x is our major and y is our minor.
+2019-03-12 20:23:20	<cr1901>	ahhh
+2019-03-12 20:23:39	<theJPster>	Can we agenda an item for next time about a roadmap to 1.0 for all these crates.
+2019-03-12 20:23:39	<adamgreig>	honestly semver sort of punts on the whole 0.x.x thing
+2019-03-12 20:23:40	<cr1901>	right "anything goes before 1.0.0"
+2019-03-12 20:23:56	<japaric>	here's an idea: we should consider splitting the peripherals API out of the cortex-m crate; that's the part that cause the ecosystem split and crates like c-m-rt don't depend on that API (I hope)
+2019-03-12 20:24:41	<theJPster>	japaric, I'm fine with us creating cortex-m-peripherals. It would tie in to the svd2rust changes.
+2019-03-12 20:24:46	<japaric>	the peripherals API is problematic because of the singletons -- you can't use 0.5 and 0.6 at the same time
+2019-03-12 20:24:59	<adamgreig>	and it probably gets more flux too
+2019-03-12 20:25:13	<theJPster>	Or cortex-m-pac or whatever we call them these days
+2019-03-12 20:25:39	<cr1901>	>you can't use 0.5 and 0.6 at the same time <-- referring to both crates coming into the same application by transitive dep? (Last q I'll ask for now)
+2019-03-12 20:25:40	<thenewwazoo>	it looks like I still haven't cleared japaric's review notes from cortex-m PR #106 - I'll do that shortly but again, don't gate release on me please :)
+2019-03-12 20:26:07	<theJPster>	RERO
+2019-03-12 20:26:20	<therealprof>	theJPster: +1
+2019-03-12 20:26:27	<adamgreig>	cr1901: yea
+2019-03-12 20:26:43	<adamgreig>	cargo will build and link both versions, but both versions define a no_mangle public symbol which would then conflict
+2019-03-12 20:26:46	<japaric>	cr1901: you'll get a linker error if you use two different minor versions; that's intentional: you don't want to get a singleton from 0.5 and then another instance of the singleton from 0.6
+2019-03-12 20:28:04	<mathk-M>	can't we use the cargo patch feature to avoid bring 2 version of cortex-m ?
+2019-03-12 20:28:15	* cr1901	nods
+2019-03-12 20:28:37	<japaric>	mathk-M: I don't think so no; patch doesn't distinguish between minor versions
+2019-03-12 20:28:58	<adamgreig>	irregardless of semver we should probably aim to release 0.6 asap and then hopefully release 0.5.9 which imports 0.6 if possible?
+2019-03-12 20:29:11	<japaric>	ok then how does the cortex-m team want to do this? what's the action plan?
+2019-03-12 20:29:58	<adamgreig>	I suggest we get 0.6.0 out the door asap, perhaps just with a quick review of 106 to see if it can be merged or could be released as a patch later
+2019-03-12 20:30:07	<adamgreig>	and then asap after that investigate a potential 0.5.9
+2019-03-12 20:30:16	<theJPster>	Honestly I'm fine with breaking things. If you want 0.6, you'll need to wait until your PAC has been updated to 0.6.
+2019-03-12 20:30:24	<adamgreig>	but once 0.6 comes out, the other crates can add armv8, and then we can start updating the PACs and HALs etc etc
+2019-03-12 20:30:48	<adamgreig>	theJPster: ideally you won't have to wait - you could start using c-m 0.6 and your pac/hal will get 0.5.9 by cargo which is cross-compatible
+2019-03-12 20:31:02	<korken89>	I agree on asap
+2019-03-12 20:31:25	<adamgreig>	I can prepare a 0.6.0 pr after the meeting unless someone else is keen to?
+2019-03-12 20:32:10	<therealprof>	I also don't mind breakage. Compatibility is nice but we don't want to block everything on the possibility of keeping stuff compatible forever.
+2019-03-12 20:32:10	<theJPster>	adamgreig, I'll hang around on here if you want to ask questions / let someone else learn the process
+2019-03-12 20:32:12	<adamgreig>	(or any other objections or alternative plans)
+2019-03-12 20:32:14	<therealprof>	adamgreig: +1
+2019-03-12 20:33:18	<jamesmunns>	Will this require svd2rust re-gen, or just bumping deps?
+2019-03-12 20:33:30	<jamesmunns>	Also will the svd2rust output need to be updated at the same time?
+2019-03-12 20:33:36	<theJPster>	nrf91-rs 0.1 works with with my patched cortex-m crate
+2019-03-12 20:33:45	<thenewwazoo>	was a decision ever made about removing the assert in the steal method?
+2019-03-12 20:33:48	* jamesmunns	checks if svd generates the Cargo.toml
+2019-03-12 20:33:51	<adamgreig>	svd2rust doesn't itself emit a named c-m version iirc, but crates using it will need to update their requirements
+2019-03-12 20:33:59	<japaric>	jamesmunns: iirc, you should only need to edit the version string of the cortex-m crate to '>0.5&<0.7'
+2019-03-12 20:34:10	<japaric>	in the PAC Cargo.toml
+2019-03-12 20:34:20	<jamesmunns>	Should we have a blog post for how to update -PAC crates?
+2019-03-12 20:34:43	<therealprof>	I think we also have some stuff in svd2rust waiting for a minor release?
+2019-03-12 20:34:47	<adamgreig>	maybe just a footnote on the newsletter? it's the same process as people would have gone through in the first place
+2019-03-12 20:34:59	<adamgreig>	if there's a new svd2rust release pending it'd be worth doing that before pacs update
+2019-03-12 20:35:34	<sajattack>	yeah, I believe the underlying svd-parser crate is quite old
+2019-03-12 20:35:46	<sajattack>	so updating svd2rust to use a newer version of that would be great
+2019-03-12 20:35:52	<jamesmunns>	I would like to make sure we get the news out, 50% instructional, 50% advertising that it is a thing that needs to be done
+2019-03-12 20:36:19	<cr1901>	jamesmunns: +1 for blog post
+2019-03-12 20:36:29	<cr1901>	I haven't had to do much updating of PACs
+2019-03-12 20:36:29	<japaric>	sajattack: svd2rust v0.14.0 is using the latest release of svd-parser
+2019-03-12 20:36:45	<cr1901>	but looking at the discussion taking place, I feel like I'm going to be in the same exact pain soon
+2019-03-12 20:37:17	<sajattack>	I was just looking on github and it looked like it was using 0.6.0 japaric
+2019-03-12 20:38:03	<japaric>	sajattack: isn't that the latest?
+2019-03-12 20:38:03	<sajattack>	latest is 0.7.0
+2019-03-12 20:38:12	<japaric>	ah, my bad then
+2019-03-12 20:38:17	<sajattack>	0.6.0 is a year old
+2019-03-12 20:38:53	<therealprof>	Ugh, just noticed svd2rust CHANGELOG.md links are off.
+2019-03-12 20:39:00	<japaric>	I don't think a minor bump of svd-parser needs a minor bump of svd2rust since it has a very small public API
+2019-03-12 20:40:03	<japaric>	we have 20 mins left of meeting time
+2019-03-12 20:40:23	<japaric>	ok then cortex-m v0.6.0 will be released asap; I think we can move on?
+2019-03-12 20:40:43	<adamgreig>	yea, we can discuss more specifcs after the meeting if required
+2019-03-12 20:41:25	<japaric>	alright, next item is 'Update triage team repo list'
+2019-03-12 20:41:36	<japaric>	disasm: ^
+2019-03-12 20:42:11	<japaric>	if this is about write perms I can update the perms after the meeting
+2019-03-12 20:42:18	<japaric>	just give the list of repos that need to be updated
+2019-03-12 20:42:20	<disasm>	Yes, about perms
+2019-03-12 20:42:32	<therealprof>	lol: https://github.com/therealprof: no appropriate reviewer found, use r? to override
+2019-03-12 20:42:33	<disasm>	But I'd like to know the exact protocol of doing this
+2019-03-12 20:42:48	<disasm>	Should we just ping you to do so?
+2019-03-12 20:43:44	<japaric>	disasm: anyone on the core team can do so; the teams that own the repo should also be able to do so
+2019-03-12 20:44:13	<japaric>	I would say make an issue in the wg repo and ping the core team and owner teams asking them to update the perms
+2019-03-12 20:44:29	<disasm>	Ok. Answering your question: we need permissions for the meta-rust-bin repo
+2019-03-12 20:45:33	<japaric>	jamesmunns or therealprof could you check if you can change the perms of that repo? https://github.com/rust-embedded/meta-rust-bin/settings/collaboration
+2019-03-12 20:45:40	<jamesmunns>	on it
+2019-03-12 20:45:50	<japaric>	if you can please add the triage team with write perms
+2019-03-12 20:46:24	<therealprof>	Seems I can.
+2019-03-12 20:46:25	<jamesmunns>	Added Triage and Embedded Linux teams
+2019-03-12 20:46:40	<jamesmunns>	(and Core, but I think that is superfluous)
+2019-03-12 20:46:46	<therealprof>	@japaric where's highfive configured? Somethings off with svd2rust…
+2019-03-12 20:46:55	<japaric>	jamesmunns: thanks!
+2019-03-12 20:47:05	<jamesmunns>	therealprof: its a rust-lang/ repo
+2019-03-12 20:47:07	<japaric>	(yeah, core has admin perms on all repos)
+2019-03-12 20:47:28	<japaric>	therealprof: https://github.com/rust-lang-nursery/highfive
+2019-03-12 20:47:53	<japaric>	ok, I think that covers the triage item
+2019-03-12 20:47:58	<therealprof>	Thanks.
+2019-03-12 20:48:08	<japaric>	last item: let's check the status of the next newsletter
+2019-03-12 20:48:14	<japaric>	https://github.com/rust-embedded/blog/blob/master/content/2019-03-20-newsletter-17.md
+2019-03-12 20:48:43	<japaric>	it's currently empty; if you have cool stuff to share please send PRs!
+2019-03-12 20:48:57	<jamesmunns>	There is https://github.com/rust-embedded/blog/issues/41
+2019-03-12 20:49:03	<jamesmunns>	I've asked them to open it as a PR
+2019-03-12 20:49:50	<japaric>	that reminds me: I saw 'Andrew Safronov proposes the upstreaming of the Expressif-implemented Tensilica Xtensa (ESP32) backend.' in the llvm weekly newsletter; I don't know if it's worth sharing at this point
+2019-03-12 20:50:24	<therealprof>	I agree.
+2019-03-12 20:50:56	<japaric>	I'll add a bullet about cargo-call-stack v0.1.2 and the blog post about its implementation after I've published the blog post
+2019-03-12 20:51:37	<japaric>	therealprof: you mean that you think we should highlight it in the newsletter? or?
+2019-03-12 20:52:24	<disasm>	I wrote a script for calculating crate stats, but it's output is a bit wrong due to this inconsistency: https://github.com/rust-embedded/awesome-embedded-rust/pull/158
+2019-03-12 20:53:03	<therealprof>	japaric: Nope, someone making a request is not noteworthy in my book.
+2019-03-12 20:53:09	<japaric>	I'll add 'make a PR to highlight the first showcase entry' to my TODO list
+2019-03-12 20:53:12	<japaric>	therealprof: ok
+2019-03-12 20:53:36	<therealprof>	japaric: cargo-call-stack is awesome, is it on the awesome list already?
+2019-03-12 20:54:14	<japaric>	therealprof: I haven't added it so I assume it's not there yet
+2019-03-12 20:54:33	<therealprof>	Someone care to shoot a PR? ;)
+2019-03-12 20:55:11	<disasm>	Is it ok to add crates to awesome-embedded-rust that are not mine?
+2019-03-12 20:55:20	<jamesmunns>	disasm: yes!
+2019-03-12 20:55:26	<disasm>	Ok!
+2019-03-12 20:55:39	<japaric>	T-resources: we should host the blog at blog.rust-embedded.org and provide should do the same for the showcase, showcase.rust-embedded.org maybe
+2019-03-12 20:55:46	<japaric>	and probably should**
+2019-03-12 20:56:03	<jamesmunns>	maybe T-ops?
+2019-03-12 20:56:10	<jamesmunns>	I think that's mostly getting the DNS updated
+2019-03-12 20:56:14	<japaric>	ryankurte: ^
+2019-03-12 20:56:30	<japaric>	jamesmunns: yes, I wanted to check that you are OK with the URLs
+2019-03-12 20:56:32	<jamesmunns>	it's a quick change to the zola settings, if that's even needed
+2019-03-12 20:56:58	<jamesmunns>	SGTM, either rust-embedded.org/blog, or blog.rust-embedded.org
+2019-03-12 20:56:59	<adamgreig>	blog.r-e.org and showcase.r-e.org sgtm
+2019-03-12 20:57:18	<japaric>	also, maybe we should link to the showcase from docs.r-e.o
+2019-03-12 20:57:27	<jamesmunns>	japaric: +1
+2019-03-12 20:57:28	<adamgreig>	thenewwazoo: https://github.com/rust-embedded/cortex-m/pull/106/files#diff-0d2614b83ff189cf7e209130623d1bcaR50 do you intend to add 3 to the read value, or to read the 3rd u8 in the word?
+2019-03-12 20:57:32	<jamesmunns>	we also need to add NYAER
+2019-03-12 20:57:34	<disasm>	And from the main page!
+2019-03-12 20:57:55	* thenewwazoo	facepalm
+2019-03-12 20:57:56	<jamesmunns>	We should have something at https://rust-embedded.org/ in general :D
+2019-03-12 20:58:17	<thenewwazoo>	adamgreig: I should focus when I write code, no? :D
+2019-03-12 20:58:20	<ryankurte>	sweet, I’ve gotta alter some mail groups also I think. Possible to tag me in an issue ?
+2019-03-12 20:58:44	<japaric>	ryankurte: I'll make an issue in rust-embedded-provisioning
+2019-03-12 20:58:51	<japaric>	re: DNS changes ^
+2019-03-12 20:58:56	<ryankurte>	perfect, thanks ^_%
+2019-03-12 20:58:56	<jamesmunns>	japaric: thank you!
+2019-03-12 20:59:51	<japaric>	jamesmunns: I agree that we should have something at r-e.o; we have several "loose" web pages; at the very least we should to all of them from r-e.o
+2019-03-12 20:59:53	<adamgreig>	thenewwazoo: I don't think you want to add 3 at all though? reading the address of the word as a u8 will get you the LSbyte since it's little-endian
+2019-03-12 21:00:50	<japaric>	(let's add an unstyled bullet list to r-e.o :P; maybe not)
+2019-03-12 21:00:59	<jamesmunns>	japaric: where does that deploy from?
+2019-03-12 21:01:11	<jamesmunns>	or is that just a static page from the long long ago?
+2019-03-12 21:01:12	<adamgreig>	theJPster: have you seen c-m-rt #167 which also adds thumbv8m.main?
+2019-03-12 21:01:17	<japaric>	jamesmunns: https://github.com/rust-embedded/rust-embedded-www I think
+2019-03-12 21:01:24	<jamesmunns>	:+1:
+2019-03-12 21:01:30	* therealprof	figured out what is wrong with highfive in svd2rust, rust-embedded/tools is not defined. Created a PR to add the team (which really could use more members O_O)
+2019-03-12 21:01:54	<thenewwazoo>	adamgreig: ah, that's true isn't it
+2019-03-12 21:02:08	<japaric>	therealprof: oh, thanks for catching the omission
+2019-03-12 21:02:23	<cr1901>	japaric: While it's on my mind, did you ever see this comment? https://github.com/rust-embedded/msp430-rt/pull/4#issuecomment-440912419
+2019-03-12 21:02:29	<jamesmunns>	I have to run, I will check back later tonight
+2019-03-12 21:02:30	<japaric>	we are out of meeting time. Thanks everyone for attending and see you next week!
