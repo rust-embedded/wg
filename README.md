@@ -233,7 +233,6 @@ Board Support Crates and drivers.
 Projects maintained by the HAL team.
 
 - [`embedded-hal`]
-- [`linux-embedded-hal`]
 
 ### The MSP430 team
 
