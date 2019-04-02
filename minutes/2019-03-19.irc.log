@@ -1,0 +1,168 @@
+2019-03-19 20:00:20	<jamesmunns>	Alright, lets get this started!
+2019-03-19 20:00:29	<jamesmunns>	Dropbox link is here: https://paper.dropbox.com/doc/Embedded-WG--AZrnC8E~3pZEaOm3LHIElB3pAg-5pdv734N8KpxHFMJijuoL#configure-embed
+2019-03-19 20:00:38	<japaric>	o/
+2019-03-19 20:00:41	<jamesmunns>	Please add yourself to the attendance list
+2019-03-19 20:00:58	<jamesmunns>	Today's meeting issue is https://github.com/rust-embedded/wg/issues/334
+2019-03-19 20:01:01	<hannobraun>	Hi
+2019-03-19 20:01:15	<jamesmunns>	o/
+2019-03-19 20:02:35	<jamesmunns>	Looks like it might be a quiet meeting :)
+2019-03-19 20:02:59	<hannobraun>	Maybe I can step up and say something for once :-)
+2019-03-19 20:03:21	<Mabez>	o/
+2019-03-19 20:04:38	<japaric>	jamesmunns: want to drive the meeting? (it seemed like you were going to :-)
+2019-03-19 20:04:56	<jamesmunns>	japaric: you have a link that gets all the tagged issues from all /wg repos, do you have that handy
+2019-03-19 20:05:17	<jamesmunns>	Happy to drive, I was seeing if anyone showed up after 5 mins or so :p
+2019-03-19 20:05:21	<japaric>	I can dig it up
+2019-03-19 20:05:39	<Yatekii>	o/ not gonna be here tho ... have fun!
+2019-03-19 20:05:48	<jamesmunns>	Sorry if it's in ops anywhere, it would be be nice to have for the reminders section
+2019-03-19 20:06:23	<japaric>	https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+org%3Arust-embedded+archived%3Afalse+label%3AT-resources something like this?
+2019-03-19 20:06:31	<japaric>	it looks a bit different from what I recall ...
+2019-03-19 20:07:05	<jamesmunns>	Yeah, I think that might be missing a couple repos, but its a good place to start :)
+2019-03-19 20:07:31	<jamesmunns>	So, first item on the agenda
+2019-03-19 20:07:38	<mathk-M>	Hi o/
+2019-03-19 20:07:47	<jamesmunns>	Checking membership of the resources team, https://github.com/rust-embedded/wg/pull/330
+2019-03-19 20:08:06	<jamesmunns>	korken89 has said they would prefer to stay provisional, ryankurte are you around?
+2019-03-19 20:09:15	<jamesmunns>	(maybe this was left over from last week)
+2019-03-19 20:09:51	<jamesmunns>	Doesn't look like it, I'll reping ryankurte on Github
+2019-03-19 20:10:22	<japaric>	the stuff on the dropbox paper is from last week, or at least of most of it is
+2019-03-19 20:10:29	<jamesmunns>	:+1:
+2019-03-19 20:11:21	<jamesmunns>	It is last call for Newsletter 17, if anyone has projects to add, now would be a great time!
+2019-03-19 20:11:24	<jamesmunns>	https://github.com/rust-embedded/blog/blob/master/content/2019-03-20-newsletter-17.md
+2019-03-19 20:11:50	* japaric	just sent a pr about cargo-call-stack v0.1.2
+2019-03-19 20:11:56	<jamesmunns>	japaric: Nice!
+2019-03-19 20:12:39	<jamesmunns>	Regarding the Ecosystem Team, we have enough votes, but not enough people!
+2019-03-19 20:13:20	<jamesmunns>	If anyone is interested in being part of the Ecosystem team, make sure to add yourself to https://github.com/rust-embedded/wg/pull/317
+2019-03-19 20:14:10	<japaric>	I meant to sent out an invite last week but have been rather busy; will do so this week
+2019-03-19 20:14:12	<mathk-M>	I am willing to give some help but more to learn stuff.
+2019-03-19 20:14:37	<jamesmunns>	Regarding Hibernation, we have a couple comments, enough positive votes to merge at this point, and no vetos. I'd say if there hasn't been any negative feedback by the next meeting, we can merge it.
+2019-03-19 20:14:43	<jamesmunns>	Hibernation: https://github.com/rust-embedded/wg/pull/324
+2019-03-19 20:15:40	<japaric>	yes, this has been on agenda for two weeks; next week we can land it even if it hasn't reached 33%+1
+2019-03-19 20:15:54	<jamesmunns>	mathk-M: :+1: from me to you joining
+2019-03-19 20:16:48	<mathk-M>	thanks :)
+2019-03-19 20:17:33	<mathk-M>	If we have time there is a couple of sv2rust PR that need to be check as it has been a long time that it have been open...
+2019-03-19 20:18:01	<jamesmunns>	Sure! we can add that to the agenda
+2019-03-19 20:18:14	<japaric>	I'd be hesitant to take mentees if it's just me in the team as I currntly have limited bandwidth. If you we get more people willing to mentor then it'd be fine with it
+2019-03-19 20:18:40	<jamesmunns>	This one is sort of a hard one
+2019-03-19 20:18:57	<jamesmunns>	Since it's a team that aims share experience 
+2019-03-19 20:19:17	<jamesmunns>	but I think most people already in the WG are struggling with a lack of time
+2019-03-19 20:20:18	<jamesmunns>	Hopefully I should have some more time mid-may, but that's always subject to change :p
+2019-03-19 20:21:08	<jamesmunns>	Anyone have any suggestions? or should we keep re-pinging this at meetings?
+2019-03-19 20:21:58	<Mabez>	I'd like to help out, I written a few drivers and a hal for my dissertation,I'll add a comment on the issue.
+2019-03-19 20:22:22	<jamesmunns>	Mabez: Thank you!
+2019-03-19 20:23:12	<mathk-M>	Well I will make sure to be as mush as autonomus as I can.
+2019-03-19 20:23:35	<jamesmunns>	So for Yatekii's item:
+2019-03-19 20:24:10	<jamesmunns>	in the nRF52 crate, we've run into a limitation of the hardware where data sent via peripherals must reside in RAM.
+2019-03-19 20:24:24	<jamesmunns>	This caused an interesting decision when we impl'd embedded-hal traits:
+2019-03-19 20:24:57	<jamesmunns>	Should we A: copy data to RAM (from flash) when necessary, possibly slowing down the transaction and spending extra RAM
+2019-03-19 20:25:08	<jamesmunns>	or B: just return an Error code
+2019-03-19 20:25:21	<jamesmunns>	A would be more portable, while B would be more performant.
+2019-03-19 20:25:37	<jamesmunns>	So in general, it might be useful to set the design goals of embedded-hal
+2019-03-19 20:25:43	<japaric>	or C make it a contract violation and panic instead of throwing an error
+2019-03-19 20:25:58	<jamesmunns>	I mean, that's just a meaner option of B :D
+2019-03-19 20:26:05	<jamesmunns>	And
+2019-03-19 20:26:30	<jamesmunns>	might not be useful for all people - if a driver does something like write("foo");, the end user may not even have violated the contract themselves
+2019-03-19 20:27:18	<jamesmunns>	It might be good to set the design goals of embedded-hal implementations
+2019-03-19 20:27:39	<jamesmunns>	for example: "do what is idiomatic for your platform", or "strive for maximum compatibility"
+2019-03-19 20:27:58	<theJPster>	I think the best answer is some Trait InRam (or NrfDmaSource) and write two APIs - once which insists types implement InRam and one which doesn't.
+2019-03-19 20:27:58	<jamesmunns>	This DMA thing is just nordic's quirk. I'm sure other devices have their own as well too.
+2019-03-19 20:28:32	<jamesmunns>	theJPster: a trait on what?
+2019-03-19 20:28:43	<jamesmunns>	the embedded hal interfaces usually just take a &[u8] to send.
+2019-03-19 20:29:02	<jamesmunns>	we can't make any additional API constraints on that
+2019-03-19 20:29:14	<jamesmunns>	(oops, forgot to link to Yatekii's summary: https://github.com/rust-embedded/wg/issues/331#issuecomment-471354510)
+2019-03-19 20:29:21	<theJPster>	Hmm. Good point.
+2019-03-19 20:29:48	<hannobraun>	In the nrf52-hal discussion it came down to "make it just work" (i.e. copy to RAM implicitely) vs "don't hide any suprises" (like the unpredictable timing that results from the implicit copy).
+2019-03-19 20:30:06	<theJPster>	But still, I think there's an argument for two versions of the API - one safe, one fast.
+2019-03-19 20:30:22	<jamesmunns>	theJPster: two impl's of the embedded-hal trait?
+2019-03-19 20:30:28	<hannobraun>	I'm on the "no suprises" side. I think the user should just be told that what's going on is not supported. Whether via error or panic, I don't know.
+2019-03-19 20:30:36	<theJPster>	Or two versions of the function in the traits.
+2019-03-19 20:30:59	<theJPster>	sendFast(b"boo"), sendSafe(b"boo"). But with better names (let's not bikeshed that here)
+2019-03-19 20:31:18	<jamesmunns>	Like I said, the "in memory" thing is just a nordic quirk. I don't think the details here matter, as we are likely to have other chips with other quirks
+2019-03-19 20:31:40	<japaric>	theJPster: how is sendFast and sendSafe supposed to be implement on devices that don't have this quirk
+2019-03-19 20:31:42	<theJPster>	Where the default impl for sendFast calls sendSafe.
+2019-03-19 20:31:49	<japaric>	how is a driver author suppose to pick between the two?
+2019-03-19 20:33:06	<theJPster>	I guess the driver author shouldn't - it's down to application author
+2019-03-19 20:33:17	<theJPster>	+the
+2019-03-19 20:33:46	<jamesmunns>	Yeah, I actually think I agree with theJPster's "implement the embedded-hal traits twice"
+2019-03-19 20:33:51	<hannobraun>	But you suggest multiple methods in the traits, and the traits are used by the drivers?
+2019-03-19 20:33:53	<hannobraun>	How will the application author choose what the driver does?
+2019-03-19 20:34:05	<japaric>	to me 'write''s contract is "send this data" period; whether the impl does extra copying is up to the HAL author; they can provide two versions of the API: one that does implicit copying; the other errors 
+2019-03-19 20:34:09	<mathk-M>	If we provide  a check Trait that the device driver could call before doing the work: data.ensure_safe(); write(data); ?
+2019-03-19 20:34:19	<japaric>	errors on buffers in Flash**
+2019-03-19 20:34:57	<jamesmunns>	If we implement the trait multiple times, that would let the end user pick which trait impl they "hand" to the driver
+2019-03-19 20:35:09	<jamesmunns>	It might require a wrapper struct though
+2019-03-19 20:35:59	<theJPster>	let slow_spi = spi.constrain(); let fast_spi = spi.constrain_fast()? let fast_spi = spi.constrain(Speed::HellForLeather); ?
+2019-03-19 20:36:11	<mathk-M>	This could be a kind of serde thingy >
+2019-03-19 20:36:12	<mathk-M>	?
+2019-03-19 20:36:27	<jamesmunns>	theJPster: yeah, sort of like that
+2019-03-19 20:36:58	<hannobraun>	I need to think about that (multiple trait implementations) some more, but it does not sound bad.
+2019-03-19 20:37:33	<jamesmunns>	Yeah, we might need to wrap Spim in a BufferedSpim to avoid multiple impls in the same scope
+2019-03-19 20:37:55	<jamesmunns>	but that's really not terrible, especially if we have helpful panics or error codes.
+2019-03-19 20:37:56	<theJPster>	It's that or you flip some switch at runtime which enables or disables a bunch of run-time checks. But that sounds expensive and we generally prefer compile-time optimisations.
+2019-03-19 20:37:58	<japaric>	or you could provide a single version that only does copying when the input is not in RAM -- I doubt a runtime check (pointer comparsion) is going to be a big perf hit
+2019-03-19 20:38:13	<hannobraun>	jamesmunns: Actually a type parameter might be enough.
+2019-03-19 20:38:23	<jamesmunns>	japaric and theJPster that's what we already do
+2019-03-19 20:38:30	<jamesmunns>	we only copy to RAM if it's not already in RAM
+2019-03-19 20:38:51	<jamesmunns>	but the user gets no negative feedback that they are getting sub-optimal performance
+2019-03-19 20:38:57	<jamesmunns>	unless it doesn't work
+2019-03-19 20:39:17	<jamesmunns>	(Yatekii was more passionate about this than I am, tbqh)
+2019-03-19 20:39:25	<hannobraun>	japaric: That's exactly what the nrf52-hal discussion was all about. Should we do this kind of implicit, possibly surprising stuff or not. I say no.
+2019-03-19 20:39:57	<mathk-M>	Isn't something in between like spi.writ(data: Serializable)... Now  Serializable on nordic would either do the copy on ram or check and panic ?
+2019-03-19 20:40:14	<japaric>	it's a trade-off: you make it always work with less performance, or you make things harder for the user by providing two types (now they have to pick one correctly)
+2019-03-19 20:40:18	<mathk-M>	it is up to the hal to decide ?
+2019-03-19 20:40:21	<jamesmunns>	mathk-M: we can do that for the nRF52 methods, but not the embedded-hal trait
+2019-03-19 20:40:21	<theJPster>	So the problem isn't the copy, it's that it did the copy unexpectedly because they hadn't met some unwritten contract the peripheral API didn't make explicit?
+2019-03-19 20:40:32	<jamesmunns>	theJPster: yup
+2019-03-19 20:40:53	<hannobraun>	theJPster: Exactly
+2019-03-19 20:41:01	<jamesmunns>	Yatekii's question verbatim was "Should basic HAL functions, especially embedded-hal implementors do implicit stuff (copy, batching, etc) or should they notify the user and request them to handle the error on a case by case basis?"
+2019-03-19 20:41:30	<theJPster>	So what we need is a mechanism to say "Hey, there's some contract here you haven't fulfilled. You need to fix this, or call this other routine which doesn't care so much."
+2019-03-19 20:41:31	<jamesmunns>	(sorry if I buried the lede there)
+2019-03-19 20:41:49	<japaric>	they can and if they do they should document it in the API docs
+2019-03-19 20:42:01	<hannobraun>	Or slightly more general: Should embedded-hal impls be low-level and unsurprising, or should the "just work" (for the majority use case).
+2019-03-19 20:42:25	<theJPster>	I'm fine with not "just working" if the mechanism to make it "just work" is a) simple and b) explained in the error message.
+2019-03-19 20:42:54	<theJPster>	panic!("You can only DMA buffers from RAM on this chip. Try calling spiSendSafe.")
+2019-03-19 20:43:19	<jamesmunns>	Doesn't help if you have a sensor driver that is calling the embedded-hal methods
+2019-03-19 20:43:47	<jamesmunns>	(but two embedded-hal impls would)
+2019-03-19 20:43:55	<theJPster>	I'm going to stop typing and make a pot of tea. This is at least a one pot problem.
+2019-03-19 20:44:03	<mathk-M>	jamesmunns: The embedded-hal would only declare Spi trait and SpiSend Trait. The device crate would basically call SpiSend::down() on the data to get the buffer. Now the Hal would implement how SpiSend::down()  act ?
+2019-03-19 20:44:38	<jamesmunns>	Sorry, I'm not sure I follow mathk-M 
+2019-03-19 20:44:54	<jamesmunns>	embedded-hal defines the interface, such as Spi::send()
+2019-03-19 20:45:05	<mathk-M>	ok maybe I am not making sens.
+2019-03-19 20:45:18	<jamesmunns>	a driver crate, like for an accelerometer, would be written against embedded-hal definitions
+2019-03-19 20:45:30	<jamesmunns>	so they would do something like send("init")
+2019-03-19 20:45:35	<mathk-M>	et me try to write something close to my idea
+2019-03-19 20:45:53	<jamesmunns>	then the nrf52-hal crate would implement embedded-hal::Spi for the nrf52
+2019-03-19 20:46:15	<jamesmunns>	then the user would take the Spi from nrf52-hal, and "give" it to the accelerometer driver
+2019-03-19 20:48:12	<jamesmunns>	Okay, we have a little over 10 minutes left, if people are still chewing on the embedded-hal question, maybe mathk-M can link the svd2rust issues?
+2019-03-19 20:49:01	<mathk-M>	Yes this one need team decision : https://github.com/rust-embedded/svd2rust/pull/179
+2019-03-19 20:50:03	<jamesmunns>	Unfortunately I don't think anyone from Tools is here
+2019-03-19 20:50:29	<mathk-M>	:(
+2019-03-19 20:50:32	<jamesmunns>	I'd like for future meetings to tag a team to each agenda item (when reasonable), so we can try and ask people to be here when something is relevant for them
+2019-03-19 20:50:32	<mathk-M>	also this one need some advice : https://github.com/rust-embedded/svd2rust/pull/216
+2019-03-19 20:51:28	<jamesmunns>	japaric: are you familiar with what alternateGroup is?
+2019-03-19 20:51:53	<japaric>	hmm, no; it doesn't ring a bell
+2019-03-19 20:52:29	<jamesmunns>	Okay, mathk-M could you please make sure these make it onto the next agenda? I can ping the Tools team for next meeting
+2019-03-19 20:52:51	<theJPster>	So related to 179, I've definitely had trouble in training sessions where there are two 'things' that differ only in case (as in, SYSTICK the struct vs systick the module vs Systick the something else). 
+2019-03-19 20:53:34	<mathk-M>	sur I tryied to found the link for this meeting but couldn't find the corresponding issue..
+2019-03-19 20:53:45	<jamesmunns>	yeah, we have uarte (the module), Uarte (the -hal struct), and UARTE (the -pac struct) as well
+2019-03-19 20:53:59	<jamesmunns>	mathk-M: I'll make the issue for next week after this meeting.
+2019-03-19 20:55:04	<theJPster>	jamesmunns, there's a MISRA rule against exactly that (although, for C, obvs, not Rust)
+2019-03-19 20:55:14	<mathk-M>	If you have time I would be hapy to try discuss on the Yatekii (IRC) issue. after the meeting.
+2019-03-19 20:55:30	<mathk-M>	I want to understand why my idea might not make sens.
+2019-03-19 20:55:51	<jamesmunns>	mathk-M: it could definitely be that I am not understanding! If you have a gist of code, that might help!
+2019-03-19 20:57:02	<mathk-M>	sure willtry to write it down. Also on the PR that have long time openning there is this one : https://github.com/rust-embedded/cortex-m-rt/pull/100
+2019-03-19 20:57:28	<mathk-M>	whic could be related to Yatekii (IRC) issue I guess, more or less
+2019-03-19 20:58:13	<japaric>	we can land that one in a patch release; RFC 164 is more general and supersedes PR 100 but requires a minor version bump
+2019-03-19 20:59:10	<jamesmunns>	ah, nice!
+2019-03-19 20:59:24	<japaric>	it depends on what the cortex-m wants to do; I see no downside in adding the less general version now given that we don't have great support for other RAM regions atm
+2019-03-19 20:59:49	<jamesmunns>	We're planning a breaking change soon, anyway (with 0.6), right?
+2019-03-19 21:00:26	<jamesmunns>	Reading this now, would 164 let you specify that all code should be in RAM?
+2019-03-19 21:00:57	<jamesmunns>	I've had at least one situation where someone wanted to copy the whole firmware into RAM, rather than executing in place from Flash
+2019-03-19 21:01:01	<japaric>	164 would let you specify in *which* RAM region to put function 'foo'
+2019-03-19 21:01:21	<japaric>	100 only supports the 'RAM' region as hard-coded in the linker script
+2019-03-19 21:01:51	<theJPster>	Some chips have several 'RAM's, so I like the generic solution
+2019-03-19 21:02:10	<jamesmunns>	gotcha. "Copy the whole program to RAM" would probably require more trickery, and maybe PIC/PIE
+2019-03-19 21:02:33	<japaric>	jamesmunns: 164 would let you place .text in 'RAM' (or CCRAM or w/e)
+2019-03-19 21:02:34	<jamesmunns>	(or maybe not, just a linker script and some custom startup code)
+2019-03-19 21:03:33	<jamesmunns>	Okay, we're officially out of time!
+2019-03-19 21:03:34	<hannobraun>	Gotta run! Bye!
+2019-03-19 21:03:37	<japaric>	.text as in the default .text section so you don't need to annotate anything in the code
+2019-03-19 21:03:39	<jamesmunns>	Thanks to everyone for attending :)
