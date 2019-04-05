@@ -1,0 +1,83 @@
+2019-04-02 19:05:11	<therealprof>	Let me try to figure out what I can do. jamesmunns can't run it today, haven't heard back from japaric and I'm controlling oversees testing. (sweat)
+2019-04-02 19:05:38	<japaric>	I think we don't have much of an agenda today
+2019-04-02 19:05:39	<japaric>	https://github.com/rust-embedded/wg/issues/342
+2019-04-02 19:06:20	<japaric>	there's 'RFC: svd2rust workspace generation' from last week but it hasn't seen much movement
+2019-04-02 19:07:47	<japaric>	there's also newly opened pre-rfc on a embedded-rust-community org: https://github.com/rust-embedded/wg/issues/343
+2019-04-02 19:08:06	<therealprof>	https://paper.dropbox.com/doc/Embedded-WG--Aacqf5cCio7UmeVCZdljb~bVAQ-rw1CfotABpKkvgre8gkYP
+2019-04-02 19:09:37	<japaric>	we discussed that idea a bit last week; if you have new thoughts please comment on the pre-rfc thread 
+2019-04-02 19:10:08	<japaric>	or here if have new opinions since last week 
+2019-04-02 19:12:40	<japaric>	if there's no new input on those two (pre)-RFCs we can use the remaining time to discuss any issue that may have come up recently
+2019-04-02 19:13:04	<therealprof>	I just noticed the meeting issue mentions ACCU. What's that?
+2019-04-02 19:13:47	<theJPster>	The Association of C and C++ Users Annual Conference, which is next week
+2019-04-02 19:14:06	<japaric>	therealprof:  the two new items are by theJPster 
+2019-04-02 19:14:19	<theJPster>	I will be there, talking Rust Embedded. If anyone has any spare time, I could really use a hand prepping a demo (via Github).
+2019-04-02 19:14:45	<theJPster>	I'm also hosting Oxidize two weeks after that. And I'm at the Centre for Computing History doing a talk somewhere in the middle. Please do come along to anya
+2019-04-02 19:14:54	<theJPster>	any/all of these, and if you do, say hi!
+2019-04-02 19:15:22	<therealprof>	What kind of demo are you looking for?
+2019-04-02 19:15:39	<theJPster>	I'm trying to write Powerpoint for Monotron. I only have 24K. It's hard.
+2019-04-02 19:15:48	<theJPster>	But shhh, spoilers.
+2019-04-02 19:15:53	<therealprof>	LOL
+2019-04-02 19:17:48	<japaric>	reminder: we have a new newsletter due this week. If you have stuff to share please send a PR! https://github.com/rust-embedded/blog/blob/master/content/2019-04-05-newsletter-18.md
+2019-04-02 19:20:51	<therealprof>	theJPster: I guess volunteers for your demo should contact you directly or do you have a link to share?
+2019-04-02 19:21:19	<theJPster>	github.com/thejpster/monotron-apps for the viewer. The slides I can ping a secret link.
+2019-04-02 19:21:59	<jschievink>	theJPster: you can always cheat and do what this guy did: https://www.youtube.com/watch?v=ar9WRwCiSr0
+2019-04-02 19:22:04	<theJPster>	Lots that can be done: Audio trackers, slide transitions, real-time clock support, paging slides from SD card in real-time
+2019-04-02 19:23:16	<theJPster>	lol
+2019-04-02 19:23:47	<theJPster>	An 8-colour actual Powerpoint theme is my fallback plan
+2019-04-02 19:27:12	<therealprof>	Anything else on your mind?
+2019-04-02 19:27:56	<theJPster>	Or, formalising the syntax for my new programming language and writing a zero-allocation parser/interpreter
+2019-04-02 19:28:12	<theJPster>	That may actually be impossible - I'll probably need an allocator
+2019-04-02 19:28:40	<theJPster>	Also, implementing parallel port support on an AtMega328. Because of the state of Rust on AVR I'm doing that in C :/
+2019-04-02 19:28:49	<theJPster>	And re-writing the video renderer to be more efficient.
+2019-04-02 19:28:56	<theJPster>	And laying out PCB rev 2.
+2019-04-02 19:29:14	<therealprof>	Eek, why ATMega?
+2019-04-02 19:29:29	<theJPster>	And I have an idea for a full screen text editor that pages the file in and out of a swapfile so you can edit files larger than 24 K.
+2019-04-02 19:29:40	<theJPster>	Because it's £1 and has just enough pins.
+2019-04-02 19:29:52	<theJPster>	And you can buy it as a DIP. There are no DIP ARM chips and I don't like PIC.
+2019-04-02 19:34:54	<therealprof>	Any question from the community? Now's your time… ;)
+2019-04-02 19:37:18	<theJPster>	When will the next cortex-m-rt be out?
+2019-04-02 19:37:48	<theJPster>	See https://github.com/rust-embedded/cortex-m-rt/pull/184
+2019-04-02 19:38:38	<korken89>	I think we should to as @therealprof said here https://github.com/rust-embedded/cortex-m-rt/pull/186
+2019-04-02 19:38:43	<korken89>	And make the nightly optional
+2019-04-02 19:38:55	<korken89>	No sense waiting for the nightly here...
+2019-04-02 19:39:44	<theJPster>	agreed
+2019-04-02 19:41:05	<therealprof>	Okay, would someone volunteer to create a voting issue for that?
+2019-04-02 19:41:20	<acuster>	therealprof, what do you mean by "LTGM" in PR comments: e.g. last comment of: https://github.com/japaric/stm32f103xx-hal/pull/51
+2019-04-02 19:41:47	<theJPster>	therealprof, I'll do a PR now
+2019-04-02 19:41:48	<korken89>	@therealprof I can make a PR for it and we can discuss there?
+2019-04-02 19:41:57	<theJPster>	korken89, ok, you do it :)
+2019-04-02 19:43:04	<therealprof>	korken89: I think we should have a team vote on that but I have a feeling that it'll be an easy decision. ;)
+2019-04-02 19:43:28	<korken89>	I can have the team vote in the PR :)(
+2019-04-02 19:43:36	<therealprof>	Yes.
+2019-04-02 19:44:05	<therealprof>	Thanks.
+2019-04-02 19:44:25	<therealprof>	@acuster That's short for looks good to me.
+2019-04-02 19:45:33	<therealprof>	Once that is done we really should get the release going.
+2019-04-02 19:45:47	<korken89>	I made the PR https://github.com/rust-embedded/cortex-m-rt/pull/187
+2019-04-02 19:46:03	<korken89>	Not 100% sure I made it right, I will wait for travis to finish :)
+2019-04-02 19:47:11	<theJPster>	Too soon to hope for a new Rust EWG record for a new PR, vote and merge?
+2019-04-02 19:47:54	<korken89>	If we the this through I'll rebase #184 to include the nightly fail fix and we can get it done
+2019-04-02 19:49:09	<therealprof>	Well, with 3 voting people we already have majority. For good measure you could ping adamgreig. ;)
+2019-04-02 19:49:37	<korken89>	Yoo @adamgreig, feel like accepting https://github.com/rust-embedded/cortex-m-rt/pull/187 ?
+2019-04-02 19:49:52	<therealprof>	You forgot the ticky boxes. ;)
+2019-04-02 19:50:02	<korken89>	Haha, I'll fix
+2019-04-02 19:50:28	<adamgreig>	+1 sounds fine
+2019-04-02 19:50:35	<adamgreig>	I can't log in to gh atm though
+2019-04-02 19:51:42	<korken89>	Boxes added
+2019-04-02 19:51:43	<therealprof>	korken89: I haven't checked, do we have everything in place for a release? ChangeLog, etc.
+2019-04-02 19:51:58	<korken89>	adamgreig: I will check you :)
+2019-04-02 19:52:08	<adamgreig>	Thanks :)
+2019-04-02 19:52:35	<korken89>	therealprof: Yes, all is there. I will just add a note on the nightly fix as well when we have it in the release
+2019-04-02 19:53:15	<therealprof>	korken89: Want to do the honours?
+2019-04-02 19:53:55	<korken89>	Let's just wait for Travis to finish and someone can bors r+ it
+2019-04-02 19:54:26	<korken89>	I can push it through, not tested my crates.io key yet with the WG so it would be good for me to try it
+2019-04-02 19:54:28	<therealprof>	Yeah, but we still need to publish manually I presume?
+2019-04-02 19:54:28	<japaric>	(for the record I'm against *permanently* letting the nightly builder fail on *that* crate. There are some tests which only run on nightly (namely the compile fail tests) so doing that could result in letting PRs that allow end users write unsound code land)
+2019-04-02 19:55:11	<therealprof>	Duly noted.
+2019-04-02 19:56:07	<korken89>	Can we have to be notified of nightly failures, but not have it block bors?
+2019-04-02 19:56:15	<theJPster>	japaric, can we raise an issue for moving those tests to Stable, or do they rely on things that will never be stabilised? (which seems bad?)
+2019-04-02 19:56:16	<therealprof>	No problem with having them if they don't cause troubles, we can certainly revisit once things run a bit smoother in nightly land.
+2019-04-02 19:56:53	<theJPster>	Or can we run them on a pegged nightly, rather than bleeding-edge nightly?
+2019-04-02 19:58:24	<therealprof>	theJPster: Problem is that it might still fail due to other dependencies. :(
+2019-04-02 19:59:17	<japaric>	theJPster: compiletest-rs would need to compile on stable to move those tests to stable; compiletest now has a 'stable' Cargo feature but I have never tried it
+2019-04-02 19:59:17	<acuster>	Does anyone know the current thinking on support for pins that are both Input and Output (i.e. shared communication line such as for OneWire)?
+2019-04-02 19:59:51	<therealprof>	Alright. Out of official meeting time. Thanks for showing up, everyone.
