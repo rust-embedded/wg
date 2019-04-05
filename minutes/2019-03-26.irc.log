@@ -1,0 +1,179 @@
+2019-03-26 20:06:02	<jamesmunns>	Okay, let's get started!
+2019-03-26 20:06:18	<spacekookie>	(I'm here, lurking) 
+2019-03-26 20:06:29	<jamesmunns>	First up, we have a new RFC that has been submitted: https://github.com/rust-embedded/wg/pull/338
+2019-03-26 20:06:39	<jamesmunns>	spacekookie: care to explain?
+2019-03-26 20:07:59	<jschievi1>	oof, having to work around the slow compiler like that :(
+2019-03-26 20:08:08	<jamesmunns>	(if not, I can give a summary)
+2019-03-26 20:08:24	<jamesmunns>	Direct link to rendered RFC: https://github.com/spacekookie/wg/blob/b3207b02d401b281c2d0f35d6cdff66133c2eb4a/rfcs/0000-svd2rust-workspaces.md
+2019-03-26 20:08:27	<spacekookie>	So, during the all hands we talked about changing svd2rust to generate a series of crates instead of one large crate
+2019-03-26 20:08:49	<spacekookie>	This is gonna make it easier to work with only a subset of peripherals but also drastically improve compile times 
+2019-03-26 20:08:52	<korken89>	Just read the RFC and off the bat I'm positive, it would really help compile times
+2019-03-26 20:10:25	<theJPster>	Does this help with multiple SoCs having the same peripherals but not sharing any code?
+2019-03-26 20:11:01	<jamesmunns>	It could theoretically, as now each peripheral would be it's own crate
+2019-03-26 20:11:13	<jamesmunns>	but would likely need manual massaging, as is currently written
+2019-03-26 20:11:29	<jamesmunns>	Since each chip would have it's own _common crate
+2019-03-26 20:11:46	<jamesmunns>	(and svd2rust doesn't understand commonalities between devices at the moment)
+2019-03-26 20:11:54	<jamesmunns>	It's a step in the right direction, IMO
+2019-03-26 20:12:06	<theJPster>	Ok. And are the HAL implementations likely to #[cfg] out the now many PAC crates, or will using the HAL just bring in all the PAC crates anyway?
+2019-03-26 20:12:40	<jamesmunns>	you have two options: pull in the "superset" crate, and get everything, or pull in individual parts as you go.
+2019-03-26 20:13:01	<jamesmunns>	https://github.com/spacekookie/wg/blob/b3207b02d401b281c2d0f35d6cdff66133c2eb4a/rfcs/0000-svd2rust-workspaces.md#reference-level-explanation covers this a bit
+2019-03-26 20:13:07	<theJPster>	But if the HAL supports Serial, I2C, SPI, Ethernet, etc, you're basically pulling all of them in anyway
+2019-03-26 20:13:15	<theJPster>	Unless you elect to break the HAL up.
+2019-03-26 20:13:17	<jamesmunns>	oh
+2019-03-26 20:13:22	<adamgreig>	I guess ideally the hal would pull in each part as it needs it, so users can select a few hal peripherals and only get the relevant svd2rust crates
+2019-03-26 20:13:23	<jamesmunns>	sorry, I missed the HAL vs PAC crate
+2019-03-26 20:13:34	<jamesmunns>	agree with adamgrieg
+2019-03-26 20:13:46	<adamgreig>	It'd be interesting to see how it could be integrated with stm32-rs
+2019-03-26 20:14:18	<theJPster>	So it sounds like we could prototype this in a fork/branch and move one HAL to use this new approach and see how it looks.
+2019-03-26 20:14:22	<adamgreig>	There's a lot of scope to have eg the same gpio peripheral crate shared between many devices
+2019-03-26 20:15:01	<jamesmunns>	I agree with theJPster, I'd like to see a PoC, so we can see what the end result looks like, and we can look at compile time, code size, etc. numbers
+2019-03-26 20:15:14	<adamgreig>	But in the meantime it'd probably make stm32-rs more complicated as it currently makes each device crate a module in a family crate
+2019-03-26 20:15:37	<adamgreig>	Having to go from about six crates to about 300 would be a nightmare
+2019-03-26 20:16:06	<jamesmunns>	spacekookie has also written some tooling for batch-publishing of crates in a workspace
+2019-03-26 20:16:07	<adamgreig>	There's like many tens of peripherals per chip and tens of chips
+2019-03-26 20:16:09	<therealprof>	… or fun. :-D
+2019-03-26 20:16:23	<adamgreig>	Maybe over a thousand crates would be needed
+2019-03-26 20:16:47	<jamesmunns>	Is the largest problem with that organizational?
+2019-03-26 20:16:56	<jamesmunns>	or do you see some other possible issue as well?
+2019-03-26 20:17:05	<jamesmunns>	(not to minimize the organizational overhead)
+2019-03-26 20:17:10	<adamgreig>	Not sure yet
+2019-03-26 20:17:15	<adamgreig>	I expect we'd find out 
+2019-03-26 20:17:50	<adamgreig>	Even if each crate only took a few seconds to build and check and upload to crates.io it would be over an hour to do them all
+2019-03-26 20:18:23	<jamesmunns>	how long does it take now?
+2019-03-26 20:18:34	<spacekookie>	jamesmunns: the workspace releasesing might actually become an official part of cargo
+2019-03-26 20:18:42	<spacekookie>	At least at the last tools meeting we talked about that
+2019-03-26 20:19:00	<jamesmunns>	oh nice! I think you mentioned you had something for "bump all the versions of crates at the same time" tooling too?
+2019-03-26 20:19:25	<adamgreig>	For contrast stm32ral generates one crate for all stm32 and takes a few seconds to build
+2019-03-26 20:19:51	<jamesmunns>	It's a little unfair of a comparison, due to the lack of type safety/relative complexity.
+2019-03-26 20:20:01	<spacekookie>	https://github.com/spacekookie/cargo-ws-release is that although last time I worked on it I started yakshaving graph publishing
+2019-03-26 20:20:21	<spacekookie>	i.e. A needs B needs C, so publish C->B->A
+2019-03-26 20:20:25	<spacekookie>	etc
+2019-03-26 20:20:37	<jamesmunns>	But, I'd also say it's fair to consider if it would be possible to generate less code for svd2rust to achieve the same goal
+2019-03-26 20:20:43	<spacekookie>	It needs some work but should generally be ready soon
+2019-03-26 20:21:10	<jamesmunns>	japaric: do you know if anyone ever released that "flamegraph/profile rust builds" tool from the all hands?
+2019-03-26 20:21:14	<adamgreig>	By doing as much as possible to reduce duplication
+2019-03-26 20:21:48	<jamesmunns>	Okay, I'm going to timebox this one a bit, I'd say please add these concerns/ideas to the RFC
+2019-03-26 20:22:13	<jamesmunns>	spacekookie: it would be good to see what you build, feel free to ping back if you get stuck or have questions :)
+2019-03-26 20:22:29	<adamgreig>	Will do
+2019-03-26 20:22:41	<japaric>	jamesmunns: I remember about the tool but don't remember who was working on it so I don't really know
+2019-03-26 20:22:44	<adamgreig>	Still on work trip to the states so at work atm but I'll try and chime in
+2019-03-26 20:23:12	<jamesmunns>	We've also had an offer to take over a crate called accelerometer, providing a generic abstraction over accelerometers: https://github.com/rust-embedded/wg/issues/340
+2019-03-26 20:23:36	<korken89>	Hmm, does not sound like WG related?
+2019-03-26 20:23:37	<jamesmunns>	In general, we've declined to take over crates that are not pretty core to the embedded-hal ecosystem
+2019-03-26 20:23:50	<jamesmunns>	though, I might suggest this is something like "embedded-hal for sensors"
+2019-03-26 20:24:21	<jamesmunns>	I've also seen https://github.com/mathk/ticklock/ lately from mathk-M, which is like "embedded hal for timers/clocks"
+2019-03-26 20:24:34	<theJPster>	In the past I've been pretty outspoken about not favouring particular vendors and trying to stay vendor-neutral. But in terms of a HAL for sensors, I'm actually keen to look at this.
+2019-03-26 20:24:59	<jamesmunns>	I'd be interested in hearing general feedback - whether we want to continue with our current policy of "we don't take most things on"
+2019-03-26 20:25:18	* cr1901	set the alarm for the meeting- at 2:00. And forgot till now
+2019-03-26 20:25:22	<cr1901>	Anyways I'm here
+2019-03-26 20:25:26	<jamesmunns>	yo!
+2019-03-26 20:25:27	* cr1901	reads backlog
+2019-03-26 20:25:30	<jamesmunns>	:+1:
+2019-03-26 20:25:44	<therealprof>	I'm very much in favour of not widening the scope too much.
+2019-03-26 20:26:00	<korken89>	Same here
+2019-03-26 20:26:01	<jamesmunns>	Yeah, judging by our regular meeting attendance, folks are busy.
+2019-03-26 20:26:52	<jamesmunns>	I would say if there was a collection of things that are "good general abstractions", but not exactly "embedded-hal", I'd be open to adding another team for that - if new members are interested in being a part of that team
+2019-03-26 20:27:12	<therealprof>	However I could imagine that we added an org for people to bundle interesting projects in for better visibility.
+2019-03-26 20:27:19	<cr1901>	Tier 1 HAL, Tier 2 HAL?
+2019-03-26 20:27:25	<jamesmunns>	...and can come up with a good naming scheme
+2019-03-26 20:27:36	<cr1901>	Tier 1 is what wg officially supports, tier 2 is "community supported"
+2019-03-26 20:27:52	<jamesmunns>	more like "mcu HAL", "sensor HAL", "communication HAL", etc.
+2019-03-26 20:28:25	<jamesmunns>	tier 2 seems to just currently be the awesome-embedded-rust list
+2019-03-26 20:28:41	<theJPster>	I think Tier 1 is "this is THE Serial HAL" and Tier 2 is "This is A gyroscope HAL but YMMV".
+2019-03-26 20:28:59	<therealprof>	Something like "rust-embedded-community" comes to mind.
+2019-03-26 20:29:14	<therealprof>	(my mind that is)
+2019-03-26 20:29:18	<theJPster>	There are good parallels with this with Ubuntu packages, for example.
+2019-03-26 20:29:21	<jamesmunns>	I do like "community" more than "nursery" :)
+2019-03-26 20:29:35	<jamesmunns>	embedded-rust-aur
+2019-03-26 20:29:48	<theJPster>	rust-embedded-universe
+2019-03-26 20:29:50	<therealprof>	And yeah, probably a team nursing community driven projects.
+2019-03-26 20:29:52	<theJPster>	rust-embedded-ugly
+2019-03-26 20:30:08	<cr1901>	rust-embedded-attic
+2019-03-26 20:30:08	<theJPster>	I'll file Monotron under that last one..
+2019-03-26 20:30:13	<jamesmunns>	I do like the idea of https://github.com/rust-bus
+2019-03-26 20:30:25	<jamesmunns>	might tie into the ecosystem RFC?
+2019-03-26 20:30:57	<therealprof>	rust-bus seems to have worked splendidly. :-D
+2019-03-26 20:31:52	<cr1901>	does rust-bus provide a way to xfer ownership?
+2019-03-26 20:32:08	<jamesmunns>	if you add them as an owner, they can add other owners
+2019-03-26 20:32:17	<cr1901>	ahhh cool
+2019-03-26 20:32:21	<jamesmunns>	therealprof: 74 crates so far: https://crates.io/teams/github:rust-bus:maintainers
+2019-03-26 20:32:38	<therealprof>	However not sure that's what people want.
+2019-03-26 20:33:03	<jamesmunns>	Anyone feel like writing up a community proposal?
+2019-03-26 20:33:44	<jamesmunns>	Maybe something like rust-embedded-community, that has a much lower threshold of joining/adding crates to (might help with discovery too!), but also no expectations of maintenance from the embedded-wg?
+2019-03-26 20:33:54	<jamesmunns>	(as a github orga)
+2019-03-26 20:34:24	<therealprof>	I feel it's more important to make community efforts visible trough a trove for repositories rather than letting them bitrot in personal orgs. Something like the stm32-rs seems to work really well.
+2019-03-26 20:34:43	<therealprof>	jamesmunns: Exactly.
+2019-03-26 20:34:44	<jamesmunns>	mathk-M or Mabez - you've expressed interest in the ecosystem team, does this sound like something you'd be interested in?
+2019-03-26 20:35:01	<jamesmunns>	(not sure if either of you are here right now)
+2019-03-26 20:35:24	<jamesmunns>	If no one volunteers to write up a proposal now, I can at least make a tracking issue after the meeting
+2019-03-26 20:35:37	<jamesmunns>	might be good for some follow on discussion.
+2019-03-26 20:36:19	<jamesmunns>	(okay, 25 minutes left, the last items are a bit quicker, then we can circle back if we need to)
+2019-03-26 20:36:38	<jamesmunns>	Last call to object to hibernation: https://github.com/rust-embedded/wg/pull/324
+2019-03-26 20:36:45	<jamesmunns>	otherwise the RFC will be merged after this meeting
+2019-03-26 20:37:36	<cr1901>	jamesmunns: I'll read in a sec, but
+2019-03-26 20:38:04	<cr1901>	is there a method to hibernate someone on their behalf if you have their permission (hypothetical)
+2019-03-26 20:38:41	<jamesmunns>	I don't believe so. I think we have hibernation (self action), and removal (with or without their preference)
+2019-03-26 20:39:01	* cr1901	nods
+2019-03-26 20:39:09	<cr1901>	just wondering. Probably simpler not to
+2019-03-26 20:39:22	<jamesmunns>	https://github.com/rust-embedded/wg/blob/master/rfcs/0136-teams.md#removing-members
+2019-03-26 20:40:01	<cr1901>	Ahhh okay cool
+2019-03-26 20:40:11	<cr1901>	no complaints from me then
+2019-03-26 20:40:46	<jamesmunns>	We haven't had anyone leave before, but I imagine we would grow an "alumni" section, unless we/the leaving person wouldn't want to be listed.
+2019-03-26 20:41:58	<jamesmunns>	If anyone has objections, speak now (on the RFC), or forever hold your peace (or just open a counter RFC).
+2019-03-26 20:42:08	<jamesmunns>	So two quick plugs:
+2019-03-26 20:42:18	<jamesmunns>	the showcase - https://github.com/rust-embedded/showcase/
+2019-03-26 20:42:38	<jamesmunns>	If you have a physical device/project, please consider writing it up and adding it there.
+2019-03-26 20:42:44	* cr1901	is still waiting for the msp430 fix to propogate from upstream before adding to the showcase T_T
+2019-03-26 20:43:06	<jamesmunns>	I have see a number of requests on twitter and forums asking for "where can I see a successful rust project", etc.
+2019-03-26 20:43:36	<emilgardis>	That looks really good, would it be possible to get it on what/embedded when it's more "developed"?
+2019-03-26 20:44:00	<jamesmunns>	emilgardis: I think we've loosely discussed that before. very big +1 from me.
+2019-03-26 20:44:12	<theJPster>	It's on my to-do list, but in like, 35th place.
+2019-03-26 20:44:32	<jamesmunns>	Hey! Double digits! Not bad.
+2019-03-26 20:44:55	<theJPster>	I might need to bump it up above "Invent a new programming language that combines BASIC, Python and Lox."
+2019-03-26 20:44:59	<jamesmunns>	(I'm aiming for my internet-of-streams project to end up there, but I also need to actually find time to work on it :) )
+2019-03-26 20:45:35	<jamesmunns>	Second order plug - if you see projects in the wild, please poke people to submit them to the showcase!
+2019-03-26 20:45:56	<jamesmunns>	It helps having resources like this to get more people involved with the WG/ecosystem
+2019-03-26 20:46:18	<jamesmunns>	second plug, Not yet awesome embedded rust: https://github.com/rust-embedded/not-yet-awesome-embedded-rust
+2019-03-26 20:46:50	<jamesmunns>	If you have even idle complaints about working with rust, please capture them there!
+2019-03-26 20:47:23	<jamesmunns>	This also helps us get people who are past "hello world", and run into the "but now what do I do" problem
+2019-03-26 20:47:33	<korken89>	I need to spread that one
+2019-03-26 20:47:50	<korken89>	I am next to a consulting company that I got to try Rust, but some issues arose
+2019-03-26 20:48:02	<korken89>	I have not had time to get more info, but I'd like to know the problems they had
+2019-03-26 20:48:35	<jamesmunns>	If someone has free time, even just translating the items from https://github.com/rust-embedded/wg/issues/336 would be awesome
+2019-03-26 20:48:53	<jamesmunns>	Also that issue is seriously worth a read, if you have time.
+2019-03-26 20:49:38	<jamesmunns>	Final question - I know people are busy, but it helps if people from the teams are here to discuss when relevant issues come up.
+2019-03-26 20:50:10	<jamesmunns>	Would it be helpful to ping people ahead of time (via Github, maaaaaybe through the team emails), when we are going to be discussing something relevant for that team?
+2019-03-26 20:50:13	<therealprof>	Is that a question? :-D
+2019-03-26 20:50:31	<therealprof>	Ugh, crosstalk. :-D
+2019-03-26 20:50:41	<jamesmunns>	e.g. today, talking about svd2rust, would it have been useful if I pinged @Tools beforehand?
+2019-03-26 20:50:53	<korken89>	I think that would be good
+2019-03-26 20:50:57	<cr1901>	+1
+2019-03-26 20:51:14	<korken89>	I'm getting spammed by github and have difficulties seeing what is important in the flood
+2019-03-26 20:51:19	<emilgardis>	Yes, it is hard to find everything relevant between @all and @team pings though
+2019-03-26 20:51:33	<jamesmunns>	We also have the mailing list emails.
+2019-03-26 20:51:59	<jamesmunns>	But I am always wary of adding more emails to anyone's inboxes.
+2019-03-26 20:52:00	<emilgardis>	Not working for me though, saw some other people having issue with it, thought it was just not working, is that not the case?
+2019-03-26 20:52:23	<jamesmunns>	Oh, I haven't actually tried recently
+2019-03-26 20:52:41	<korken89>	Hmm
+2019-03-26 20:53:00	<korken89>	I was thinking of changing the Watch to Watch + Mention not that we have rusthighfive
+2019-03-26 20:53:07	<korken89>	To reduce them email noise
+2019-03-26 20:53:26	<jamesmunns>	Yeah, I want to start removing all of my watches, and just go down to individual/team mentions.
+2019-03-26 20:53:46	<emilgardis>	that would probably help, didn't think of that
+2019-03-26 20:53:51	<korken89>	Cool, then I will do the same :)
+2019-03-26 20:54:02	<jamesmunns>	I have turned off watch-by-default
+2019-03-26 20:54:39	<korken89>	Oh, where is that done?
+2019-03-26 20:54:48	<korken89>	Sorry, I can ask after the meeting
+2019-03-26 20:54:48	<jamesmunns>	Okay, I'll start pinging (ideally by Sunday before the meeting), let's see how it works out
+2019-03-26 20:54:49	<korken89>	:(
+2019-03-26 20:54:59	<korken89>	:) *
+2019-03-26 20:55:46	<jamesmunns>	Okay, that's the agenda - does anyone have anything they want to bring up, share, or commiserate about?
+2019-03-26 20:55:49	<japaric>	we should link NYAER and the showcase from https://docs.rust-embedded.org/ I don't think they are too visible at the moment
+2019-03-26 20:56:05	<korken89>	I agree
+2019-03-26 20:56:14	<jamesmunns>	korken89: https://github.com/notifications/subscriptions and https://github.com/settings/notifications are worth looking at)
+2019-03-26 20:56:16	<korken89>	Getting it visible where to add pain-points is good
+2019-03-26 20:56:43	<jamesmunns>	Can we get any volunteers to add it to https://github.com/rust-embedded/docs to add?
+2019-03-26 20:57:43	* therealprof	going once, going twice...
+2019-03-26 20:58:23	<therealprof>	Okay, I'll do it.
+2019-03-26 20:58:29	<jamesmunns>	Thanks therealprof!
+2019-03-26 20:59:26	<therealprof>	Hm, probably adding a new section.
+2019-03-26 20:59:52	<jamesmunns>	Okay, I think that's just about time. Thank you all very much for being here, I'll see you all next week!
