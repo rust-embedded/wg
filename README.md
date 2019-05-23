@@ -222,7 +222,6 @@ Board Support Crates and drivers.
 
 #### Members
 
-- [@hannobraun]
 - [@thejpster]
 - [@therealprof]
 - [@ithinuel]
@@ -362,6 +361,12 @@ most of them are members of one of the teams listed above.
 - [@jcsoo]
 - [@pftbest]
 - [@thejpster]
+
+### Hibernating
+
+The following members have put themselves into hibernation the hibernation state, due to being absent or busy for an extended amount of time. See [ops/hibernating.md](https://github.com/rust-embedded/wg/blob/master/ops/hibernating.md).
+
+- [@hannobraun]
 
 ### Contact
 
