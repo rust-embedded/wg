@@ -33,28 +33,27 @@ As said it seems to make sense to sense to let the whole user base cast a vote o
 
 ## Time to vote
 
-> TODO
+The time to vote will end 2 weeks after RFC approval on Sunday.
 
 # How We Teach This
 [how-we-teach-this]: #how-we-teach-this
 
-> TODO: discuss how we will publicize this. Options include:
->
-> * Blog
-> * Twitter
-> * On IRC
-> * u/i.r-l.o
+Since the agreed up new communication channel will affect how we communicate both as a working group but also with users we will need to change all mentions of the current channel on irc.mozilla.org, including but not limited to, our homepage at https://github.com/rust-embedded/wg and the #rust-embedded channel on IRC itself.
+
+Also to reach the largest amount of interested folks we should announce change on our blog, forums and social media accounts.
 
 # Drawbacks
 [drawbacks]: #drawbacks
 
-> TODO: discuss this.
+None known, giving power to the people is rarely a bad idea. To limit backlash and promotion of unsuitable channels the choices will be limited to sensible options.
 
 # Alternatives
 [alternatives]: #alternatives
 
 * https://github.com/rust-embedded/blog/pull/51
     * Default move to Freenode RFC on a specific future date, requires an RFC to change
+
+* Wait for Mozilla to make a decision and adopt it
 
 # Unresolved questions
 [unresolved]: #unresolved-questions
