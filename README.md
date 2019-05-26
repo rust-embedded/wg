@@ -202,6 +202,7 @@ The embedded Linux team develops and maintains the core of the embedded Linux cr
 
 - [@nastevens]
 - [@posborne]
+- [@ryankurte]
 
 #### Projects
 
