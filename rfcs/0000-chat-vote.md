@@ -29,7 +29,7 @@ Some team members spent some effort identifying the most promising contenders wh
 
 ## Community vote
 
-As said it seems to make sense to sense to let the whole user base cast a vote on the preferred communication channel. The method this would work is by putting each candidate in its own post in a GH issue and, announce the vote on all available channels and count the number of all upvotes (👍) on each candidate after a fixed period of 2 weeks. Multiple choices are allowed and if the 2 highest results are within 3 votes of each other there will be a second ballot with only the 2 highest ranking options. In case of a real tie in that second ballot the @rust-embedded/core members will break the tie.
+As said it seems to make sense to sense to let the whole user base cast a vote on the preferred communication channel. The method this would work is by putting each candidate in its own post in a GitHub issue and, announce the vote on all available channels and count the number of all upvotes (👍) on each candidate after a fixed period of 2 weeks. Multiple choices are allowed and if the 2 highest results are within 3 votes of each other there will be a second ballot with only the 2 highest ranking options. In case of a real tie in that second ballot the @rust-embedded/core members will break the tie.
 
 ## Time to vote
 
