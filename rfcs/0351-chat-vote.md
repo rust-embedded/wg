@@ -1,8 +1,3 @@
-- Feature Name: chat_vote
-- Start Date: 2019-05-22
-- RFC PR: (leave this empty)
-- Rust Issue: (leave this empty)
-
 # Summary
 [summary]: #summary
 
