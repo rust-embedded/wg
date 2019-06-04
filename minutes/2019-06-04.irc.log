@@ -1,0 +1,173 @@
+2019-06-04 18:00:41	<therealprof>	Alright, buckle up! Let's have a meeting, I'll be your driver today.
+2019-06-04 18:01:12	<therealprof>	Here's the paper for today: https://paper.dropbox.com/doc/Meeting-notes-Embedded-WG--AeZ4pExMPjwbhzesoiSjwJ1mAg-sSugkMZr8h4ElWqqbYdwh
+2019-06-04 18:02:01	<adamgreig>	I can't log in to Dropbox right now but am more or less around, could someone add me please?
+2019-06-04 18:02:16	<adamgreig>	Thanks for driving therealprof
+2019-06-04 18:02:27	<therealprof>	adamgreig: Done.
+2019-06-04 18:03:24	<therealprof>	We have one main topic for today which is the RFC about the public vote for the new chat platform.
+2019-06-04 18:03:36	<therealprof>	https://github.com/rust-embedded/wg/pull/351
+2019-06-04 18:03:58	<therealprof>	James turned my proposal into an RFC and we had a lot of feedback on it.
+2019-06-04 18:05:33	<therealprof>	It seems there's mostly agreement about the shape of the RFC so the next step would be to put in some dates and have a member vote on it.
+2019-06-04 18:05:56	<jamesmunns>	I agree with ryankurte's comments re: what questions should be answered for each possible platform
+2019-06-04 18:06:20	<therealprof>	It might be tricky to answer those questions.
+2019-06-04 18:06:34	<therealprof>	Even for the public ones.
+2019-06-04 18:07:08	<jamesmunns>	Hm, We did try to discuss this at oxidize, but I admit our answers where more on a 1-5 scale than concrete.
+2019-06-04 18:07:21	<therealprof>	Yeah… ;)
+2019-06-04 18:07:38	<jamesmunns>	I think even a high level summary, or notes about costs/limitations/licenses would be nice to have
+2019-06-04 18:09:41	<therealprof>	That's always going to be subjective. Maybe a link or two to some information would be more appropriate so interested people can find relevant information themselves?
+2019-06-04 18:10:30	<jamesmunns>	I mostly mean things regarding costs of free/paid plans, what is limited (usually history, etc)
+2019-06-04 18:10:58	<jamesmunns>	by the way, we have hit the 33% majority required as the RFC has been opened for a week, so we can technically merge this if we would like now.
+2019-06-04 18:11:23	<theJPster>	All those ticks and we only make 33%?
+2019-06-04 18:11:27	<jamesmunns>	(10/25)
+2019-06-04 18:11:28	<theJPster>	How many people are in this WG?!
+2019-06-04 18:11:37	<therealprof>	A lot. ;)
+2019-06-04 18:11:52	<jamesmunns>	https://github.com/orgs/rust-embedded/teams/all/members
+2019-06-04 18:12:05	<jamesmunns>	ah sorry, 26, not 25
+2019-06-04 18:12:35	<disasm>	 all != wg
+2019-06-04 18:12:57	<disasm>	https://github.com/orgs/rust-embedded/people - 30 
+2019-06-04 18:13:02	<jamesmunns>	disasm: why not? I would think that it should be 1:1
+2019-06-04 18:13:30	<disasm>	ok, minus Homu, so 29
+2019-06-04 18:13:33	<jamesmunns>	that has bots and such on that list
+2019-06-04 18:13:35	<jamesmunns>	also highfive
+2019-06-04 18:14:12	<jamesmunns>	All should be all wg members, if we're missing anyone, we should add them :)
+2019-06-04 18:14:13	<disasm>	ok, whatever. Sometimes people are not in /all
+2019-06-04 18:14:43	<therealprof>	Seems accurate to me.
+2019-06-04 18:15:14	<jamesmunns>	I think "people" is (all - hibernating members - bots)
+2019-06-04 18:15:18	<jamesmunns>	err
+2019-06-04 18:15:21	<jamesmunns>	other way around
+2019-06-04 18:15:38	<therealprof>	Anyway it'd be great to move this forward.
+2019-06-04 18:15:44	<disasm>	Oh, I forgot about hibernation thing
+2019-06-04 18:15:49	<disasm>	++
+2019-06-04 18:16:21	* theJPster	votes for JFDI
+2019-06-04 18:16:37	<jamesmunns>	Yeah, let's get this moving forward. Do we want to set a date to start adding things, and give it the two weeks?
+2019-06-04 18:16:49	<jamesmunns>	I'll try and add info to each post, people can discuss on there
+2019-06-04 18:16:59	<jamesmunns>	probably good to copy and paste the "rules" text on each issue
+2019-06-04 18:17:15	<jamesmunns>	(only :+1: counts, you can vote multiple times, etc)
+2019-06-04 18:17:24	<therealprof>	Right.
+2019-06-04 18:17:34	<therealprof>	Are you going to create the issues?
+2019-06-04 18:17:37	<theJPster>	jamesmunns, do you want to create a template issue first?
+2019-06-04 18:17:46	<jamesmunns>	Sure, I can do that later today.
+2019-06-04 18:17:50	<therealprof>	+1
+2019-06-04 18:18:39	<therealprof>	https://github.com/rust-embedded/blog/pull/51/files is still outstanding :(
+2019-06-04 18:18:52	<jamesmunns>	Ah yeah
+2019-06-04 18:18:59	<jamesmunns>	I guess that needs to be rewritten too
+2019-06-04 18:19:03	<therealprof>	Sorry about that.
+2019-06-04 18:19:08	<therealprof>	Indeed.
+2019-06-04 18:19:20	<jamesmunns>	therealprof: would you mind PRing the changes to the second section?
+2019-06-04 18:19:26	<adamgreig>	We only have one issue right?
+2019-06-04 18:19:28	<jamesmunns>	we can use that as a plug for the vote on the blog
+2019-06-04 18:19:32	<adamgreig>	And multiple comments on the issue
+2019-06-04 18:19:39	<therealprof>	Will do.
+2019-06-04 18:19:55	<jamesmunns>	adamgreig: for voting?
+2019-06-04 18:20:03	<therealprof>	Also you might want to add the Oxidize videos, no?
+2019-06-04 18:20:10	<jamesmunns>	Oh, I should do that too :)
+2019-06-04 18:20:17	<adamgreig>	Maybe I misread the RFC but anyway no reason to have an issue per platform is there?
+2019-06-04 18:20:24	<theJPster>	"each candidate in its own post in a GitHub issue"
+2019-06-04 18:20:30	<adamgreig>	You can +1 comments just as easily and keeps it together
+2019-06-04 18:20:34	<theJPster>	I misread that as an issue per platform too
+2019-06-04 18:20:35	<jamesmunns>	Ah, you're right, I misunderstood
+2019-06-04 18:20:42	<adamgreig>	Yes I read that as multiple posts in one issue
+2019-06-04 18:20:47	<jamesmunns>	I'll make the issue and comment template
+2019-06-04 18:20:59	<jamesmunns>	or really, want me to just set up the vote tonight?
+2019-06-04 18:21:14	<theJPster>	well, the template only makes sense if there are lots of issues
+2019-06-04 18:21:20	<theJPster>	If there's one issue, you can just create it
+2019-06-04 18:21:25	<jamesmunns>	Single issue w/ the rules, one comment with each platform
+2019-06-04 18:21:35	<jamesmunns>	then draw a line, then we can open discussion if anyone wants
+2019-06-04 18:21:45	<therealprof>	Sounds good.
+2019-06-04 18:22:34	<therealprof>	Hm, I've never done a PR on a PR, how does that work?
+2019-06-04 18:23:00	<jamesmunns>	Just set the target branch to 2019-goals-and-irc
+2019-06-04 18:23:02	<disasm>	PR against another branch, not master
+2019-06-04 18:23:26	<jamesmunns>	Or just fork and replace my PR if thats easier
+2019-06-04 18:24:17	<therealprof>	Will figure something out.
+2019-06-04 18:24:30	<jamesmunns>	:+1:
+2019-06-04 18:25:57	<jamesmunns>	Any objections to me merging the RFC?
+2019-06-04 18:29:11	<jamesmunns>	Seems not :)
+2019-06-04 18:29:20	<nastevens>	I do not object ;-)
+2019-06-04 18:29:22	<jamesmunns>	Ah crap.
+2019-06-04 18:29:36	<jamesmunns>	I pushed a change to add the RFC number and it dismissed all the reviews.
+2019-06-04 18:30:00	<therealprof>	:-D
+2019-06-04 18:30:02	<jamesmunns>	Could someone re-approve? :p
+2019-06-04 18:30:50	<therealprof>	Done.
+2019-06-04 18:31:05	<jamesmunns>	tyvm
+2019-06-04 18:31:31	<therealprof>	Added some actions items to the paper so it doesn't look so empty. :-p
+2019-06-04 18:32:12	<jamesmunns>	Hows everyone's week going?
+2019-06-04 18:32:20	<jamesmunns>	Working on any fun things?
+2019-06-04 18:32:47	<nastevens>	Listening to a presentation entirely on preventing buffer overflow exploits, I keep on want to say "use Rust"
+2019-06-04 18:32:57	<therealprof>	:-D
+2019-06-04 18:33:04	<jamesmunns>	:D
+2019-06-04 18:33:29	<therealprof>	Checking out disasm USB work. ;)
+2019-06-04 18:33:34	<nastevens>	I'm not sure if we were wrapped on the RFC topic, but I just wanted to ask if anyone has infrastructure changes that are outstanding/blocked?
+2019-06-04 18:33:54	<nastevens>	I haven't been available much the past few weeks, but I don't want to prevent people from getting done what they need to do.
+2019-06-04 18:34:00	<jamesmunns>	The theory post behind bbqueue is now up, thanks to Andrea Lattuada's (@utaal) work: https://ferrous-systems.com/blog/lock-free-ring-buffer/
+2019-06-04 18:34:14	<jamesmunns>	nastevens: I don't think there is anything outstanding
+2019-06-04 18:34:33	<theJPster>	I'm working on Rust embedded things at work, for people paying me money, which is exciting
+2019-06-04 18:34:36	<theJPster>	But I can't say what, or who.
+2019-06-04 18:34:41	<jamesmunns>	theJPster: Nice!
+2019-06-04 18:34:49	<jamesmunns>	Who is it an what are you working on?
+2019-06-04 18:34:49	<pftbest_54>	cool
+2019-06-04 18:34:51	<jamesmunns>	:)
+2019-06-04 18:34:58	<therealprof>	Have we cleared up all the CI problems?
+2019-06-04 18:35:00	<theJPster>	But it definitely feels like I'm getting more programming done, more quickly, than I would have done if I was writing it in C.
+2019-06-04 18:35:36	<disasm>	therealprof: cross CI maybe still has problems?
+2019-06-04 18:35:39	<theJPster>	I had a CLI on an STM32 I'd never seen before, with two other UARTS doing loopback in about one work day.
+2019-06-04 18:35:59	<pftbest_54>	theJPster: do you write unit tests, or any other kinds of tests?
+2019-06-04 18:35:59	<therealprof>	:-D
+2019-06-04 18:36:18	<therealprof>	STM32 is somewhat easy.
+2019-06-04 18:36:36	<theJPster>	pftbest_54, not for this. the menu crate is well tested (it's from the Monotron) and the rest relies on the things that are plugged into the UARTs
+2019-06-04 18:37:08	<theJPster>	therealprof, yeah, but I had to write an IRQ driver buffered serial driver because the UART only has a single byte FIFO
+2019-06-04 18:37:10	<therealprof>	I took a gander at gnzlbgs cargo-asm crate and made it work a bit better, also for embedded stuff.
+2019-06-04 18:37:50	<therealprof>	Still a mangling issue so it doesn't work for #[entry] and #[interrupt] functions.
+2019-06-04 18:38:05	<therealprof>	theJPster: Nice.
+2019-06-04 18:38:22	<jamesmunns>	disasm: trying some cross PRs now
+2019-06-04 18:38:54	<theJPster>	1. second command. 2. print to console on second UART that command had been sent. 3. wonder where command's response went
+2019-06-04 18:39:01	<theJPster>	s/second/send
+2019-06-04 18:39:04	<therealprof>	https://github.com/gnzlbg/cargo-asm in case someone is interested, proper release probably following later this week.
+2019-06-04 18:39:46	<jamesmunns>	therealprof: that tool is super cool :)
+2019-06-04 18:40:01	<therealprof>	I absolutely love it.
+2019-06-04 18:41:01	<therealprof>	Went from "doesn't" work at all to "works except for magic functions" for embedded in just a few days. ;)
+2019-06-04 18:42:15	<therealprof>	Fascinating to see what the code does in assembly. Before I was looking at disassembly and kinda guess. ;)
+2019-06-04 18:43:11	<therealprof>	tarcieri is not here by any chance?
+2019-06-04 18:43:39	<pftbest_54>	I've used to insert cortex_m::asm::nop() around my code to find it easier id disassembly )
+2019-06-04 18:44:07	<jamesmunns>	Wouldn't the no change the output though?
+2019-06-04 18:44:09	<jamesmunns>	*nop
+2019-06-04 18:44:12	<adamgreig>	I can't talk much about what I'm doing but I'm using rust and it's getting extremely hot :p
+2019-06-04 18:44:27	<therealprof>	Oooh.
+2019-06-04 18:44:29	<adamgreig>	jamesmunns: exactly, so you can see what code was in between the nops :p
+2019-06-04 18:44:44	<jamesmunns>	I mean, the nop will actually affect compilation
+2019-06-04 18:44:50	<jamesmunns>	wrt asm volatile
+2019-06-04 18:45:10	<disasm>	adamgreig: hot like a burning rocket fuel? :)
+2019-06-04 18:45:32	<jamesmunns>	I know that's why we used to put nops in endless loops, to introduce side effects and prevent empty loop removal
+2019-06-04 18:45:49	<theJPster>	jamesmunns, re: the blog post. Why store(load() + n) and not .fetch_add(n)?
+2019-06-04 18:46:10	<pftbest_54>	yeah, nop totally can affect something, this tool is definitely better
+2019-06-04 18:46:55	<jamesmunns>	theJPster: hmm, I think the code is a simplification of Andrea's actual code
+2019-06-04 18:47:03	<theJPster>	fair enough
+2019-06-04 18:47:11	<jamesmunns>	I'm assuming it was a simplification for readability, but I'd have to go check his project
+2019-06-04 18:47:14	<therealprof>	If anyone wants to join in and take a look the magic functions mangling, that'd be awesome.
+2019-06-04 18:47:57	<jamesmunns>	theJPster: yeah, I don't see that actually used anywhere: https://github.com/utaal/spsc-bip-buffer/blob/master/src/lib.rs
+2019-06-04 18:48:11	<therealprof>	Oh, I was contacted by packt earlier this week, they're looking for an author for an Embedded Rust book.
+2019-06-04 18:48:14	<theJPster>	at my last job, we had Andrea and Andrea.
+2019-06-04 18:48:28	<theJPster>	One was a six foot Italian gentleman. Really big fella.
+2019-06-04 18:48:38	<theJPster>	One was a petite Romanian lady.
+2019-06-04 18:48:40	<therealprof>	They're probably checking out everyone on the WG member list. ;)
+2019-06-04 18:48:49	<jamesmunns>	therealprof: I've been getting packt requests for embedded rust books and video
+2019-06-04 18:49:06	<jamesmunns>	I've not heard great things about them, but could be interesting if someone has time :)
+2019-06-04 18:49:10	<theJPster>	therealprof, I just quote them my day rate at work and they quickly move on...
+2019-06-04 18:49:40	<therealprof>	I've heard mixed things about them but the idea sounds fantastic really.
+2019-06-04 18:49:53	<theJPster>	I've not heard good things
+2019-06-04 18:50:23	<adamgreig>	therealprof: oh yea me too...
+2019-06-04 18:50:56	<adamgreig>	The book would be useful for a few weeks before it was out of date :p
+2019-06-04 18:51:11	<therealprof>	Hehe.
+2019-06-04 18:52:15	<jamesmunns>	I'll have a somewhat interesting rust related pitch go up this week
+2019-06-04 18:52:18	<therealprof>	Speaking of out-of-date. We probably should update a few pointers in cortex-m-quickstart and do a release. Stuff is getting stale and docs.rs tried (and failed to) build the last release with 1.28…
+2019-06-04 18:52:33	<jamesmunns>	for those in the safety critical domains :)
+2019-06-04 18:53:20	<jamesmunns>	I've really never used -quickstart
+2019-06-04 18:53:25	<jamesmunns>	I'm probably missing out :p
+2019-06-04 18:54:04	<therealprof>	Me neither, but people are using it.
+2019-06-04 18:54:36	<therealprof>	Should at least work on the impression it's still fresh. :-D
+2019-06-04 18:54:36	<theJPster>	I always start with it
+2019-06-04 18:54:53	<therealprof>	theJPster: So we have an expert, good to know. ;)
+2019-06-04 18:54:59	<theJPster>	Now I'm wondering which bits of my project are out of date :/
+2019-06-04 18:58:00	<therealprof>	If you're using the git clone method you're probably fine.
+2019-06-04 18:58:13	<SamP20>	Would VSCode specific debugging stuff belong in cortex-m-quickstart? This is the stuff I added to the debugonomicon a few weeks ago https://rust-embedded.github.io/debugonomicon/overview.html#vscode-integration
+2019-06-04 18:59:14	<therealprof>	SamP20: If you can think of something, sure.
+2019-06-04 18:59:16	<jamesmunns>	:+1: from me
+2019-06-04 19:00:34	<therealprof>	Okay, that's all for todays meeting. Thanks for attending.
