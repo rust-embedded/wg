@@ -277,6 +277,7 @@ The RISCV team develops and maintains the core of the RISCV crate ecosystem.
 - [@danc86]
 - [@dvc94ch]
 - [@Disasm]
+- [@laanwj]
 
 #### Projects
 
