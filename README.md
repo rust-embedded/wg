@@ -408,6 +408,7 @@ https://mozilla.logbot.info/rust-embedded
 [@japaric]: https://github.com/japaric
 [@jcsoo]: https://github.com/jcsoo
 [@korken89]: https://github.com/korken89
+[@laanwj]: https://github.com/laanwj
 [@mathk]: https://github.com/mathk
 [@nastevens]: https://github.com/nastevens
 [@nerdyvaishali]: https://github.com/nerdyvaishali
