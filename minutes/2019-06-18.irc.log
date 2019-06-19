@@ -1,0 +1,89 @@
+2019-06-18 18:01:51	<therealprof>	Let's get this meeting going.
+2019-06-18 18:01:52	<disasm>	Hi!
+2019-06-18 18:02:01	<therealprof>	Paper is here: https://paper.dropbox.com/doc/Meeting-notes-Embedded-WG--AfQlbmiKjU7tPO0bNO7HySHRAQ-wIIsEXT8MQXBnfi9SLOt6
+2019-06-18 18:02:02	<ithinuel>	Hello there
+2019-06-18 18:03:00	<therealprof>	A reminder: Voting is still open for a few more days, https://github.com/rust-embedded/wg/issues/357
+2019-06-18 18:04:02	<therealprof>	Current votes are: 150 Matrix, 94 IRC, 70 Discord
+2019-06-18 18:06:28	<therealprof>	Anything we should discuss about the vote?
+2019-06-18 18:07:45	<ithinuel>	not that I am aware of
+2019-06-18 18:07:59	<therealprof>	Okay, moving on then.
+2019-06-18 18:08:36	<therealprof>	I've noticed just today that we still have a half finished blog entry lying around: https://github.com/rust-embedded/blog/blob/master/content/2019-04-05-newsletter-18.md
+2019-06-18 18:09:47	<therealprof>	That one should have long shipped but it's still a bit rough around the edges. Any takers to polish it up a bit so we can get it out the door?
+2019-06-18 18:14:53	<ithinuel>	What do we want to talk about in it ? :x the current points are kind of out dated :x
+2019-06-18 18:15:07	<ithinuel>	well, at least the first one
+2019-06-18 18:16:05	<therealprof>	Yes they are.
+2019-06-18 18:17:52	<therealprof>	Maybe something about RISC-V, new members, embedded-hal digital::v2 traits, something about the cross mess and that things are running again, probe-rs, the cool new usb stuff…
+2019-06-18 18:18:00	<therealprof>	Lots of things happened. :-D
+2019-06-18 18:18:20	<therealprof>	theJPster: https://paper.dropbox.com/doc/Meeting-notes-Embedded-WG--AfQlbmiKjU7tPO0bNO7HySHRAQ-wIIsEXT8MQXBnfi9SLOt6
+2019-06-18 18:18:28	<disasm>	Hmm, I'll send a PR
+2019-06-18 18:18:49	<theJPster>	therealprof, yup. Just battling the OAuth demons.
+2019-06-18 18:20:03	<theJPster>	I'm in like Flynn
+2019-06-18 18:20:11	<therealprof>	Yay!
+2019-06-18 18:20:44	<ithinuel>	theJPster: is that a direct reference to Tron ? :o
+2019-06-18 18:21:05	<theJPster>	ithinuel, it's a Dave Jones / eevblog thing
+2019-06-18 18:22:01	<therealprof>	theJPster: Yeah, also known as DJ Ranter…
+2019-06-18 18:22:19	<ithinuel>	arg, don't know him, ^^'
+2019-06-18 18:22:37	<therealprof>	ithinuel: Not missing much lately.
+2019-06-18 18:23:54	<therealprof>	theJPster: Anything you want to add to the open newsletter, e.g. something about the ACCU 2019 event?
+2019-06-18 18:24:41	<theJPster>	the one from April?
+2019-06-18 18:25:08	<therealprof>	Yeah, just noticed today that we haven't finish this blog entry yet.
+2019-06-18 18:25:23	<theJPster>	Well, ACCU happened. The talk at the Centre for Computing History Happened. Oxidize happened.
+2019-06-18 18:25:29	<theJPster>	and I'm at Rust Fest in August
+2019-06-18 18:25:37	<therealprof>	Trying to wrap it up so we can hopefully get into a better cadence again.
+2019-06-18 18:27:15	<theJPster>	Do you need a PR from me, or do you want to just change the future-tense into past-tense
+2019-06-18 18:27:17	<therealprof>	theJPster: There's a date for Rust Fest? ;)
+2019-06-18 18:28:00	<therealprof>	theJPster: Any material is welcome, would like to get this out ASAP.
+2019-06-18 18:28:32	<theJPster>	wait, not rust fest
+2019-06-18 18:28:33	<theJPster>	rust conf
+2019-06-18 18:28:37	<theJPster>	rust .*
+2019-06-18 18:32:54	<therealprof>	Okay, moving on.
+2019-06-18 18:33:16	<therealprof>	@disasm You added a topic to the list. Wann to drive the discussion?
+2019-06-18 18:33:24	<disasm>	Yep
+2019-06-18 18:34:24	<disasm>	At some point in past I realized that there are a lot of patterns in Embedded Rust that are strange, questionable and some of them have better alternatives
+2019-06-18 18:35:05	<disasm>	Now I'm trying to collect these patterns in my repo and provide some details on each of them
+2019-06-18 18:35:41	<disasm>	Now this project is mostly for my understanding, but I hope that it will be useful for other people too
+2019-06-18 18:36:26	<therealprof>	Sounds nice.
+2019-06-18 18:36:43	<disasm>	Unfortunately I don't know how to fill that "explanation" part for most of the patterns, so maybe I will need some help from the community. Nevertheless, I'm going to provide my thoughts and maybe some alternatives
+2019-06-18 18:37:00	<disasm>	And some links to the usage examples, of course
+2019-06-18 18:37:44	<therealprof>	That's very useful information to have. There're plenty of new compiler improvements, too, which we're not quite utilising yet.
+2019-06-18 18:37:51	<disasm>	Repos is here, but a bit empty for now: https://github.com/Disasm/embedded-rust-patterns
+2019-06-18 18:37:57	<disasm>	Sure
+2019-06-18 18:38:55	* disasm	finished
+2019-06-18 18:39:32	<disasm>	If someone has something that they don't understand and that looks like a pattern, feel free to add it to the list!
+2019-06-18 18:39:57	<disasm>	I'm going to have "one pattern"-"one file" format later
+2019-06-18 18:41:25	<therealprof>	I'm planning on revisiting some crates to use newer Rust compiler features in order to remove some unidiomatic workarounds. If something sticks out I'd be happy to add it.
+2019-06-18 18:42:55	<therealprof>	Things like Pin might be useful to solve some problems we had to work around in the past.
+2019-06-18 18:44:06	<disasm>	By the way, are there anybody participating in async movement from the embedded side?
+2019-06-18 18:45:23	<ithinuel>	I don't how on topic this is but I helped a colleague this week to start developing some embedded rust. He's rather new to rust and was struggling with the quick start trying to adapt it to a nucleo_f401re.
+2019-06-18 18:46:21	<therealprof>	disasm: I believe a few people on the async side are also interested in embedded.
+2019-06-18 18:46:32	<therealprof>	Like Nemo157
+2019-06-18 18:46:35	<ithinuel>	I'm not personally super familiar with the apis of embedded hal/stm32-rs/svd2rust, it took me ~1.5 hours to build & run a blinky :S
+2019-06-18 18:47:51	<therealprof>	ithinuel: That's not too bad.
+2019-06-18 18:48:52	<therealprof>	Unfortunately embedded is always a bit more involved than a simple "cargo run".
+2019-06-18 18:49:14	<therealprof>	disasm: I guess that's all for this point for now?
+2019-06-18 18:49:20	<disasm>	therealprof: I suddenly realized that spacekookie told about 6-month process in December and... maybe it's already too late if we want to change something there.
+2019-06-18 18:49:30	<disasm>	therealprof: yes
+2019-06-18 18:50:04	<therealprof>	6 months process?
+2019-06-18 18:50:06	<spacekookie>	Hm? 
+2019-06-18 18:50:14	<spacekookie>	I'm not sure what you're referring to 
+2019-06-18 18:50:25	<disasm>	spacekookie: your RustRush talk
+2019-06-18 18:50:29	<disasm>	Async story
+2019-06-18 18:50:31	<spacekookie>	Ooh
+2019-06-18 18:50:40	<therealprof>	theJPster: You added https://github.com/rust-embedded-community/ to the list, would you like to tell us more?
+2019-06-18 18:50:43	<spacekookie>	That number wasn't to be taken too literally :p
+2019-06-18 18:51:07	<theJPster>	therealprof, it's a thing.
+2019-06-18 18:51:22	<theJPster>	We discussed it last week - it's a home for unwanted, unloved Rust projects.
+2019-06-18 18:51:36	<therealprof>	That sounds… harsh.
+2019-06-18 18:51:44	<theJPster>	If you're worried that you're the only person working on your little library, giving you a Bus Number of 1, this is a place you can move your project to.
+2019-06-18 18:52:03	<theJPster>	It's like a nursery. Or daycare for crates.
+2019-06-18 18:52:33	<therealprof>	Okay. Are there any rules about maintainership.
+2019-06-18 18:52:37	<theJPster>	We haven't figured out much yet.
+2019-06-18 18:53:21	<disasm>	spacekookie: You were quite serious about it :) Ok, that's even better, I need to investigate things then
+2019-06-18 18:55:07	<theJPster>	If anyone wants to help, send a PR adding your name to the list.
+2019-06-18 18:55:46	<theJPster>	We'll probably go for a WG style vote approach on PRs to meta, and a 1 vote to approve thing for project PRs.
+2019-06-18 18:56:59	<therealprof>	(y)
+2019-06-18 18:57:31	<therealprof>	I put something in the paper, could you check for accuracy? :;
+2019-06-18 18:57:35	<therealprof>	:)
+2019-06-18 18:58:24	<therealprof>	We're almost out of meeting time. Anything else anyone wants to add?
+2019-06-18 19:00:12	<disasm>	If there is someone from the RISC-V team, please look at this PR: https://github.com/rust-embedded/wg/pull/358
+2019-06-18 19:00:45	<therealprof>	Okay, that's it for today. Thanks for joining the meeting!
