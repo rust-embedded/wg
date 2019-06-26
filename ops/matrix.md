@@ -40,6 +40,12 @@ the WG's Code of Conduct.
 * Can notify everyone
 * Can change topic
 
+For a WG member to request to become a channel moderator (or a new core team
+member to become an administrator), they should contact a core team member
+[via GitHub](https://github.com/orgs/rust-embedded/teams/core) with their
+Matrix username (e.g., `@username:matrix.org`) to be given moderator
+permissions.
+
 All other room members have no special powers:
 
 * Can send messages
