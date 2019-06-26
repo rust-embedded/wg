@@ -41,7 +41,7 @@ At a high level we have two main tasks:
   [bookshelf]!
 
 - We maintain and moderate the venues the embedded community uses to discuss. That includes this
-  coordination repository and our IRC channel (#rust-embedded @ irc.mozilla.org).
+  coordination repository and our Matrix room ([#rust-embedded:matrix.org](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org)).
 
 *And, we serve as a bridge between the [Rust teams] and the embedded community.*
 
@@ -90,7 +90,7 @@ Everyone can contribute to the embedded WG efforts! There are several ways to he
 
 [Help wanted!]: https://github.com/search?q=org%3Arust-embedded+is%3Aopen+label%3A%22help+wanted%22&type=Issues
 
-- Join our weekly meetings on IRC. We use these meetings as a faster, synchronous alternative to the
+- Join our weekly meetings on Matrix. We use these meetings as a faster, synchronous alternative to the
   RFC threads on GitHub. The agenda is [posted] in the issue tracker of this repository in advance
   to the meeting. Everyone is free to join the meeting and share their thoughts. You can also
   nominate an existing GH thread for discussion if you think it would benefit from a more
@@ -384,13 +384,10 @@ Each team can be privately contacted via the following e-mail addresses:
 - tools@teams.rust-embedded.org
 <!-- - msp430@teams.rust-embedded.org -->
 
-You can usually find the members of the embedded WG on the #rust-embedded channel (server:
-irc.mozilla.org).
+You can usually find the members of the embedded WG on the Rust Embedded Matrix room
+([#rust-embedded:matrix.org](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org)).
 
-Our IRC channel is logged using [logbot] and you can find the logs at
-https://mozilla.logbot.info/rust-embedded
-
-[logbot]: https://mozilla.logbot.info
+Our Matrix room is logged and you can find the logs at [TBC](TBC).
 
 [@Disasm]: https://github.com/Disasm
 [@Emilgardis]: https://github.com/Emilgardis
