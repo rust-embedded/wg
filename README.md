@@ -315,6 +315,7 @@ The tools team maintains and develops core embedded tools.
 
 #### Members
 
+- [@adamgreig]
 - [@Emilgardis]
 - [@ryankurte]
 - [@therealprof]
