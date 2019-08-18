@@ -267,9 +267,9 @@ Projects maintained by this team
 
 - [`rust-embedded-provisioning`]
 
-### The RISCV team
+### The RISC-V team
 
-The RISCV team develops and maintains the core of the RISCV crate ecosystem.
+The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 
 #### Members
 
