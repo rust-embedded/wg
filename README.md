@@ -318,6 +318,7 @@ The tools team maintains and develops core embedded tools.
 - [@adamgreig]
 - [@Disasm]
 - [@Emilgardis]
+- [@reitermarkus]
 - [@ryankurte]
 - [@therealprof]
 
@@ -419,6 +420,7 @@ https://mozilla.logbot.info/rust-embedded
 [@pftbest]: https://github.com/pftbest
 [@posborne]: https://github.com/posborne
 [@raw-bin]: https://github.com/raw-bin
+[@reitermarkus]: https://github.com/reitermarkus
 [@ryankurte]: https://github.com/ryankurte
 [@sekineh]: https://github.com/sekineh
 [@thejpster]: https://github.com/thejpster
