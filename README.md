@@ -316,6 +316,7 @@ The tools team maintains and develops core embedded tools.
 #### Members
 
 - [@adamgreig]
+- [@burrbull]
 - [@Disasm]
 - [@Emilgardis]
 - [@reitermarkus]
@@ -400,6 +401,7 @@ https://mozilla.logbot.info/rust-embedded
 [@adamgreig]: https://github.com/adamgreig
 [@andre-richter]: https://github.com/andre-richter
 [@awygle]: https://github.com/awygle
+[@burrbull]: https://github.com/burrbull
 [@bradjc]: https://github.com/bradjc
 [@cr1901]: https://github.com/cr1901
 [@danc86]: https://github.com/danc86
