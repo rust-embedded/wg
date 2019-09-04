@@ -330,6 +330,7 @@ Projects maintained by the tools team
 - [`cargo-binutils`]
 - [`cross`]
 - [`itm`]
+- [`svd-parser`]
 - [`svd2rust`]
 
 ### The triage team
@@ -464,6 +465,7 @@ https://mozilla.logbot.info/rust-embedded
 [`rust-raspi3-OS-tutorials`]: https://github.com/rust-embedded/rust-raspi3-OS-tutorials
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
 [`svd2rust`]: https://github.com/rust-embedded/svd2rust
+[`svd-parser`]: https://github.com/rust-embedded/svd
 [`sysfs-gpio`]: https://github.com/rust-embedded/rust-sysfs-gpio
 [`sysfs-pwm`]: https://github.com/rust-embedded/rust-sysfs-pwm
 
