@@ -273,12 +273,12 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 
 #### Members
 
+- [@almindor]
 - [@bradjc]
 - [@danc86]
 - [@dvc94ch]
 - [@Disasm]
 - [@laanwj]
-- [@almindor]
 
 #### Projects
 
