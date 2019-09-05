@@ -396,10 +396,10 @@ You can usually find the members of the embedded WG on the Rust Embedded Matrix 
 Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can find the logs at: https://freenode.logbot.info/rust-embedded
 
 [logbot]: https://freenode.logbot.info
-[@almindor]: https://github.com/almindor
 [@Disasm]: https://github.com/Disasm
 [@Emilgardis]: https://github.com/Emilgardis
 [@adamgreig]: https://github.com/adamgreig
+[@almindor]: https://github.com/almindor
 [@andre-richter]: https://github.com/andre-richter
 [@awygle]: https://github.com/awygle
 [@burrbull]: https://github.com/burrbull
