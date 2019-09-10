@@ -3,7 +3,7 @@
 # Summary
 [summary]: #summary
 
-This RFC proposes to add a `mutex-trait` crate which adds a `Mutex` trait for a stable and generic foundation on which HALs and applications can be built on when there is a need for mutual exclusive access.
+This RFC proposes to add a `core-mutex` crate which adds a `Mutex` trait for a stable and generic foundation on which HALs and applications can be built on when there is a need for mutual exclusive access.
 
 The original idea to a `Mutex` trait was given here [embedded-hal#132].
 
@@ -49,7 +49,7 @@ The design is such that the data protected by the mutex is only accessible withi
 This is the **most important** part of this RFC proposal. Let's assume that the implementation was `&self`, what would this mean? This would allow the following code to compile, which is unsound by construction:
 
 ```rust
-fn unsound(mtx: &impl mutex_trait::Mutex<Data = i32>) {
+fn unsound(mtx: &impl core_mutex::Mutex<Data = i32>) {
     mtx.lock(|data| {
         *data += 1;
 
@@ -61,7 +61,7 @@ fn unsound(mtx: &impl mutex_trait::Mutex<Data = i32>) {
 This example allows for a mutex to lock itself within a lock of itself, which is **unsound by construction** and creates an immediate deadlock - while if implementing it with `&mut self` the following would happen:
 
 ```rust
-fn sound(mtx: &mut impl mutex_trait::Mutex<Data = i32>) {
+fn sound(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
     mtx.lock(|data| {
         *data += 1;
 
@@ -106,7 +106,7 @@ impl<T> Mutex<T> {
     }
 }
 
-impl<'a, T> mutex_trait::Mutex for &'a Mutex<RefCell<T>> {
+impl<'a, T> core_mutex::Mutex for &'a Mutex<RefCell<T>> {
     type Data = T;
 
     fn lock<R>(&mut self, f: impl FnOnce(&mut Self::Data) -> R) -> R {
@@ -175,7 +175,7 @@ The following example shows how to write generic functions over the trait:
 
 ```rust
 // A simple resource holding an `i32`
-fn increment_in_mutex(mtx: &mut impl mutex_trait::Mutex<Data = i32>) {
+fn increment_in_mutex(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
     mtx.lock(|data| *data += 1);
 }
 ```
@@ -220,12 +220,12 @@ As of writing this RFC I see no drawbacks.
 
 The alternatives, taking `&self` and returning a `Result<...>` are discussed in [Detailed design](#detailed-design).
 
-One can also further follow the [Rust standard library `Mutex`] and its RAII pattern, however this should not be persued due to these causes:
+One can also further follow the [Rust standard library `Mutex`] and its RAII pattern, however this should not be pursued due to these causes:
 
 1. The closure is explicit where it starts and ends, no need to wait for the destruction or add extra `{ ... }` around code to get predictable unlocks.
 2. Makes code using locks more stable under refactoring, as small changes can drastically change the scope of a lock when using RAII.
 3. A RAII based mutex can be `mem::forget` or `mem::swap` and all guarantees are out, the closure based mutex cannot be circumvented.
-4. The RAII based mutex can be circumvented easily as follows:
+    3.1. The RAII based mutex can be circumvented easily as follows:
 
 ```rust
 // Break all guarantees
@@ -239,4 +239,4 @@ drop(y);
 [unresolved]: #unresolved-questions
 
 * Should the trait be unsafe to indicate that one needs to be aware of the design constraints to implement it?
-* Should the crate be named `mutex-trait` or something different?
+* Should the crate be named `core-mutex` or something different?
