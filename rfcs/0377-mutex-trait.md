@@ -220,7 +220,7 @@ As of writing this RFC I see no drawbacks.
 
 The alternatives, taking `&self` and returning a `Result<...>` are discussed in [Detailed design](#detailed-design).
 
-One can also futher follow the [Rust standard library `Mutex`] and its RAII pattern, however this should not be persued due to these causes:
+One can also further follow the [Rust standard library `Mutex`] and its RAII pattern, however this should not be persued due to these causes:
 
 1. The closure is explicit where it starts and ends, no need to wait for the destruction or add extra `{ ... }` around code to get predictable unlocks.
 2. Makes code using locks more stable under refactoring, as small changes can drastically change the scope of a lock when using RAII.
