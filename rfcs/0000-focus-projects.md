@@ -82,7 +82,7 @@ It is recommended to add a section to the project file summarizing the outcome o
 
 ### On-Hold
 
-If the work need to be put on hold due to availability or technical reasons, this can be signified by submitting a PR to move the project file from `focus-projects/` to `focus-projects/on-hold/`. This move only requires the approval of the sponsoring WG member.
+If the work needs to be put on hold due to availability or technical reasons, this can be signified by submitting a PR to move the project file from `focus-projects/` to `focus-projects/on-hold/`. This move only requires the approval of the sponsoring WG member.
 
 If a project is not expected to make progress, or hasn't made progress, for one month or more it is recommended that it be moved to the on-hold state.
 
