@@ -20,7 +20,7 @@ This RFC proposes a structure for proposing, selecting, and tracking progress on
 # Detailed design
 [design]: #detailed-design
 
-This RFC covers four main stages of how we tackle large scale work, referred to as "focus projects": **Proposal**, **Selection**, and **Tracking**, and **Completion**.
+This RFC covers four main stages of how we tackle large scale work, referred to as "focus projects": **Proposal**, **Selection**, **Tracking**, and **Completion**.
 
 ## Proposal
 
