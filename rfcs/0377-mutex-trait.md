@@ -220,13 +220,12 @@ As of writing this RFC I see no drawbacks.
 
 The alternatives, taking `&self` and returning a `Result<...>` are discussed in [Detailed design](#detailed-design).
 
-One can also futher follow the [Rust standard library `Mutex`] and its RAII pattern, however this should not be persued dues to these causes:
+One can also futher follow the [Rust standard library `Mutex`] and its RAII pattern, however this should not be persued due to these causes:
 
-1. The RAII version can be used to implement the closure and hence the closure can be implemented with an `std`-like mutex in the background.
-2. The closure is explicit where it starts and ends, no need to wait for the destruction or add extra `{ ... }` around code to get predictable unlocks.
-3. Makes code using locks more stable under refactoring, as small changes can drastically change the scope of a lock when using RAII.
-4. A RAII based mutex can be `mem::forget` or `mem::swap` and all guarantees are out, the closure based mutex cannot be circumvented easily.
-5. The RAII based mutex can be circumvented easily as follows:
+1. The closure is explicit where it starts and ends, no need to wait for the destruction or add extra `{ ... }` around code to get predictable unlocks.
+2. Makes code using locks more stable under refactoring, as small changes can drastically change the scope of a lock when using RAII.
+3. A RAII based mutex can be `mem::forget` or `mem::swap` and all guarantees are out, the closure based mutex cannot be circumvented easily.
+4. The RAII based mutex can be circumvented easily as follows:
 
 ```rust
 // Break all guarantees
