@@ -224,7 +224,7 @@ One can also further follow the [Rust standard library `Mutex`] and its RAII pat
 
 1. The closure is explicit where it starts and ends, no need to wait for the destruction or add extra `{ ... }` around code to get predictable unlocks.
 2. Makes code using locks more stable under refactoring, as small changes can drastically change the scope of a lock when using RAII.
-3. A RAII based mutex can be `mem::forget` or `mem::swap` and all guarantees are out, the closure based mutex cannot be circumvented easily.
+3. A RAII based mutex can be `mem::forget` or `mem::swap` and all guarantees are out, the closure based mutex cannot be circumvented.
 4. The RAII based mutex can be circumvented easily as follows:
 
 ```rust
