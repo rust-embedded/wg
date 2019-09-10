@@ -151,8 +151,11 @@ This implementation does however **allow for relocking the mutex within a lock a
 
 It is, in my opinion, an error that the standard library did not use this design together with the class of issues it eliminates.
 
+For a detailed analysis on `&mut self` critical sections see [this part of the RTFM book].
+
 [Rust standard library `Mutex`]: https://doc.rust-lang.org/std/sync/struct.Mutex.html#method.lock
 [RTFM framework]: https://github.com/japaric/cortex-m-rtfm
+[this part of the RTFM book]: https://github.com/japaric/cortex-m-rtfm/blob/2596ea0e46bec73d090d9e51d41e6c2f481b8e15/book/en/src/internals/critical-sections.md
 
 #### Why is the result of the `lock` method not a `Result<...>`?
 
@@ -216,6 +219,22 @@ As of writing this RFC I see no drawbacks.
 [alternatives]: #alternatives
 
 The alternatives, taking `&self` and returning a `Result<...>` are discussed in [Detailed design](#detailed-design).
+
+One can also futher follow the [Rust standard library `Mutex`] and its RAII pattern, however this should not be persued dues to these causes:
+
+1. The RAII version can be used to implement the closure and hence the closure can be implemented with an `std`-like mutex in the background.
+2. The closure is explicit where it starts and ends, no need to wait for the destruction or add extra `{ ... }` around code to get predictable unlocks.
+3. Makes code using locks more stable under refactoring, as small changes can drastically change the scope of a lock when using RAII.
+4. A RAII based mutex can be `mem::forget` or `mem::swap` and all guarantees are out, the closure based mutex cannot be circumvented easily.
+5. The RAII based mutex can be circumvented easily as follows:
+
+```rust
+// Break all guarantees
+let x = lock1.lock();
+let y = lock2.lock();
+drop(x);
+drop(y);
+```
 
 # Unresolved questions
 [unresolved]: #unresolved-questions
