@@ -27,7 +27,13 @@ This can however easily be addressed by introducing a `Mutex` trait on which pre
 The trait is proposed as follows:
 
 ```rust
-pub trait Mutex {
+/// Any object implementing this trait guarantees exclusive access to the data contained
+/// within the mutex for the duration of the lock.
+///
+/// Note: The trait is marked unsafe because the implementation behind `lock` will most likely
+/// need `unsafe` code, and to make the implementor aware of the guarantees that must be upheld
+/// when implementing this trait.
+pub unsafe trait Mutex {
     /// Data protected by the mutex
     type Data;
 
@@ -38,8 +44,9 @@ pub trait Mutex {
 
 The design is such that the data protected by the mutex is only accessible within the closure provided to the `lock` method, moreover the closure shall run within a critical section such that it is guaranteed that no-one else can access the same data at the same time. The critical section can for example be:
 
-* Disabling interrupts (cortex-m / risc-v critical sections)
+* Disabling interrupts (e.g. `cortex-m` / `risc-v` critical sections)
 * Analyzing the program and set BASEPRI in Cortex-M devices (Stack Resource Policy/RTFM way)
+* Analyzing the program and set interrupt masks correctly
 * etc
 
 ### Design decisions and compatibility
@@ -89,7 +96,7 @@ error[E0499]: cannot borrow `mtx` as mutable more than once at a time
    | |______^ second mutable borrow occurs here
 ```
 
-The common point raised with `&mut self` is that this definition is **not compatible** with with the current `Mutex<RefCell<T>>` way of implementing mutexes in embedded Rust today, as one needs to take a mutable reference to the mutex. This can however be circumvented with the following implementation of the trait:
+The common point raised with `&mut self` is that this definition is **not compatible** with with the current `Mutex<RefCell<T>>` way of implementing mutexes in embedded Rust today, as one needs to take a mutable reference to the mutex. This can however be circumvented with the following naive implementation of the trait:
 
 ```rust
 struct Mutex<T> {
@@ -106,7 +113,7 @@ impl<T> Mutex<T> {
     }
 }
 
-impl<'a, T> core_mutex::Mutex for &'a Mutex<RefCell<T>> {
+unsafe impl<'a, T> core_mutex::Mutex for &'a Mutex<RefCell<T>> {
     type Data = T;
 
     fn lock<R>(&mut self, f: impl FnOnce(&mut Self::Data) -> R) -> R {
@@ -147,7 +154,7 @@ fn increment_in_mutex(m: &mut impl MutexTrait<Data = i32>) {
 }
 ```
 
-This implementation does however **allow for relocking the mutex within a lock again, so why bother** (double lock = panic in this case)? The use of `&mut self` locks has been evaluated extensively in the [RTFM framework], and is the entire basis for safe by construction applications. When pairing the `Mutex` trait with procedual macros and analysis it is possible to create deadlock and race condition free programs by construction - **but these are only possible** if we have a basis which is build on the `&mut self`.
+This implementation does however **allow for relocking the mutex within a lock again, so why bother** (double lock = panic in this case)? The use of `&mut self` locks has been evaluated extensively in the [RTFM framework], and is the entire basis for safe by construction applications. When pairing the `Mutex` trait with procedural macros and analysis it is possible to create deadlock and race condition free programs by construction - **but these are only possible** if we have a basis which is build on the `&mut self`.
 
 It is, in my opinion, an error that the standard library did not use this design together with the class of issues it eliminates.
 
@@ -169,6 +176,18 @@ All these questions point to an infallible `Mutex` trait. The example of a deadl
 
 It boils down to this philosophy: `panic` is for program error - `Result` is for user error
 
+#### Why is the trait `unsafe`?
+
+The trait is marked `unsafe` in accordance with [RFC 19, 127], which states:
+
+> Unsafe traits: An unsafe trait is a trait that is unsafe to implement, because it represents some kind of trusted assertion. Note that unsafe traits are perfectly safe to use. Send and Share are examples of unsafe traits: implementing these traits is effectively an assertion that your type is safe for threading.
+
+In this case the trusted assertion is that the data protect by the mutex is only accessed in a critical section, as we are going to share mutable references to the internal data. If this is not upheld by the implementation i.e. an unsound mutex implementation, the memory will be aliased mutably which is undefined behaviour. As the core requirement cannot be expressed using the Rust type-system in many cases, this requirement is placed on the implementor to uphold.
+
+Another way to view this is that an unsound implementation of a mutex can lead to aliasing as the assumption made on the guard having `&mut self` is not as strict as one would expect from the Rust type-system.
+
+[RFC 19, 127]: https://github.com/rust-lang/rfcs/blob/master/text/0019-opt-in-builtin-traits.md
+
 #### How does one implement generic functions that understand `lock`?
 
 The following example shows how to write generic functions over the trait:
@@ -187,14 +206,14 @@ fn increment_in_mutex(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
 ## FAQ
 
 > Can this be used in a lock/unlock setting such as:
->
-> ```rust
-> mtx.lock();
->
-> // Do something ...
->
-> mtx.unlock();
-> ```
+
+```rust
+mtx.lock();
+
+// Do something ...
+
+mtx.unlock();
+```
 
 No. The `Mutex` trait is specifically for scoped use, i.e. the lock is defined in such a way that the resource protected by the lock is only accessible within the critical section that is the closure in the `lock` method.
 
@@ -225,7 +244,7 @@ One can also further follow the [Rust standard library `Mutex`] and its RAII pat
 1. The closure is explicit where it starts and ends, no need to wait for the destruction or add extra `{ ... }` around code to get predictable unlocks.
 2. Makes code using locks more stable under refactoring, as small changes can drastically change the scope of a lock when using RAII.
 3. A RAII based mutex can be `mem::forget` or `mem::swap` and all guarantees are out, the closure based mutex cannot be circumvented.
-    3.1. The RAII based mutex can be circumvented easily as follows:
+    * A RAII based mutex can be circumvented easily as follows:
 
 ```rust
 // Break all guarantees
