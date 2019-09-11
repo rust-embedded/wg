@@ -182,7 +182,7 @@ The trait is marked `unsafe` in accordance with [RFC 19, 127], which states:
 
 > Unsafe traits: An unsafe trait is a trait that is unsafe to implement, because it represents some kind of trusted assertion. Note that unsafe traits are perfectly safe to use. Send and Share are examples of unsafe traits: implementing these traits is effectively an assertion that your type is safe for threading.
 
-In this case the trusted assertion is that the data protect by the mutex is only accessed in a critical section, as we are going to share mutable references to the internal data. If this is not upheld by the implementation i.e. an unsound mutex implementation, the memory will be aliased mutably which is undefined behaviour. As the core requirement cannot be expressed using the Rust type-system in many cases, this requirement is placed on the implementor to uphold.
+In this case the trusted assertion is that the data protected by the mutex is only accessed in a critical section, as we are going to share mutable references to the internal data. If this is not upheld by the implementation i.e. an unsound mutex implementation, the memory will be aliased mutably which is undefined behaviour. As the core requirement cannot be expressed using the Rust type-system in many cases, this requirement is placed on the implementor to uphold.
 
 Another way to view this is that an unsound implementation of a mutex can lead to aliasing as the assumption made on the guard having `&mut self` is not as strict as one would expect from the Rust type-system.
 
