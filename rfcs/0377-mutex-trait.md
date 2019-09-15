@@ -239,7 +239,7 @@ This means that for example if you have a peripheral driver and you want to lock
 > Should the `Mutex` trait not be in the [`embedded-hal`]?
 
 It is our strong recommendation to **not** place it in the [`embedded-hal`] crate.
-If there are breaking changes in the [`embedded-hal`] it can be so that competing implementations of the Mutex trait starts to exist which could bifurcate the ecosystem based on version, plus that the Mutex trait will be tied to HAL releases.
+If there are breaking changes in the [`embedded-hal`] it can be so that competing implementations of the Mutex trait start to exist which could bifurcate the ecosystem based on version, plus that the Mutex trait will be tied to HAL releases.
 
 # How We Teach This
 [how-we-teach-this]: #how-we-teach-this
