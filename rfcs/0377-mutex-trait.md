@@ -24,16 +24,15 @@ This can however easily be addressed by introducing a `Mutex` trait on which pre
 # Detailed design
 [detailed-design]: #detailed-design
 
+
+## Trait
+
 The trait is proposed as follows:
 
 ```rust
 /// Any object implementing this trait guarantees exclusive access to the data contained
 /// within the mutex for the duration of the lock.
-///
-/// Note: The trait is marked unsafe because the implementation behind `lock` will most likely
-/// need `unsafe` code, and to make the implementor aware of the guarantees that must be upheld
-/// when implementing this trait.
-pub unsafe trait Mutex {
+pub trait Mutex {
     /// Data protected by the mutex
     type Data;
 
@@ -49,14 +48,44 @@ The design is such that the data protected by the mutex is only accessible withi
 * Analyzing the program and set interrupt masks correctly
 * etc
 
+## Helpers
+
+A concerned that has been raised is that taking multiple locks can lead to excessive rightward drift as:
+
+```rust
+a.lock(|a| {
+    b.lock(|b| {
+        c.lock(|c| {
+            d.lock(|d| {
+                e.lock(|e| {
+                    // ...
+                });
+            });
+        });
+    });
+});
+```
+
+It is proposed to provide a helper implementation to allow the following shorthand:
+
+```rust
+(a, b, c, d, e).lock(|a, b, c, d, e| {
+    // ...
+});
+```
+
+## Implementation
+
+A proof-of-concept implementation of the crate with trait and helpers [can be found here](https://github.com/korken89/core-mutex).
+
 ### Design decisions and compatibility
 
 ####  The [Rust standard library `Mutex`] uses `&self` for the `lock` method, why choose `&mut self`?
 
-This is the **most important** part of this RFC proposal. Let's assume that the implementation was `&self`, what would this mean? This would allow the following code to compile, which is unsound by construction:
+This is the **most important** part of this RFC proposal. Let's assume that the implementation was `&self`, what would this mean? This would allow the following code to compile:
 
 ```rust
-fn unsound(mtx: &impl core_mutex::Mutex<Data = i32>) {
+fn deadlock(mtx: &impl core_mutex::Mutex<Data = i32>) {
     mtx.lock(|data| {
         *data += 1;
 
@@ -65,10 +94,10 @@ fn unsound(mtx: &impl core_mutex::Mutex<Data = i32>) {
 }
 ```
 
-This example allows for a mutex to lock itself within a lock of itself, which is **unsound by construction** and creates an immediate deadlock - while if implementing it with `&mut self` the following would happen:
+This example allows for a mutex to lock itself within a lock of itself, which is **deadlock by construction** - while if implementing it with `&mut self` the following would happen:
 
 ```rust
-fn sound(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
+fn compile_error(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
     mtx.lock(|data| {
         *data += 1;
 
@@ -77,7 +106,7 @@ fn sound(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
 }
 ```
 
-Which produces the following error and making the mutex **sound by construction**:
+Which produces the following error and making the mutex **deadlock-free by construction**:
 
 ```
 error[E0499]: cannot borrow `mtx` as mutable more than once at a time
@@ -176,17 +205,9 @@ All these questions point to an infallible `Mutex` trait. The example of a deadl
 
 It boils down to this philosophy: `panic` is for program error - `Result` is for user error
 
-#### Why is the trait `unsafe`?
+#### Should the trait be marked `unsafe`?
 
-The trait is marked `unsafe` in accordance with [RFC 19, 127], which states:
-
-> Unsafe traits: An unsafe trait is a trait that is unsafe to implement, because it represents some kind of trusted assertion. Note that unsafe traits are perfectly safe to use. Send and Share are examples of unsafe traits: implementing these traits is effectively an assertion that your type is safe for threading.
-
-In this case the trusted assertion is that the data protected by the mutex is only accessed in a critical section, as we are going to share mutable references to the internal data. If this is not upheld by the implementation i.e. an unsound mutex implementation, the memory will be aliased mutably which is undefined behaviour. As the core requirement cannot be expressed using the Rust type-system in many cases, this requirement is placed on the implementor to uphold.
-
-Another way to view this is that an unsound implementation of a mutex can lead to aliasing as the assumption made on the guard having `&mut self` is not as strict as one would expect from the Rust type-system.
-
-[RFC 19, 127]: https://github.com/rust-lang/rfcs/blob/master/text/0019-opt-in-builtin-traits.md
+The trait does not need to be marked as `unsafe` as the signature of `lock` together with the Rust type system guarantees exclusive access. If there is an implementation which handles multiple access points to the same mutable reference `unsafe` code must be used, which puts the responsibility of upholding Rusts alias rule on the implementor.
 
 #### How does one implement generic functions that understand `lock`?
 
@@ -198,10 +219,6 @@ fn increment_in_mutex(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
     mtx.lock(|data| *data += 1);
 }
 ```
-
-## Rules for implementations
-
-* Any object implementing the `Mutex` trait guarantees exclusive access to the data contained within the mutex for the duration of the lock.
 
 ## FAQ
 
