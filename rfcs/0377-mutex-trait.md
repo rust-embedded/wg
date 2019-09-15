@@ -50,7 +50,7 @@ The design is such that the data protected by the mutex is only accessible withi
 
 ## Helpers
 
-A concerned that has been raised is that taking multiple locks can lead to excessive rightward drift as:
+A concern that has been raised is that taking multiple locks can lead to excessive rightward drift as:
 
 ```rust
 a.lock(|a| {
