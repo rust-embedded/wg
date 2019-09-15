@@ -207,7 +207,7 @@ It boils down to this philosophy: `panic` is for program error - `Result` is for
 
 #### Should the trait be marked `unsafe`?
 
-The trait does not need to be marked as `unsafe` as the signature of `lock` together with the Rust type system guarantees exclusive access. If there is an implementation which handles multiple access points to the same mutable reference `unsafe` code must be used, which puts the responsibility of upholding Rusts alias rule on the implementor.
+The trait does not need to be marked as `unsafe` as the signature of `lock` together with the Rust type system guarantees exclusive access. If there is an implementation which handles multiple access points to the same mutable reference, `unsafe` code must be used, which puts the responsibility of upholding Rust's alias rule on the implementor.
 
 #### How does one implement generic functions that understand `lock`?
 
