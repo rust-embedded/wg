@@ -274,5 +274,4 @@ drop(y);
 # Unresolved questions
 [unresolved]: #unresolved-questions
 
-* Should the trait be unsafe to indicate that one needs to be aware of the design constraints to implement it?
 * Should the crate be named `core-mutex` or something different?
