@@ -106,7 +106,7 @@ fn compile_error(mtx: &mut impl core_mutex::Mutex<Data = i32>) {
 }
 ```
 
-Which produces the following error and making the mutex **deadlock-free by construction**:
+Which produces the following error and making the mutex **deadlock-safe by construction**:
 
 ```
 error[E0499]: cannot borrow `mtx` as mutable more than once at a time
