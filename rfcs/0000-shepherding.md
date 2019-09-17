@@ -21,7 +21,7 @@ This RFC proposes a structure for proposing, selecting, and tracking progress on
 
 For a general background on the concept of Shepherding, refer to the blog posts by [James Munns] and [Niko Matsakis].
 
-[James Munns]: #
+[James Munns]: https://jamesmunns.com/blog/shepherding-3-1/
 [Niko Matsakis]: http://smallcultfollowing.com/babysteps/blog/2019/09/11/aic-shepherds-3-0/
 
 # Detailed design
@@ -31,11 +31,9 @@ This RFC covers four main stages of how we tackle large scale work, referred to 
 
 ## Proposal
 
-Anyone may propose a large scale project to be worked on. Projects are proposed by opening an issue that is tagged with the `project` tag on the [Issue Tracker].
+Anyone may propose a large scale project to be worked on. Projects are proposed by opening an PR that copies the project template from `0000-project-template.md` to `projects/in-progress/0000-your-project-name.md`.
 
-[Issue Tracker]: https://github.com/rust-embedded/wg/issues
-
-All proposals should contain the following information:
+All proposals should contain the following information in the template file:
 
 1. What is the current problem/shortcoming?
 2. What is the relevance to the Rust Embedded Ecosystem?
@@ -47,17 +45,6 @@ After opening this issue, the proposer of this project should solicit feedback f
 Once a potential sponsor has been found, the project may be selected.
 
 ## Selection
-
-In order to move an issue from "proposed" to "selected", the proposer and sponsor should open a PR to add the project to the `projects/` folder in this repo. Items in this folder should be named `0000-project-name.md`, and should contain the following information:
-
-1. All contents from the proposal
-    * Original problem
-    * Relevance
-    * Desired Outcome
-    * What will be done?
-2. Who is the WG sponsor for this issue?
-3. Who else is working on this issue?
-4. If relevant, a link to the repository where work on this project is being done
 
 A project does not require full WG approval to be selected, only the sponsorship of one or more WG members. This member will be expected to provide status updates at the weekly Matrix meeting on the status of this project. If the WG member is unable to attend, they can delegate this responsibility as necessary.
 
@@ -83,13 +70,13 @@ Once a project has been completed, the WG sponsor is no longer required to provi
 
 ### Finished
 
-If the work has completed successfully by meeting the current or revised goals, and does not require ongoing focus, this can be signified by submitting a PR to move the project file from `projects/` to `projects/completed/`. This move only requires the approval of the sponsoring WG member.
+If the work has completed successfully by meeting the current or revised goals, and does not require ongoing focus, this can be signified by submitting a PR to move the project file from `projects/in-progress/` to `projects/completed/`. This move only requires the approval of the sponsoring WG member.
 
 It is recommended to add a section to the project file summarizing the outcome of the project, and what was achieved.
 
 ### On-Hold
 
-If the work need to be put on hold due to availability or technical reasons, this can be signified by submitting a PR to move the project file from `projects/` to `projects/on-hold/`. This move only requires the approval of the sponsoring WG member.
+If the work need to be put on hold due to availability or technical reasons, this can be signified by submitting a PR to move the project file from `projects/in-progress/` to `projects/on-hold/`. This move only requires the approval of the sponsoring WG member.
 
 If a project is not expected to make progress, or hasn't made progress, for one month or more it is recommended that it be moved to the on-hold state.
 
@@ -128,4 +115,4 @@ What other designs have been considered? What is the impact of not doing this?
 # Unresolved questions
 [unresolved]: #unresolved-questions
 
-What parts of the design are still TBD?
+None known at this time
