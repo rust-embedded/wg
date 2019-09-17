@@ -186,7 +186,7 @@ fn SWI0_EGU0() {
 }
 
 // Look no RefCell and a lock!!!
-fn increment_in_mutex(m: &mut impl MutexTrait<Data = i32>) {
+fn increment_in_mutex(m: &mut impl core_mutex::Mutex<Data = i32>) {
     m.lock(|data| *data += 1);
 }
 ```
