@@ -54,7 +54,7 @@ A "MUTual EXclusion" aka `Mutex` as used in this trait describes the **principle
 
 * A struct `Spinlock` could be one implementor of trait `Mutex` where the struct name gives away HOW mutual exclusion is achieved.
 * A struct `Sleeplock` would be another implementor with a telling name.
-		* For unfortunate reasons, a sleeping lock is often also called just `Mutex` in existing code (most prominent example being Linux). Using that naming scheme would mean a struct `Mutex` implementing the trait `Mutex` - this is discouraged to avoid stated ambiguity.
+	* For unfortunate reasons, a sleeping lock is often also called just `Mutex` in existing code (most prominent example being Linux). Using that naming scheme would mean a struct `Mutex` implementing the trait `Mutex` - this is discouraged to avoid stated ambiguity.
 
 ## Helpers
 
