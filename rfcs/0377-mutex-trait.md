@@ -150,7 +150,7 @@ impl<T> Mutex<T> {
     }
 }
 
-unsafe impl<'a, T> core_mutex::Mutex for &'a Mutex<RefCell<T>> {
+impl<'a, T> core_mutex::Mutex for &'a Mutex<RefCell<T>> {
     type Data = T;
 
     fn lock<R>(&mut self, f: impl FnOnce(&mut Self::Data) -> R) -> R {
