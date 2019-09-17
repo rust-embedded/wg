@@ -41,7 +41,7 @@ pub trait Mutex {
 }
 ```
 
-The design is such that the data protected by the mutex is only accessible within the closure provided to the `lock` method. Moreover, the closure shall run within a critical section such that it is guaranteed that no-one else can access the same data at the same time. The critical section can for example be:
+The design is such that the data protected by the mutex is only accessible within the closure provided to the `lock` method. Moreover, the closure shall run such that it is guaranteed that no-one else can access the same data at the same time, for example within a critical section. The critical section can for example be:
 
 * Disabling interrupts (e.g. `cortex-m` / `risc-v` critical sections)
 * Analyzing the program and set BASEPRI in Cortex-M devices (Stack Resource Policy/RTFM way)
