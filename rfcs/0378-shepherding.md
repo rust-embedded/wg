@@ -1,6 +1,6 @@
 - Feature Name: shepherding
 - Start Date: 2019-09-10
-- RFC PR: (leave this empty)
+- RFC PR: https://github.com/rust-embedded/wg/pull/378
 - Rust Issue: (leave this empty)
 
 # Summary
