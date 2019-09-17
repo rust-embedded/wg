@@ -48,6 +48,14 @@ The design is such that the data protected by the mutex is only accessible withi
 * Analyzing the program and set interrupt masks correctly
 * etc
 
+### Taxonomy
+
+A "MUTual EXclusion" aka `Mutex` as used in this trait describes the **principle** and not the *implementation* characteristics. More specifically:
+
+* A struct `Spinlock` could be one implementor of trait `Mutex` where the struct name gives away HOW mutual exclusion is achieved.
+* A struct `Sleeplock` would be another implementor with a telling name.
+		* For unfortunate reasons, a sleeping lock is often also called just `Mutex` in existing code (most prominent example being Linux). Using that naming scheme would mean a struct `Mutex` implementing the trait `Mutex` - this is discouraged to avoid stated ambiguity.
+
 ## Helpers
 
 A concern that has been raised is that taking multiple locks can lead to excessive rightward drift as:
