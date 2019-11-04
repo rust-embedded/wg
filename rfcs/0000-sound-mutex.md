@@ -88,7 +88,7 @@ are up for debate:
 
 pub unsafe auto trait SingleCoreSend {}
 
-pub auto trait SingleCoreSync {}
+pub unsafe auto trait SingleCoreSync {}
 
 // replicate all the `Send` / `Sync` impls in core
 impl<T> !SingleCoreSync for *mut T {}
