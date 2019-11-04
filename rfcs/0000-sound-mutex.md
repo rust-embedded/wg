@@ -86,7 +86,7 @@ are up for debate:
 ``` rust
 // crate: single-core-send-sync
 
-pub auto trait SingleCoreSend {}
+pub unsafe auto trait SingleCoreSend {}
 
 pub auto trait SingleCoreSync {}
 
