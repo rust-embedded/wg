@@ -227,6 +227,7 @@ Board Support Crates and drivers.
 - [@therealprof]
 - [@ithinuel]
 - [@ryankurte]
+- [@no111u3]
 
 #### Projects
 
@@ -418,6 +419,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [@mathk]: https://github.com/mathk
 [@nastevens]: https://github.com/nastevens
 [@nerdyvaishali]: https://github.com/nerdyvaishali
+[@no111u3]: https://github.com/no111u3
 [@paoloteti]: https://github.com/paoloteti
 [@parched]: https://github.com/parched
 [@pftbest]: https://github.com/pftbest
