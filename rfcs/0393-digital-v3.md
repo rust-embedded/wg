@@ -87,3 +87,6 @@ This solves the name clashing problem, but does not solve `digital::v1` deprecat
 [unresolved]: #unresolved-questions
 
 Naming the methods: while `try_set_high` and `try_toggle` seem ok, `try_is_set_high` name is a bit weird.
+
+Handling multiple error types in drivers. This RFC does not attempt to solve this issue,
+leaving everything as it is.
