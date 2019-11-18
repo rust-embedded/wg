@@ -49,23 +49,30 @@ produce an error due to the ambiguity of used trait. Due to this fact, one also 
 
 This RFC proposes the following changes:
 
-* Add `digital::v3` interface with the same traits as `digital::v2`, but with methods named with `try_` prefix.
+* Add `digital::v3` with both fallible and infallible traits.
+Fallible traits will provide the same interface as `digital::v2`, but will reside under `fallible` module and have
+`try_` prefix for the trait methods.
 For example, `ToggleableOutputPin` will have `try_toggle` method instead of `toggle`.
-* Provide transparent conversion from `digital::v2` traits to `digital::v3` traits.
+Infallible traits will be exactly the same as in `digital::v1` interface.
+
+* Provide transparent conversion from `digital::v1` and `digital::v2` traits to `digital::v3` traits.
 * Change `digital::v1` compatibility layer to convert from `digital::v3` traits instead of `digital::v2` ones.
 * Add `V2OutputPin` proxy to the `digital::v2` compatibility layer to provide `digital::v3` -> `digital::v2` downgrade.
-* Add `digital::v3` traits to prelude.
-* Un-deprecate `digital::v1` traits, add a note for driver developers.
-* Deprecate `digital::v2` traits in favor of `digital::v3` traits.
-* Move HALs back to `digital::v1` interface.
+* Deprecate `digital::v2` traits in favor of `digital::v3` fallible traits.
+* Switch from `digital::v1` to `digital::v3` default.
+* Move HALs to infallible `digital::v3` interface where applicable.
+* Survey published driver crates and make a concerted effort to pull them all up to `digital::v3`.
+* Drop `digital::v2` and `digital::v3` completely (with the semver-trick to previous versions if possible).
 
 ### Consequences
 
+* Code that implements `digital::v1` traits will be transparently switched to `digital::v3` infallible traits
+or (in case of explicit `digital::v1` usage) this compatibility will be provided via blanket implementations.
+* Code that uses `digital::v1` traits will not require any changes provided that `digital::v3` traits are in scope.
 * End users will be able to use both fallible and infallible traits and import them via `embedded-hal` prelude.
 * HALs will export GPIOs as infallible (as they really are).
 * Driver developers can move to fallible `digital::v3` traits with minimal effort.
-* End users that use drivers with `digital::v2` interface will continue using them without any changes in
-most of the cases. Newer `digital::v3` objects could be passed to `digital::v2` consumers via `V2OutputPin` shim.
+* For the first time both `digital::v1` and `digital::v2` interfaces can be used without any changes.
 
 # How We Teach This
 [how-we-teach-this]: #how-we-teach-this
