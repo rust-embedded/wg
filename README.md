@@ -165,6 +165,7 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 - [@thejpster]
 - [@therealprof]
 - [@ithinuel]
+- [@jonas-schievink]
 
 #### Projects
 
@@ -413,6 +414,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [@jamesmunns]: https://github.com/jamesmunns
 [@japaric]: https://github.com/japaric
 [@jcsoo]: https://github.com/jcsoo
+[@jonas-schievink]: https://github.com/jonas-schievink
 [@korken89]: https://github.com/korken89
 [@laanwj]: https://github.com/laanwj
 [@mathk]: https://github.com/mathk
