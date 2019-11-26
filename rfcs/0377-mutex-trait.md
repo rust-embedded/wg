@@ -199,7 +199,7 @@ For a detailed analysis on `&mut self` critical sections see [this part of the R
 
 [Rust standard library `Mutex`]: https://doc.rust-lang.org/std/sync/struct.Mutex.html#method.lock
 [RTFM framework]: https://github.com/japaric/cortex-m-rtfm
-[this part of the RTFM book]: https://github.com/japaric/cortex-m-rtfm/blob/2596ea0e46bec73d090d9e51d41e6c2f481b8e15/book/en/src/internals/critical-sections.md
+[this part of the RTFM book]: https://rtfm.rs/0.5/book/en/internals/critical-sections.html
 
 #### Why is the result of the `lock` method not a `Result<...>`?
 
