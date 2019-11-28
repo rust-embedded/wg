@@ -12,6 +12,8 @@ a great choice for embedded development.
 **Want to get started with embedded development with Rust?** Check out our
 [embedded Rust book][book] and the rest of our [bookshelf].
 
+Join the discussion on Matrix! [#rust-embedded:matrix.org](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org)
+
 [book]: https://docs.rust-embedded.org/book
 [bookshelf]: https://docs.rust-embedded.org
 
