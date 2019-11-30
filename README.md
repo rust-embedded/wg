@@ -14,7 +14,7 @@ a great choice for embedded development.
 
 Want to stay up-to-date with community progress? Check out our [newsletter].
 
-Join the discussion on Matrix! [#rust-embedded:matrix.org](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org)
+Join the discussion on Matrix! [#rust-embedded:matrix.org](https://matrix.to/#/#rust-embedded:matrix.org)
 
 [book]: https://docs.rust-embedded.org/book
 [bookshelf]: https://docs.rust-embedded.org
