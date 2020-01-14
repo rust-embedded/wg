@@ -1,6 +1,6 @@
 - Feature Name: Changing the way we handle addition/changes to the embedded-hal traits
 - Start Date: 2019-11-12
-- RFC PR: (leave this empty)
+- RFC PR: https://github.com/rust-embedded/wg/pull/415/
 - Rust Issue: (leave this empty)
 
 # Summary
