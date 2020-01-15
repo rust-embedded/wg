@@ -62,7 +62,7 @@ Infallible traits will be exactly the same as in `digital::v1` interface.
 * Switch from `digital::v1` to `digital::v3` default.
 * Move HALs to infallible `digital::v3` interface where applicable.
 * Survey published driver crates and make a concerted effort to pull them all up to `digital::v3`.
-* Drop `digital::v2` and `digital::v3` completely (with the semver-trick to previous versions if possible).
+* Drop `digital::v1` and `digital::v2` completely (with the semver-trick to previous versions if possible).
 
 ### Consequences
 
