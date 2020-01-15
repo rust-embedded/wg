@@ -6,7 +6,7 @@
 # Summary
 [summary]: #summary
 
-This RFC proposes `digital::v3` fallible interface and un-deprecation of `digital::v1` interface.
+This RFC proposes `digital::v3` with both fallible and infallible interfaces and deprecation of the `digital::v2` interface.
 
 # Motivation
 [motivation]: #motivation
