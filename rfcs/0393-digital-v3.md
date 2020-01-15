@@ -22,6 +22,7 @@ As a result, user code suffers from useless `.unwrap()` constructions.
 This RFC aims to solve these problems.
 
 Currently, `embedded-hal` digital traits are used from three perspectives:
+
 * driver developers
 * hal developers
 * end-users
@@ -29,7 +30,7 @@ Currently, `embedded-hal` digital traits are used from three perspectives:
 `digital::v2` traits were introduced to provide driver developers with a way to work with
 potentially fallible GPIO pins. Such pins can be created by drivers for external GPIO expanders connected
 via fallible peripherals (e.g. i2c). At the same time, most MCUs do not have fallible GPIOs and hals are not
-required to implement fallible `digital::v2` interface for them. 
+required to implement fallible `digital::v2` interface for them.
 
 Due to the deprecation of `digital::v1` traits, hal maintainers were annoyed by deprecation warnings and
 switched to `digital::v2` traits to get rid of these warnings. This change introduced another problem:
