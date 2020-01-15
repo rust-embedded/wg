@@ -51,9 +51,8 @@ produce an error due to the ambiguity of used trait. Due to this fact, one also 
 This RFC proposes the following changes:
 
 * Add `digital::v3` with both fallible and infallible traits.
-Fallible traits will provide the same interface as `digital::v2`, but will reside under `fallible` module and have
-`try_` prefix for the trait methods.
-For example, `ToggleableOutputPin` will have `try_toggle` method instead of `toggle`.
+Fallible traits will provide the same interface as `digital::v2`, but will have Fallible prefix for the trait names and `try_` prefix for the trait methods.
+For example, `ToggleableOutputPin` will become `FallibleToggleableOutputPin` with `try_toggle` method instead of `toggle`.
 Infallible traits will be exactly the same as in `digital::v1` interface.
 
 * Provide transparent conversion from `digital::v1` and `digital::v2` traits to `digital::v3` traits.
