@@ -87,8 +87,10 @@ The proposed approach does not provide hal and driver developers with a warning 
 # Alternatives
 [alternatives]: #alternatives
 
-Changing `digital::v2` interface to provide different method names in all the pin traits.
+* Changing `digital::v2` interface to provide different method names in all the pin traits.
 This solves the name clashing problem, but does not solve `digital::v1` deprecation problem.
+* Releasing a new version of `embedded-hal` with just one set of (fallible+infallible) traits,
+with `digital::{v1,v2}` modules removed.
 
 # Unresolved questions
 [unresolved]: #unresolved-questions
