@@ -94,10 +94,10 @@ heap-allocated types like `Box`, since sending them across thread boundaries is
 still desired.
 
 Something much closer to a multi-threaded program is one that makes use of
-interrupt handlers: In both cases, all global resources exist precisely once,
-and may be shared and exchanged between interrupt handlers or threads (provided
-they implement `Send`/`Sync`) with no risk of the resources changing their
-meaning when sent.
+interrupt handlers, but runs on a single-core MCU: In both cases, all global
+resources exist precisely once, and may be shared and exchanged between
+interrupt handlers or threads (provided they implement `Send`/`Sync`) with no
+risk of the resources changing their meaning when sent.
 
 # Detailed design
 [design]: #detailed-design
