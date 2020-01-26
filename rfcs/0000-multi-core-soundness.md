@@ -80,7 +80,7 @@ operations are fine while they only happen on the core owning the memory
 
 Multi-threading in Rust was always modeled with the assumption that all threads
 share the same resources, with `Send` and `Sync` only guarding *access* to those
-resources. It is likely that when the language semantics around these traits is
+resources. It is likely that when the language semantics around these traits are
 more rigidly specified, this will cause a clearer mismatch with what multi-core
 MCUs actually need.
 
@@ -104,7 +104,7 @@ meaning when sent.
 
 ## Introduce common traits for modeling cross-core operations
 
-Add the following trait definitions to [`bare-metal`]:
+The following trait definitions and impls will be added to [`bare-metal`]:
 
 ```rust
 /// Types that can be transferred across core boundaries.
@@ -112,6 +112,8 @@ pub unsafe trait CoreSend {}
 
 /// Types that can be accessed from multiple cores at once.
 pub unsafe trait CoreSync {}
+
+unsafe impl<'a, T: CoreSync> CoreSend for &'a T {}
 ```
 
 Note that these are not auto traits. That is not just because auto traits are
@@ -120,19 +122,60 @@ outlined in [Today's Soundness Issues][todays-issues], whether some data is safe
 to be sent between cores depends not just on its type contents, but also on its
 location in memory.
 
-This cannot be modeled with auto traits, but multi-core HALs and frameworks such
-as [µAMP] can provide helpers that make dealing with this easier.
+It is only safe to implement `CoreSync` if *all* instances of the implementing
+type will either be at memory locations shared by all cores, or are zero-sized.
+Similarly, it is only safe to implement `CoreSend` if *all* instances of the
+implementing type contain only data that is safe to send to another core (which
+moves the value in memory). Of course, the type's API must also ensure that no
+memory accesses to core-local memory occur (important for eg. core-local
+peripherals).
 
-An important difference to Rust's `Send` and `Sync` traits is that there is *no*
-blanket impl for `&T` when `T: CoreSync`. This is important since whether `&T`
-is sendable between cores depends on whether `T` is stored in a memory region
-that is accessible by *all* cores.
+### `CoreSend`
+
+It is expected that `CoreSend` will be implemented for peripherals shared
+between all cores in the system, and also by HAL wrappers of those peripherals,
+so that applications can transfer such peripherals to any core in the system.
+This RFC does not mandate how exactly those implementations will be written or
+generated. One option would be to give `svd2rust` an unsafe command line flag to
+generate `CoreSend` for all peripherals.
+
+For example, `CoreSend` would be implemented by all peripherals of the LPC5411x,
+which has a Cortex-M4 and a Cortex-M0+ core sharing all non-core peripherals. It
+would *not* be implemented by the peripherals of the nRF5340, which has two
+cores that have independent peripherals (each core owns its peripherals).
+
+`CoreSend` is expected to be used as a trait bound by support libraries, HALs
+and frameworks such as [µAMP] that provide support for multi-core processors.
+For example, an API could be built that consumes `CoreSend` types and passes
+them to the entry point of the secondary core.
+
+### `CoreSync`
+
+The `CoreSync` trait is expected to be used for sharing *data* between cores.
+A framework like [µAMP] could generate a controlled wrapper type around shared
+data placed in a known section, and have that wrapper implement `CoreSync`,
+allowing the application to copy references to the data between cores.
+
+## Interactions with Symmetric Multi-Processing (SMP) apps
+
+In SMP apps, only a single executable is used for all cores, while each core can
+have a separate entry point. This means that all `static`s are shared by
+default.
+
+Since defining a `static` only requires that its type is `Sync`, not `CoreSync`,
+this might seem like an unsound configuration. However, since all `static`s are
+in shared memory accessible by all cores, the `CoreSync` contract is fulfilled.
+
+There are other issues making usage of SMP apps difficult, but solving those is
+outside the scope of this RFC. It is likely that the embedded Rust ecosystem
+will settle on Asymmetric Multi-Processing (AMP) apps instead, where each core
+runs its own program that *might* opt into sharing parts of their data.
 
 ## `bare_metal::Mutex` is now sound
 
 Since a `Mutex` only turns `Send` data into `Sync` data, it does not allow any
 other cores in the system to access the protected data. Since disabling
-interrupts suspends all but the current *execution contexts*, exclusive access
+interrupts suspends all but the current *execution context*, exclusive access
 to the protected resource is now granted.
 
 Providing a way to share data between cores fundamentally depends on the memory
@@ -166,28 +209,36 @@ model threads in an RTOS, or interrupt handlers for bare-metal applications.
 # Drawbacks
 [drawbacks]: #drawbacks
 
-This makes writing applications for multi-core MCUs more difficult if there are
-no mature libraries for the target platform (that would provide APIs and traits
-for cross-core operations).
+* This makes writing applications for multi-core MCUs more difficult if there
+  are no mature libraries for the target platform (that would provide APIs and
+  traits for cross-core operations).
 
-While multi-core MCUs have become somewhat more common, it is expected that the
-vast majority of embedded Rust users will continue to use single-core MCUs. For
-those users, providing a sound and safe-to-use `Mutex` that works by disabling
-interrupts is beneficial. Even for multi-core applications, it is expected that
-the actual cross-core communication is limited to a small number of places in
-the code, so making it more difficult has limited impact.
+  While multi-core MCUs have become somewhat more common, it is expected that
+  the vast majority of embedded Rust users will continue to use single-core
+  MCUs. For those users, providing a sound and safe-to-use `Mutex` that works by
+  disabling interrupts is beneficial. Even for multi-core applications, it is
+  expected that the actual cross-core communication is limited to a small number
+  of places in the code, so making it more difficult has limited impact.
+
+* `CoreSend` and `CoreSync` do not handle hypothetical cases in which
+  peripherals or memory are shared between a *subset* of all cores. Examples of
+  devices that have a configuration like this would be very welcome.
 
 # Alternatives
 [alternatives]: #alternatives
 
-Accept [RFC 388] instead, introducing a `SingleCore{Send,Sync}` auto trait pair
-once auto traits are stable, and make `Mutex::new` an `unsafe fn` in the
-interim. Remove unsound `Send` impls from peripherals.
+* Accept [RFC 388] instead, introducing a `SingleCore{Send,Sync}` auto trait
+  pair once auto traits are stable, and make `Mutex::new` an `unsafe fn` in the
+  interim. Remove unsound `Send` impls from peripherals.
+* Do what this RFC proposes, but without the common `CoreSend`/`CoreSync`
+  traits. Leave it to the ecosystem to find the right abstractions for
+  multi-core MCUs.
 
 # Unresolved questions
 [unresolved]: #unresolved-questions
 
-None so far.
+* Should `CoreSend` and `CoreSync` have `Send` and `Sync` as supertraits?
+* Should we provide `CoreSend` implementations for primitive types?
 
 [`bare_metal::Mutex`]: https://docs.rs/bare-metal/0.2.5/bare_metal/struct.Mutex.html
 [RFC 388]: https://github.com/rust-embedded/wg/pull/388
