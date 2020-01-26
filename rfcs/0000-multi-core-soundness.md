@@ -175,7 +175,7 @@ vast majority of embedded Rust users will continue to use single-core MCUs. For
 those users, providing a sound and safe-to-use `Mutex` that works by disabling
 interrupts is beneficial. Even for multi-core applications, it is expected that
 the actual cross-core communication is limited to a small number of places in
-the code, so making it more difficult.
+the code, so making it more difficult has limited impact.
 
 # Alternatives
 [alternatives]: #alternatives
