@@ -156,21 +156,6 @@ A framework like [µAMP] could generate a controlled wrapper type around shared
 data placed in a known section, and have that wrapper implement `CoreSync`,
 allowing the application to copy references to the data between cores.
 
-## Interactions with Symmetric Multi-Processing (SMP) apps
-
-In SMP apps, only a single executable is used for all cores, while each core can
-have a separate entry point. This means that all `static`s are shared by
-default.
-
-Since defining a `static` only requires that its type is `Sync`, not `CoreSync`,
-this might seem like an unsound configuration. However, since all `static`s are
-in shared memory accessible by all cores, the `CoreSync` contract is fulfilled.
-
-There are other issues making usage of SMP apps difficult, but solving those is
-outside the scope of this RFC. It is likely that the embedded Rust ecosystem
-will settle on Asymmetric Multi-Processing (AMP) apps instead, where each core
-runs its own program that *might* opt into sharing parts of their data.
-
 ## `bare_metal::Mutex` is now sound
 
 Since a `Mutex` only turns `Send` data into `Sync` data, it does not allow any
@@ -183,6 +168,19 @@ layout of the device and application and is left to device-specific HALs,
 support crates or frameworks like [µAMP].
 
 [`bare-metal`]: https://github.com/rust-embedded/bare-metal
+
+## The fate of Symmetric Multi-Processing (SMP) apps
+
+In SMP apps, only a single executable is used for all cores, while each core can
+have a separate entry point (or another mechanism of identifying the running
+core). This means that all `static`s are shared by default.
+
+Since defining a `static` only requires that its type is `Sync`, not `CoreSync`,
+this would be unsoung. For example, it would allow storing a `bare_metal::Mutex`
+in a `static` and access it from all cores. Therefore, this RFC foregoes the
+ability to write safe SMP apps in Rust, instead proposing to shift focus to AMP
+apps, which do not share data by default and produce a separate executable per
+core.
 
 # How We Teach This
 [how-we-teach-this]: #how-we-teach-this
@@ -233,6 +231,10 @@ model threads in an RTOS, or interrupt handlers for bare-metal applications.
 * Do what this RFC proposes, but without the common `CoreSend`/`CoreSync`
   traits. Leave it to the ecosystem to find the right abstractions for
   multi-core MCUs.
+* Change the definition/contract of `CoreSync` to be "implements `Sync` and lies
+  in and touches only memory accessible to all cores", which would mean that SMP
+  apps could be supported while `bare_metal::Mutex` would still only be sound on
+  single-core MCUs.
 
 # Unresolved questions
 [unresolved]: #unresolved-questions
