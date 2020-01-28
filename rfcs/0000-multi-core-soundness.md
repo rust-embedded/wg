@@ -176,7 +176,7 @@ have a separate entry point (or another mechanism of identifying the running
 core). This means that all `static`s are shared by default.
 
 Since defining a `static` only requires that its type is `Sync`, not `CoreSync`,
-this would be unsoung. For example, it would allow storing a `bare_metal::Mutex`
+this would be unsound. For example, it would allow storing a `bare_metal::Mutex`
 in a `static` and access it from all cores. Therefore, this RFC foregoes the
 ability to write safe SMP apps in Rust, instead proposing to shift focus to AMP
 apps, which do not share data by default and produce a separate executable per
