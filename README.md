@@ -337,6 +337,8 @@ Projects maintained by the tools team
 - [`cargo-binutils`]
 - [`cross`]
 - [`itm`]
+- [`rust-managed`]
+- [`smoltcp`]
 - [`svd-parser`]
 - [`svd2rust`]
 
@@ -469,7 +471,9 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/rust-embedded/riscv
 [`rust-embedded-provisioning`]: https://github.com/rust-embedded/rust-embedded-provisioning
+[`rust-managed`]: https://github.com/rust-embedded/rust-managed
 [`rust-raspi3-OS-tutorials`]: https://github.com/rust-embedded/rust-raspi3-OS-tutorials
+[`smoltcp`]: https://github.com/rust-embedded/smoltcp
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
 [`svd2rust`]: https://github.com/rust-embedded/svd2rust
 [`svd-parser`]: https://github.com/rust-embedded/svd
