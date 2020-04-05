@@ -1,6 +1,6 @@
 - Feature Name: `multi_core_soundness`
-- Start Date: (fill me in with today's date, YYYY-MM-DD)
-- RFC PR: (leave this empty)
+- Start Date: 2020-01-26
+- RFC PR: [#419](https://github.com/rust-embedded/wg/pull/419)
 - Rust Issue: (leave this empty)
 
 # Summary
