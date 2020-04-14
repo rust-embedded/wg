@@ -440,7 +440,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
 [The Discovery book]: https://github.com/rust-embedded/discovery
-[The embedded Rust book]: https://book.rust-embedded.org/
+[The embedded Rust book]: https://github.com/rust-embedded/book
 [The embedonomicon]: https://github.com/rust-embedded/embedonomicon
 [`alloc-cortex-m`]: https://github.com/rust-embedded/alloc-cortex-m
 [`arm-dcc`]: https://github.com/rust-embedded/arm-dcc
