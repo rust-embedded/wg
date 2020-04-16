@@ -2,7 +2,11 @@
 
 * Task Shepherd: @korken89
 * Contributors: @thalesfragoso, @ra-kete
-* Relevant repository: https://github.com/rust-embedded/embedonomicon
+* Relevant repository: https://github.com/ra-kete/dma-poc
+
+# Tracking Issues
+
+- [Traits Discussion](https://github.com/ra-kete/dma-poc/issues/1)
 
 # Background
 
