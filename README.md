@@ -324,7 +324,6 @@ The tools team maintains and develops core embedded tools.
 
 - [@adamgreig]
 - [@burrbull]
-- [@Disasm]
 - [@Emilgardis]
 - [@reitermarkus]
 - [@ryankurte]
@@ -346,7 +345,6 @@ The triage team is charge of keeping PR queues moving; they ensure no PR is left
 
 #### Members
 
-- [@Disasm]
 - [@mathk]
 
 ### The IRR 2018 team
