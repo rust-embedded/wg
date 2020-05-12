@@ -1,27 +1,55 @@
 # Post transfer TODO list
 
-## Travis CI
+## Repository changes
 
-Browse to https://travis-ci.org/rust-embedded/repo-name/settings and make sure that "Build pushed
-pull requests" is enabled.
+- Mention the Code of Conduct and which team owns this repository in the README
 
+``` markdown
+# project-name
 
-## Source
+> description of the project
 
-Push a commit to `master` that does the following:
+<!-- TODO add this -->
 
-- Creates `.github/CODEOWNERS` with the following contents:
+This project is developed and maintained by the [Cortex-M team][team].
+
+<!-- ... omitting stuff in between ... -->
+
+<!-- TODO add this -->
+
+## Code of Conduct
+
+Contribution to this crate is organized under the terms of the [Rust Code of
+Conduct][CoC], the maintainer of this crate, the [Cortex-M team][team], promises
+to intervene to uphold that code of conduct.
+
+[CoC]: CODE_OF_CONDUCT.md
+[team]: https://github.com/rust-embedded/wg#the-cortex-m-team
+```
+
+- Add a copy of [`CODE_OF_CONDUCT.md`][CoC]. Don't forget to adjust the team name and associated
+  link accordingly.
+
+[CoC]: https://github.com/rust-embedded/cortex-m/blob/master/CODE_OF_CONDUCT.md
+
+- Create `.github/CODEOWNERS` with the following contents:
 
 ``` text
 * rust-embedded/team-name collaborator-name another-collaborator
 ```
 
-- Adds a copy of [`CODE_OF_CONDUCT.md`][CoC]. Don't forget to adjust the team name and associated
-  link accordingly.
+## CI via Travis CI
 
-[CoC]: https://github.com/rust-embedded/cortex-m/blob/master/CODE_OF_CONDUCT.md
+### Changes in Travis CI
 
-- Modifies `.travis.yml` to:
+Browse to https://travis-ci.org/rust-embedded/repo-name/settings and make sure that "Build pushed
+pull requests" is enabled.
+
+## Changes in the repository
+
+Push a commit to `master` that does the following:
+
+- Modify `.travis.yml` to:
   - Allow builds on these three branches. `staging` and `trying` are required by bors. We include
     `master` to have builds on pushed PRs.
 
@@ -49,32 +77,7 @@ matrix:
       if: (branch = staging OR branch = trying) OR (type = pull_request AND branch = master)
 ```
 
-- Mention the Code of Conduct and which team owns this repository in the README
-
-``` markdown
-# project-name
-
-> description of the project
-
-<!-- TODO add this -->
-
-This project is developed and maintained by the [Cortex-M team][team].
-
-<!-- ... omitting stuff in between ... -->
-
-<!-- TODO add this -->
-
-## Code of Conduct
-
-Contribution to this crate is organized under the terms of the [Rust Code of
-Conduct][CoC], the maintainer of this crate, the [Cortex-M team][team], promises
-to intervene to uphold that code of conduct.
-
-[CoC]: CODE_OF_CONDUCT.md
-[team]: https://github.com/rust-embedded/wg#the-cortex-m-team
-```
-
-- If the repository uses CI, configure bors. Add a `.github/bors.toml` file with these contents:
+- Add a `.github/bors.toml` file with these contents:
 
 ``` toml
 block_labels = ["needs-decision"]
@@ -93,7 +96,7 @@ If the repository uses CI, update bors settings.
 - Synchronize both "Reviewers" and "Members" to people with "Push" (write) access to the
     repository.
 
-## Repository
+## Repository settings
 
 Update the repository settings.
 
