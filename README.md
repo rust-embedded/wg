@@ -167,7 +167,6 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 
 - [@adamgreig]
 - [@korken89]
-- [@thejpster]
 - [@therealprof]
 - [@ithinuel]
 - [@jonas-schievink]
@@ -229,7 +228,6 @@ Board Support Crates and drivers.
 
 #### Members
 
-- [@thejpster]
 - [@therealprof]
 - [@ithinuel]
 - [@ryankurte]
@@ -303,7 +301,6 @@ The resources team develops, maintains and curates resources on embedded Rust.
 - [@adamgreig]
 - [@andre-richter]
 - [@jamesmunns]
-- [@thejpster]
 - [@therealprof]
 
 #### Projects
@@ -379,6 +376,7 @@ most of them are members of one of the teams listed above.
 The following members have put themselves into the hibernation state, due to being absent or busy for an extended amount of time. See [ops/hibernating.md](https://github.com/rust-embedded/wg/blob/master/ops/hibernating.md).
 
 - [@hannobraun]
+- [@thejpster]
 
 ### Contact
 
