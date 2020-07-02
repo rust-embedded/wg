@@ -487,7 +487,7 @@ These are other projects you may be interested in but that (currently) are not o
 Several device specific communities exist that are not part of the working group.
 These communities maintain crates for peripheral access, hardware abstraction,
 examples, and more that are specific to a particular family of devices.
-Some of the higher profile ones are listed below.
+The list below is not exhaustive and should be updated as device support increases.
 
 - [nrf-rs](https://github.com/nrf-rs): Nordic nRF series of microcontrollers
 - [stm32-rs](https://github.com/stm32-rs): STM 32-bit microcontrollers
