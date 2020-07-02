@@ -482,6 +482,17 @@ These are other projects you may be interested in but that (currently) are not o
 
 ## On going community efforts
 
+### Device specific communities
+
+Several device specific communities exist that are not part of the working group.
+These communities maintain crates for peripheral access, hardware abstraction,
+examples, and more that are specific to a particular family of devices.
+Some of the higher profile ones are listed below.
+
+- [nrf-rs](https://github.com/nrf-rs): Nordic Semiconductor
+- [stm32-rs](https://github.com/stm32-rs): STMicroelectronics
+- [lpc-rs](https://github.com/lpc-rs): NXP Semiconductors
+
 ### [`embedded-hal`]
 
 [`embedded-hal`]: https://github.com/japaric/embedded-hal
