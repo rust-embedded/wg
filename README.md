@@ -489,9 +489,9 @@ These communities maintain crates for peripheral access, hardware abstraction,
 examples, and more that are specific to a particular family of devices.
 Some of the higher profile ones are listed below.
 
-- [nrf-rs](https://github.com/nrf-rs): Nordic Semiconductor
-- [stm32-rs](https://github.com/stm32-rs): STMicroelectronics
-- [lpc-rs](https://github.com/lpc-rs): NXP Semiconductors
+- [nrf-rs](https://github.com/nrf-rs): Nordic nRF series of microcontrollers
+- [stm32-rs](https://github.com/stm32-rs): STM 32-bit microcontrollers
+- [lpc-rs](https://github.com/lpc-rs): NXP LPC microcontrollers
 
 ### [`embedded-hal`]
 
