@@ -241,7 +241,7 @@ jobs:
 The status checks are unfortunately a bit tedious as wildcard on the status can
 **not** be used here, so the information needs to be customized to match the
 information in the `ci.yml`, e.g. for the above snippets the required
-`bors.toml`would look like:
+`bors.toml` would look like:
 
 ``` toml
 block_labels = ["needs-decision"]
