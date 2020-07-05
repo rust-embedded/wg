@@ -45,7 +45,7 @@ to intervene to uphold that code of conduct.
 Browse to https://travis-ci.org/rust-embedded/repo-name/settings and make sure that "Build pushed
 pull requests" is enabled.
 
-## Changes in the repository
+### Changes in the repository
 
 Push a commit to `master` that does the following:
 
@@ -84,6 +84,164 @@ block_labels = ["needs-decision"]
 delete_merged_branches = true
 required_approvals = 1
 status = ["continuous-integration/travis-ci/push"]
+```
+## CI via GitHub Actions (GHA)
+
+### Changes to GitHub repository configuration
+
+No changes are needed as GHA is automatically enabled by default for every organisation.
+
+### Changes in the repository
+
+Push a commit to `master` that does the following:
+
+#### Add a `.github/workflows/rustfmt.yml`
+
+  The purpose of this workflow is to ensure proper code formatting, it should
+  always be the same and look like:
+
+``` yaml
+on:
+  push:
+    branches: [ staging, trying, master ]
+  pull_request:
+
+name: Code formatting check
+
+jobs:
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+```
+
+#### Add a `.github/workflows/clippy.yml`
+
+  The purpose of this workflow is to ensure following the Rust coding best
+  practices. It should always be the same and look like:
+
+``` yaml
+on:
+  push:
+    branches: [ staging, trying, master ]
+  pull_request:
+
+name: Clippy check
+jobs:
+  clippy_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: clippy
+      - uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+#### Add a `.github/workflows/ci.yml`
+
+  This contains the "meat" of the CI by testing the compilability of the code in
+  a specific setting, potentially also run unit- or doctests and ensure the MSRV
+  and future compatibility. Thus it will always be repository specific but we'll
+  give a few hints here what to look out for:
+
+  - Make sure to include these lines as preamble to ensure that `bors` will
+    function properly and PRs are not unnecessarily tested multiple times per change:
+``` yaml
+on:
+  push:
+    branches: [ staging, trying, master ]
+  pull_request:
+
+name: Continuous integration
+```
+
+- Define your jobs according to the host system(s) you'd like to run on and all
+  the target variants which need testing.
+  The snippet is set up to:
+  - only test on linux machines, hence the job name `ci-linux`
+  - uses the latest ubuntu
+  - setup a matrix which runs all tests for stable Rust and deviates for others
+  - Defines a `TARGET` env variable containing all default targes
+  - Defines deviations for the MSRV test (using Rust `1.35.0` and only tests for `x86_64-unknown-linux-gnu`)
+  - Defines deviations for nightly tests and marks them as `experimental`, i.e.
+    it will only generate warnings if this part fails instead of aborting the whole job
+``` yaml
+jobs:
+  ci-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # All generated code should be running on stable now
+        rust: [stable]
+
+        # The default target we're compiling on and for
+        TARGET: [x86_64-unknown-linux-gnu, thumbv6m-none-eabi, thumbv7m-none-eabi]
+
+        include:
+          # Test MSRV
+          - rust: 1.35.0
+            TARGET: x86_64-unknown-linux-gnu
+
+          # Test nightly but don't fail
+          - rust: nightly
+            experimental: true
+            TARGET: x86_64-unknown-linux-gnu
+```
+
+- Then we need to add the build steps for GHA to execute (for each multiplied
+  out element from the matrix). For GHA we have a nice set of predefined actions
+  which we can utilize to simplify our lives, this might typically look like:
+
+``` yaml
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: ${{ matrix.rust }}
+          target: ${{ matrix.TARGET }}
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --target=${{ matrix.TARGET }}
+```
+
+
+#### Add a `.github/bors.toml` file with these contents:
+
+The status checks are unfortunately a bit tedious as wildcard on the status can
+**not** be used here, so the information needs to be customized to match the
+information in the `ci.yml`, e.g. for the above snippets the required
+`bors.toml` would look like:
+
+``` toml
+block_labels = ["needs-decision"]
+delete_merged_branches = true
+required_approvals = 1
+status = [
+  "ci-linux (stable, x86_64-unknown-linux-gnu)",
+  "ci-linux (stable, thumbv6m-none-eabi)",
+  "ci-linux (stable, thumbv7m-none-eabi)",
+  "ci-linux (1.35.0, x86_64-unknown-linux-gnu)",
+]
 ```
 
 ## Bors
