@@ -85,17 +85,6 @@ delete_merged_branches = true
 required_approvals = 1
 status = ["continuous-integration/travis-ci/push"]
 ```
-
-## Bors
-
-If the repository uses CI, update bors settings.
-
-- Browse to https://app.bors.tech/repositories, click on rust-embedded/repo-name and then switch
-  to the "Settings" tab.
-
-- Synchronize both "Reviewers" and "Members" to people with "Push" (write) access to the
-    repository.
-
 ## CI via GitHub Actions (GHA)
 
 ### Changes to GitHub repository configuration
@@ -255,7 +244,7 @@ status = [
 ]
 ```
 
-### Bors
+## Bors
 
 If the repository uses CI, update bors settings.
 
