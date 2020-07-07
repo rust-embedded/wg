@@ -166,7 +166,6 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 #### Members
 
 - [@adamgreig]
-- [@korken89]
 - [@therealprof]
 - [@ithinuel]
 - [@jonas-schievink]
@@ -378,6 +377,7 @@ The following members have put themselves into the hibernation state, due to bei
 
 - [@hannobraun]
 - [@thejpster]
+- [@korken89]
 
 ### Contact
 
