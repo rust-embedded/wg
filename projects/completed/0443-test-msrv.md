@@ -3,6 +3,9 @@
 * Task Shepherd: @adamgreig
 * Contributors: Newcomers welcome!
 * Relevant repository: All WG repositories
+* Status: Completed! All appropriate WG repos now have an MSRV.
+  See the [tracking issue](https://github.com/rust-embedded/wg/issues/445)
+  for more details.
 
 # Background
 
