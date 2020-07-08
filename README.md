@@ -237,6 +237,7 @@ Board Support Crates and drivers.
 Projects maintained by the HAL team.
 
 - [`embedded-hal`]
+- [`nb`]
 
 ### The MSP430 team
 
@@ -459,6 +460,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [`msp430-quickstart`]: https://github.com/pftbest/msp430-quickstart
 [`msp430-rt`]: https://github.com/pftbest/msp430-rt
 [`msp430`]: https://github.com/pftbest/msp430
+[`nb`]: https://github.com/rust-embedded/nb
 [`panic-dcc`]: https://github.com/rust-embedded/arm-dcc/tree/master/panic
 [`panic-itm`]: https://github.com/rust-embedded/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/panic-semihosting
@@ -469,8 +471,8 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [`rust-embedded-provisioning`]: https://github.com/rust-embedded/rust-embedded-provisioning
 [`rust-raspi3-OS-tutorials`]: https://github.com/rust-embedded/rust-raspi3-OS-tutorials
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
-[`svd2rust`]: https://github.com/rust-embedded/svd2rust
 [`svd-parser`]: https://github.com/rust-embedded/svd
+[`svd2rust`]: https://github.com/rust-embedded/svd2rust
 [`sysfs-gpio`]: https://github.com/rust-embedded/rust-sysfs-gpio
 [`sysfs-pwm`]: https://github.com/rust-embedded/rust-sysfs-pwm
 
