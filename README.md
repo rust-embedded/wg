@@ -202,6 +202,7 @@ The embedded Linux team develops and maintains the core of the embedded Linux cr
 
 #### Members
 
+- [@nastevens]
 - [@posborne]
 - [@ryankurte]
 
@@ -257,6 +258,7 @@ The infrastructure team manages our domains, DNS records, e-mail aliases, etc.
 
 #### Members
 
+- [@nastevens]
 - [@ryankurte]
 
 #### Projects
@@ -348,7 +350,6 @@ The following members have put themselves into the hibernation state, due to bei
 - [@jcsoo]
 - [@korken89]
 - [@laanwj]
-- [@nastevens]
 - [@parched]
 - [@pftbest]
 - [@sekineh]
