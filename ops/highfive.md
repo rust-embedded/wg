@@ -18,3 +18,10 @@ Reference: https://github.com/rust-lang-nursery/highfive
 - If you run into what appears to be a bug in highfive please notify the
   rust-lang/infra team (#infra channel on discord) ASAP -- the highfive logs are
   kind of short lived.
+  
+# Maintaining Highfive
+
+The list of reviewers is not taken from the team member list in GitHub but needs
+manual maintenance per PR to this configuration upon membership change:
+
+https://github.com/rust-lang/highfive/blob/master/highfive/configs/_global.json
