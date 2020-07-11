@@ -188,7 +188,6 @@ The Cortex-R team develops and maintains the core of the Cortex-R crate ecosyste
 #### Members
 
 - [@japaric]
-- [@paoloteti]
 
 #### Projects
 
@@ -350,6 +349,7 @@ The following members have put themselves into the hibernation state, due to bei
 - [@jcsoo]
 - [@korken89]
 - [@laanwj]
+- [@paoloteti]
 - [@parched]
 - [@pftbest]
 - [@sekineh]
