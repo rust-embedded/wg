@@ -147,9 +147,7 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 #### Members
 
 - [@andre-richter]
-- [@parched]
 - [@raw-bin]
-- [@wizofe]
 
 #### Projects
 
@@ -167,7 +165,6 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 
 - [@adamgreig]
 - [@therealprof]
-- [@ithinuel]
 - [@jonas-schievink]
 - [@thalesfragoso]
 
@@ -191,7 +188,6 @@ The Cortex-R team develops and maintains the core of the Cortex-R crate ecosyste
 #### Members
 
 - [@japaric]
-- [@paoloteti]
 
 #### Projects
 
@@ -229,7 +225,6 @@ Board Support Crates and drivers.
 #### Members
 
 - [@therealprof]
-- [@ithinuel]
 - [@ryankurte]
 - [@eldruin]
 
@@ -246,9 +241,7 @@ The MS430 team develops and maintains the core of the MSP430 crate ecosystem.
 
 #### Members
 
-- [@awygle]
 - [@cr1901]
-- [@pftbest]
 
 #### Projects
 
@@ -280,11 +273,7 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 #### Members
 
 - [@almindor]
-- [@bradjc]
-- [@danc86]
-- [@dvc94ch]
 - [@Disasm]
-- [@laanwj]
 
 #### Projects
 
@@ -346,40 +335,27 @@ The triage team is charge of keeping PR queues moving; they ensure no PR is left
 
 - [@mathk]
 
-### The IRR 2018 team
-
-This team consists of the participants of the [Increasing Rust Reach (2018) program] who worked on
-the [embedded project] of adding CI tests for embedded platforms to the compiler, and their mentor.
-
-[Increasing Rust Reach (2018) program]: http://reach.rust-lang.org/2018/participants
-[embedded project]: http://reach.rust-lang.org/#projects
-
-- [@jamesmunns][] (mentor)
-- [@nerdyvaishali]
-- [@sekineh]
-
-### The old guard
-
-This list is the membership of the embedded WG when it was first created and it's kept around for
-historical purposes. All the people in this list are members of the rust-embedded organization and
-most of them are members of one of the teams listed above.
-
-- [@dvc94ch]
-- [@dylanmckay]
-- [@hannobraun]
-- [@jamesmunns]
-- [@japaric]
-- [@jcsoo]
-- [@pftbest]
-- [@thejpster]
-
 ### Hibernating
 
 The following members have put themselves into the hibernation state, due to being absent or busy for an extended amount of time. See [ops/hibernating.md](https://github.com/rust-embedded/wg/blob/master/ops/hibernating.md).
 
+- [@awygle]
+- [@bradjc]
+- [@danc86]
+- [@dvc94ch]
+- [@dylanmckay]
 - [@hannobraun]
-- [@thejpster]
+- [@ithinuel]
+- [@jcsoo]
 - [@korken89]
+- [@laanwj]
+- [@paoloteti]
+- [@parched]
+- [@pftbest]
+- [@sekineh]
+- [@thejpster]
+- [@v-thakkar]
+- [@wizofe]
 
 ### Contact
 
@@ -424,7 +400,6 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [@laanwj]: https://github.com/laanwj
 [@mathk]: https://github.com/mathk
 [@nastevens]: https://github.com/nastevens
-[@nerdyvaishali]: https://github.com/nerdyvaishali
 [@paoloteti]: https://github.com/paoloteti
 [@parched]: https://github.com/parched
 [@pftbest]: https://github.com/pftbest
@@ -436,6 +411,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [@thalesfragoso]: https://github.com/thalesfragoso
 [@thejpster]: https://github.com/thejpster
 [@therealprof]: https://github.com/therealprof
+[@v-thakkar]: https://github.com/v-thakkar
 [@wizofe]: https://github.com/wizofe
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
