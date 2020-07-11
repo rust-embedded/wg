@@ -254,6 +254,26 @@ If the repository uses CI, update bors settings.
 - Synchronize both "Reviewers" and "Members" to people with "Push" (write) access to the
     repository.
 
+## Highfive
+
+Highfive is a service which automatically selects a suitable reviewer for a pull request. In order
+to do so it needs to be instructed about the reviewers via configuration in the Highfive repository
+https://github.com/rust-lang/highfive.
+
+A suitable configuration file per crate will be located under
+https://github.com/rust-lang/highfive/tree/master/highfive/configs/rust-embedded and looks like
+
+```
+{
+    "groups": {
+        "all": ["rust-embedded/cortex-m"]
+    },
+    "new_pr_labels": ["S-waiting-on-review", "T-cortex-m"]
+}
+```
+
+with `cortex-m` substituted by the responsible team.
+
 ## Repository settings
 
 Update the repository settings.
