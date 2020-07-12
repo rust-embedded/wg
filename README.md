@@ -136,7 +136,7 @@ The functions of the core team are:
 
 #### Members
 
-- [@jamesmunns]
+- [@adamgreig]
 - [@japaric]
 - [@therealprof]
 
