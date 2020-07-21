@@ -12,6 +12,6 @@ Assets containing word marks or logos trademarked by the The Rust Programming La
 
 ### Logo
 
-The Rust Embedded Working Group Logo, based on the Rust logo, was designed by [Aaron Power]. These designs include all files matching `assets/logo/ewg-logo*`.
+The Rust Embedded Working Group Logo, based on the Rust logo, was designed by [Erin Power]. These designs include all files matching `assets/logo/ewg-logo*`.
 
-[Aaron Power]: https://github.com/Aaronepower
+[Erin Power]: https://github.com/XamppRocky
