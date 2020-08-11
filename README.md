@@ -293,6 +293,7 @@ The resources team develops, maintains and curates resources on embedded Rust.
 - [@andre-richter]
 - [@jamesmunns]
 - [@therealprof]
+- [@hargoniX]
 
 #### Projects
 
