@@ -234,6 +234,7 @@ Projects maintained by the HAL team.
 
 - [`embedded-hal`]
 - [`nb`]
+- [`embedded-dma`]
 
 ### The MSP430 team
 
@@ -455,6 +456,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [`svd2rust`]: https://github.com/rust-embedded/svd2rust
 [`sysfs-gpio`]: https://github.com/rust-embedded/rust-sysfs-gpio
 [`sysfs-pwm`]: https://github.com/rust-embedded/rust-sysfs-pwm
+[`embedded-dma`]: https://github.com/rust-embedded/embedded-dma
 
 ## Other projects
 
