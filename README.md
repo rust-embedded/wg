@@ -232,9 +232,9 @@ Board Support Crates and drivers.
 
 Projects maintained by the HAL team.
 
+- [`embedded-dma`]
 - [`embedded-hal`]
 - [`nb`]
-- [`embedded-dma`]
 
 ### The MSP430 team
 
