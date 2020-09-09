@@ -23,7 +23,7 @@ Users have already shown interest in something like this. See: [rust-embedded-co
 
 There are libraries that were once developed but the original author does not have the time necessary for further development or has moved on to other projects.
 
-The REC provides a place for these libraries to live on, offering the opportunity for development to be easily aided by or taken over by new members. e.g. Bus factor increase.
+The REC provides a place for these libraries to live on, offering the opportunity for development to be easily aided by or taken over by a group of interested people, also to increase the "bus factor".
 
 ## Extended membership
 
