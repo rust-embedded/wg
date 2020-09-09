@@ -13,7 +13,7 @@ Adopt the [Rust Embedded Community (REC)][rec] as an official child organization
 
 ## Maturity segmentation
 
-Foundational libraries and tooling for Rust usage in embedded context are part of the official REWG organization. As such, these libraries can be seen as especially well maintained or thought-through within the broad embedded rust community.
+Foundational libraries and tooling for Rust usage in embedded context are part of the official REWG organization. As such, these libraries can be seen as especially well maintained or thought-through within the broad embedded Rust community.
 
 It would be interesting to have a "playground" for less mature libraries where its status is clear to users while at the same time centralizing efforts.
 
