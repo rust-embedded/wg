@@ -476,6 +476,7 @@ The list below is not exhaustive and will be updated as device support increases
 - [nrf-rs](https://github.com/nrf-rs): Nordic nRF series of microcontrollers
 - [stm32-rs](https://github.com/stm32-rs): STM32 microcontrollers
 - [lpc-rs](https://github.com/lpc-rs): NXP LPC microcontrollers
+- [imxrt-rs](https://github.com/imxrt-rs): NXP i.MX RT microcontrollers
 
 ### [`embedded-hal`]
 
