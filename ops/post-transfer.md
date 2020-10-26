@@ -186,6 +186,7 @@ name: Continuous integration
 jobs:
   ci-linux:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental || false }}
     strategy:
       matrix:
         # All generated code should be running on stable now
