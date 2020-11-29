@@ -179,7 +179,6 @@ name: Continuous integration
   - uses the latest ubuntu
   - setup a matrix which runs all tests for stable Rust and deviates for others
   - Defines a `TARGET` env variable containing all default targes
-  - Defines deviations for the MSRV test (using Rust `1.35.0` and only tests for `x86_64-unknown-linux-gnu`)
   - Defines deviations for nightly tests and marks them as `experimental`, i.e.
     it will only generate warnings if this part fails instead of aborting the whole job
 ``` yaml
@@ -189,18 +188,14 @@ jobs:
     continue-on-error: ${{ matrix.experimental || false }}
     strategy:
       matrix:
-        # All generated code should be running on stable now
+        # All published crates must build on stable.
         rust: [stable]
 
-        # The default target we're compiling on and for
+        # The default target we're compiling on and for.
         TARGET: [x86_64-unknown-linux-gnu, thumbv6m-none-eabi, thumbv7m-none-eabi]
 
         include:
-          # Test MSRV
-          - rust: 1.35.0
-            TARGET: x86_64-unknown-linux-gnu
-
-          # Test nightly but don't fail
+          # Test nightly but don't fail the build.
           - rust: nightly
             experimental: true
             TARGET: x86_64-unknown-linux-gnu
