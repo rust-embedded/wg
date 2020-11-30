@@ -2,48 +2,22 @@
 
 This text documents the MSRV policy used in the crates maintained by the WG.
 
-- The MSRV shall always be strictly smaller than the latest available minor
-  stable release. For example, if the latest stable Rust version was 1.32.1 a
-  new minor release of the `cortex-m` crate can't bump the MSRV higher than
-  1.31.
+1. Crates released by the Embedded WG must compile on the most recent stable
+   Rust release at all times. If a dependency releases an update which causes a
+   published crate to no longer build on the most recent stable release, a new
+   version must be released to resolve the issue.
+2. Individual crates may specify a more restrictive MSRV if the crate's team
+   agrees to do so, as long as it is at least as restrictive as this policy.
+3. It is permissible for specifically-indicated features of a crate to not
+   build on stable, to support the use of nightly-only features. All features
+   not specifically indicated in the README or documentation must build on
+   stable.
 
-- Changing the MSRV of a crate is a breaking change and requires a semver bump:
-  minor version bump if the crate is pre-1.0 and a major version bump if the
-  crate is (post-)1.0.
+It is recommended that all crates use a CI system to check that a PR does not
+break building on stable Rust, and schedule regular CI jobs to check that a
+newly released stable Rust has not broken the crate's build. Crates may also
+consider regular CI runs against the latest released version of the crate.
 
-- Cargo features are allowed to depend a on Rust version greater than the MSRV,
-  even a nightly compiler. For example, a "const-fn" can bump the required
-  version to 1.34.0 (effectively, nightly channel at the time of writing).
+This policy was most recently updated by [RFC 0523].
 
-- When doing a semver bump (i.e. minor version bump in pre-1.0 crates), for
-  whatever reason, the team in charge of the crate should consider bumping the
-  MSRV as well.
-
-- The MSRV will be documented in the crate level documentation of the crate,
-  like so:
-
-``` markdown
-# Minimum Supported Rust Version (MSRV)
-
-This crate is guaranteed to compile on stable Rust 1.31 and up. It *might*
-compile with older versions but that may change in any new patch release.
-```
-
-- The MSRV will be tested in the CI of the crate as a separate build job, like
-  so:
-
-``` yaml
-matrix:
-  include:
-      # MSRV
-    - env: TARGET=thumbv7m-none-eabi
-      rust: 1.31.0
-
-    - env: TARGET=thumbv7m-none-eabi
-      rust: stable
-
-    - env: TARGET=thumbv7m-none-eabi
-      rust: beta
-
-      # etc.
-```
+[RFC 0523]: https://github.com/rust-embedded/wg/pull/523
