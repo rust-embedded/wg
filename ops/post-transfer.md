@@ -40,6 +40,9 @@ to intervene to uphold that code of conduct.
 
 ## CI via Travis CI
 
+New projects are recommended to use Github Actions (below) instead of Travis
+CI.
+
 ### Changes in Travis CI
 
 Browse to https://travis-ci.org/rust-embedded/repo-name/settings and make sure that "Build pushed
@@ -220,6 +223,50 @@ jobs:
           args: --target=${{ matrix.TARGET }}
 ```
 
+
+### Add a `.github/workflows/cron.yml`
+
+This contains a CI job which runs automatically, for example every week, and
+opens an issue on the repository if the CI run fails. The specific checks to
+run will vary with project; they might be the same or similar to `ci.yml`, or
+just a simplified sub-set of the checks.
+
+The objectives of these automatic checks is to detect CI failures caused by
+updates to dependencies or regressions in Rust without having to wait for
+the next PR.
+
+```yaml
+on:
+  schedule:
+    # Run every week at 8am UTC Saturday.
+    - cron: '0 8 * * SAT'
+
+name: Cron CI
+
+jobs:
+  ci-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Run tests
+        run: cargo test --all
+      - uses: imjohnbo/issue-bot@v2
+        if: failure()
+        with:
+          title: CI Failure
+          labels: ci
+          body: |
+            Scheduled CI run failed. Details:
+
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
 
 #### Add a `.github/bors.toml` file with these contents:
 
