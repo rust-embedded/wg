@@ -155,7 +155,7 @@ Projects maintained by this team.
 
 - [`cortex-a`]
 - [`register-rs`]
-- [`rust-raspi3-OS-tutorials`]
+- [`rust-raspberrypi-OS-tutorials`]
 
 ### The Cortex-M team
 
@@ -451,7 +451,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/rust-embedded/riscv
 [`rust-embedded-provisioning`]: https://github.com/rust-embedded/rust-embedded-provisioning
-[`rust-raspi3-OS-tutorials`]: https://github.com/rust-embedded/rust-raspi3-OS-tutorials
+[`rust-raspberrypi-OS-tutorials`]: https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
 [`svd-parser`]: https://github.com/rust-embedded/svd
 [`svd2rust`]: https://github.com/rust-embedded/svd2rust
