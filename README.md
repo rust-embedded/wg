@@ -395,6 +395,7 @@ Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can fi
 [@dylanmckay]: https://github.com/dylanmckay
 [@eldruin]: https://github.com/eldruin
 [@hannobraun]: https://github.com/hannobraun
+[@hargoniX]: https://github.com/hargoniX
 [@ithinuel]: https://github.com/ithinuel
 [@jamesmunns]: https://github.com/jamesmunns
 [@japaric]: https://github.com/japaric
