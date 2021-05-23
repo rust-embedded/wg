@@ -167,6 +167,7 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 - [@therealprof]
 - [@jonas-schievink]
 - [@thalesfragoso]
+- [@thejpster]
 
 #### Projects
 
@@ -276,6 +277,7 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 
 - [@almindor]
 - [@Disasm]
+- [@thejpster]
 
 #### Projects
 
@@ -357,7 +359,6 @@ The following members have put themselves into the hibernation state, due to bei
 - [@parched]
 - [@pftbest]
 - [@sekineh]
-- [@thejpster]
 - [@v-thakkar]
 - [@wizofe]
 
