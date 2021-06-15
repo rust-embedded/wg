@@ -379,9 +379,8 @@ Each team can be privately contacted via the following e-mail addresses:
 You can usually find the members of the embedded WG on the Rust Embedded Matrix room
 ([#rust-embedded:matrix.org](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org)).
 
-Our Matrix room is logged by [logbot] on the bridged IRC channel, and you can find the logs at: https://freenode.logbot.info/rust-embedded
+Our Matrix room is logged by on the bridged IRC channel, and you can find the logs at: https://libera.irclog.whitequark.org/rust-embedded/
 
-[logbot]: https://freenode.logbot.info
 [@Disasm]: https://github.com/Disasm
 [@Emilgardis]: https://github.com/Emilgardis
 [@adamgreig]: https://github.com/adamgreig
