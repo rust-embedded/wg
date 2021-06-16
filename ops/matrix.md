@@ -57,7 +57,7 @@ The Matrix room is bridged to an IRC channel, allowing IRC users to communicate
 with users in the Matrix room. This is provided as a convenience to IRC users
 and the WG may revisit the bridge in case it compromises the Matrix users experience.
 
-Our IRC channel is `#rust-embedded` on [Freenode](https://freenode.net).
+Our IRC channel is `#rust-embedded` on [Libera](https://libera.chat).
 
 ### IRC Administration
 
