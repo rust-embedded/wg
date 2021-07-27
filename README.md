@@ -278,7 +278,7 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 - [@almindor]
 - [@Disasm]
 - [@thejpster]
-- [@dkhayes117](https://github.com/dkhayes117)
+- [@dkhayes117]
 
 #### Projects
 
@@ -419,6 +419,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@therealprof]: https://github.com/therealprof
 [@v-thakkar]: https://github.com/v-thakkar
 [@wizofe]: https://github.com/wizofe
+[@dkhayes117]: https://github.com/dkhayes117
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
