@@ -467,6 +467,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 These are other projects you may be interested in but that (currently) are not owned by the WG.
 
 - [AVR fork of Rust](https://github.com/avr-rust/)
+- [Xtensa fork of Rust (for Espressif chips)](https://github.com/esp-rs/rust)
 
 ## On going community efforts
 
@@ -481,6 +482,7 @@ The list below is not exhaustive and will be updated as device support increases
 - [stm32-rs](https://github.com/stm32-rs): STM32 microcontrollers
 - [lpc-rs](https://github.com/lpc-rs): NXP LPC microcontrollers
 - [imxrt-rs](https://github.com/imxrt-rs): NXP i.MX RT microcontrollers
+- [esp-rs](https://github.com/esp-rs): Espressif Systems microcontrollers
 
 ### [`embedded-hal`]
 
