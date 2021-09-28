@@ -481,6 +481,7 @@ The list below is not exhaustive and will be updated as device support increases
 - [lpc-rs](https://github.com/lpc-rs): NXP LPC microcontrollers
 - [imxrt-rs](https://github.com/imxrt-rs): NXP i.MX RT microcontrollers
 - [esp-rs](https://github.com/esp-rs): Espressif Systems microcontrollers
+- [rp-rs](https://github.com/rp-rs): Raspberry Silicon RP2040 microcontroller 
 
 ### [`embedded-hal`]
 
