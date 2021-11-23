@@ -166,8 +166,7 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 - [@adamgreig]
 - [@therealprof]
 - [@thalesfragoso]
-- [@thejpster]
-
+- [@thejpster] (Personal) / [@jonathanpallant] (Work)
 #### Projects
 
 Projects maintained by this team.
@@ -276,7 +275,6 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 
 - [@almindor]
 - [@Disasm]
-- [@thejpster]
 - [@dkhayes117]
 
 #### Projects
@@ -322,6 +320,7 @@ The tools team maintains and develops core embedded tools.
 - [@reitermarkus]
 - [@ryankurte]
 - [@therealprof]
+- [@thejpster] / [@jonathanpallant]
 
 #### Projects
 
@@ -414,6 +413,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@sekineh]: https://github.com/sekineh
 [@thalesfragoso]: https://github.com/thalesfragoso
 [@thejpster]: https://github.com/thejpster
+[@jonathanpallant]: https://github.com/jonathanpallant
 [@therealprof]: https://github.com/therealprof
 [@v-thakkar]: https://github.com/v-thakkar
 [@wizofe]: https://github.com/wizofe
