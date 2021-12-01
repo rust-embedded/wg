@@ -6,7 +6,7 @@
 # Summary
 [summary]: #summary
 
-Disown from the Cortex-M Working Group (henceforth referred to as the "WG") and move the [`itm`](https://github.com/rust-embedded/itm) repo and [crates.io registery entry](https://crates.io/crates/itm) to @tmplt.
+Disown from the Rust-Embedded Working Group (henceforth referred to as the "WG") and move the [`itm`](https://github.com/rust-embedded/itm) repo and [crates.io registery entry](https://crates.io/crates/itm) to @tmplt.
 
 # Motivation
 [motivation]: #motivation
