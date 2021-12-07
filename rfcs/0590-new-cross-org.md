@@ -16,7 +16,7 @@ Currently the working group is responsible for maintaining
 [`cross`](https://github.com/rust-embedded/cross), a popular tool for
 cross-compiling Rust projects to different targets. While it was initially also
 useful for embedded development, it's no longer especially useful for standard
-embedded use (since rust natively supports many popular targets), but has
+embedded use (since Rust natively supports many popular targets), but has
 become popular for other use cases.
 
 Because it's no longer widely used for embedded, it has not received much
@@ -26,7 +26,8 @@ and a number of issues and PRs left open.
 We've previously asked for help with new maintainers [in this
 thread](https://github.com/rust-embedded/cross/issues/574) and received a
 positive response, but it doesn't seem appropriate to require these new
-maintainers to join an existing WG team.
+maintainers to join an existing WG team and no action has been taken to
+bring any of the volunteers into the organisation.
 
 Essentially, the WG does not have the maintenance bandwidth to keep on top
 of `cross`, but its user community hopefully does.
