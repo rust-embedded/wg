@@ -14,7 +14,7 @@ Disown from the Rust-Embedded Working Group (henceforth referred to as the "WG")
 The `itm` crate has been effectively superseeded by [`itm-decode`](https://crates.io/crates/itm-decode), specifially the [`rtic-scope:master`](https://github.com/rust-embedded/itm/pull/41) fork.
 This fork offers, in addition to the functionality of the `itm` crate, an `Iterator`-based design, more granular error enums, synchronization packet support, and timestamp generation of trace packets.
 Planned future functionality at the time of writing is
-- arbitration of instrumentation and extension packets such that payloads written on the target device via `cortex_m::iprint("message/payload")` can be trivially decodede by the library end-user; and
+- arbitration of instrumentation and extension packets such that payloads written on the target device via `cortex_m::iprint("message/payload")` can be trivially decoded by the library end-user; and
 - an asynchronous API.
 
 This fork also offers an `itm-decode` CLI tool that replaces `itmdump`.
