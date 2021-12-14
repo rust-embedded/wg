@@ -27,6 +27,7 @@ A consensus regarding the merge was not reached.
 
 A compromise is thus proposed:
 archive `rust-embedded/itm` with a deprecation notice that points to the fork's repository at `https://github.com/rtic-scope/itm`, and give its maintainer (@tmplt) publish access to [the crates.io registery entry of `itm`](https://crates.io/crates/itm).
+After publisher access has been granted, `itm v0.4.0` shall be releases that breaks compatibility with previous releases.
 After the fork has stabilized discussion on whether to adopt the crate back into the WG again can resume.
 The crate is unlikely to stabilize before Q1 2022.
 
