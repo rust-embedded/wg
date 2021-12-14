@@ -6,28 +6,28 @@
 # Summary
 [summary]: #summary
 
-Disown from the Rust-Embedded Working Group (henceforth referred to as the "WG") and move the [`itm`](https://github.com/rust-embedded/itm) repo and [crates.io registery entry](https://crates.io/crates/itm) to @tmplt.
+Archive [`rust-embedded/itm`](https://github.com/rust-embedded/itm) with a deprecation notice in favour of [`rtic-scope/itm`](https://github.com/rtic-scope/itm).
 
 # Motivation
 [motivation]: #motivation
 
-The `itm` crate has been effectively superseeded by [`itm-decode`](https://crates.io/crates/itm-decode), specifially the [`rtic-scope:master`](https://github.com/rust-embedded/itm/pull/41) fork.
-This fork offers, in addition to the functionality of the `itm` crate, an `Iterator`-based design, more granular error enums, synchronization packet support, and timestamp generation of trace packets.
+`rust-embedded/itm` has been effectively superseded by the `rtic-scope/itm` fork.
+This fork offers, in addition to the functionality of the previous implementation (v0.3), an `Iterator`-based design, more granular error enums, synchronization packet support, and timestamp generation of trace packets.
 Planned future functionality at the time of writing is
-- arbitration of instrumentation and extension packets such that payloads written on the target device via `cortex_m::iprint("message/payload")` can be trivially decoded by the library end-user; and
+- arbitration of instrumentation and extension packets such that payloads written on the target device via `cortex_m::iprint("message/payload")` (or similar API) can be trivially decoded by the library end-user; and
 - an asynchronous API.
 
 This fork also offers an `itm-decode` CLI tool that replaces `itmdump`.
 
-The pull-request replacing `itm` with the fork under the umbrella of the WG was discussed during  [yesterday's (2021-11-31) Matrix chat meeting](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org/$OcmpjhKy4iOk_5uQyhUpfVDA5_MtnNc1PkHVUDodSc8?via=matrix.org&via=psion.agg.io&via=beeper.com).
+[A pull-request replacing `rust-embedded/itm`](https://github.com/rust-embedded/itm/pull/41) with the fork under the umbrella of the Rust-Embedded Working Group (WG) was discussed during [a Matrix chat meeting (held 2021-11-31)](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org/$OcmpjhKy4iOk_5uQyhUpfVDA5_MtnNc1PkHVUDodSc8?via=matrix.org&via=psion.agg.io&via=beeper.com).
 Merging this pull-request would require the WG to support a new code base and vet any future changes to its implementation and API.
 As the library has yet to stabilize rapid changes can thus be expected which may cause release friction due to the vetting required by at least one WG member that is not proposing the changes themselves.
 Questions whether host-side ITM software should be handled under the WG also arose.
 A consensus regarding the merge was not reached.
 
-An inbetween approach is thus proposed:
-disown from the WG and move ownership of the `itm` repo and crate to @tmplt such that development can continue without friction, and so that there is one canonical ITM decoding crate to avoid end-user confusion.
-After the pull-request discussed above have been merged and the crate has stabilized discussion on whether to adopt the crate into the WG again can resume.
+A compromise is thus proposed:
+archive `rust-embedded/itm` with a deprecation notice that points to the fork's repository at `https://github.com/rtic-scope/itm`, and give its maintainer (@tmplt) publish access to [the crates.io registery entry of `itm`](https://crates.io/crates/itm).
+After the fork has stabilized discussion on whether to adopt the crate back into the WG again can resume.
 The crate is unlikely to stabilize before Q1 2022.
 
 # Unresolved questions
