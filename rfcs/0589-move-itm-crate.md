@@ -1,7 +1,6 @@
 - Feature Name: move_itm_crate
 - Start Date: 2021-12-01
-- RFC PR: (leave this empty)
-- Rust Issue: (leave this empty)
+- RFC PR: [#589](https://github.com/rust-embedded/wg/pull/589)
 
 # Summary
 [summary]: #summary
