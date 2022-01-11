@@ -243,6 +243,7 @@ The MS430 team develops and maintains the core of the MSP430 crate ecosystem.
 #### Members
 
 - [@cr1901]
+- [@YuhanLiin]
 
 #### Projects
 
@@ -418,6 +419,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@v-thakkar]: https://github.com/v-thakkar
 [@wizofe]: https://github.com/wizofe
 [@dkhayes117]: https://github.com/dkhayes117
+[@YuhanLiin]: https://github.com/YuhanLiin
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
