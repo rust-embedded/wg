@@ -7,7 +7,7 @@
 
 Move the `cross` repository to a new GitHub organisation `cross-rs`,
 with volunteers from the current Tools team as initial owners of the new
-organisation, to continue development of `cross` outside of the working gruop.
+organisation, to continue development of `cross` outside of the working group.
 
 # Motivation
 [motivation]: #motivation
@@ -38,15 +38,23 @@ of `cross`, but its user community hopefully does.
 We transfer the `cross` repository to a new `cross-rs` organisation (created in
 advance of writing this RFC to ensure name availability). Volunteers from the
 existing Tools team will be added as owners to the new organisation, which is
-otherwise a separate entity from the working group. In addition, some
-volunteers from the call-for-help issue could be added as maintainers and
-eventually organisation owners. A new GitHub team will be created and granted
-publish rights to crates.io.
+otherwise a separate entity from the working group. The repository's README
+will be updated to reflect its new organisation and the crate's `authors` field
+updated to remove the Tools team. The WG will maintain the default GitHub
+redirect to help existing users and prevent breaking old links.
+
+At this point the working group is no longer responsible for the new
+organisation or the `cross` project; the rest of this plan details the
+subsequent intentions for initial setup.
+
+It's intended that additional volunteers from outside the WG will be added as
+maintainers, with PR approval and write acess to the repository, and a new team
+in that organisation created and given publish rights to crates.io.
 
 The new organisation and moved repository would continue the WG's commitment to
-upholding the Rust project code of conduct, and the existing Tools team members
-would provide continuity of ownership and oversight as the new project gets
-underway.
+upholding the Rust project code of conduct, and having some existing Tools team
+members as the initial maintainers provides continuity of ownership and
+oversight as the new project gets underway.
 
 Currently cross uses Azure Pipelines for CI and the dockerhub container
 registry for container images, but it is envisioned this will swap to GHA
