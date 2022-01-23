@@ -431,8 +431,8 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
 [`cortex-a`]: https://github.com/rust-embedded/cortex-a
 [`cortex-m-quickstart`]: https://github.com/rust-embedded/cortex-m-quickstart
-[`cortex-m-rt`]: https://github.com/rust-embedded/cortex-m-rt
-[`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m-semihosting
+[`cortex-m-rt`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-rt
+[`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-semihosting
 [`cortex-m`]: https://github.com/rust-embedded/cortex-m
 [`cortex-r`]: https://github.com/rust-embedded/cortex-r
 [`cross`]: https://github.com/rust-embedded/cross
@@ -447,8 +447,8 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`msp430`]: https://github.com/pftbest/msp430
 [`nb`]: https://github.com/rust-embedded/nb
 [`panic-dcc`]: https://github.com/rust-embedded/arm-dcc/tree/master/panic
-[`panic-itm`]: https://github.com/rust-embedded/panic-itm
-[`panic-semihosting`]: https://github.com/rust-embedded/panic-semihosting
+[`panic-itm`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-itm
+[`panic-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-semihosting
 [`register-rs`]: https://github.com/rust-embedded/register-rs
 [`riscv-rt`]: https://github.com/rust-embedded/riscv-rt
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
