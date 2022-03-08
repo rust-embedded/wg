@@ -167,6 +167,8 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 - [@therealprof]
 - [@thalesfragoso]
 - [@thejpster] (Personal) / [@jonathanpallant] (Work)
+- [@newAM]
+
 #### Projects
 
 Projects maintained by this team.
@@ -420,6 +422,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@wizofe]: https://github.com/wizofe
 [@dkhayes117]: https://github.com/dkhayes117
 [@YuhanLiin]: https://github.com/YuhanLiin
+[@newAM]: https://github.com/newAM
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
