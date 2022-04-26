@@ -330,7 +330,6 @@ The tools team maintains and develops core embedded tools.
 Projects maintained by the tools team
 
 - [`cargo-binutils`]
-- [`cross`]
 - [`itm`]
 - [`svd-parser`]
 - [`svd2rust`]
@@ -438,7 +437,6 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-semihosting
 [`cortex-m`]: https://github.com/rust-embedded/cortex-m
 [`cortex-r`]: https://github.com/rust-embedded/cortex-r
-[`cross`]: https://github.com/rust-embedded/cross
 [`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
 [`gpio-cdev`]: https://github.com/rust-embedded/gpio-cdev
 [`gpio-utils`]: https://github.com/rust-embedded/gpio-utils
