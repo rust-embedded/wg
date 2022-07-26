@@ -95,13 +95,14 @@ Everyone can contribute to the embedded WG efforts! There are several ways to he
 
 [Help wanted!]: https://github.com/search?q=org%3Arust-embedded+is%3Aopen+label%3A%22help+wanted%22&type=Issues
 
-- Join our weekly meetings on Matrix. We use these meetings as a faster, synchronous alternative to the
-  RFC threads on GitHub. The agenda is [posted] in the issue tracker of this repository in advance
+- Join our weekly meetings on [Matrix]. We use these meetings as a faster, synchronous alternative to the
+  RFC threads on GitHub. The agenda is posted in the matrix channel in advance
   to the meeting. Everyone is free to join the meeting and share their thoughts. You can also
   nominate an existing GH thread for discussion if you think it would benefit from a more
   synchronous discussion.
+  The usual meeting time is Tuesdays, 8pm CET/CEST.
 
-[posted]: https://github.com/rust-embedded/wg/issues?q=is%3Aissue+is%3Aopen+label%3Ameeting
+[Matrix]: https://matrix.to/#/#rust-embedded:matrix.org
 
 - We have several teams focused on different areas: tooling, Cortex-M crates, etc. and each team
   maintains several projects (crates, docs and / or tools) that live under the [rust-embedded]
