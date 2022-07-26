@@ -14,11 +14,12 @@ a great choice for embedded development.
 
 Want to stay up-to-date with community progress? Check out our [newsletter].
 
-Join the discussion on Matrix! [#rust-embedded:matrix.org](https://matrix.to/#/#rust-embedded:matrix.org)
+Join the discussion on Matrix! [#rust-embedded:matrix.org][matrix]
 
 [book]: https://docs.rust-embedded.org/book
 [bookshelf]: https://docs.rust-embedded.org
 [newsletter]: https://rust-embedded.github.io/blog/
+[matrix]: https://matrix.to/#/#rust-embedded:matrix.org
 
 ## Vision
 
@@ -46,7 +47,7 @@ At a high level we have two main tasks:
   [bookshelf]!
 
 - We maintain and moderate the venues the embedded community uses to discuss. That includes this
-  coordination repository and our Matrix room ([#rust-embedded:matrix.org](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org)).
+  coordination repository and our [Matrix room][matrix].
 
 *And, we serve as a bridge between the [Rust teams] and the embedded community.*
 
@@ -95,13 +96,12 @@ Everyone can contribute to the embedded WG efforts! There are several ways to he
 
 [Help wanted!]: https://github.com/search?q=org%3Arust-embedded+is%3Aopen+label%3A%22help+wanted%22&type=Issues
 
-- Join our weekly meetings on Matrix. We use these meetings as a faster, synchronous alternative to the
-  RFC threads on GitHub. The agenda is [posted] in the issue tracker of this repository in advance
+- Join our weekly meetings on [Matrix][matrix]. We use these meetings as a faster, synchronous alternative to the
+  RFC threads on GitHub. The agenda is posted in the matrix channel in advance
   to the meeting. Everyone is free to join the meeting and share their thoughts. You can also
   nominate an existing GH thread for discussion if you think it would benefit from a more
   synchronous discussion.
-
-[posted]: https://github.com/rust-embedded/wg/issues?q=is%3Aissue+is%3Aopen+label%3Ameeting
+  The usual meeting time is Tuesdays, 8pm CET/CEST.
 
 - We have several teams focused on different areas: tooling, Cortex-M crates, etc. and each team
   maintains several projects (crates, docs and / or tools) that live under the [rust-embedded]
@@ -378,7 +378,7 @@ Each team can be privately contacted via the following e-mail addresses:
 <!-- - msp430@teams.rust-embedded.org -->
 
 You can usually find the members of the embedded WG on the Rust Embedded Matrix room
-([#rust-embedded:matrix.org](https://matrix.to/#/!BHcierreUuwCMxVqOf:matrix.org)).
+([#rust-embedded:matrix.org][matrix]).
 
 Our Matrix room is logged by on the bridged IRC channel, and you can find the logs at: https://libera.irclog.whitequark.org/rust-embedded/
 
