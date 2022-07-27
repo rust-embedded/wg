@@ -229,6 +229,7 @@ Board Support Crates and drivers.
 - [@therealprof]
 - [@ryankurte]
 - [@eldruin]
+- [@dirbaio]
 
 #### Projects
 
@@ -393,6 +394,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@cr1901]: https://github.com/cr1901
 [@danc86]: https://github.com/danc86
 [@dvc94ch]: https://github.com/dvc94ch
+[@dirbaio]: https://github.com/Dirbaio
 [@dylanmckay]: https://github.com/dylanmckay
 [@eldruin]: https://github.com/eldruin
 [@hannobraun]: https://github.com/hannobraun
