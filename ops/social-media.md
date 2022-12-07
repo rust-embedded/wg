@@ -16,7 +16,7 @@ The [Resources Team] currently maintains three official social media accounts:
 
 ## Operational Guide
 
-The purpose of the social media accounts is to spread awareness of topics related to embedded rust.
+The purpose of the social media accounts are to spread awareness of topics related to embedded rust.
 
 Social Media accounts will typically:
 
@@ -28,7 +28,7 @@ Social Media accounts will typically:
 
 In general, we ask that all social media account maintainers use their best judgement to uphold the [Rust Code of Conduct], and operate the account in a way that is both generally appropriate in representing the Rust Embedded Working Group, as well as appropriate for the social media community and norms of that particular site.
 
-Rust Code of Conduct: https://www.rust-lang.org/policies/code-of-conduct
+[Rust Code of Conduct]: https://www.rust-lang.org/policies/code-of-conduct
 
 ## How to Share
 
