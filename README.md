@@ -146,7 +146,6 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 
 #### Members
 
-- [@andre-richter]
 - [@raw-bin]
 
 #### Projects
@@ -297,7 +296,6 @@ The resources team develops, maintains and curates resources on embedded Rust.
 #### Members
 
 - [@adamgreig]
-- [@andre-richter]
 - [@eldruin]
 - [@hargoniX]
 - [@jamesmunns]
@@ -348,6 +346,7 @@ The triage team is charge of keeping PR queues moving; they ensure no PR is left
 
 The following members have put themselves into the hibernation state, due to being absent or busy for an extended amount of time. See [ops/hibernating.md](https://github.com/rust-embedded/wg/blob/master/ops/hibernating.md).
 
+- [@andre-richter]
 - [@awygle]
 - [@bradjc]
 - [@danc86]
