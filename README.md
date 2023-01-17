@@ -172,7 +172,7 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 
 Projects maintained by this team.
 
-- [`alloc-cortex-m`]
+- [`embedded-alloc`]
 - [`cortex-m-quickstart`]
 - [`cortex-m-rt`]
 - [`cortex-m-semihosting`]
@@ -430,7 +430,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [The Discovery book]: https://github.com/rust-embedded/discovery
 [The embedded Rust book]: https://github.com/rust-embedded/book
 [The embedonomicon]: https://github.com/rust-embedded/embedonomicon
-[`alloc-cortex-m`]: https://github.com/rust-embedded/alloc-cortex-m
+[`embedded-alloc`]: https://github.com/rust-embedded/embedded-alloc
 [`arm-dcc`]: https://github.com/rust-embedded/arm-dcc
 [`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
 [`cortex-a`]: https://github.com/rust-embedded/cortex-a
