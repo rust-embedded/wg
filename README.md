@@ -280,6 +280,7 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 - [@almindor]
 - [@Disasm]
 - [@dkhayes117]
+- [@romancardenas]
 
 #### Projects
 
@@ -413,6 +414,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@posborne]: https://github.com/posborne
 [@raw-bin]: https://github.com/raw-bin
 [@reitermarkus]: https://github.com/reitermarkus
+[@romancardenas]: https://github.com/romancardenas
 [@ryankurte]: https://github.com/ryankurte
 [@sekineh]: https://github.com/sekineh
 [@thalesfragoso]: https://github.com/thalesfragoso
