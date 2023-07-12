@@ -152,8 +152,7 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 
 Projects maintained by this team.
 
-- [`cortex-a`]
-- [`register-rs`]
+- [`aarch64-cpu`]
 - [`rust-raspberrypi-OS-tutorials`]
 
 ### The Cortex-M team
