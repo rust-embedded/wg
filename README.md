@@ -434,7 +434,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`embedded-alloc`]: https://github.com/rust-embedded/embedded-alloc
 [`arm-dcc`]: https://github.com/rust-embedded/arm-dcc
 [`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
-[`cortex-a`]: https://github.com/rust-embedded/cortex-a
+[`aarch64-cpu`]: https://github.com/rust-embedded/aarch64-cpu
 [`cortex-m-quickstart`]: https://github.com/rust-embedded/cortex-m-quickstart
 [`cortex-m-rt`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-rt
 [`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-semihosting
@@ -453,7 +453,6 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`panic-dcc`]: https://github.com/rust-embedded/arm-dcc/tree/master/panic
 [`panic-itm`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-semihosting
-[`register-rs`]: https://github.com/rust-embedded/register-rs
 [`riscv-rt`]: https://github.com/rust-embedded/riscv-rt
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/rust-embedded/riscv
