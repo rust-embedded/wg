@@ -147,6 +147,7 @@ The Cortex-A team develops and maintains the core of the Cortex-A crate ecosyste
 #### Members
 
 - [@raw-bin]
+- [@nchong-at-aws]
 
 #### Projects
 
@@ -407,6 +408,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@laanwj]: https://github.com/laanwj
 [@mathk]: https://github.com/mathk
 [@nastevens]: https://github.com/nastevens
+[@nchong-at-aws]: https://github.com/nchong-at-aws
 [@paoloteti]: https://github.com/paoloteti
 [@parched]: https://github.com/parched
 [@pftbest]: https://github.com/pftbest
