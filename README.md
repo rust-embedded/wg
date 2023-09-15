@@ -214,6 +214,7 @@ Projects maintained by the embedded Linux team
 - [`gpio-utils`]
 - [`i2cdev`]
 - [`linux-embedded-hal`]
+- [`meta-rust-bin`]
 - [`spidev`]
 - [`sysfs-gpio`]
 - [`sysfs-pwm`]
@@ -448,6 +449,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`i2cdev`]: https://github.com/rust-embedded/rust-i2cdev
 [`itm`]: https://github.com/rust-embedded/itm
 [`linux-embedded-hal`]: https://github.com/rust-embedded/linux-embedded-hal
+[`meta-rust-bin`]: https://github.com/rust-embedded/meta-rust-bin
 [`msp430-quickstart`]: https://github.com/pftbest/msp430-quickstart
 [`msp430-rt`]: https://github.com/pftbest/msp430-rt
 [`msp430`]: https://github.com/pftbest/msp430
