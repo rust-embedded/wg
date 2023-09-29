@@ -230,6 +230,7 @@ Board Support Crates and drivers.
 - [@ryankurte]
 - [@eldruin]
 - [@dirbaio]
+- [@MabezDev]
 
 #### Projects
 
@@ -282,6 +283,7 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 - [@Disasm]
 - [@dkhayes117]
 - [@romancardenas]
+- [@MabezDev]
 
 #### Projects
 
@@ -407,6 +409,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@jcsoo]: https://github.com/jcsoo
 [@korken89]: https://github.com/korken89
 [@laanwj]: https://github.com/laanwj
+[@MabezDev]: https://github.com/MabezDev
 [@mathk]: https://github.com/mathk
 [@nastevens]: https://github.com/nastevens
 [@nchong-at-aws]: https://github.com/nchong-at-aws
