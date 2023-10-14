@@ -137,7 +137,6 @@ The functions of the core team are:
 #### Members
 
 - [@adamgreig]
-- [@japaric]
 - [@therealprof]
 
 ### The Cortex-A team
@@ -186,8 +185,6 @@ Projects maintained by this team.
 The Cortex-R team develops and maintains the core of the Cortex-R crate ecosystem.
 
 #### Members
-
-- [@japaric]
 
 #### Projects
 
@@ -358,6 +355,7 @@ The following members have put themselves into the hibernation state, due to bei
 - [@dylanmckay]
 - [@hannobraun]
 - [@ithinuel]
+- [@japaric]
 - [@jcsoo]
 - [@korken89]
 - [@laanwj]
@@ -498,7 +496,7 @@ The list below is not exhaustive and will be updated as device support increases
 
 ### [`embedded-hal`]
 
-[`embedded-hal`]: https://github.com/japaric/embedded-hal
+[`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
 
 `embedded-hal` is a project that aims to build a standard set of traits (interfaces) for I/O
 functionality common in embedded devices: Serial, I2C, etc. with the goal of serving as a base for
