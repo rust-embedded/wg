@@ -248,6 +248,7 @@ The libs team manages library code that is not architecture-specific.
 #### Members
 
 - [@dirbaio]
+- [@newAM]
 
 #### Projects
 
