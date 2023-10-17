@@ -156,7 +156,6 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 
 Projects maintained by this team.
 
-- [`embedded-alloc`]
 - [`cortex-m-quickstart`]
 - [`cortex-m-rt`]
 - [`cortex-m-semihosting`]
@@ -241,6 +240,21 @@ The infrastructure team manages our domains, DNS records, e-mail aliases, etc.
 Projects maintained by this team
 
 - [`rust-embedded-provisioning`]
+
+### The libs team
+
+The libs team manages library code that is not architecture-specific.
+
+#### Members
+
+- [@dirbaio]
+
+#### Projects
+
+Projects maintained by this team
+
+- [`embedded-alloc`]
+- [`qemu-exit`]
 
 ### The MSP430 team
 
@@ -450,6 +464,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`panic-dcc`]: https://github.com/rust-embedded/arm-dcc/tree/master/panic
 [`panic-itm`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-semihosting
+[`qemu-exit`]: https://github.com/rust-embedded/qemu-exit
 [`riscv-rt`]: https://github.com/rust-embedded/riscv-rt
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
 [`riscv`]: https://github.com/rust-embedded/riscv
