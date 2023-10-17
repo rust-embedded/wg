@@ -49,24 +49,9 @@ At a high level we have two main tasks:
 - We maintain and moderate the venues the embedded community uses to discuss. That includes this
   coordination repository and our [Matrix room][matrix].
 
-*And, we serve as a bridge between the [Rust teams] and the embedded community.*
+And, we serve as a bridge between the [Rust teams] and the embedded community.
 
 [Rust teams]: https://www.rust-lang.org/team.html
-
-- If you need a language or a compiler feature to improve your embedded software let us know and
-  we'll discuss your request with the appropriate Rust team. For example, see [this request] for
-  making the compiler emit information about the stack usage of functions, which was later
-  [implemented] as an experimental feature.
-
-[this request]: https://github.com/rust-embedded/wg/issues/106
-[implemented]: https://github.com/rust-lang/rust/pull/51946
-
-- Similarly, if you need some unstable API in the standard library to be stabilized to make your
-  crate work on the stable we'll forward your request to the library team. For example, see [this
-  proposal] to add ARM instructions to `core::arch::arm` to eliminate the need for the unstable
-  inline assembly feature (`asm!`) in the most common scenarios.
-
-[this proposal]: https://github.com/rust-embedded/wg/issues/63
 
 ## How you can help
 
@@ -186,6 +171,9 @@ The Cortex-R team develops and maintains the core of the Cortex-R crate ecosyste
 
 #### Members
 
+This team is currently empty! Please get in touch via an issue or the Matrix
+chat if you are interested in helping to maintain the Cortex-R crates.
+
 #### Projects
 
 - [`arm-dcc`]
@@ -218,8 +206,9 @@ Projects maintained by the embedded Linux team
 
 ### The HAL team
 
-The HAL team develops and maintains crates that ease the development of Hardware Abstraction Layers,
-Board Support Crates and drivers.
+The HAL team develops and maintains crates containing shared traits and related
+code that enables the development of hardware abstraction layers and drivers
+which can interoperate across all embedded Rust devices on all architectures.
 
 #### Members
 
@@ -238,6 +227,21 @@ Projects maintained by the HAL team.
 - [`nb`]
 - [`critical-section`]
 
+### The infrastructure team
+
+The infrastructure team manages our domains, DNS records, e-mail aliases, etc.
+
+#### Members
+
+- [@nastevens]
+- [@ryankurte]
+
+#### Projects
+
+Projects maintained by this team
+
+- [`rust-embedded-provisioning`]
+
 ### The MSP430 team
 
 The MS430 team develops and maintains the core of the MSP430 crate ecosystem.
@@ -254,21 +258,6 @@ Projects maintained by this team
 - [`msp430-quickstart`]
 - [`msp430-rt`]
 - [`msp430`]
-
-### The infrastructure team
-
-The infrastructure team manages our domains, DNS records, e-mail aliases, etc.
-
-#### Members
-
-- [@nastevens]
-- [@ryankurte]
-
-#### Projects
-
-Projects maintained by this team
-
-- [`rust-embedded-provisioning`]
 
 ### The RISC-V team
 
@@ -292,7 +281,8 @@ Projects maintained by this team
 
 ### The resources team
 
-The resources team develops, maintains and curates resources on embedded Rust.
+The resources team develops, maintains and curates documentation, books, our
+social media accounts and websites, and similar resources on embedded Rust.
 
 #### Members
 
@@ -314,7 +304,9 @@ Projects maintained by the resources team
 
 ### The tools team
 
-The tools team maintains and develops core embedded tools.
+The tools team maintains and develops software for embedded development
+which typically runs on your development machine rather than the
+embedded targets themselves.
 
 #### Members
 
@@ -343,9 +335,9 @@ The triage team is charge of keeping PR queues moving; they ensure no PR is left
 
 - [@mathk]
 
-### Hibernating
+### Hibernating and Alumni
 
-The following members have put themselves into the hibernation state, due to being absent or busy for an extended amount of time. See [ops/hibernating.md](https://github.com/rust-embedded/wg/blob/master/ops/hibernating.md).
+The following alumni have put themselves into the hibernation state, due to being absent or busy for an extended amount of time. See [ops/hibernating.md](https://github.com/rust-embedded/wg/blob/master/ops/hibernating.md).
 
 - [@andre-richter]
 - [@awygle]
@@ -478,7 +470,7 @@ These are other projects you may be interested in but that (currently) are not o
 - [AVR fork of Rust](https://github.com/avr-rust/)
 - [Xtensa fork of Rust (for Espressif chips)](https://github.com/esp-rs/rust)
 
-## On going community efforts
+## Ongoing community efforts
 
 ### Device specific communities
 
