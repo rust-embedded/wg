@@ -255,7 +255,9 @@ The libs team manages library code that is not architecture-specific.
 Projects maintained by this team
 
 - [`embedded-alloc`]
+- [`heapless`]
 - [`qemu-exit`]
+- [`volatile-register`]
 
 ### The MSP430 team
 
@@ -454,6 +456,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
 [`gpio-cdev`]: https://github.com/rust-embedded/gpio-cdev
 [`gpio-utils`]: https://github.com/rust-embedded/gpio-utils
+[`heapless`]: https://github.com/rust-embedded/heapless
 [`i2cdev`]: https://github.com/rust-embedded/rust-i2cdev
 [`itm`]: https://github.com/rust-embedded/itm
 [`linux-embedded-hal`]: https://github.com/rust-embedded/linux-embedded-hal
@@ -476,6 +479,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`svd2rust`]: https://github.com/rust-embedded/svd2rust
 [`sysfs-gpio`]: https://github.com/rust-embedded/rust-sysfs-gpio
 [`sysfs-pwm`]: https://github.com/rust-embedded/rust-sysfs-pwm
+[`volatile-register`]: https://github.com/rust-embedded/volatile-register
 [`embedded-dma`]: https://github.com/rust-embedded/embedded-dma
 [`critical-section`]: https://github.com/rust-embedded/critical-section
 
