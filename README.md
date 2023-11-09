@@ -286,6 +286,7 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 - [@dkhayes117]
 - [@romancardenas]
 - [@MabezDev]
+- [@jessebraham]
 
 #### Projects
 
@@ -350,6 +351,7 @@ The triage team is charge of keeping PR queues moving; they ensure no PR is left
 #### Members
 
 - [@mathk]
+- [@jessebraham]
 
 ### Hibernating and Alumni
 
@@ -414,6 +416,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@jamesmunns]: https://github.com/jamesmunns
 [@japaric]: https://github.com/japaric
 [@jcsoo]: https://github.com/jcsoo
+[@jessebraham]: https://github.com/jessebraham
 [@korken89]: https://github.com/korken89
 [@laanwj]: https://github.com/laanwj
 [@MabezDev]: https://github.com/MabezDev
