@@ -283,7 +283,6 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 #### Members
 
 - [@almindor]
-- [@Disasm]
 - [@dkhayes117]
 - [@romancardenas]
 - [@MabezDev]
@@ -360,6 +359,7 @@ The following alumni have put themselves into the hibernation state, due to bein
 - [@awygle]
 - [@bradjc]
 - [@danc86]
+- [@Disasm]
 - [@dvc94ch]
 - [@dylanmckay]
 - [@hannobraun]
