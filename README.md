@@ -189,6 +189,7 @@ The embedded Linux team develops and maintains the core of the embedded Linux cr
 - [@nastevens]
 - [@posborne]
 - [@ryankurte]
+- [@sirhcel]
 
 #### Projects
 
@@ -432,6 +433,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@romancardenas]: https://github.com/romancardenas
 [@ryankurte]: https://github.com/ryankurte
 [@sekineh]: https://github.com/sekineh
+[@sirhcel]: https://github.com/sirhcel
 [@thalesfragoso]: https://github.com/thalesfragoso
 [@thejpster]: https://github.com/thejpster
 [@jonathanpallant]: https://github.com/jonathanpallant
