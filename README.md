@@ -332,7 +332,6 @@ embedded targets themselves.
 - [@adamgreig]
 - [@burrbull]
 - [@Emilgardis]
-- [@reitermarkus]
 - [@ryankurte]
 - [@therealprof]
 
