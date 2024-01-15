@@ -294,7 +294,9 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 Projects maintained by this team
 
 - [`riscv-rust-quickstart`]
+- [`riscv-pac`]
 - [`riscv-rt`]
+- [`riscv-semihosting`]
 - [`riscv`]
 
 ### The resources team
@@ -474,9 +476,11 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`panic-itm`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-semihosting
 [`qemu-exit`]: https://github.com/rust-embedded/qemu-exit
-[`riscv-rt`]: https://github.com/rust-embedded/riscv-rt
+[`riscv-pac`]: https://github.com/rust-embedded/riscv/tree/master/riscv-pac
+[`riscv-rt`]: https://github.com/rust-embedded/riscv/tree/master/riscv-rt
+[`riscv-semihosting`]: https://github.com/rust-embedded/riscv/tree/master/riscv-semihosting
 [`riscv-rust-quickstart`]: https://github.com/riscv-rust/riscv-rust-quickstart
-[`riscv`]: https://github.com/rust-embedded/riscv
+[`riscv`]: https://github.com/rust-embedded/riscv/tree/master/riscv
 [`rust-embedded-provisioning`]: https://github.com/rust-embedded/rust-embedded-provisioning
 [`rust-raspberrypi-OS-tutorials`]: https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials
 [`spidev`]:https://github.com/rust-embedded/rust-spidev
