@@ -188,6 +188,7 @@ The embedded Linux team develops and maintains the core of the embedded Linux cr
 - [@eldruin]
 - [@nastevens]
 - [@posborne]
+- [@reitermarkus]
 - [@ryankurte]
 - [@sirhcel]
 
@@ -212,11 +213,12 @@ which can interoperate across all embedded Rust devices on all architectures.
 
 #### Members
 
-- [@therealprof]
-- [@ryankurte]
-- [@eldruin]
 - [@dirbaio]
+- [@eldruin]
 - [@MabezDev]
+- [@reitermarkus]
+- [@ryankurte]
+- [@therealprof]
 
 #### Projects
 
@@ -334,7 +336,6 @@ embedded targets themselves.
 - [@adamgreig]
 - [@burrbull]
 - [@Emilgardis]
-- [@reitermarkus]
 - [@ryankurte]
 - [@therealprof]
 - [@thejpster] / [@jonathanpallant]
