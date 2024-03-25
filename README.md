@@ -187,7 +187,6 @@ The embedded Linux team develops and maintains the core of the embedded Linux cr
 
 - [@eldruin]
 - [@nastevens]
-- [@posborne]
 - [@ryankurte]
 - [@sirhcel]
 
@@ -380,6 +379,7 @@ The following alumni have put themselves into the hibernation state, due to bein
 - [@sekineh]
 - [@v-thakkar]
 - [@wizofe]
+- [@posborne]
 
 ### Contact
 
