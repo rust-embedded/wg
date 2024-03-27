@@ -211,11 +211,12 @@ which can interoperate across all embedded Rust devices on all architectures.
 
 #### Members
 
-- [@therealprof]
-- [@ryankurte]
-- [@eldruin]
 - [@dirbaio]
+- [@eldruin]
 - [@MabezDev]
+- [@reitermarkus]
+- [@ryankurte]
+- [@therealprof]
 
 #### Projects
 
