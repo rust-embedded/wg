@@ -311,6 +311,7 @@ social media accounts and websites, and similar resources on embedded Rust.
 - [@hargoniX]
 - [@jamesmunns]
 - [@therealprof]
+- [@hdoordt]
 
 #### Projects
 
