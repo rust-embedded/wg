@@ -309,6 +309,7 @@ social media accounts and websites, and similar resources on embedded Rust.
 - [@adamgreig]
 - [@eldruin]
 - [@hargoniX]
+- [@hdoordt]
 - [@jamesmunns]
 - [@therealprof]
 
@@ -446,6 +447,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@dkhayes117]: https://github.com/dkhayes117
 [@YuhanLiin]: https://github.com/YuhanLiin
 [@newAM]: https://github.com/newAM
+[@hdoordt]: https://github.com/hdoordt
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
