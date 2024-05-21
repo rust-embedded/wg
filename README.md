@@ -306,6 +306,7 @@ social media accounts and websites, and similar resources on embedded Rust.
 #### Members
 
 - [@adamgreig]
+- [@bartmassey]
 - [@eldruin]
 - [@hargoniX]
 - [@hdoordt]
@@ -406,6 +407,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@almindor]: https://github.com/almindor
 [@andre-richter]: https://github.com/andre-richter
 [@awygle]: https://github.com/awygle
+[@bartmassey]: https://github.com/BartMassey
 [@burrbull]: https://github.com/burrbull
 [@bradjc]: https://github.com/bradjc
 [@cr1901]: https://github.com/cr1901
