@@ -149,7 +149,6 @@ The Cortex-M team develops and maintains the core of the Cortex-M crate ecosyste
 - [@adamgreig]
 - [@therealprof]
 - [@thalesfragoso]
-- [@thejpster] (Personal) / [@jonathanpallant] (Work)
 - [@newAM]
 
 #### Projects
@@ -337,7 +336,6 @@ embedded targets themselves.
 - [@reitermarkus]
 - [@ryankurte]
 - [@therealprof]
-- [@thejpster] / [@jonathanpallant]
 
 #### Projects
 
@@ -381,6 +379,7 @@ The following alumni have put themselves into the hibernation state, due to bein
 - [@v-thakkar]
 - [@wizofe]
 - [@posborne]
+- [@thejpster] (Personal) / [@jonathanpallant] (Work)
 
 ### Contact
 
