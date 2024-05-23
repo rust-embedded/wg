@@ -23,7 +23,7 @@ named `LifetimeMoveCount: embedded_hal::count::Counter`, and constrain it such t
 Their `LifetimeMoveCount` defers to `Counter` to get a read of movement, but its own impls defines long-term caching of data (e.g. 
 non volatile storage, or send reports to a server, etc). 
 
-** Core Principal**
+**Core Principal**
 
 > the goal of embedded-hal is to make it possible to write drivers that are portable across HALs.
 
@@ -69,13 +69,14 @@ standard for this, the way there is for things like gpio pins, i2c, etc.
 
 The core influence comes from two sources:
 
-- `embedded-hal`: Just as this crate makes no impositions on specific implementation, but rather, make it easy to write highly portable embedded-rust
+- `embedded-hal`: This RFC aims to make no impositions on specific implementation, but rather, make it easy to write highly portable embedded-rust
 - `embedded-time`: An independant endeavour that does a great job of already encapsulating this core idea.
 
 This is the code defining the `embedded_time::Clock` trait. I have changed the comments for the context of this RFC:
 
 <details>
 <summary> Expand to view annotated summary `embedded_time::Clock` trait </summary>
+
 ```rust
 // I would rename this. A consistent oscilator is not necisarily a clock. It could be a PWM at 50% duty cycle,
 // or an ab encoder tracking total distance moved, etc. The only assumption is that it is an incremental counter, and that
@@ -125,12 +126,14 @@ pub trait Clock: Sized {
     }
 }
 ```
+
 </details>
 
 Below is an initial draft design.
 
 <details>
 <summary>Expand to view pseudo-rust illustrative concept. </summary>
+
 ```rust
 /// Base encapsulation for reading a clock perihpereal. Intended typical use-case is 
 /// a HAL implementation adds this trait to a HAL type, and uses this interface to 
@@ -213,6 +216,7 @@ James Munn shared a valuable summary of their thoughts following a lengthy discu
 
 <details>
 <summary>It is expected that...</summary>
+
 - ..a timer/counter will need to be shared - there are relatively few of them on many chips
 - ..users will want high precision in some cases, 1k-1M are very reasonable number
 - ..some timers have a limited range - 16/24/32 bit are common, but many chips only have 16/24
@@ -221,6 +225,7 @@ James Munn shared a valuable summary of their thoughts following a lengthy discu
 - ..not all chips have atomics, and may need to use critical sections
 - ..users may have other interrupts, some of which may have higher priority than your timer/counter interrupt
 - ..users may want to use a global timer inside of other interrupts
+
 </details>
 
 
