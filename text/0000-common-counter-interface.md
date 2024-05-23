@@ -190,12 +190,9 @@ pub trait TimeWrap: TimeCount {
 ```
 </details>
 
-
-
-Up to this point, I've taken the concept of `Clock` and generalised it to `Counter`. I beleive that the `Clock` trait fits
-in by being a trait extension of a `Counter` trait. Such an extension would further constrain the type that is being measured
-with an aditional requirement that it is a representation of time (e.g. MilliSecs<...>), and perhaps add methods that are
-clock-specific.
+This RFC initially proposed a base `Counter` trait, where a `Clock` trait would extend
+it in a manner to handle time. This has changed. For background context, the initial
+illustration of this concept is included here.
 
 ```rust
 pub trait Clock: Counter
