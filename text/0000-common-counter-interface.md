@@ -127,10 +127,12 @@ pub trait Clock: Sized {
 ```
 </details>
 
+Below is an initial draft design.
+
 <details>
-<summary>Expand to view pseudo-rust illustrative concept </summary>
+<summary>Expand to view pseudo-rust illustrative concept. </summary>
 ```rust
-/// Base encapsulation for reading a clock perihpreal. Intended typical use-case is 
+/// Base encapsulation for reading a clock perihpereal. Intended typical use-case is 
 /// a HAL implementation adds this trait to a HAL type, and uses this interface to 
 /// read a clock/timer register. Through implementation of this trait, this object 
 /// will carry with it the means to read a clocks tick counter, and communicate the 
@@ -163,7 +165,16 @@ pub trait TimeCount: Sized {
         Self::TickMeasure::default() * self.try_now_raw()?
     }
 }
+```
 
+</details>
+
+And here is an initial thought as to how to handle the need to address wrapping.
+
+<details>
+<summary>`/// There are many sc...</summary>
+
+```rust
 /// There are many scenarios where a time-based tick-counter needs to handle the case
 /// where the counter overflows. This trait is intended to provide a HAL with the means
 /// of providing a `TimeCount` implementor with specialised interupt-based overflow
