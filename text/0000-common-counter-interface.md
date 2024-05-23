@@ -68,6 +68,9 @@ The core influence comes from two sources:
 - `embedded-time`: An independant endeavour that does a great job of already encapsulating this core idea.
 
 This is the code defining the `embedded_time::Clock` trait. I have changed the comments for the context of this RFC:
+
+<details>
+<summary> Expand to view annotated summary `embedded_time::Clock` trait </summary>
 ```rust
 // I would rename this to `TickCount`. A consistent oscilator is not necisarily a clock. It could be a PWM at 50% duty cycle,
 // or an ab encoder tracking total distance moved, etc. The only assumption is that it is an incremental counter, and that
@@ -117,6 +120,61 @@ pub trait Clock: Sized {
     }
 }
 ```
+</details>
+
+<details>
+<summary>Expand to view pseudo-rust illustrative concept </summary>
+```rust
+/// Base encapsulation for reading a clock perihpreal. Intended typical use-case is 
+/// a HAL implementation adds this trait to a HAL type, and uses this interface to 
+/// read a clock/timer register. Through implementation of this trait, this object 
+/// will carry with it the means to read a clocks tick counter, and communicate the 
+/// total duration this represents.
+pub trait TimeCount: Sized {
+    /// Typically u32 or u64 (or held within a type-wrapper) that corresponds with the 
+    /// data type held within the peripheral register being read. 
+    type RawData;
+
+    /// The length of time that each clock-tick measures. Setting up a clock with a 80MHz, 
+    /// a HAL might opt to set this as `fugit::TimerDuration<Self::RawData, 1, 80_000_000>`.
+    ///
+    /// Another option might something that expresses the measure as a frequency, in which
+    /// case, something that encapsulates "eighty million" (as opposed to "one eighty 
+    /// millionth").
+    ///
+    /// META: This might merit being a const instead.
+    /// META: Should it also be documented about the Mul constraint?
+    type TickMeasure: Duration + Mul<Self::RawData, Output = Self::TimeMeasure> + Default;
+
+    /// A combinasion of raw count and measure. 80k ticks with 80MHz => 1 second.
+    type TimeMeasure: Duration;
+
+
+    /// Intended as an interface to a raw-register read.
+    fn try_now_raw(&self) -> Result<Self::RawData, crate::clock::Error>;
+
+    /// Interprates the tick-count of `try_now_raw`, and scales based on `TickMeasure` 
+    fn try_now(&self) -> Result<Self::TimeMeasure, crate::clock::Error> {
+        Self::TickMeasure::default() * self.try_now_raw()?
+    }
+}
+
+/// There are many scenarios where a time-based tick-counter needs to handle the case
+/// where the counter overflows. This trait is intended to provide a HAL with the means
+/// of providing a `TimeCount` implementor with specialised interupt-based overflow
+/// tracking. 
+pub trait TimeWrap: TimeCount {
+    /// A HAL implementation might register the provided method to handle an overflow
+    /// interupt and increment a field that tracks overflow.
+    ///
+    /// META: I honestly don't know the best way to do this. This might prove to be
+    ///       a key technical challenge
+    fn register_wrap_interupt(self, ???);
+}
+```
+</details>
+
+
 
 Up to this point, I've taken the concept of `Clock` and generalised it to `Counter`. I beleive that the `Clock` trait fits
 in by being a trait extension of a `Counter` trait. Such an extension would further constrain the type that is being measured
