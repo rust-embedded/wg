@@ -23,6 +23,12 @@ named `LifetimeMoveCount: embedded_hal::count::Counter`, and constrain it such t
 Their `LifetimeMoveCount` defers to `Counter` to get a read of movement, but its own impls defines long-term caching of data (e.g. 
 non volatile storage, or send reports to a server, etc). 
 
+**Core Principal**
+
+> the goal of embedded-hal is to make it possible to write drivers that are portable across HALs.
+
+
+
 # Motivation
 [motivation]: #motivation
 
@@ -63,13 +69,16 @@ standard for this, the way there is for things like gpio pins, i2c, etc.
 
 The core influence comes from two sources:
 
-- `embedded-hal`: Just as this crate makes no impositions on specific implementation, but rather, encapsulates interfaces that
-  represent the most fundamental of behavior.
+- `embedded-hal`: This RFC aims to make no impositions on specific implementation, but rather, make it easy to write highly portable embedded-rust
 - `embedded-time`: An independant endeavour that does a great job of already encapsulating this core idea.
 
 This is the code defining the `embedded_time::Clock` trait. I have changed the comments for the context of this RFC:
+
+<details>
+<summary> Expand to view annotated summary `embedded_time::Clock` trait </summary>
+
 ```rust
-// I would rename this to `TickCount`. A consistent oscilator is not necisarily a clock. It could be a PWM at 50% duty cycle,
+// I would rename this. A consistent oscilator is not necisarily a clock. It could be a PWM at 50% duty cycle,
 // or an ab encoder tracking total distance moved, etc. The only assumption is that it is an incremental counter, and that
 // each increment has a specific meaning (be it a meanure of time, distance, etc.).
 pub trait Clock: Sized {
@@ -118,10 +127,75 @@ pub trait Clock: Sized {
 }
 ```
 
-Up to this point, I've taken the concept of `Clock` and generalised it to `Counter`. I beleive that the `Clock` trait fits
-in by being a trait extension of a `Counter` trait. Such an extension would further constrain the type that is being measured
-with an aditional requirement that it is a representation of time (e.g. MilliSecs<...>), and perhaps add methods that are
-clock-specific.
+</details>
+
+Below is an initial draft design.
+
+<details>
+<summary>Expand to view pseudo-rust illustrative concept. </summary>
+
+```rust
+/// Base encapsulation for reading a clock perihpereal. Intended typical use-case is 
+/// a HAL implementation adds this trait to a HAL type, and uses this interface to 
+/// read a clock/timer register. Through implementation of this trait, this object 
+/// will carry with it the means to read a clocks tick counter, and communicate the 
+/// total duration this represents.
+pub trait TimeCount: Sized {
+    /// Typically u32 or u64 (or held within a type-wrapper) that corresponds with the 
+    /// data type held within the peripheral register being read. 
+    type RawData;
+
+    /// The length of time that each clock-tick measures. Setting up a clock with a 80MHz, 
+    /// a HAL might opt to set this as `fugit::TimerDuration<Self::RawData, 1, 80_000_000>`.
+    ///
+    /// Another option might something that expresses the measure as a frequency, in which
+    /// case, something that encapsulates "eighty million" (as opposed to "one eighty 
+    /// millionth").
+    ///
+    /// META: This might merit being a const instead.
+    /// META: Should it also be documented about the Mul constraint?
+    type TickMeasure: Duration + Mul<Self::RawData, Output = Self::TimeMeasure> + Default;
+
+    /// A combinasion of raw count and measure. 80k ticks with 80MHz => 1 second.
+    type TimeMeasure: Duration;
+
+
+    /// Intended as an interface to a raw-register read.
+    fn try_now_raw(&self) -> Result<Self::RawData, crate::clock::Error>;
+
+    /// Interprates the tick-count of `try_now_raw`, and scales based on `TickMeasure` 
+    fn try_now(&self) -> Result<Self::TimeMeasure, crate::clock::Error> {
+        Self::TickMeasure::default() * self.try_now_raw()?
+    }
+}
+```
+
+</details>
+
+And here is an initial thought as to how to handle the need to address wrapping.
+
+<details>
+<summary>`/// There are many sc...</summary>
+
+```rust
+/// There are many scenarios where a time-based tick-counter needs to handle the case
+/// where the counter overflows. This trait is intended to provide a HAL with the means
+/// of providing a `TimeCount` implementor with specialised interupt-based overflow
+/// tracking. 
+pub trait TimeWrap: TimeCount {
+    /// A HAL implementation might register the provided method to handle an overflow
+    /// interupt and increment a field that tracks overflow.
+    ///
+    /// META: I honestly don't know the best way to do this. This might prove to be
+    ///       a key technical challenge
+    fn register_wrap_interupt(self, ???);
+}
+```
+</details>
+
+This RFC initially proposed a base `Counter` trait, where a `Clock` trait would extend
+it in a manner to handle time. This has changed. For background context, the initial
+illustration of this concept is included here.
 
 ```rust
 pub trait Clock: Counter
@@ -133,6 +207,27 @@ where <Self as Counter>::Output: Into<Seconds<...>>
     }
 }
 ```
+
+### Upstreamed feedback
+
+James Munn shared a valuable summary of their thoughts following a lengthy discussion in DMs:
+
+> you need to provide an interface that is reasonable for all parties, within reasonable use case [expectations] of all of them
+
+<details>
+<summary>It is expected that...</summary>
+
+- ..a timer/counter will need to be shared - there are relatively few of them on many chips
+- ..users will want high precision in some cases, 1k-1M are very reasonable number
+- ..some timers have a limited range - 16/24/32 bit are common, but many chips only have 16/24
+- ..programs will be expected for months to years at a time
+- ..some users want to use the lowest possible power design they can
+- ..not all chips have atomics, and may need to use critical sections
+- ..users may have other interrupts, some of which may have higher priority than your timer/counter interrupt
+- ..users may want to use a global timer inside of other interrupts
+
+</details>
+
 
 # How We Teach This
 [how-we-teach-this]: #how-we-teach-this
@@ -150,22 +245,16 @@ various modules that define a common interface for things like gpio pins, I2c, e
 # Alternatives
 [alternatives]: #alternatives
 
-embassy-time has an encapsulation of time, however that lives in an async-first context.
-many MCU hals have their own way of encapsulating time, and other incremental counts.
-fugit is an embedded-first encapsulation of mapping time-oscilator counts to a measurement of time in SI units.
+- `embassy-time` has an encapsulation of time, however that lives in an async-first context. It also forces design
+choices onto reverse dependencies, such as forced into using u64 for their `Duration` and `Instant` primitives.
+- many MCU hals have their own way of encapsulating time, and other incremental counts.
+- fugit is an embedded-first encapsulation of mapping time-oscilator counts to a measurement of time in SI units.
+- `fugit` covers a lot of other base-functionalities in terms of embedded-first time-encapsulation.
 
 
 # Unresolved questions
 [unresolved]: #unresolved-questions
 
-How to move forward? I propose an `embedded-count` added to the rust-embedded repository, initially just a placeholder,
-I'll fork it, and begin initial work. At an appropriate time, it will be upstreamed, and v0.0.2 will be released. If all goes
-well, its form will be representative of this RFC.
-
-Are we comfortable with using `typenum` instead of const generics. This will remove the limitations of const generics
-entirely, including the need for nightly features, at the risk of interface ergonomics, and compromising user familiarity.
-I wish to explore the use of this crate, though I feel it's a core requirement that the change in UX to be trivial. I.e. other
-than theneed to use `typenum::U5` where `5u32/64/size/8` would be used to set a generic const.
 
 How should we approach assosciated error types?
 
@@ -176,4 +265,20 @@ be used to count something, would necissarily have an ordering between any two p
 be put into providing the maths where compatable. in pseudo-rust: `impl<A: Counter, B: Counter> Add<A::Output> for for B::Output`
 with where-clauses that constrain that the output types can do the Add.
 
+### How to move forward?
 
+Initially, it was thought to add `embedded-count` added to the rust-embedded repository, initially just a placeholder, and so on.
+
+This has been updated. I have concerns about the chicken-egg dilema, and counsil is sought to mitigate this. At time of writing:
+
+1. Create out-of-workinggroup repo and build up the interface(s)
+2. Fork some hals and update to use the interface(s)
+3. Fork existing projects, update to clocks portably.
+4. Continue working on my `SimpleFOC-rs` project, writing clocks in a portable manner
+
+### Typenum
+
+Are we comfortable with using `typenum` instead of const generics. This will remove the limitations of const generics
+entirely, including the need for nightly features, at the risk of interface ergonomics, and compromising user familiarity.
+I wish to explore the use of this crate, though I feel it's a core requirement that the change in UX to be trivial. I.e. other
+than theneed to use `typenum::U5` where `5u32/64/size/8` would be used to set a generic const.
