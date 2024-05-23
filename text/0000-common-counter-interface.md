@@ -23,6 +23,12 @@ named `LifetimeMoveCount: embedded_hal::count::Counter`, and constrain it such t
 Their `LifetimeMoveCount` defers to `Counter` to get a read of movement, but its own impls defines long-term caching of data (e.g. 
 non volatile storage, or send reports to a server, etc). 
 
+** Core Principal**
+
+> the goal of embedded-hal is to make it possible to write drivers that are portable across HALs.
+
+
+
 # Motivation
 [motivation]: #motivation
 
