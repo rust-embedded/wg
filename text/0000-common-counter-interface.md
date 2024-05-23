@@ -240,22 +240,16 @@ various modules that define a common interface for things like gpio pins, I2c, e
 # Alternatives
 [alternatives]: #alternatives
 
-embassy-time has an encapsulation of time, however that lives in an async-first context.
-many MCU hals have their own way of encapsulating time, and other incremental counts.
-fugit is an embedded-first encapsulation of mapping time-oscilator counts to a measurement of time in SI units.
+- `embassy-time` has an encapsulation of time, however that lives in an async-first context. It also forces design
+choices onto reverse dependencies, such as forced into using u64 for their `Duration` and `Instant` primitives.
+- many MCU hals have their own way of encapsulating time, and other incremental counts.
+- fugit is an embedded-first encapsulation of mapping time-oscilator counts to a measurement of time in SI units.
+- `fugit` covers a lot of other base-functionalities in terms of embedded-first time-encapsulation.
 
 
 # Unresolved questions
 [unresolved]: #unresolved-questions
 
-How to move forward? I propose an `embedded-count` added to the rust-embedded repository, initially just a placeholder,
-I'll fork it, and begin initial work. At an appropriate time, it will be upstreamed, and v0.0.2 will be released. If all goes
-well, its form will be representative of this RFC.
-
-Are we comfortable with using `typenum` instead of const generics. This will remove the limitations of const generics
-entirely, including the need for nightly features, at the risk of interface ergonomics, and compromising user familiarity.
-I wish to explore the use of this crate, though I feel it's a core requirement that the change in UX to be trivial. I.e. other
-than theneed to use `typenum::U5` where `5u32/64/size/8` would be used to set a generic const.
 
 How should we approach assosciated error types?
 
@@ -266,4 +260,20 @@ be used to count something, would necissarily have an ordering between any two p
 be put into providing the maths where compatable. in pseudo-rust: `impl<A: Counter, B: Counter> Add<A::Output> for for B::Output`
 with where-clauses that constrain that the output types can do the Add.
 
+### How to move forward?
 
+Initially, it was thought to add `embedded-count` added to the rust-embedded repository, initially just a placeholder, and so on.
+
+This has been updated. I have concerns about the chicken-egg dilema, and counsil is sought to mitigate this. At time of writing:
+
+1. Create out-of-workinggroup repo and build up the interface(s)
+2. Fork some hals and update to use the interface(s)
+3. Fork existing projects, update to clocks portably.
+4. Continue working on my `SimpleFOC-rs` project, writing clocks in a portable manner
+
+### Typenum
+
+Are we comfortable with using `typenum` instead of const generics. This will remove the limitations of const generics
+entirely, including the need for nightly features, at the risk of interface ergonomics, and compromising user familiarity.
+I wish to explore the use of this crate, though I feel it's a core requirement that the change in UX to be trivial. I.e. other
+than theneed to use `typenum::U5` where `5u32/64/size/8` would be used to set a generic const.
