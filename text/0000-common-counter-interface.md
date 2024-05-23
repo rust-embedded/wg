@@ -134,6 +134,25 @@ where <Self as Counter>::Output: Into<Seconds<...>>
 }
 ```
 
+### Upstreamed feedback
+
+James Munn shared a valuable summary of their thoughts following a lengthy discussion in DMs:
+
+> you need to provide an interface that is reasonable for all parties, within reasonable use case [expectations] of all of them
+
+<details>
+<summary>It is expected that...</summary>
+- ..a timer/counter will need to be shared - there are relatively few of them on many chips
+- ..users will want high precision in some cases, 1k-1M are very reasonable number
+- ..some timers have a limited range - 16/24/32 bit are common, but many chips only have 16/24
+- ..programs will be expected for months to years at a time
+- ..some users want to use the lowest possible power design they can
+- ..not all chips have atomics, and may need to use critical sections
+- ..users may have other interrupts, some of which may have higher priority than your timer/counter interrupt
+- ..users may want to use a global timer inside of other interrupts
+</details>
+
+
 # How We Teach This
 [how-we-teach-this]: #how-we-teach-this
 
