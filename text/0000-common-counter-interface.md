@@ -69,8 +69,7 @@ standard for this, the way there is for things like gpio pins, i2c, etc.
 
 The core influence comes from two sources:
 
-- `embedded-hal`: Just as this crate makes no impositions on specific implementation, but rather, encapsulates interfaces that
-  represent the most fundamental of behavior.
+- `embedded-hal`: Just as this crate makes no impositions on specific implementation, but rather, make it easy to write highly portable embedded-rust
 - `embedded-time`: An independant endeavour that does a great job of already encapsulating this core idea.
 
 This is the code defining the `embedded_time::Clock` trait. I have changed the comments for the context of this RFC:
@@ -78,7 +77,7 @@ This is the code defining the `embedded_time::Clock` trait. I have changed the c
 <details>
 <summary> Expand to view annotated summary `embedded_time::Clock` trait </summary>
 ```rust
-// I would rename this to `TickCount`. A consistent oscilator is not necisarily a clock. It could be a PWM at 50% duty cycle,
+// I would rename this. A consistent oscilator is not necisarily a clock. It could be a PWM at 50% duty cycle,
 // or an ab encoder tracking total distance moved, etc. The only assumption is that it is an incremental counter, and that
 // each increment has a specific meaning (be it a meanure of time, distance, etc.).
 pub trait Clock: Sized {
