@@ -1,6 +1,6 @@
 - Feature Name: Embedded Discovery Book Triage
 - Start Date: 2024-05-21
-- RFC PR: #759
+- RFC PR: #770
 - Rust Issue: (leave this empty)
 
 # Summary
