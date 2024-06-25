@@ -57,44 +57,27 @@ plan.
 
 1. Deprecate EDB-STM.
 
-   * Close all open EDB-STM issues with either fixes or WONTFIX tags
-     and an explanation.
+   * Close as many open EDB-STM issues as possible with
+     either fixes or WONTFIX tags and an explanation.
 
    * Close all open EDB-STM PRs by either accepting or
      rejecting them with an explanation.
 
-2. Do a minimum-effort split of the EDB repo into three book
-   repos: EDB-STM, EDB-MB1 and EDB-MB2.
+2. Do a minimum-effort split of the EDB repo into two book
+   repos: a legacy repo and a new MB2-only repo.
 
-   * Fork the EDB repo to create a separate EDB-STM repo. In
-     this repo, remove the MB book and examples.
-
-   * Clearly mark EDB-STM as deprecated in the
-     README; clearly mark EDB-STM as deprecated on the
-     first page; post a single open issue explaining the
-     deprecation. Provide clear instructions on where to go
-     for current information.
-
-   * Fork the EDB repo to create a separate EDB-MB1 repo. In
+   * Fork the EDB repo to create a separate EDB-MB2 repo. In
      this repo, remove the STM book and examples; remove all
-     MB2 material and patch all example code to be
-     MB1-specific.
+     MB1 material and patch all example code to be
+     MB2-specific.
  
-   * Go through the same steps with the new EDB-MB1 repo
-     that were gone through with EDB-STM.
+   * Clearly mark the legacy repo as deprecated in the
+     README; clearly mark EDB-STM and EDB-MB as deprecated
+     on the first page; post an open issue explaining
+     the deprecation.
      
-   * The EDB repo now becomes the EDB-MB2 repo. Remove the
-     STM book and examples. Remove all MB1 material and
-     patch all example code to be MB2-specific. Try to close
-     as many issues and PRs as are easily feasible.
-
-   * Note that after the split the new EDB-STM and EDB-MB1
-     repos will not have issues or PRs available. This is as
-     it should be.
-
-3. Do as direct a port as possible of EDB-STM content
-   "missing" from EDB-MB2. EDB-MB2 should cover all major
-   topics covered by EDB-STM.
+   * Provide clear instructions on where to go for the
+     current EDB-MB2 book.
 
 # How We Teach This
 [how-we-teach-this]: #how-we-teach-this
@@ -107,12 +90,11 @@ experience.
 # Drawbacks
 [drawbacks]: #drawbacks
 
-* People with STM32F3V303 and MB1 boards will feel
-  disenfranchised by the deprecation.
+* There will be some confusion about which book to use for
+  MB2. Adequate signposting will be necessary.
 
-* For a "triage" this is a reasonably high-effort
-  approach. One can imagine some smaller cleanup that would
-  be adequate.
+* Issues and PRs for MB2 will continue to be posted on the
+  legacy repo. This will necessitate redirecting people.
 
 # Alternatives
 [alternatives]: #alternatives
@@ -125,6 +107,11 @@ experience.
   
   This is a lot of effort to do and maintain: it would
   probably require sustained work by a large team.
+
+* Do some fancier repo split. This is what was originally
+  proposed, but drawbacks with this approach emerged,
+  including potential loss of legacy material and breaking
+  existing documewtation links.
 
 * Do a new EDB or other beginner book "from scratch". This
   is a great long-term goal, but leaves things in a
