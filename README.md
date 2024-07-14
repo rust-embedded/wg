@@ -266,7 +266,6 @@ The MS430 team develops and maintains the core of the MSP430 crate ecosystem.
 #### Members
 
 - [@cr1901]
-- [@YuhanLiin]
 
 #### Projects
 
@@ -381,6 +380,7 @@ The following alumni have put themselves into the hibernation state, due to bein
 - [@wizofe]
 - [@posborne]
 - [@thejpster] (Personal) / [@jonathanpallant] (Work)
+- [@YuhanLiin]
 
 ### Contact
 
