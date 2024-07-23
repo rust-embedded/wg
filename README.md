@@ -354,6 +354,7 @@ The triage team is charge of keeping PR queues moving; they ensure no PR is left
 
 - [@mathk]
 - [@jessebraham]
+- [@jannic]
 
 ### Hibernating and Alumni
 
@@ -420,6 +421,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@hargoniX]: https://github.com/hargoniX
 [@ithinuel]: https://github.com/ithinuel
 [@jamesmunns]: https://github.com/jamesmunns
+[@jannic]: https://github.com/jannic
 [@japaric]: https://github.com/japaric
 [@jcsoo]: https://github.com/jcsoo
 [@jessebraham]: https://github.com/jessebraham
