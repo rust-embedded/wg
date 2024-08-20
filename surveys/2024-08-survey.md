@@ -1,0 +1,139 @@
+# Survey questions
+
+This is the first Rust Embedded Working Group community survey. The goal is to gather feedback from users of Rust on bare-metal or RTOS based embedded devices including microcontrollers.
+
+## Your use of embedded Rust
+
+### Where do you plan to use embedded Rust in the next 12 months?
+
+Type: select all that apply (optional)
+
+- Hobby or personal projects
+- School or university projects
+- Work or professional projects
+- Not currently using embedded Rust, but have in the past for projects
+- I have not used embedded Rust for any projects
+
+### How long have you been using embedded Rust?
+
+Type: select one (optional)
+
+- Zero to one years
+- One to two years
+- Two to three years
+- Three to four years
+- Four to five years
+- Five to six years
+- More than six years
+
+### If you are using embedded Rust for work, how many embedded devices per year is your company shipping using Rust?
+
+Type: select one (optional)
+
+- Unsure or unable to disclose
+- Zero devices (only internal or non-production usage)
+- 1 to 10 devices per year
+- 10 to 100 devices per year
+- 100 to 1,000 devices per year
+- 1,000 to 10,000 devices per year
+- More than 10,000 devices per year
+
+### What architectures are you planning to use embedded Rust with in the next 12 months?
+
+Type: select all that apply (optional)
+
+- Arm Cortex-A
+- Arm Cortex-R
+- Arm Cortex-M
+- RISC-V 32-bit
+- RISC-V 64-bit
+- Xtensa
+- Other (open response)
+
+### What chip families are you planning to use embedded Rust with in the next 12 months?
+
+Type: select all that apply (optional)
+
+- Apollo (Ambiq)
+- ATSAM (Atmel/Microchip)
+- ESP32 (Espressif Systems)
+- LPC or i.MX RT (NXP)
+- nRF (Nordic Semiconductor)
+- RP2xxx (Raspberry Pi)
+- STM32 (STMicroelectronics)
+- TI (Texas Instruments)
+- Other (open response)
+
+### How do you typically use embedded Rust in your firmware projects?
+
+Type: select all that apply (optional)
+
+- Exclusively Rust for firmware
+- Majority Rust for firmware, with some components or libraries in other languages (C/C++/other)
+- Majority other languages (C/C++/other) for firmware, with some Rust components or libraries
+- Exclusively other languages (C/C++/other) for firmware
+
+### What other languages do you use with Rust in your firmware projects?
+
+Type: select all that apply (optional)
+
+* Ada
+* C
+* C++
+* Micro/Circuit Python
+* Swift
+* Zig
+* None - exclusively Rust
+* Other (open response)
+
+## Typical tools and libraries used
+
+### What frameworks or RTOSs are you using with embedded Rust?
+
+Type: select all that apply (optional)
+
+- Embassy
+- ESP-IDF (`std` support on ESP32)
+- Hubris OS
+- RTIC
+- Tock-OS
+- Non-Rust based RTOSs (such as Zephyr, FreeRTOS, RIOT-OS, etc.)
+- Other (open response)
+
+### What tools do you use as part of your development process?
+
+Type: select all that apply (optional)
+
+- bindgen
+- Cargo
+- cbindgen
+- cross
+- defmt
+- espflash
+- probe-rs
+- Rust Analyzer
+- Other (open response)
+
+### What are the most common crates or libraries you use in your embedded projects?
+
+Type: free text (optional)
+
+## Personal feedback
+
+### What are your biggest complaints or blockers for using Rust in your embedded projects?
+
+Type: free text (optional)
+
+### How happy are you with using Rust for embedded projects?
+
+Type: select one (optional)
+
+- 1 (least happy)
+- 2
+- 3
+- 4
+- 5 (most happy)
+
+### Is there anything else you would like the Embedded Working Group to know?
+
+Type: free text (optional)
