@@ -286,6 +286,7 @@ The RISC-V team develops and maintains the core of the RISC-V crate ecosystem.
 - [@romancardenas]
 - [@MabezDev]
 - [@jessebraham]
+- [@rmsyn]
 
 #### Projects
 
@@ -450,6 +451,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@YuhanLiin]: https://github.com/YuhanLiin
 [@newAM]: https://github.com/newAM
 [@hdoordt]: https://github.com/hdoordt
+[@rmsyn]: https://github.com/rmsyn
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
