@@ -124,60 +124,37 @@ The functions of the core team are:
 - [@adamgreig]
 - [@therealprof]
 
-### The Cortex-A team
+### The Arm team
 
-The Cortex-A team develops and maintains the core of the Cortex-A crate ecosystem.
+The Arm team develops and maintains the crates related to Arm microprocessors
+and microcontrollers, including Cortex-A, Cortex-R, and Cortex-M.
 
 #### Members
 
-- [@raw-bin]
-- [@nchong-at-aws]
+- [@adamgreig]
 - [@berkus]
+- [@nchong-at-aws]
+- [@newAM]
+- [@raw-bin]
+- [@thalesfragoso]
+- [@therealprof]
 
 #### Projects
 
 Projects maintained by this team.
 
 - [`aarch64-cpu`]
-- [`rust-raspberrypi-OS-tutorials`]
-
-### The Cortex-M team
-
-The Cortex-M team develops and maintains the core of the Cortex-M crate ecosystem.
-
-#### Members
-
-- [@adamgreig]
-- [@therealprof]
-- [@thalesfragoso]
-- [@newAM]
-
-#### Projects
-
-Projects maintained by this team.
-
+- [`arm-dcc`]
+- [`cortex-ar`]
 - [`cortex-m-quickstart`]
 - [`cortex-m-rt`]
 - [`cortex-m-semihosting`]
 - [`cortex-m`]
 - [`itm`]
+- [`panic-dcc`]
 - [`panic-itm`]
 - [`panic-semihosting`]
-
-### The Cortex-R team
-
-The Cortex-R team develops and maintains the core of the Cortex-R crate ecosystem.
-
-#### Members
-
-This team is currently empty! Please get in touch via an issue or the Matrix
-chat if you are interested in helping to maintain the Cortex-R crates.
-
-#### Projects
-
-- [`arm-dcc`]
-- [`cortex-r`]
-- [`panic-dcc`]
+- [`rust-raspberrypi-OS-tutorials`]
 
 ### The embedded Linux team
 
@@ -389,14 +366,12 @@ The following alumni have put themselves into the hibernation state, due to bein
 Each team can be privately contacted via the following e-mail addresses:
 
 - cortex-m@teams.rust-embedded.org
-- cortex-r@teams.rust-embedded.org
 - embedded-linux@teams.rust-embedded.org
 - hal@teams.rust-embedded.org
 - infrastructure@teams.rust-embedded.org
 - resources@teams.rust-embedded.org
 - risc-v@teams.rust-embedded.org
 - tools@teams.rust-embedded.org
-<!-- - msp430@teams.rust-embedded.org -->
 
 You can usually find the members of the embedded WG on the Rust Embedded Matrix room
 ([#rust-embedded:matrix.org][matrix]).
@@ -468,7 +443,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`cortex-m-rt`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-rt
 [`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-semihosting
 [`cortex-m`]: https://github.com/rust-embedded/cortex-m
-[`cortex-r`]: https://github.com/rust-embedded/cortex-r
+[`cortex-ar`]: https://github.com/rust-embedded/cortex-ar
 [`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
 [`gpio-cdev`]: https://github.com/rust-embedded/gpio-cdev
 [`gpio-utils`]: https://github.com/rust-embedded/gpio-utils
