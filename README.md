@@ -133,6 +133,7 @@ and microcontrollers, including Cortex-A, Cortex-R, and Cortex-M.
 
 - [@adamgreig]
 - [@berkus]
+- [@jonathanpallant]
 - [@nchong-at-aws]
 - [@newAM]
 - [@raw-bin]
