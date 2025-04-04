@@ -137,6 +137,7 @@ and microcontrollers, including Cortex-A, Cortex-R, and Cortex-M.
 - [@nchong-at-aws]
 - [@newAM]
 - [@raw-bin]
+- [@robamu]
 - [@thalesfragoso]
 - [@therealprof]
 
@@ -415,6 +416,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@raw-bin]: https://github.com/raw-bin
 [@reitermarkus]: https://github.com/reitermarkus
 [@romancardenas]: https://github.com/romancardenas
+[@robamu]: https://github.com/robamu
 [@ryankurte]: https://github.com/ryankurte
 [@sekineh]: https://github.com/sekineh
 [@sirhcel]: https://github.com/sirhcel
