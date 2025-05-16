@@ -140,6 +140,7 @@ and microcontrollers, including Cortex-A, Cortex-R, and Cortex-M.
 - [@robamu]
 - [@thalesfragoso]
 - [@therealprof]
+- [@ithinuel]
 
 #### Projects
 
@@ -195,6 +196,7 @@ which can interoperate across all embedded Rust devices on all architectures.
 - [@eldruin]
 - [@dirbaio]
 - [@MabezDev]
+- [@ithinuel]
 
 #### Projects
 
@@ -315,6 +317,7 @@ embedded targets themselves.
 - [@Emilgardis]
 - [@ryankurte]
 - [@therealprof]
+- [@ithinuel]
 
 #### Projects
 
@@ -348,7 +351,6 @@ The following alumni have put themselves into the hibernation state, due to bein
 - [@dylanmckay]
 - [@hannobraun]
 - [@hargoniX]
-- [@ithinuel]
 - [@japaric]
 - [@jcsoo]
 - [@korken89]
