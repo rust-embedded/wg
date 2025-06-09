@@ -515,17 +515,6 @@ building reusable driver crates, crates to interface with external components li
 There are plenty of traits that still need to be designed, in particular ones that involve async
 I/O. Join the discussion and help us design the missing traits so that they'll fulfill your needs.
 
-### [The weekly driver initiative][wd]
-
-To put the `embedded-hal` to test and to expand the embedded crates.io ecosystem we are running the
-weekly driver initiative. The goal is to release a new `no_std`, generic, `embedded-hal` driver
-crate every one or two weeks.
-
-There's lots of cool devices that would be great to have drivers for. Join the initiative and help
-us grow the embedded crates.io ecosystem!
-
-[wd]: https://github.com/rust-lang-nursery/embedded-wg/issues/39
-
 ### [Awesome embedded Rust](https://github.com/rust-embedded/awesome-embedded-rust)
 
 The community is building a curated list of crates useful for embedded development. In this list
