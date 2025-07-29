@@ -149,7 +149,6 @@ Projects maintained by this team.
 - [`aarch64-cpu`]
 - [`arm-dcc`]
 - [`cortex-ar`]
-- [`cortex-m-quickstart`]
 - [`cortex-m-rt`]
 - [`cortex-m-semihosting`]
 - [`cortex-m`]
