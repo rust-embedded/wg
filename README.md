@@ -132,6 +132,7 @@ and microcontrollers, including Cortex-A, Cortex-R, and Cortex-M.
 #### Members
 
 - [@adamgreig]
+- [@bartmassey]
 - [@berkus]
 - [@jonathanpallant]
 - [@nchong-at-aws]
