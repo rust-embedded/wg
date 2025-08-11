@@ -232,6 +232,7 @@ The libs team manages library code that is not architecture-specific.
 - [@newAM]
 - [@reitermarkus]
 - [@zeenix]
+- [@sgued]
 
 #### Projects
 
