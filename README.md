@@ -437,6 +437,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@rmsyn]: https://github.com/rmsyn
 [@berkus]: https://github.com/berkus
 [@zeenix]: https://github.com/zeenix
+[@sgued]: https://github.com/sgued
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
