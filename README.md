@@ -142,6 +142,7 @@ and microcontrollers, including Cortex-A, Cortex-R, and Cortex-M.
 - [@thalesfragoso]
 - [@therealprof]
 - [@ithinuel]
+- [@davidtwco] (representing `@rust-lang/arm-maintainers`)
 
 #### Projects
 
