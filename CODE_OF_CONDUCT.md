@@ -52,7 +52,7 @@ This policy extends beyond code contributions and includes, but is not limited t
 
 Sending patches, PRs, RFCs, comments, etc., is not free – it takes a lot of maintainer time and energy to review those contributions! We see the act of sending low-quality, un-self-reviewed contributions to the Rust Embedded WG project as “extractive.” It is an attempt to extract work from the community in the form of review comments and mentorship, without the contributor putting in comensurate effort to make their contribution worth reviewing.
 
-Our golden rule is that a contribution should be worth more to the project than the time it takes to review it. If a maintainer judges that a contribution is extractive (i.e., it is generated with tool-assistance or simply requires significant revision), they
+Our golden rule is that a contribution should be worth more to the project than the time it takes to review it. If a maintainer judges that a contribution is extractive (i.e., it is generated mainly with tool-assistance or requires significant revision), they
 should copy-paste the following response, add the `extractive` label if applicable, and refrain from further engagement:
 
 > This PR appears to be extractive, and requires additional justification for why it is valuable enough to the project for us to review it. Please see our developer policy on AI-generated contributions: https://github.com/rust-embedded/wg/blob/master/CODE_OF_CONDUCT.md#AI-Tool-Use-Policy
