@@ -2,10 +2,6 @@
 
 The [Resources Team] currently maintains three official social media accounts:
 
-* [Twitter: @rustembedded](https://twitter.com/rustembedded)
-    * Maintained by [@jamesmunns]
-* [Cohost: @rustembedded](https://cohost.org/rustembedded)
-    * Maintained by [@adamgreig] and [@jamesmunns]
 * [Mastodon: @rustembedded@hachyderm.io]
     * Maintained by [@adamgreig]
 
