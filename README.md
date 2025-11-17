@@ -466,7 +466,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`msp430-rt`]: https://github.com/pftbest/msp430-rt
 [`msp430`]: https://github.com/pftbest/msp430
 [`nb`]: https://github.com/rust-embedded/nb
-[`panic-dcc`]: https://github.com/rust-embedded/arm-dcc/tree/master/panic
+[`panic-dcc`]: https://github.com/rust-embedded/arm-dcc/tree/main/panic-dcc
 [`panic-itm`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-itm
 [`panic-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/panic-semihosting
 [`qemu-exit`]: https://github.com/rust-embedded/qemu-exit
