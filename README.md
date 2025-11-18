@@ -366,7 +366,7 @@ The following alumni have put themselves into the hibernation state, due to bein
 - [@v-thakkar]
 - [@wizofe]
 - [@posborne]
-- [@thejpster] (Personal) / [@jonathanpallant] (Work)
+- [@thejpster]
 - [@YuhanLiin]
 
 ### Contact
@@ -440,6 +440,7 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [@berkus]: https://github.com/berkus
 [@zeenix]: https://github.com/zeenix
 [@sgued]: https://github.com/sgued
+[@davidtwco]: https://github.com/davidtwco
 
 [@rustembedded twitter]: https://twitter.com/rustembedded
 [Awesome embedded Rust]: https://github.com/rust-embedded/awesome-embedded-rust
