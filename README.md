@@ -150,7 +150,8 @@ Projects maintained by this team.
 
 - [`aarch64-cpu`]
 - [`arm-dcc`]
-- [`cortex-ar`]
+- [`aarch32-cpu`] (was [`cortex-ar`])
+- [`aarch32-rt`]
 - [`cortex-m-rt`]
 - [`cortex-m-semihosting`]
 - [`cortex-m`]
@@ -456,6 +457,8 @@ Our Matrix room is logged by on the bridged IRC channel, and you can find the lo
 [`cortex-m-semihosting`]: https://github.com/rust-embedded/cortex-m/tree/master/cortex-m-semihosting
 [`cortex-m`]: https://github.com/rust-embedded/cortex-m
 [`cortex-ar`]: https://github.com/rust-embedded/cortex-ar
+[`aarch32-cpu`]: https://github.com/rust-embedded/aarch32
+[`aarch32-rt`]: https://github.com/rust-embedded/aarch32
 [`embedded-hal`]: https://github.com/rust-embedded/embedded-hal
 [`gpio-cdev`]: https://github.com/rust-embedded/gpio-cdev
 [`gpio-utils`]: https://github.com/rust-embedded/gpio-utils
