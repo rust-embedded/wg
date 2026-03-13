@@ -200,6 +200,7 @@ which can interoperate across all embedded Rust devices on all architectures.
 - [@dirbaio]
 - [@MabezDev]
 - [@ithinuel]
+- [@zeenix]
 
 #### Projects
 
