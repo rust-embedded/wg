@@ -1,4 +1,4 @@
-# The Rust Code of Conduct
+# The Rust Embedded Working Group Code of Conduct
 
 ## Conduct
 
